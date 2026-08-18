@@ -1,0 +1,44 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "flood-central-marsh",
+        "confidence": 0.76,
+        "label": "Central marsh flood extent"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [37.261, -2.651],
+          [37.271, -2.646],
+          [37.284, -2.651],
+          [37.286, -2.660],
+          [37.276, -2.664],
+          [37.264, -2.660],
+          [37.261, -2.651]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "flood-north-causeway",
+        "confidence": 0.82,
+        "label": "Northern causeway flood extent"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [37.262, -2.636],
+          [37.278, -2.638],
+          [37.281, -2.628],
+          [37.274, -2.621],
+          [37.263, -2.625],
+          [37.262, -2.636]
+        ]]
+      }
+    }
+  ]
+}

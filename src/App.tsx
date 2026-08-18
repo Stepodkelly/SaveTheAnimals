@@ -106,7 +106,8 @@ export default function App() {
       setIntelligence(payload);
       setIntelligenceStatus("ready");
     } catch {
-      setIntelligenceStatus("error");
+      setIntelligence(publicDemoIntelligence(selectedIncident));
+      setIntelligenceStatus("ready");
     }
   }
 
@@ -151,7 +152,8 @@ export default function App() {
       setLocalAnswer(payload);
       setLocalAnswerStatus("ready");
     } catch {
-      setLocalAnswerStatus("error");
+      setLocalAnswer(publicDemoLocalAnswer(question));
+      setLocalAnswerStatus("ready");
     }
   }
 
@@ -265,6 +267,88 @@ export default function App() {
       </footer>
     </main>
   );
+}
+
+function publicDemoIntelligence(selectedIncident: IncidentLocation): IntelligenceResponse {
+  return {
+    searchPlan: {
+      window: {
+        label: "During flooding",
+        start: "2026-03-09",
+        end: "2026-03-20"
+      },
+      queries: [
+        {
+          question: "Was any named Amboseli access road reported impassable near the observation date?",
+          query: "Amboseli access road impassable flood March 2026",
+          category: "road_access",
+          dateStart: "2026-03-09",
+          dateEnd: "2026-03-20",
+          relevantAssetIds: ["central_to_eastern", "eastern_to_sinet"]
+        },
+        {
+          question: "Were park infrastructure or causeways affected around the same period?",
+          query: "Amboseli causeway flooding park infrastructure March 2026",
+          category: "infrastructure",
+          dateStart: "2026-03-09",
+          dateEnd: "2026-03-20",
+          relevantAssetIds: ["north_to_causeway"]
+        },
+        {
+          question: "Do ranger or weather reports mention field access near Amboseli?",
+          query: "Amboseli ranger weather report flooding March 2026",
+          category: "field_report",
+          dateStart: "2026-03-09",
+          dateEnd: "2026-03-20",
+          relevantAssetIds: []
+        },
+        {
+          question: "Is there contradictory evidence that access remained open?",
+          query: "Amboseli roads open March 2026 flood",
+          category: "contradictory_evidence",
+          dateStart: "2026-03-09",
+          dateEnd: "2026-03-20",
+          relevantAssetIds: ["bypass_to_eastern"]
+        }
+      ]
+    },
+    evidence: [
+      {
+        sourceTitle: "Public demo evidence cache",
+        sourceUrl: "https://github.com/Stepodkelly/SaveTheAnimals",
+        publicationDate: "2026-03-17",
+        inferredEventDate: "2026-03-16",
+        claim: "The public demo URL is running without server secrets. Local development uses live Exa and Gemini from the server-side .env file.",
+        classification: "inconclusive",
+        geographicSpecificity: "park_level",
+        temporalMatch: "strong",
+        confidence: 0.7
+      }
+    ],
+    briefing: {
+      summary: "Static public demo mode.",
+      routeAssessment: `The preliminary access route to ${selectedIncident.name} remains deterministic. Live Exa/Gemini evidence is available in local server mode; the public static URL shows the same evidence workflow with a cached fallback.`,
+      unknowns: ["Static GitHub Pages cannot hold private API keys."],
+      recommendedVerification: ["Run the local server for live Exa/Gemini evidence retrieval."]
+    },
+    cached: true,
+    sourceMode: "cached_fallback"
+  };
+}
+
+function publicDemoLocalAnswer(question: string): LocalQuestionResponse {
+  return {
+    answer: `Public demo mode cannot call the secret-backed Exa service for "${question}". In local server mode, this box searches Exa for official public contacts and localized reports.`,
+    sources: [
+      {
+        title: "Project repository",
+        url: "https://github.com/Stepodkelly/SaveTheAnimals"
+      }
+    ],
+    sourceMode: "cached_fallback",
+    guardrail:
+      "Private residents and unofficial personal contacts are excluded unless a source clearly publishes them as official public contact channels."
+  };
 }
 
 function WindowBadge({

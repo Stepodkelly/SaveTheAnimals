@@ -1,0 +1,33 @@
+{
+  "base": {
+    "id": "ranger_base",
+    "name": "Kimana Ranger Base",
+    "coordinates": [37.242, -2.662]
+  },
+  "incidents": [
+    {
+      "id": "marsh_report",
+      "name": "Sinet Delta Incident",
+      "coordinates": [37.292, -2.643],
+      "nearestNodeId": "sinet_delta"
+    },
+    {
+      "id": "causeway_report",
+      "name": "Enkongo Narok Causeway",
+      "coordinates": [37.273, -2.627],
+      "nearestNodeId": "enkongo_causeway"
+    }
+  ],
+  "nodes": [
+    { "id": "ranger_base", "name": "Kimana Ranger Base", "coordinates": [37.242, -2.662] },
+    { "id": "central_junction", "name": "Central Junction", "coordinates": [37.255, -2.653] },
+    { "id": "dry_ridge", "name": "Dry Ridge Track", "coordinates": [37.268, -2.667] },
+    { "id": "southern_bypass", "name": "Southern Bypass", "coordinates": [37.282, -2.676] },
+    { "id": "eastern_access", "name": "Eastern Access Road", "coordinates": [37.286, -2.657] },
+    { "id": "sinet_delta", "name": "Sinet Delta Spur", "coordinates": [37.292, -2.643] },
+    { "id": "northern_loop", "name": "Northern Loop", "coordinates": [37.268, -2.639] },
+    { "id": "enkongo_causeway", "name": "Enkongo Narok Causeway", "coordinates": [37.273, -2.627] },
+    { "id": "observation_hill", "name": "Observation Hill Track", "coordinates": [37.236, -2.676] },
+    { "id": "western_gate", "name": "Western Gate", "coordinates": [37.229, -2.654] }
+  ]
+}

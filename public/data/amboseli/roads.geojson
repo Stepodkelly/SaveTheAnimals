@@ -1,0 +1,60 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": { "id": "base_to_central", "from": "ranger_base", "to": "central_junction", "name": "Base Road", "condition": "known_road" },
+      "geometry": { "type": "LineString", "coordinates": [[37.242, -2.662], [37.255, -2.653]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "central_to_eastern", "from": "central_junction", "to": "eastern_access", "name": "Low Marsh Road", "condition": "known_road" },
+      "geometry": { "type": "LineString", "coordinates": [[37.255, -2.653], [37.268, -2.656], [37.286, -2.657]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "eastern_to_sinet", "from": "eastern_access", "to": "sinet_delta", "name": "Sinet Delta Spur", "condition": "known_road" },
+      "geometry": { "type": "LineString", "coordinates": [[37.286, -2.657], [37.292, -2.643]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "base_to_ridge", "from": "ranger_base", "to": "dry_ridge", "name": "Dry Ridge Track", "condition": "known_road" },
+      "geometry": { "type": "LineString", "coordinates": [[37.242, -2.662], [37.258, -2.668], [37.268, -2.667]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "ridge_to_bypass", "from": "dry_ridge", "to": "southern_bypass", "name": "Dry Ridge Connector", "condition": "uncertain_track" },
+      "geometry": { "type": "LineString", "coordinates": [[37.268, -2.667], [37.282, -2.676]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "bypass_to_eastern", "from": "southern_bypass", "to": "eastern_access", "name": "Southern Bypass", "condition": "uncertain_track" },
+      "geometry": { "type": "LineString", "coordinates": [[37.282, -2.676], [37.289, -2.668], [37.286, -2.657]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "central_to_north", "from": "central_junction", "to": "northern_loop", "name": "Northern Loop Link", "condition": "known_road" },
+      "geometry": { "type": "LineString", "coordinates": [[37.255, -2.653], [37.262, -2.646], [37.268, -2.639]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "north_to_causeway", "from": "northern_loop", "to": "enkongo_causeway", "name": "Causeway Approach", "condition": "known_road" },
+      "geometry": { "type": "LineString", "coordinates": [[37.268, -2.639], [37.273, -2.627]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "eastern_to_north", "from": "eastern_access", "to": "northern_loop", "name": "Eastern Loop Road", "condition": "known_road" },
+      "geometry": { "type": "LineString", "coordinates": [[37.286, -2.657], [37.277, -2.646], [37.268, -2.639]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "base_to_hill", "from": "ranger_base", "to": "observation_hill", "name": "Observation Hill Track", "condition": "known_road" },
+      "geometry": { "type": "LineString", "coordinates": [[37.242, -2.662], [37.236, -2.676]] }
+    },
+    {
+      "type": "Feature",
+      "properties": { "id": "central_to_west", "from": "central_junction", "to": "western_gate", "name": "Western Gate Road", "condition": "known_road" },
+      "geometry": { "type": "LineString", "coordinates": [[37.255, -2.653], [37.242, -2.651], [37.229, -2.654]] }
+    }
+  ]
+}

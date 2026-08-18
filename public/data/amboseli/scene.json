@@ -1,0 +1,28 @@
+{
+  "sceneId": "S1A_IW_DEMO_AMBOSELI_2026_03_16",
+  "location": "Amboseli, Kenya",
+  "sensor": "Sentinel-1",
+  "acquiredAt": "2026-03-16T06:12:00Z",
+  "observationWindows": {
+    "beforeFlooding": {
+      "label": "Before flooding",
+      "start": "2026-01-15",
+      "end": "2026-02-20"
+    },
+    "duringFlooding": {
+      "label": "During flooding",
+      "start": "2026-03-09",
+      "end": "2026-03-20"
+    },
+    "recoveryComparison": {
+      "label": "Recovery comparison",
+      "start": "2026-05-07",
+      "end": "2026-05-15"
+    }
+  },
+  "bounds": [37.228, -2.688, 37.303, -2.623],
+  "projection": "EPSG:4326",
+  "width": 2048,
+  "height": 1775,
+  "note": "Demonstration flood extent traced from a satellite observation."
+}

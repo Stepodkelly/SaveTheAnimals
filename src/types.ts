@@ -25,6 +25,8 @@ export type ObservationWindow = {
   end: string;
 };
 
+export type ObservationWindowKey = "beforeFlooding" | "duringFlooding" | "recoveryComparison";
+
 export type RoadCondition = "known_road" | "uncertain_track";
 
 export type RoadNode = {

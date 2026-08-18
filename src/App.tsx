@@ -10,6 +10,7 @@ import type {
   IntelligenceResponse,
   LocalQuestionResponse,
   LocationsData,
+  ObservationWindowKey,
   RoadCollection,
   SceneMetadata
 } from "./types";
@@ -24,6 +25,7 @@ type DemoData = {
 export default function App() {
   const [data, setData] = useState<DemoData | null>(null);
   const [selectedIncidentId, setSelectedIncidentId] = useState("marsh_report");
+  const [activeWindow, setActiveWindow] = useState<ObservationWindowKey>("duringFlooding");
   const [showFlood, setShowFlood] = useState(true);
   const [intelligence, setIntelligence] = useState<IntelligenceResponse | null>(null);
   const [intelligenceStatus, setIntelligenceStatus] = useState<"idle" | "loading" | "ready" | "error">("idle");
@@ -57,6 +59,32 @@ export default function App() {
     );
     return { normalEdges, floodEdges, normalRoute, floodRoute };
   }, [data, selectedIncident, evidencePenalties]);
+
+  const activeRouteView = useMemo(() => {
+    if (!analyzed) return null;
+    if (activeWindow === "duringFlooding") {
+      return {
+        edges: analyzed.floodEdges,
+        currentRoute: analyzed.floodRoute,
+        rejectedRoute: analyzed.normalRoute,
+        showFlood: showFlood
+      };
+    }
+    if (activeWindow === "recoveryComparison") {
+      return {
+        edges: analyzed.normalEdges,
+        currentRoute: analyzed.normalRoute,
+        rejectedRoute: null,
+        showFlood: showFlood
+      };
+    }
+    return {
+      edges: analyzed.normalEdges,
+      currentRoute: analyzed.normalRoute,
+      rejectedRoute: null,
+      showFlood: false
+    };
+  }, [activeWindow, analyzed, showFlood]);
 
   async function runIntelligence() {
     if (!data || !selectedIncident || !analyzed) return;
@@ -98,6 +126,11 @@ export default function App() {
     setEvidencePenalties(nextPenalties);
   }
 
+  function selectObservationWindow(windowKey: ObservationWindowKey) {
+    setActiveWindow(windowKey);
+    setShowFlood(windowKey !== "beforeFlooding");
+  }
+
   async function askLocalQuestion(question: string) {
     if (!data || !selectedIncident || !analyzed) return;
     setLocalAnswerStatus("loading");
@@ -122,7 +155,7 @@ export default function App() {
     }
   }
 
-  if (!data || !selectedIncident || !analyzed) {
+  if (!data || !selectedIncident || !analyzed || !activeRouteView) {
     return <main className="loading">Loading #save_the_animals</main>;
   }
 
@@ -147,6 +180,9 @@ export default function App() {
             data.scene.observationWindows.beforeFlooding.start,
             data.scene.observationWindows.beforeFlooding.end
           )}
+          windowKey="beforeFlooding"
+          activeWindow={activeWindow}
+          onSelect={selectObservationWindow}
         />
         <WindowBadge
           label={data.scene.observationWindows.duringFlooding.label}
@@ -154,7 +190,9 @@ export default function App() {
             data.scene.observationWindows.duringFlooding.start,
             data.scene.observationWindows.duringFlooding.end
           )}
-          active
+          windowKey="duringFlooding"
+          activeWindow={activeWindow}
+          onSelect={selectObservationWindow}
         />
         <WindowBadge
           label={data.scene.observationWindows.recoveryComparison.label}
@@ -162,14 +200,21 @@ export default function App() {
             data.scene.observationWindows.recoveryComparison.start,
             data.scene.observationWindows.recoveryComparison.end
           )}
+          windowKey="recoveryComparison"
+          activeWindow={activeWindow}
+          onSelect={selectObservationWindow}
         />
       </section>
 
       <section className="workspace">
         <div className="map-area">
           <div className="map-toolbar" aria-label="Map controls">
-            <button className={showFlood ? "toggle active" : "toggle"} onClick={() => setShowFlood((value) => !value)}>
-              Satellite flood
+            <button
+              className={activeRouteView.showFlood ? "toggle active" : "toggle"}
+              onClick={() => setShowFlood((value) => !value)}
+              disabled={activeWindow === "beforeFlooding"}
+            >
+              Flood overlay
             </button>
             <span className="map-note">{data.scene.note}</span>
           </div>
@@ -181,19 +226,20 @@ export default function App() {
           <RescueMap
             locations={data.locations}
             floods={data.floods}
-            edges={analyzed.floodEdges}
-            normalRoute={analyzed.normalRoute}
-            floodRoute={analyzed.floodRoute}
+            edges={activeRouteView.edges}
+            currentRoute={activeRouteView.currentRoute}
+            rejectedRoute={activeRouteView.rejectedRoute}
             selectedIncident={selectedIncident}
-            showFlood={showFlood}
+            showFlood={activeRouteView.showFlood}
+            activeWindow={activeWindow}
           />
         </div>
 
         <RoutePanel
           selectedIncident={selectedIncident}
           incidents={data.locations.incidents}
-          route={analyzed.floodRoute}
-          edges={analyzed.floodEdges}
+          route={activeRouteView.currentRoute}
+          edges={activeRouteView.edges}
           evidence={intelligence}
           intelligenceStatus={intelligenceStatus}
           evidenceApplied={Object.keys(evidencePenalties).length > 0}
@@ -221,11 +267,29 @@ export default function App() {
   );
 }
 
-function WindowBadge({ label, value, active = false }: { label: string; value: string; active?: boolean }) {
+function WindowBadge({
+  label,
+  value,
+  windowKey,
+  activeWindow,
+  onSelect
+}: {
+  label: string;
+  value: string;
+  windowKey: ObservationWindowKey;
+  activeWindow: ObservationWindowKey;
+  onSelect: (windowKey: ObservationWindowKey) => void;
+}) {
+  const active = windowKey === activeWindow;
   return (
-    <div className={active ? "window-badge active" : "window-badge"}>
+    <button
+      type="button"
+      className={active ? "window-badge active" : "window-badge"}
+      aria-pressed={active}
+      onClick={() => onSelect(windowKey)}
+    >
       <span>{label}</span>
       <strong>{value}</strong>
-    </div>
+    </button>
   );
 }

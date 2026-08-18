@@ -2,34 +2,36 @@ import { useEffect, useRef } from "react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import type { FeatureCollection, LineString } from "geojson";
-import type { FloodCollection, IncidentLocation, LocationsData, RoadEdge, RouteResult } from "../types";
+import type {
+  FloodCollection,
+  IncidentLocation,
+  LocationsData,
+  ObservationWindowKey,
+  RoadEdge,
+  RouteResult
+} from "../types";
 import { routeFeatures } from "../lib/routing";
 
 type RescueMapProps = {
   locations: LocationsData;
   floods: FloodCollection;
   edges: RoadEdge[];
-  normalRoute: RouteResult;
-  floodRoute: RouteResult;
+  currentRoute: RouteResult;
+  rejectedRoute: RouteResult | null;
   selectedIncident: IncidentLocation;
   showFlood: boolean;
-};
-
-const FLOOD_STYLE = {
-  color: "#12b8d7",
-  fillColor: "#083b68",
-  weight: 2,
-  fillOpacity: 0.46
+  activeWindow: ObservationWindowKey;
 };
 
 export function RescueMap({
   locations,
   floods,
   edges,
-  normalRoute,
-  floodRoute,
+  currentRoute,
+  rejectedRoute,
   selectedIncident,
-  showFlood
+  showFlood,
+  activeWindow
 }: RescueMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<L.Map | null>(null);
@@ -53,7 +55,7 @@ export function RescueMap({
       "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}",
       {
       maxZoom: 18,
-      opacity: 0.96,
+      opacity: 0.94,
       attribution: "Satellite imagery Esri"
       }
     ).addTo(map);
@@ -101,30 +103,32 @@ export function RescueMap({
     if (showFlood) {
       layers.addLayer(
         L.geoJSON(floods, {
-          style: FLOOD_STYLE,
+          style: floodStyle(activeWindow),
           onEachFeature: (feature, layer) => {
             const confidence = feature.properties?.confidence
               ? ` (${Math.round(feature.properties.confidence * 100)}% confidence)`
               : "";
-            layer.bindTooltip(`${feature.properties?.label ?? "Satellite-derived flood extent"}${confidence}`);
+            layer.bindTooltip(`${floodLabel(activeWindow)}: ${feature.properties?.label ?? "flood extent"}${confidence}`);
           }
         })
       );
     }
 
-    const rejected = L.geoJSON(routeFeatures(normalRoute), {
-      style: {
-        color: "#7b7b7b",
-        weight: 5,
-        opacity: 0.7,
-        dashArray: "7 7"
-      }
-    });
-    layers.addLayer(rejected);
+    if (rejectedRoute) {
+      const rejected = L.geoJSON(routeFeatures(rejectedRoute), {
+        style: {
+          color: "#7b7b7b",
+          weight: 5,
+          opacity: 0.7,
+          dashArray: "7 7"
+        }
+      });
+      layers.addLayer(rejected);
+    }
 
-    if (floodRoute.status === "route_found") {
+    if (currentRoute.status === "route_found") {
       layers.addLayer(
-        L.geoJSON(routeFeatures(floodRoute), {
+        L.geoJSON(routeFeatures(currentRoute), {
           style: {
             color: "#15803d",
             weight: 6,
@@ -150,9 +154,34 @@ export function RescueMap({
       edge.geometry.coordinates.forEach(([lng, lat]) => bounds.extend([lat, lng]));
     });
     map.fitBounds(bounds.pad(0.24), { animate: false });
-  }, [edges, floods, floodRoute, locations, normalRoute, selectedIncident, showFlood]);
+  }, [activeWindow, currentRoute, edges, floods, locations, rejectedRoute, selectedIncident, showFlood]);
 
   return <div ref={containerRef} className="map-canvas" aria-label="Amboseli preliminary access route map" />;
+}
+
+function floodStyle(activeWindow: ObservationWindowKey) {
+  if (activeWindow === "recoveryComparison") {
+    return {
+      color: "#38bdf8",
+      fillColor: "#075985",
+      weight: 1,
+      fillOpacity: 0.2,
+      dashArray: "5 5"
+    };
+  }
+
+  return {
+    color: "#12b8d7",
+    fillColor: "#083b68",
+    weight: 2,
+    fillOpacity: 0.46
+  };
+}
+
+function floodLabel(activeWindow: ObservationWindowKey) {
+  if (activeWindow === "beforeFlooding") return "Before-flood comparison";
+  if (activeWindow === "recoveryComparison") return "Recovery comparison residual";
+  return "During-flood satellite extent";
 }
 
 function marker(coordinates: [number, number], kind: "base" | "incident") {

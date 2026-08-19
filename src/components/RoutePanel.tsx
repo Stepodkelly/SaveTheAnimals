@@ -4,8 +4,10 @@ import type {
   IncidentLocation,
   IntelligenceResponse,
   LocalQuestionResponse,
+  ObservationWindowKey,
   RoadEdge,
   RouteResult,
+  SentinelQuicklookManifest,
   V2ReplayEvaluation
 } from "../types";
 import { formatDate, formatMeters } from "../lib/format";
@@ -25,6 +27,8 @@ type RoutePanelProps = {
   onApplyEvidence: () => void;
   onAskLocalQuestion: (question: string) => void;
   v2Evaluation: V2ReplayEvaluation;
+  activeWindow: ObservationWindowKey;
+  sentinelQuicklooks: SentinelQuicklookManifest;
 };
 
 export function RoutePanel({
@@ -41,12 +45,16 @@ export function RoutePanel({
   onRunIntelligence,
   onApplyEvidence,
   onAskLocalQuestion,
-  v2Evaluation
+  v2Evaluation,
+  activeWindow,
+  sentinelQuicklooks
 }: RoutePanelProps) {
   const [question, setQuestion] = useState("Which public office or ranger contact should verify road access?");
   const blockedEdges = edges.filter((edge) => edge.blocked);
   const exactEvidence = evidence?.evidence.filter(isApplicableEvidence) ?? [];
   const planRows = evidence?.searchPlan.queries ?? defaultPlanRows;
+  const activeScenes = sentinelQuicklooks.scenes.filter((scene) => scene.window === activeWindow);
+  const previewScenes = activeScenes.slice(-2);
 
   function submitQuestion(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -126,6 +134,27 @@ export function RoutePanel({
             <span key={baseline.id}>
               {baseline.label}: <strong>{baseline.brierScore.toFixed(3)}</strong>
             </span>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel-section">
+        <div className="panel-heading-row">
+          <div>
+            <h2>Sentinel Sources</h2>
+            <p className="eyebrow">{activeScenes.length} catalogued scenes in this window.</p>
+          </div>
+          <span className="chip">CDSE STAC</span>
+        </div>
+        <div className="quicklook-grid" aria-label="Sentinel-1 source quicklooks">
+          {previewScenes.map((scene) => (
+            <figure key={scene.sceneId}>
+              <img src={`${import.meta.env.BASE_URL}${scene.href}`} alt={`Sentinel-1 quicklook ${scene.sceneId}`} />
+              <figcaption>
+                <strong>{scene.platform.replace("sentinel-", "S")}</strong>
+                <span>{formatDate(scene.observedAt)}</span>
+              </figcaption>
+            </figure>
           ))}
         </div>
       </section>

@@ -19,6 +19,24 @@ export type SceneMetadata = {
   note: string;
 };
 
+export type SentinelQuicklook = {
+  sceneId: string;
+  window: ObservationWindowKey;
+  observedAt: string;
+  platform: string;
+  orbitState?: string;
+  relativeOrbit?: number;
+  polarizations: string[];
+  href: string;
+  sourceHref: string;
+  productSize?: number;
+  productUuid?: string;
+};
+
+export type SentinelQuicklookManifest = {
+  scenes: SentinelQuicklook[];
+};
+
 export type ObservationWindow = {
   label: string;
   start: string;

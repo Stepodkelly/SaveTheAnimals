@@ -1,0 +1,37 @@
+{
+  "pulledAt": "2026-08-19T03:55:35.424Z",
+  "endpoint": "https://stac.dataspace.copernicus.eu/v1/search",
+  "collection": "sentinel-1-grd",
+  "bbox": [
+    37.228,
+    -2.688,
+    37.303,
+    -2.623
+  ],
+  "windows": [
+    {
+      "windowKey": "beforeFlooding",
+      "label": "Before flooding",
+      "start": "2026-01-15",
+      "end": "2026-02-20",
+      "scenes": 10,
+      "rawPath": "versions/v2-forecast-mvp/data/catalog/stac/sentinel1_beforeFlooding.json"
+    },
+    {
+      "windowKey": "duringFlooding",
+      "label": "During flooding",
+      "start": "2026-03-09",
+      "end": "2026-03-20",
+      "scenes": 3,
+      "rawPath": "versions/v2-forecast-mvp/data/catalog/stac/sentinel1_duringFlooding.json"
+    },
+    {
+      "windowKey": "recoveryComparison",
+      "label": "Recovery comparison",
+      "start": "2026-05-07",
+      "end": "2026-05-15",
+      "scenes": 4,
+      "rawPath": "versions/v2-forecast-mvp/data/catalog/stac/sentinel1_recoveryComparison.json"
+    }
+  ]
+}

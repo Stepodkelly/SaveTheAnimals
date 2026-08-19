@@ -14,6 +14,7 @@ import type {
   ObservationWindowKey,
   RoadCollection,
   SceneMetadata,
+  SentinelQuicklookManifest,
   V2ReplayCellCollection
 } from "./types";
 
@@ -23,6 +24,7 @@ type DemoData = {
   floods: FloodCollection;
   locations: LocationsData;
   v2ReplayCells: V2ReplayCellCollection;
+  sentinelQuicklooks: SentinelQuicklookManifest;
 };
 
 export default function App() {
@@ -266,6 +268,8 @@ export default function App() {
           localAnswerStatus={localAnswerStatus}
           onAskLocalQuestion={askLocalQuestion}
           v2Evaluation={analyzed.v2Evaluation}
+          activeWindow={activeWindow}
+          sentinelQuicklooks={data.sentinelQuicklooks}
         />
       </section>
 

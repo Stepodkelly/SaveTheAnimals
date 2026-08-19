@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T06:34:39.310Z",
+  "generatedAt": "2026-08-19T07:58:27.548Z",
   "replayId": "amboseli-2026-march",
   "method": "v2-simple-regression-vs-generated-sentinel1-mask-grid-v1",
   "caveat": "This evaluates the current V2 simple regression against generated Sentinel-1 planning masks, not against a hand-labeled authoritative inundation product.",
@@ -24,11 +24,11 @@
   },
   "metrics": {
     "evaluatedCells": 8,
-    "brierScore": 0.502,
-    "calibrationError": 0.615,
+    "brierScore": 0.622,
+    "calibrationError": 0.726,
     "precision": 0,
     "recall": 0,
-    "fixtureAgreement": 0.25
+    "fixtureAgreement": 0.125
   },
   "trainedRegression": {
     "protocol": "leave-one-mask-cell-out-logistic-regression",
@@ -47,84 +47,556 @@
     ],
     "metrics": {
       "evaluatedCells": 8,
-      "brierScore": 0.261,
-      "calibrationError": 0.541,
-      "precision": 0,
-      "recall": 0
+      "brierScore": 0.036,
+      "calibrationError": 0.19,
+      "precision": 1,
+      "recall": 1
     },
     "predictions": [
       {
         "cellId": "amboseli-30m-v1:central-marsh",
         "label": "Central Marsh",
-        "trainedProbability": 0.026,
+        "trainedProbability": 0.011,
         "observedWet": false
       },
       {
         "cellId": "amboseli-30m-v1:north-causeway",
         "label": "Northern Causeway Wetland",
-        "trainedProbability": 0.031,
+        "trainedProbability": 0.014,
         "observedWet": false
       },
       {
         "cellId": "amboseli-30m-v1:eastern-access",
         "label": "Eastern Access Margin",
-        "trainedProbability": 0.096,
+        "trainedProbability": 0.054,
         "observedWet": false
       },
       {
         "cellId": "amboseli-30m-v1:southern-bypass",
         "label": "Southern Bypass Margin",
-        "trainedProbability": 0.274,
+        "trainedProbability": 0.329,
         "observedWet": false
       },
       {
         "cellId": "amboseli-30m-v1:dry-ridge",
         "label": "Dry Ridge",
-        "trainedProbability": 0.252,
+        "trainedProbability": 0.654,
         "observedWet": true
       },
       {
         "cellId": "amboseli-30m-v1:western-gate",
         "label": "Western Gate Road",
-        "trainedProbability": 0.293,
+        "trainedProbability": 0.808,
         "observedWet": true
       },
       {
         "cellId": "amboseli-30m-v1:observation-hill",
         "label": "Observation Hill",
         "trainedProbability": 0.958,
-        "observedWet": false
+        "observedWet": true
       },
       {
         "cellId": "amboseli-30m-v1:northern-loop",
         "label": "Northern Loop Margin",
-        "trainedProbability": 0.164,
+        "trainedProbability": 0.12,
         "observedWet": false
       }
     ]
+  },
+  "thresholdTuning": {
+    "heuristic": {
+      "status": "evaluated",
+      "selectedThreshold": 0.85,
+      "selectedMetric": "f1_then_false_safe",
+      "selected": {
+        "threshold": 0.85,
+        "precision": 1,
+        "recall": 0,
+        "f1": 0,
+        "falseSafeRate": 1,
+        "unnecessaryBlockRate": 0,
+        "truePositive": 0,
+        "falsePositive": 0,
+        "falseNegative": 3,
+        "trueNegative": 5
+      },
+      "candidates": [
+        {
+          "threshold": 0.1,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.625,
+          "truePositive": 0,
+          "falsePositive": 5,
+          "falseNegative": 3,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.625,
+          "truePositive": 0,
+          "falsePositive": 5,
+          "falseNegative": 3,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.625,
+          "truePositive": 0,
+          "falsePositive": 5,
+          "falseNegative": 3,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.25,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.625,
+          "truePositive": 0,
+          "falsePositive": 5,
+          "falseNegative": 3,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.3,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.625,
+          "truePositive": 0,
+          "falsePositive": 5,
+          "falseNegative": 3,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.35,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.5,
+          "truePositive": 0,
+          "falsePositive": 4,
+          "falseNegative": 3,
+          "trueNegative": 1
+        },
+        {
+          "threshold": 0.4,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.5,
+          "truePositive": 0,
+          "falsePositive": 4,
+          "falseNegative": 3,
+          "trueNegative": 1
+        },
+        {
+          "threshold": 0.45,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.5,
+          "truePositive": 0,
+          "falsePositive": 4,
+          "falseNegative": 3,
+          "trueNegative": 1
+        },
+        {
+          "threshold": 0.5,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.5,
+          "truePositive": 0,
+          "falsePositive": 4,
+          "falseNegative": 3,
+          "trueNegative": 1
+        },
+        {
+          "threshold": 0.55,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.375,
+          "truePositive": 0,
+          "falsePositive": 3,
+          "falseNegative": 3,
+          "trueNegative": 2
+        },
+        {
+          "threshold": 0.6,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.375,
+          "truePositive": 0,
+          "falsePositive": 3,
+          "falseNegative": 3,
+          "trueNegative": 2
+        },
+        {
+          "threshold": 0.65,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.375,
+          "truePositive": 0,
+          "falsePositive": 3,
+          "falseNegative": 3,
+          "trueNegative": 2
+        },
+        {
+          "threshold": 0.7,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.375,
+          "truePositive": 0,
+          "falsePositive": 3,
+          "falseNegative": 3,
+          "trueNegative": 2
+        },
+        {
+          "threshold": 0.75,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.25,
+          "truePositive": 0,
+          "falsePositive": 2,
+          "falseNegative": 3,
+          "trueNegative": 3
+        },
+        {
+          "threshold": 0.8,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.125,
+          "truePositive": 0,
+          "falsePositive": 1,
+          "falseNegative": 3,
+          "trueNegative": 4
+        },
+        {
+          "threshold": 0.85,
+          "precision": 1,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 0,
+          "falsePositive": 0,
+          "falseNegative": 3,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.9,
+          "precision": 1,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 0,
+          "falsePositive": 0,
+          "falseNegative": 3,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.95,
+          "precision": 1,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 0,
+          "falsePositive": 0,
+          "falseNegative": 3,
+          "trueNegative": 5
+        }
+      ]
+    },
+    "trained": {
+      "status": "evaluated",
+      "selectedThreshold": 0.35,
+      "selectedMetric": "f1_then_false_safe",
+      "selected": {
+        "threshold": 0.35,
+        "precision": 1,
+        "recall": 1,
+        "f1": 1,
+        "falseSafeRate": 0,
+        "unnecessaryBlockRate": 0,
+        "truePositive": 3,
+        "falsePositive": 0,
+        "falseNegative": 0,
+        "trueNegative": 5
+      },
+      "candidates": [
+        {
+          "threshold": 0.1,
+          "precision": 0.6,
+          "recall": 1,
+          "f1": 0.75,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.25,
+          "truePositive": 3,
+          "falsePositive": 2,
+          "falseNegative": 0,
+          "trueNegative": 3
+        },
+        {
+          "threshold": 0.15,
+          "precision": 0.75,
+          "recall": 1,
+          "f1": 0.857,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.125,
+          "truePositive": 3,
+          "falsePositive": 1,
+          "falseNegative": 0,
+          "trueNegative": 4
+        },
+        {
+          "threshold": 0.2,
+          "precision": 0.75,
+          "recall": 1,
+          "f1": 0.857,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.125,
+          "truePositive": 3,
+          "falsePositive": 1,
+          "falseNegative": 0,
+          "trueNegative": 4
+        },
+        {
+          "threshold": 0.25,
+          "precision": 0.75,
+          "recall": 1,
+          "f1": 0.857,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.125,
+          "truePositive": 3,
+          "falsePositive": 1,
+          "falseNegative": 0,
+          "trueNegative": 4
+        },
+        {
+          "threshold": 0.3,
+          "precision": 0.75,
+          "recall": 1,
+          "f1": 0.857,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.125,
+          "truePositive": 3,
+          "falsePositive": 1,
+          "falseNegative": 0,
+          "trueNegative": 4
+        },
+        {
+          "threshold": 0.35,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 3,
+          "falsePositive": 0,
+          "falseNegative": 0,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.4,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 3,
+          "falsePositive": 0,
+          "falseNegative": 0,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.45,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 3,
+          "falsePositive": 0,
+          "falseNegative": 0,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.5,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 3,
+          "falsePositive": 0,
+          "falseNegative": 0,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.55,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 3,
+          "falsePositive": 0,
+          "falseNegative": 0,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.6,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 3,
+          "falsePositive": 0,
+          "falseNegative": 0,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.65,
+          "precision": 1,
+          "recall": 1,
+          "f1": 1,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 3,
+          "falsePositive": 0,
+          "falseNegative": 0,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.7,
+          "precision": 1,
+          "recall": 0.667,
+          "f1": 0.8,
+          "falseSafeRate": 0.333,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 2,
+          "falsePositive": 0,
+          "falseNegative": 1,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.75,
+          "precision": 1,
+          "recall": 0.667,
+          "f1": 0.8,
+          "falseSafeRate": 0.333,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 2,
+          "falsePositive": 0,
+          "falseNegative": 1,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.8,
+          "precision": 1,
+          "recall": 0.667,
+          "f1": 0.8,
+          "falseSafeRate": 0.333,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 2,
+          "falsePositive": 0,
+          "falseNegative": 1,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.85,
+          "precision": 1,
+          "recall": 0.333,
+          "f1": 0.5,
+          "falseSafeRate": 0.667,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 1,
+          "falsePositive": 0,
+          "falseNegative": 2,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.9,
+          "precision": 1,
+          "recall": 0.333,
+          "f1": 0.5,
+          "falseSafeRate": 0.667,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 1,
+          "falsePositive": 0,
+          "falseNegative": 2,
+          "trueNegative": 5
+        },
+        {
+          "threshold": 0.95,
+          "precision": 1,
+          "recall": 0.333,
+          "f1": 0.5,
+          "falseSafeRate": 0.667,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 1,
+          "falsePositive": 0,
+          "falseNegative": 2,
+          "trueNegative": 5
+        }
+      ]
+    }
   },
   "baselines": [
     {
       "id": "current_flood_persistence",
       "label": "Current flood persists",
-      "brierScore": 0.352
+      "brierScore": 0.432
     },
     {
       "id": "historical_frequency",
       "label": "Historical frequency",
-      "brierScore": 0.438
+      "brierScore": 0.548
     },
     {
       "id": "rainfall_threshold",
       "label": "Rainfall threshold",
-      "brierScore": 0.424
+      "brierScore": 0.504
     }
   ],
   "confusion": {
     "truePositive": 0,
     "falsePositive": 4,
-    "falseNegative": 2,
-    "trueNegative": 2
+    "falseNegative": 3,
+    "trueNegative": 1
   },
   "examples": [
     {
@@ -134,11 +606,11 @@
       "modelProbability": 0.796,
       "predictedWet": true,
       "observedWet": false,
-      "observedMaskProbability": 0.588,
-      "beforeMaskProbability": 0.578,
-      "recoveryMaskProbability": 0.57,
+      "observedMaskProbability": 0.594,
+      "beforeMaskProbability": 0.593,
+      "recoveryMaskProbability": 0.569,
       "changedFromBefore": false,
-      "maskCoverage": 0.132,
+      "maskCoverage": 0.087,
       "fixtureObservedWet": true,
       "baselines": {
         "currentFloodPersistence": 0.82,
@@ -165,11 +637,11 @@
       "modelProbability": 0.801,
       "predictedWet": true,
       "observedWet": false,
-      "observedMaskProbability": 0.49,
-      "beforeMaskProbability": 0.486,
+      "observedMaskProbability": 0.456,
+      "beforeMaskProbability": 0,
       "recoveryMaskProbability": 0,
       "changedFromBefore": false,
-      "maskCoverage": 0.041,
+      "maskCoverage": 0.01,
       "fixtureObservedWet": true,
       "baselines": {
         "currentFloodPersistence": 0.82,
@@ -196,11 +668,11 @@
       "modelProbability": 0.731,
       "predictedWet": true,
       "observedWet": false,
-      "observedMaskProbability": 0.511,
+      "observedMaskProbability": 0.474,
       "beforeMaskProbability": 0,
-      "recoveryMaskProbability": 0.481,
+      "recoveryMaskProbability": 0.485,
       "changedFromBefore": false,
-      "maskCoverage": 0.055,
+      "maskCoverage": 0.018,
       "fixtureObservedWet": true,
       "baselines": {
         "currentFloodPersistence": 0.18,
@@ -227,9 +699,9 @@
       "modelProbability": 0.343,
       "predictedWet": false,
       "observedWet": false,
-      "observedMaskProbability": 0.536,
-      "beforeMaskProbability": 0,
-      "recoveryMaskProbability": 0.505,
+      "observedMaskProbability": 0.565,
+      "beforeMaskProbability": 0.454,
+      "recoveryMaskProbability": 0.523,
       "changedFromBefore": false,
       "maskCoverage": 0.002,
       "fixtureObservedWet": false,
@@ -258,11 +730,11 @@
       "modelProbability": 0.066,
       "predictedWet": false,
       "observedWet": true,
-      "observedMaskProbability": 0.653,
-      "beforeMaskProbability": 0.602,
-      "recoveryMaskProbability": 0.678,
+      "observedMaskProbability": 0.697,
+      "beforeMaskProbability": 0.631,
+      "recoveryMaskProbability": 0.771,
       "changedFromBefore": false,
-      "maskCoverage": 0.592,
+      "maskCoverage": 0.328,
       "fixtureObservedWet": false,
       "baselines": {
         "currentFloodPersistence": 0.18,
@@ -289,11 +761,11 @@
       "modelProbability": 0.044,
       "predictedWet": false,
       "observedWet": true,
-      "observedMaskProbability": 0.663,
-      "beforeMaskProbability": 0.737,
-      "recoveryMaskProbability": 0.591,
+      "observedMaskProbability": 0.643,
+      "beforeMaskProbability": 0.767,
+      "recoveryMaskProbability": 0.556,
       "changedFromBefore": false,
-      "maskCoverage": 0.142,
+      "maskCoverage": 0.097,
       "fixtureObservedWet": false,
       "baselines": {
         "currentFloodPersistence": 0.18,
@@ -319,12 +791,12 @@
       "model": "wetting-v1",
       "modelProbability": 0.017,
       "predictedWet": false,
-      "observedWet": false,
-      "observedMaskProbability": 0.603,
-      "beforeMaskProbability": 0.679,
-      "recoveryMaskProbability": 0.611,
+      "observedWet": true,
+      "observedMaskProbability": 0.627,
+      "beforeMaskProbability": 0.723,
+      "recoveryMaskProbability": 0.623,
       "changedFromBefore": false,
-      "maskCoverage": 0.159,
+      "maskCoverage": 0.175,
       "fixtureObservedWet": false,
       "baselines": {
         "currentFloodPersistence": 0.18,
@@ -351,9 +823,9 @@
       "modelProbability": 0.547,
       "predictedWet": true,
       "observedWet": false,
-      "observedMaskProbability": 0.529,
-      "beforeMaskProbability": 0.523,
-      "recoveryMaskProbability": 0.493,
+      "observedMaskProbability": 0.55,
+      "beforeMaskProbability": 0.525,
+      "recoveryMaskProbability": 0.513,
       "changedFromBefore": false,
       "maskCoverage": 0.032,
       "fixtureObservedWet": true,

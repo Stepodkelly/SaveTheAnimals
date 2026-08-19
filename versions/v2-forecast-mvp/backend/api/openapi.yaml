@@ -493,10 +493,10 @@ components:
           $ref: "#/components/schemas/Point"
         safetyPolicy:
           type: string
-          enum: [balanced, conservative, emergency_no_block_without_observed_water]
+          enum: [best_available, strict_clear, emergency_no_block_without_observed_water]
     RouteResult:
       type: object
-      required: [id, status, routeStatus, fieldVerificationRequired, explanation]
+      required: [id, status, routeStatus, safetyClass, routingMode, fieldVerificationRequired, explanation]
       properties:
         id:
           type: string
@@ -505,6 +505,12 @@ components:
         routeStatus:
           type: string
           enum: [route_found, no_mapped_route, pending, failed]
+        safetyClass:
+          type: string
+          enum: [safe, caution, unsafe, no_route]
+        routingMode:
+          type: string
+          enum: [best_available, strict_clear]
         geojson:
           type: object
           additionalProperties: true

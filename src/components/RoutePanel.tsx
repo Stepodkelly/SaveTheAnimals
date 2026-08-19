@@ -7,6 +7,7 @@ import type {
   ObservationWindowKey,
   RoadEdge,
   RouteResult,
+  RouteMode,
   SentinelFloodMaskManifest,
   SentinelQuicklookManifest,
   SentinelRoadMetricsReport,
@@ -29,6 +30,8 @@ type RoutePanelProps = {
   onRunIntelligence: () => void;
   onApplyEvidence: () => void;
   onAskLocalQuestion: (question: string) => void;
+  routeMode: RouteMode;
+  onRouteModeChange: (mode: RouteMode) => void;
   v2Evaluation: V2ReplayEvaluation;
   activeWindow: ObservationWindowKey;
   sentinelQuicklooks: SentinelQuicklookManifest;
@@ -51,6 +54,8 @@ export function RoutePanel({
   onRunIntelligence,
   onApplyEvidence,
   onAskLocalQuestion,
+  routeMode,
+  onRouteModeChange,
   v2Evaluation,
   activeWindow,
   sentinelQuicklooks,
@@ -61,7 +66,7 @@ export function RoutePanel({
   const [question, setQuestion] = useState("Which public office or ranger contact should verify road access?");
   const blockedEdges = edges.filter((edge) => edge.blocked);
   const routeEdges = route.edgeIds.map((edgeId) => edges.find((edge) => edge.id === edgeId)).filter(Boolean) as RoadEdge[];
-  const routeAudit = auditRoute(routeEdges, route.status);
+  const routeAudit = auditRoute(routeEdges, route);
   const exactEvidence = evidence?.evidence.filter(isApplicableEvidence) ?? [];
   const planRows = evidence?.searchPlan.queries ?? defaultPlanRows;
   const activeScenes = sentinelQuicklooks.scenes.filter((scene) => scene.window === activeWindow);
@@ -96,10 +101,32 @@ export function RoutePanel({
         </select>
       </section>
 
+      <section className="panel-section">
+        <label className="field-label" id="route-mode-label">
+          Route Mode
+        </label>
+        <div className="segmented wide" aria-labelledby="route-mode-label">
+          <button
+            className={routeMode === "best_available" ? "active" : ""}
+            onClick={() => onRouteModeChange("best_available")}
+            type="button"
+          >
+            Best
+          </button>
+          <button
+            className={routeMode === "strict_clear" ? "active" : ""}
+            onClick={() => onRouteModeChange("strict_clear")}
+            type="button"
+          >
+            Strict
+          </button>
+        </div>
+      </section>
+
       <section className="metric-grid" aria-label="Route metrics">
         <Metric label="Status" value={route.status === "route_found" ? "route found" : "no ground route"} />
         <Metric label="Distance" value={formatMeters(route.distanceMeters)} />
-        <Metric label="Risk" value={route.riskLevel} />
+        <Metric label="Safety" value={route.safetyClass.replace("_", " ")} />
         <Metric label="Blocked" value={String(blockedEdges.length)} />
       </section>
 
@@ -168,6 +195,9 @@ export function RoutePanel({
             <small>
               {realMaskEvaluation.metrics.evaluatedCells} cells; {realMaskEvaluation.targetWindow.maskMethod}
             </small>
+            <small>
+              tuned threshold {formatNullableMetric(realMaskEvaluation.thresholdTuning.trained.selectedThreshold)}
+            </small>
           </div>
         )}
       </section>
@@ -198,6 +228,12 @@ export function RoutePanel({
             <small>
               {activeFloodMask.sourceSceneCount ?? 1} scenes; {activeFloodMask.method.id}; provisional overlay
             </small>
+            {activeFloodMask.quality && (
+              <small>
+                {activeFloodMask.quality.confidenceTier}; {activeFloodMask.quality.rawSceneCount} raw /{" "}
+                {activeFloodMask.quality.quicklookSceneCount} quicklook
+              </small>
+            )}
           </div>
         )}
         {activeRoadMetrics && (
@@ -416,39 +452,42 @@ function formatNullableMetric(value: number | null) {
   return value === null ? "--" : value.toFixed(3);
 }
 
-function auditRoute(routeEdges: RoadEdge[], status: RouteResult["status"]) {
-  if (status !== "route_found") {
+function auditRoute(routeEdges: RoadEdge[], route: RouteResult) {
+  if (route.status !== "route_found") {
     return {
-      summary: "No open graph path",
-      detail: "The selected destination is cut off by blocked road edges in this scenario."
+      summary: "No strict-clear path",
+      detail:
+        route.routingMode === "strict_clear"
+          ? "Strict mode rejects blocked roads and all direct possible/probable flood-cell crossings."
+          : "The selected destination is cut off by blocked road edges in this scenario."
     };
   }
 
   const directProbable = sum(routeEdges.map((edge) => edge.directProbableFloodCells ?? 0));
   const directPossible = sum(routeEdges.map((edge) => edge.directPossibleFloodCells ?? 0));
   const nearby = sum(routeEdges.map((edge) => edge.nearbyFloodCells ?? 0));
-  const maxProbability = Math.max(0, ...routeEdges.map((edge) => edge.maxFloodProbability ?? edge.forecastRisk ?? 0));
+  const maxProbability = Math.max(0, ...routeEdges.map((edge) => edge.maxFloodProbability ?? 0));
 
   if (directProbable > 0) {
     return {
-      summary: "Does not avoid probable flooding",
-      detail: `${directProbable} probable flood-cell overlaps; max mapped probability ${asPercent(maxProbability)}.`
+      summary: "Unsafe: probable flood crossing",
+      detail: `${directProbable} probable flood-cell overlaps; max mapped probability ${asPercent(maxProbability)}. Field verification required.`
     };
   }
   if (directPossible > 0) {
     return {
-      summary: "Avoids probable cells, crosses possible cells",
-      detail: `${directPossible} possible flood-cell overlaps; max mapped probability ${asPercent(maxProbability)}.`
+      summary: "Unsafe: possible flood crossing",
+      detail: `${directPossible} possible flood-cell overlaps; max mapped probability ${asPercent(maxProbability)}. Field verification required.`
     };
   }
   if (nearby > 0) {
     return {
-      summary: "Avoids direct flood cells, passes nearby",
-      detail: `${nearby} nearby flood cells within the route buffer; max mapped probability ${asPercent(maxProbability)}.`
+      summary: "Caution: flood cells nearby",
+      detail: `${nearby} nearby flood cells within the route buffer; max mapped probability ${asPercent(maxProbability)}. Field verification required.`
     };
   }
   return {
-    summary: "Avoids mapped flood cells",
+    summary: "Safe: avoids mapped flood cells",
     detail: "No direct or nearby Sentinel flood-mask intersections on the selected route."
   };
 }

@@ -74,6 +74,13 @@ export type SentinelFloodMaskManifest = {
     sourceAssetIds: string[];
     sourceUris?: string[];
     sourceSceneTypes?: Record<string, number>;
+    quality?: {
+      fullRasterFraction: number;
+      rawSceneCount: number;
+      quicklookSceneCount: number;
+      confidenceTier: "strong" | "mixed" | "quicklook_only";
+      caveat: string;
+    };
     checksum?: string;
     method: {
       id: string;
@@ -161,6 +168,8 @@ export type ObservationWindow = {
 export type ObservationWindowKey = "beforeFlooding" | "duringFlooding" | "recoveryComparison";
 
 export type RoadCondition = "known_road" | "uncertain_track";
+export type RouteMode = "best_available" | "strict_clear";
+export type RouteSafetyClass = "safe" | "caution" | "unsafe" | "no_route";
 
 export type RoadNode = {
   id: string;
@@ -320,6 +329,16 @@ export type V2RealMaskEvaluation = {
       precision: number | null;
       recall: number | null;
     };
+    predictions?: Array<{
+      cellId: string;
+      label: string;
+      trainedProbability: number;
+      observedWet: boolean;
+    }>;
+  };
+  thresholdTuning: {
+    heuristic: V2ThresholdSweep;
+    trained: V2ThresholdSweep;
   };
   baselines: Array<{
     id: string;
@@ -334,8 +353,28 @@ export type V2RealMaskEvaluation = {
   };
 };
 
+export type V2ThresholdSweep = {
+  status: "evaluated" | "no_examples";
+  selectedThreshold: number | null;
+  selectedMetric: string;
+  selected?: {
+    threshold: number;
+    precision: number;
+    recall: number;
+    f1: number;
+    falseSafeRate: number;
+    unnecessaryBlockRate: number;
+    truePositive: number;
+    falsePositive: number;
+    falseNegative: number;
+    trueNegative: number;
+  };
+};
+
 export type RouteResult = {
   status: "route_found" | "no_ground_route";
+  safetyClass: RouteSafetyClass;
+  routingMode: RouteMode;
   edgeIds: string[];
   distanceMeters: number;
   riskLevel: "low" | "moderate" | "high" | "unknown";

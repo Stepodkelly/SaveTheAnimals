@@ -32,7 +32,7 @@ Reviewed historical flood transitions
 4. Apply spatial coherence processing.
 5. Evaluate road risk for mapped roads.
 6. Generate a provisional lower-risk route.
-7. Explain the route with provenance and optional Exa/Gemini evidence.
+7. Explain the route with provenance and optional Exa plus Gemini/OpenAI evidence.
 
 ### Historical Replay Pipeline
 
@@ -83,6 +83,7 @@ Primary metrics:
 - False-safe road rate
 - Unnecessary-block rate
 - Route availability
+- Tuned decision threshold, with probability quality reported separately from block/no-block quality
 
 Baselines:
 
@@ -94,10 +95,21 @@ Baselines:
 
 Observed open water blocks a road segment only when the overlap exceeds the configured conservative policy threshold. Forecast probability increases cost or blocks the segment depending on the selected safety policy. Roads must come from OpenStreetMap or manually reviewed GeoJSON; the system must not fabricate off-road connectors.
 
-Route language must stay conservative: provisional lower-risk mapped-road route, field verification required, never “safe route.”
+Routes are classified as:
+
+- `safe`: no mapped flood-mask contact on the selected route.
+- `caution`: no direct possible/probable flood-cell crossing, but nearby flood cells, uncertain track, or unreviewed evidence affects the path.
+- `unsafe`: the best available path directly crosses possible or probable flood cells.
+- `no_route`: no mapped route remains after the selected safety policy is applied.
+
+Best-available routing may return an `unsafe` route when no cleaner path exists. Strict-clear routing rejects blocked roads and direct possible/probable flood-cell crossings. Route language must stay conservative: provisional lower-risk mapped-road route, field verification required, never “safe route” as an operational guarantee.
+
+## Sentinel Mask Quality Rule
+
+The V2 mask pipeline processes several Sentinel scenes per observation window and aggregates them by source-weighted probability. Local full VV/VH rasters receive full weight; Copernicus quicklook fallback receives lower weight. Each mask manifest records the number of raw and quicklook scenes plus a quality tier. Set `REQUIRE_RAW_SCENES=true` to fail derivation unless every selected scene has local VV/VH rasters.
 
 ## Evidence Rule
 
-Exa/Gemini evidence can explain uncertainty and confidence. Unverified extracted claims cannot automatically close a road.
+Exa plus Gemini/OpenAI evidence can explain uncertainty and confidence. Unverified extracted claims cannot automatically close a road.
 
 Evidence claims must be labeled `unverified`, `official`, `operator_reviewed` or `field_verified`. Public/private contact information must not be surfaced unless it is already official public contact information.

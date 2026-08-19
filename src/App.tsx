@@ -21,6 +21,7 @@ import type {
   SentinelFloodMaskManifest,
   SentinelQuicklookManifest,
   SentinelRoadMetricsReport,
+  RouteMode,
   V2RealMaskEvaluation,
   V2ReplayCellCollection
 } from "./types";
@@ -45,6 +46,7 @@ export default function App() {
   const [activeWindow, setActiveWindow] = useState<ObservationWindowKey>("duringFlooding");
   const [showFlood, setShowFlood] = useState(true);
   const [satelliteLayerMode, setSatelliteLayerMode] = useState<"mask" | "change">("mask");
+  const [routeMode, setRouteMode] = useState<RouteMode>("best_available");
   const [intelligence, setIntelligence] = useState<IntelligenceResponse | null>(null);
   const [intelligenceStatus, setIntelligenceStatus] = useState<"idle" | "loading" | "ready" | "error">("idle");
   const [evidencePenalties, setEvidencePenalties] = useState<Record<string, number>>({});
@@ -80,17 +82,26 @@ export default function App() {
       data.locations.base.id,
       selectedIncident.nearestNodeId
     );
+    const strictFloodRoute = calculateRoute(
+      data.locations.nodes,
+      v2FloodEdges,
+      data.locations.base.id,
+      selectedIncident.nearestNodeId,
+      { mode: "strict_clear" }
+    );
     const beforeRoute = calculateRoute(
       data.locations.nodes,
       beforeEdges,
       data.locations.base.id,
-      selectedIncident.nearestNodeId
+      selectedIncident.nearestNodeId,
+      { mode: routeMode }
     );
     const recoveryRoute = calculateRoute(
       data.locations.nodes,
       recoveryEdges,
       data.locations.base.id,
-      selectedIncident.nearestNodeId
+      selectedIncident.nearestNodeId,
+      { mode: routeMode }
     );
     return {
       normalEdges,
@@ -100,17 +111,18 @@ export default function App() {
       normalRoute,
       beforeRoute,
       floodRoute,
+      strictFloodRoute,
       recoveryRoute,
       v2Evaluation
     };
-  }, [data, selectedIncident, evidencePenalties]);
+  }, [data, selectedIncident, evidencePenalties, routeMode]);
 
   const activeRouteView = useMemo(() => {
     if (!analyzed) return null;
     if (activeWindow === "duringFlooding") {
       return {
         edges: analyzed.floodEdges,
-        currentRoute: analyzed.floodRoute,
+        currentRoute: routeMode === "strict_clear" ? analyzed.strictFloodRoute : analyzed.floodRoute,
         rejectedRoute: analyzed.normalRoute,
         showFlood: showFlood
       };
@@ -129,7 +141,7 @@ export default function App() {
       rejectedRoute: null,
       showFlood: showFlood
     };
-  }, [activeWindow, analyzed, showFlood]);
+  }, [activeWindow, analyzed, routeMode, showFlood]);
 
   async function runIntelligence() {
     if (!data || !selectedIncident || !analyzed) return;
@@ -143,7 +155,7 @@ export default function App() {
           observationWindows: data.scene.observationWindows,
           knownAssets: data.roads.features.map((feature) => feature.properties),
           destination: selectedIncident,
-          route: analyzed.floodRoute
+          route: routeMode === "strict_clear" ? analyzed.strictFloodRoute : analyzed.floodRoute
         })
       });
       if (!response.ok) throw new Error("Intelligence request failed");
@@ -189,7 +201,7 @@ export default function App() {
           scene: data.scene,
           observationWindows: data.scene.observationWindows,
           destination: selectedIncident,
-          route: analyzed.floodRoute
+          route: routeMode === "strict_clear" ? analyzed.strictFloodRoute : analyzed.floodRoute
         })
       });
       if (!response.ok) throw new Error("Local question request failed");
@@ -281,7 +293,7 @@ export default function App() {
             <span className="map-note">{data.scene.note}</span>
           </div>
           <div className="map-legend" aria-label="Map legend">
-            <span><i className={`legend-route route-${activeRouteView.currentRoute.riskLevel}`} /> current route</span>
+            <span><i className={`legend-route route-${activeRouteView.currentRoute.safetyClass}`} /> current route</span>
             <span><i className="legend-rejected" /> rejected route</span>
             <span><i className="legend-flood" /> satellite flood</span>
             <span><i className="legend-risk" /> V2 risk</span>
@@ -324,6 +336,8 @@ export default function App() {
           localAnswer={localAnswer}
           localAnswerStatus={localAnswerStatus}
           onAskLocalQuestion={askLocalQuestion}
+          routeMode={routeMode}
+          onRouteModeChange={setRouteMode}
           v2Evaluation={analyzed.v2Evaluation}
           activeWindow={activeWindow}
           sentinelQuicklooks={data.sentinelQuicklooks}

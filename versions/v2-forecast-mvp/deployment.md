@@ -27,3 +27,9 @@ VITE_API_BASE_URL=https://your-api-host.example npm run build:pages
 ```
 
 When `VITE_API_BASE_URL` is empty, the frontend falls back to static demo mode for public Pages.
+
+## Live UX Status
+
+The static judge URL can display all generated Sentinel masks, road-risk scores, route safety classes and strict-clear routing without secrets. The Run buttons need the deployed backend URL in `VITE_API_BASE_URL` and valid server-side `EXA_API_KEY` plus either `GEMINI_API_KEY` or `OPENAI_API_KEY`.
+
+Current frontend builds are deploy-ready for GitHub Pages. Backend deployment still requires a public Node host such as Render using `render.yaml`, because GitHub Pages cannot store or execute secret-backed Exa/OpenAI calls.

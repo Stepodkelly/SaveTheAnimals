@@ -12,6 +12,7 @@ const sampleWidth = Number(process.env.SAMPLE_WIDTH ?? 144);
 const sampleHeight = Number(process.env.SAMPLE_HEIGHT ?? 126);
 const cellsX = Number(process.env.CELLS_X ?? 48);
 const cellsY = Number(process.env.CELLS_Y ?? 42);
+const requireRawScenes = process.env.REQUIRE_RAW_SCENES === "true";
 
 const scenePath = path.join(rootDir, "public/data/amboseli/scene.json");
 const quicklookManifestPath = path.join(rootDir, "public/data/amboseli/sentinel1-quicklooks/manifest.json");
@@ -145,11 +146,12 @@ async function deriveWindowMask(windowKey) {
       sourceAssetIds: pairs.flatMap(pairAssetIds),
       sourceUris: pairs.flatMap(pairUris),
       sourceSceneTypes: sourceTypeSummary(pairs),
+      quality: qualitySummary(pairs),
       method: {
         id: "sentinel1-multiscene-hybrid-v3",
         description:
-          "Aggregates local full Sentinel-1 VV/VH raster scene pairs with Copernicus quicklook observations when full rasters are not local. Each scene is quantile-calibrated, smoothed with a 3x3 neighborhood, contrast-stretched after thresholding, and averaged by grid cell to reduce single-scene speckle. This is a provisional planning overlay, not a validated flood product.",
-        aggregation: "mean_probability_across_selected_sentinel_scenes",
+          "Aggregates local full Sentinel-1 VV/VH raster scene pairs with lower-weight Copernicus quicklook observations when full rasters are not local. Each scene is quantile-calibrated, smoothed with a 3x3 neighborhood, contrast-stretched after thresholding, and averaged by grid cell to reduce single-scene speckle. This is a provisional planning overlay, not a validated flood product.",
+        aggregation: "source_weighted_mean_probability_across_selected_sentinel_scenes",
         sampleWidth,
         sampleHeight,
         cellsX,
@@ -202,6 +204,7 @@ async function scoreScenePair(pair, sceneBbox, demoBbox) {
 
   return {
     pair,
+    sourceWeight: 1,
     scoreThreshold,
     vvLow,
     vvMid,
@@ -224,12 +227,16 @@ function aggregateSceneScores(windowKey, perScene, demoBbox) {
       const validCells = sceneCellScores.filter((cell) => cell.sampleCount > 0);
       if (validCells.length === 0) continue;
 
-      const probability = clamp(mean(validCells.map((cell) => cell.probability)), 0, 1);
+      const probability = clamp(weightedMean(validCells.map((cell) => [cell.probability, cell.sourceWeight])), 0, 1);
+      const sourceCoverage = Math.min(
+        validCells.reduce((total, cell) => total + cell.sourceWeight, 0) / Math.max(1, perScene.length),
+        1
+      );
       if (probability < 0.45) continue;
       const confidence = clamp(
         0.48 +
           Math.abs(probability - 0.5) * 0.62 +
-          Math.min(validCells.length / Math.max(1, perScene.length), 1) * 0.18,
+          sourceCoverage * 0.18,
         0,
         0.94
       );
@@ -301,6 +308,7 @@ function scoreCell(sceneScore, cellX, cellY, cellPixelWidth, cellPixelHeight) {
     return {
       sampleCount: 0,
       probability: 0,
+      sourceWeight: sceneScore.sourceWeight,
       vvMean: 0,
       vhMean: 0,
       sceneId: sceneScore.pair.sceneId,
@@ -312,6 +320,7 @@ function scoreCell(sceneScore, cellX, cellY, cellPixelWidth, cellPixelHeight) {
   return {
     sampleCount: samples.length,
     probability: clamp((meanScore - sceneScore.scoreThreshold + 0.5) * 1.18, 0, 1),
+    sourceWeight: sceneScore.sourceWeight,
     vvMean: mean(vvSamples),
     vhMean: mean(vhSamples),
     sceneId: sceneScore.pair.sceneId,
@@ -370,6 +379,10 @@ async function pairedSceneAssets(windowKey, stac, localAssets) {
         vh
       });
       continue;
+    }
+
+    if (requireRawScenes) {
+      throw new Error(`Selected scene ${feature.id} is missing local VV/VH rasters and REQUIRE_RAW_SCENES=true.`);
     }
 
     const quicklook = quicklookBySceneId.get(feature.id);
@@ -433,6 +446,7 @@ function scoreQuicklookScene(pair) {
 
   return {
     pair,
+    sourceWeight: 0.45,
     scoreThreshold,
     pixelScores,
     vvValues: rawScores.map((value) => value ?? 0),
@@ -455,6 +469,22 @@ function sourceTypeSummary(pairs) {
     summary[pair.kind] = (summary[pair.kind] ?? 0) + 1;
     return summary;
   }, {});
+}
+
+function qualitySummary(pairs) {
+  const rawSceneCount = pairs.filter((pair) => pair.kind === "raw_vv_vh").length;
+  const quicklookSceneCount = pairs.filter((pair) => pair.kind === "quicklook").length;
+  const fullRasterFraction = pairs.length === 0 ? 0 : rawSceneCount / pairs.length;
+  return {
+    fullRasterFraction: round(fullRasterFraction, 3),
+    rawSceneCount,
+    quicklookSceneCount,
+    confidenceTier: fullRasterFraction >= 1 ? "strong" : rawSceneCount > 0 ? "mixed" : "quicklook_only",
+    caveat:
+      quicklookSceneCount > 0
+        ? "Some selected scenes use lower-weight quicklook fallback rather than full VV/VH raster processing."
+        : "All selected scenes use local full VV/VH raster pairs."
+  };
 }
 
 function mergeMaskRecords(existingMasks, nextMasks) {
@@ -583,6 +613,12 @@ function percentile(sortedValues, q) {
 function mean(values) {
   if (values.length === 0) return 0;
   return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function weightedMean(pairs) {
+  const weightTotal = pairs.reduce((sum, [, weight]) => sum + weight, 0);
+  if (weightTotal === 0) return 0;
+  return pairs.reduce((sum, [value, weight]) => sum + value * weight, 0) / weightTotal;
 }
 
 function interpolate(start, end, t) {

@@ -227,7 +227,7 @@ export function RescueMap({
       layers.addLayer(
         L.geoJSON(routeFeatures(currentRoute), {
           style: {
-            color: routeColor(currentRoute.riskLevel),
+            color: routeColor(currentRoute.safetyClass),
             weight: 6,
             opacity: 0.92
           }
@@ -309,9 +309,9 @@ function changeColor(category: SatelliteFloodChangeProperties["category"]) {
   return "#c76a11";
 }
 
-function routeColor(riskLevel: RouteResult["riskLevel"]) {
-  if (riskLevel === "high") return "#b42318";
-  if (riskLevel === "moderate") return "#c76a11";
+function routeColor(safetyClass: RouteResult["safetyClass"]) {
+  if (safetyClass === "unsafe") return "#b42318";
+  if (safetyClass === "caution") return "#c76a11";
   return "#15803d";
 }
 

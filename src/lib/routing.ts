@@ -5,11 +5,15 @@ import type {
   RoadCollection,
   RoadEdge,
   RoadEdgeFeature,
+  RouteMode,
   RoadNode,
   RouteResult
 } from "../types";
 
 type EdgeAnalysisMode = "normal" | "flood";
+type RouteOptions = {
+  mode?: RouteMode;
+};
 
 type QueueItem = {
   nodeId: string;
@@ -47,8 +51,10 @@ export function calculateRoute(
   nodes: RoadNode[],
   edges: RoadEdge[],
   originId: string,
-  destinationId: string
+  destinationId: string,
+  options: RouteOptions = {}
 ): RouteResult {
+  const routingMode = options.mode ?? "best_available";
   const nodeNames = new Map(nodes.map((node) => [node.id, node.name ?? node.id]));
   const queue: QueueItem[] = [{ nodeId: originId, cost: 0, path: [] }];
   const bestCost = new Map<string, number>([[originId, 0]]);
@@ -61,7 +67,7 @@ export function calculateRoute(
     if (current.nodeId === destinationId) break;
 
     for (const edge of edgesForNode(edges, current.nodeId)) {
-      if (edge.blocked) continue;
+      if (isRouteBlocked(edge, routingMode)) continue;
       const nextNode = edge.from === current.nodeId ? edge.to : edge.from;
       const nextCost = current.cost + edge.cost;
       if (nextCost < (bestCost.get(nextNode) ?? Number.POSITIVE_INFINITY)) {
@@ -77,11 +83,15 @@ export function calculateRoute(
   if (originId !== destinationId && edgeIds.length === 0) {
     return {
       status: "no_ground_route",
+      safetyClass: "no_route",
+      routingMode,
       edgeIds: [],
       distanceMeters: 0,
       riskLevel: "unknown",
       reasons: [
-        "Flood-constrained road graph has no connected path to the selected incident.",
+        routingMode === "strict_clear"
+          ? "Strict-clear routing found no path that avoids blocked roads and direct possible/probable flood cells."
+          : "Flood-constrained road graph has no connected path to the selected incident.",
         "The result is a no-route finding, not a recommendation to travel off road."
       ],
       geometry: null,
@@ -100,15 +110,19 @@ export function calculateRoute(
   const hasUncertainTrack = routeEdges.some((edge) => edge.condition === "uncertain_track");
   const hasEvidencePenalty = routeEdges.some((edge) => edge.evidencePenalty > 0);
   const geometry = mergeLineStrings(routeEdges);
-  const riskLevel =
-    hasDirectProbableFlood || hasDirectPossibleFlood || hasNearFlood || hasEvidencePenalty
-      ? "high"
-      : hasUncertainTrack
-        ? "moderate"
-        : "low";
+  const safetyClass = routeSafetyClass({
+    hasDirectProbableFlood,
+    hasDirectPossibleFlood,
+    hasNearFlood,
+    hasUncertainTrack,
+    hasEvidencePenalty
+  });
+  const riskLevel = safetyClass === "unsafe" ? "high" : safetyClass === "caution" ? "moderate" : "low";
 
   return {
     status: "route_found",
+    safetyClass,
+    routingMode,
     edgeIds,
     distanceMeters,
     riskLevel,
@@ -145,6 +159,12 @@ function edgesForNode(edges: RoadEdge[], nodeId: string) {
   return edges.filter((edge) => edge.from === nodeId || edge.to === nodeId);
 }
 
+function isRouteBlocked(edge: RoadEdge, routingMode: RouteMode) {
+  if (edge.blocked) return true;
+  if (routingMode !== "strict_clear") return false;
+  return (edge.directProbableFloodCells ?? 0) > 0 || (edge.directPossibleFloodCells ?? 0) > 0;
+}
+
 function isFlooded(edge: RoadEdgeFeature, floods: FloodCollection) {
   return floods.features.some((flood) => turf.booleanIntersects(edge, flood));
 }
@@ -173,6 +193,12 @@ function mergeLineStrings(edges: RoadEdge[]): LineString {
 
 function routeReasons(edges: RoadEdge[]) {
   const reasons = ["Route follows the preselected demonstration road graph."];
+  if (edges.some((edge) => (edge.directProbableFloodCells ?? 0) > 0)) {
+    reasons.push("One or more edges directly overlap probable flood cells.");
+  }
+  if (edges.some((edge) => (edge.directPossibleFloodCells ?? 0) > 0)) {
+    reasons.push("One or more edges directly overlap possible flood cells.");
+  }
   if (edges.some((edge) => edge.nearFlood)) {
     reasons.push("One or more edges touch or pass near possible flood cells and are penalized.");
   }
@@ -183,6 +209,24 @@ function routeReasons(edges: RoadEdge[]) {
     reasons.push("Operator-approved evidence has increased cost on a mapped asset.");
   }
   return reasons;
+}
+
+function routeSafetyClass({
+  hasDirectProbableFlood,
+  hasDirectPossibleFlood,
+  hasNearFlood,
+  hasUncertainTrack,
+  hasEvidencePenalty
+}: {
+  hasDirectProbableFlood: boolean;
+  hasDirectPossibleFlood: boolean;
+  hasNearFlood: boolean;
+  hasUncertainTrack: boolean;
+  hasEvidencePenalty: boolean;
+}) {
+  if (hasDirectProbableFlood || hasDirectPossibleFlood) return "unsafe";
+  if (hasNearFlood || hasUncertainTrack || hasEvidencePenalty) return "caution";
+  return "safe";
 }
 
 function floodCaution(edge: RoadEdge) {

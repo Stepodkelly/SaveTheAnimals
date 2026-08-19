@@ -24,6 +24,10 @@ const examples = replayCells.features.map((cell) => evaluateCell(cell, beforeMas
 const labeledExamples = examples.filter((example) => example.maskCoverage > 0);
 const evaluationPairs = labeledExamples.map((example) => [example.modelProbability, example.observedWet ? 1 : 0]);
 const trainedRegression = trainAndEvaluate(labeledExamples);
+const thresholdTuning = {
+  heuristic: thresholdSweep(labeledExamples, "modelProbability"),
+  trained: thresholdSweep(trainedRegression.predictions ?? [], "trainedProbability")
+};
 const report = {
   generatedAt: new Date().toISOString(),
   replayId: "amboseli-2026-march",
@@ -42,6 +46,7 @@ const report = {
   },
   metrics: metrics(evaluationPairs, labeledExamples),
   trainedRegression,
+  thresholdTuning,
   baselines: baselines(labeledExamples),
   confusion: confusion(labeledExamples),
   examples: labeledExamples
@@ -192,6 +197,56 @@ function trainAndEvaluate(examples) {
       trainedProbability: example.trainedProbability,
       observedWet: example.observedWet
     }))
+  };
+}
+
+function thresholdSweep(examples, probabilityKey) {
+  if (examples.length === 0) {
+    return {
+      status: "no_examples",
+      selectedThreshold: null,
+      selectedMetric: "f1_then_false_safe",
+      candidates: []
+    };
+  }
+
+  const candidates = Array.from({ length: 18 }, (_, index) => round(0.1 + index * 0.05))
+    .map((threshold) => thresholdMetrics(examples, probabilityKey, threshold));
+  const selected = [...candidates].sort((a, b) => {
+    if (b.f1 !== a.f1) return b.f1 - a.f1;
+    if (a.falseSafeRate !== b.falseSafeRate) return a.falseSafeRate - b.falseSafeRate;
+    return a.unnecessaryBlockRate - b.unnecessaryBlockRate;
+  })[0];
+
+  return {
+    status: "evaluated",
+    selectedThreshold: selected.threshold,
+    selectedMetric: "f1_then_false_safe",
+    selected,
+    candidates
+  };
+}
+
+function thresholdMetrics(examples, probabilityKey, threshold) {
+  const rows = examples.map((example) => ({
+    predictedWet: example[probabilityKey] >= threshold,
+    observedWet: example.observedWet
+  }));
+  const counts = confusion(rows);
+  const positivePredictions = counts.truePositive + counts.falsePositive;
+  const observedPositives = counts.truePositive + counts.falseNegative;
+  const precisionValue = positivePredictions === 0 ? 1 : counts.truePositive / positivePredictions;
+  const recallValue = observedPositives === 0 ? 1 : counts.truePositive / observedPositives;
+  const f1 = precisionValue + recallValue === 0 ? 0 : (2 * precisionValue * recallValue) / (precisionValue + recallValue);
+
+  return {
+    threshold,
+    precision: round(precisionValue),
+    recall: round(recallValue),
+    f1: round(f1),
+    falseSafeRate: round(observedPositives === 0 ? 0 : counts.falseNegative / observedPositives),
+    unnecessaryBlockRate: round(examples.length === 0 ? 0 : counts.falsePositive / examples.length),
+    ...counts
   };
 }
 

@@ -203,12 +203,16 @@ button {
   background: #15803d;
 }
 
-.legend-route.route-high {
+.legend-route.route-unsafe {
   background: #b42318;
 }
 
-.legend-route.route-moderate {
+.legend-route.route-caution {
   background: #c76a11;
+}
+
+.legend-route.route-safe {
+  background: #15803d;
 }
 
 .legend-rejected {
@@ -266,6 +270,10 @@ button {
 .segmented button.active {
   background: #202020;
   color: #fffdf5;
+}
+
+.segmented.wide button {
+  flex: 1;
 }
 
 .toggle:disabled {

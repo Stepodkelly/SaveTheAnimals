@@ -15,6 +15,7 @@ import type {
   V2ScoredCellProperties
 } from "../types";
 import { routeFeatures } from "../lib/routing";
+import { filterSatelliteMask } from "../lib/sentinelMasks";
 
 type RescueMapProps = {
   locations: LocationsData;
@@ -87,6 +88,7 @@ export function RescueMap({
           geometry: edge.geometry
         }))
       };
+    const activeSatelliteMask = filterSatelliteMask(satelliteFloodMask, activeWindow);
 
     if (v2Replay && activeWindow === "duringFlooding" && showFlood) {
       layers.addLayer(
@@ -111,9 +113,9 @@ export function RescueMap({
       );
     }
 
-    if (activeWindow === "duringFlooding" && showFlood && satelliteFloodMask.features.length > 0) {
+    if (showFlood && activeSatelliteMask.features.length > 0) {
       layers.addLayer(
-        L.geoJSON(satelliteFloodMask, {
+        L.geoJSON(activeSatelliteMask, {
           style: (feature) => {
             const cell = feature?.properties as SatelliteFloodMaskProperties;
             return {

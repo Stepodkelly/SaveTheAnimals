@@ -79,9 +79,10 @@ export function applyV2RiskToEdges(edges: RoadEdge[], evaluation: V2ReplayEvalua
       ...edge,
       blocked: edge.blocked || forecastBlocked,
       nearFlood,
-      forecastRisk: risk.forecastRisk,
-      forecastConfidence: risk.confidence,
-      observedStatus: risk.observedStatus,
+      forecastRisk: Math.max(edge.forecastRisk ?? 0, risk.forecastRisk),
+      forecastConfidence: Math.max(edge.forecastConfidence ?? 0, risk.confidence),
+      observedStatus:
+        edge.observedStatus === "observed_open_water_overlap" ? edge.observedStatus : risk.observedStatus,
       cost: edge.cost + riskPenalty
     };
   });

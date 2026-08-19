@@ -13,7 +13,7 @@ export async function loadDemoData() {
   const base = import.meta.env.BASE_URL;
   const emptyFloodMask: SatelliteFloodMaskCollection = { type: "FeatureCollection", features: [] };
   const emptyMaskManifest: SentinelFloodMaskManifest = { masks: [] };
-  const [scene, roads, floods, locations, v2ReplayCells, sentinelQuicklooks, satelliteFloodMask, floodMaskManifest] =
+  const [scene, roads, floods, locations, v2ReplayCells, sentinelQuicklooks, floodMaskManifest] =
     await Promise.all([
     fetch(`${base}data/amboseli/scene.json`).then((res) => res.json() as Promise<SceneMetadata>),
     fetch(`${base}data/amboseli/roads.geojson`).then((res) => res.json() as Promise<RoadCollection>),
@@ -25,17 +25,30 @@ export async function loadDemoData() {
     fetch(`${base}data/amboseli/sentinel1-quicklooks/manifest.json`).then(
       (res) => res.json() as Promise<SentinelQuicklookManifest>
     ),
-    loadJsonOrDefault<SatelliteFloodMaskCollection>(
-      `${base}data/amboseli/sentinel1-flood-mask-during.geojson`,
-      emptyFloodMask
-    ),
     loadJsonOrDefault<SentinelFloodMaskManifest>(
       `${base}data/amboseli/sentinel1-flood-mask-manifest.json`,
       emptyMaskManifest
     )
   ]);
+  const satelliteFloodMask = await loadSatelliteMasks(base, floodMaskManifest, emptyFloodMask);
 
   return { scene, roads, floods, locations, v2ReplayCells, sentinelQuicklooks, satelliteFloodMask, floodMaskManifest };
+}
+
+async function loadSatelliteMasks(
+  base: string,
+  manifest: SentinelFloodMaskManifest,
+  fallback: SatelliteFloodMaskCollection
+): Promise<SatelliteFloodMaskCollection> {
+  const collections = await Promise.all(
+    manifest.masks
+      .filter((mask) => mask.status === "generated")
+      .map((mask) => loadJsonOrDefault<SatelliteFloodMaskCollection>(`${base}${mask.href}`, fallback))
+  );
+  return {
+    type: "FeatureCollection",
+    features: collections.flatMap((collection) => collection.features)
+  };
 }
 
 async function loadJsonOrDefault<T>(url: string, fallback: T): Promise<T> {

@@ -3,6 +3,7 @@ import { RescueMap } from "./components/RescueMap";
 import { RoutePanel } from "./components/RoutePanel";
 import { loadDemoData } from "./lib/data";
 import { analyzeEdges, calculateRoute } from "./lib/routing";
+import { applySatelliteMaskToEdges } from "./lib/sentinelMasks";
 import { applyV2RiskToEdges, evaluateV2Replay } from "./lib/v2Engine";
 import { formatDate, formatDateRange } from "./lib/format";
 import type {
@@ -55,7 +56,10 @@ export default function App() {
     const normalEdges = analyzeEdges(data.roads, data.floods, "normal");
     const floodEdges = analyzeEdges(data.roads, data.floods, "flood", evidencePenalties);
     const v2Evaluation = evaluateV2Replay(data.v2ReplayCells, normalEdges);
-    const v2FloodEdges = applyV2RiskToEdges(normalEdges, v2Evaluation);
+    const beforeEdges = applySatelliteMaskToEdges(normalEdges, data.satelliteFloodMask, "beforeFlooding", "context");
+    const duringSatelliteEdges = applySatelliteMaskToEdges(floodEdges, data.satelliteFloodMask, "duringFlooding", "constraint");
+    const recoveryEdges = applySatelliteMaskToEdges(normalEdges, data.satelliteFloodMask, "recoveryComparison", "context");
+    const v2FloodEdges = applyV2RiskToEdges(duringSatelliteEdges, v2Evaluation);
     const normalRoute = calculateRoute(
       data.locations.nodes,
       normalEdges,
@@ -68,7 +72,29 @@ export default function App() {
       data.locations.base.id,
       selectedIncident.nearestNodeId
     );
-    return { normalEdges, floodEdges: v2FloodEdges, normalRoute, floodRoute, v2Evaluation };
+    const beforeRoute = calculateRoute(
+      data.locations.nodes,
+      beforeEdges,
+      data.locations.base.id,
+      selectedIncident.nearestNodeId
+    );
+    const recoveryRoute = calculateRoute(
+      data.locations.nodes,
+      recoveryEdges,
+      data.locations.base.id,
+      selectedIncident.nearestNodeId
+    );
+    return {
+      normalEdges,
+      beforeEdges,
+      floodEdges: v2FloodEdges,
+      recoveryEdges,
+      normalRoute,
+      beforeRoute,
+      floodRoute,
+      recoveryRoute,
+      v2Evaluation
+    };
   }, [data, selectedIncident, evidencePenalties]);
 
   const activeRouteView = useMemo(() => {
@@ -83,17 +109,17 @@ export default function App() {
     }
     if (activeWindow === "recoveryComparison") {
       return {
-        edges: analyzed.normalEdges,
-        currentRoute: analyzed.normalRoute,
+        edges: analyzed.recoveryEdges,
+        currentRoute: analyzed.recoveryRoute,
         rejectedRoute: null,
         showFlood: showFlood
       };
     }
     return {
-      edges: analyzed.normalEdges,
-      currentRoute: analyzed.normalRoute,
+      edges: analyzed.beforeEdges,
+      currentRoute: analyzed.beforeRoute,
       rejectedRoute: null,
-      showFlood: false
+      showFlood: showFlood
     };
   }, [activeWindow, analyzed, showFlood]);
 
@@ -140,7 +166,7 @@ export default function App() {
 
   function selectObservationWindow(windowKey: ObservationWindowKey) {
     setActiveWindow(windowKey);
-    setShowFlood(windowKey !== "beforeFlooding");
+    setShowFlood(true);
   }
 
   async function askLocalQuestion(question: string) {
@@ -225,7 +251,6 @@ export default function App() {
             <button
               className={activeRouteView.showFlood ? "toggle active" : "toggle"}
               onClick={() => setShowFlood((value) => !value)}
-              disabled={activeWindow === "beforeFlooding"}
             >
               Flood overlay
             </button>

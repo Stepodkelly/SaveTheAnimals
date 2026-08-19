@@ -10,6 +10,7 @@ const stacDir = path.join(rootDir, "versions/v2-forecast-mvp/data/catalog/stac")
 const outputDir = path.join(rootDir, "versions/v2-forecast-mvp/data/raw/sentinel1");
 const manifestDir = path.join(rootDir, "versions/v2-forecast-mvp/data/assets/sentinel1");
 const windowKey = process.env.WINDOW_KEY ?? "duringFlooding";
+const sceneId = process.env.SCENE_ID;
 const bands = (process.env.BANDS ?? "vv,vh").split(",").map((band) => band.trim()).filter(Boolean);
 const limit = Number(process.env.LIMIT ?? 1);
 const allowLargeDownload = process.env.CONFIRM_LARGE_DOWNLOAD === "true";
@@ -34,7 +35,12 @@ if (!fs.existsSync(stacPath)) {
 }
 
 const stac = JSON.parse(fs.readFileSync(stacPath, "utf8"));
-const scenes = (stac.features ?? []).slice(0, limit);
+const scenes = sceneId
+  ? (stac.features ?? []).filter((scene) => scene.id === sceneId)
+  : (stac.features ?? []).slice(0, limit);
+if (sceneId && scenes.length === 0) {
+  throw new Error(`SCENE_ID ${sceneId} was not found in ${path.relative(rootDir, stacPath)}.`);
+}
 const downloaded = [];
 
 for (const scene of scenes) {
@@ -45,6 +51,13 @@ for (const scene of scenes) {
 
     const filename = `${safeId(scene.id)}_${band}.tif`;
     const outputPath = path.join(outputDir, filename);
+    if (fs.existsSync(outputPath)) {
+      const stats = fs.statSync(outputPath);
+      downloaded.push(assetRecord(scene, band, asset, outputPath, stats.size, href));
+      console.log(`Using existing ${path.relative(rootDir, outputPath)} (${stats.size} bytes)`);
+      continue;
+    }
+
     const response = await fetch(href, {
       redirect: "follow",
       headers: {
@@ -59,28 +72,7 @@ for (const scene of scenes) {
     await pipeline(Readable.fromWeb(response.body), fs.createWriteStream(outputPath));
     const stats = fs.statSync(outputPath);
 
-    downloaded.push({
-      assetId: `sentinel1-${safeId(scene.id)}-${band}`,
-      assetType: "raw_scene",
-      sceneId: scene.id,
-      band,
-      uri: path.relative(rootDir, outputPath),
-      expectedSizeBytes: asset["file:size"] ?? null,
-      sizeBytes: stats.size,
-      createdAt: new Date().toISOString(),
-      availableAt: scene.properties?.published ?? scene.properties?.datetime,
-      observedAt: scene.properties?.datetime,
-      platform: scene.properties?.platform,
-      checksum: asset["file:checksum"] ?? null,
-      sourceHref: href,
-      gridVersion: "amboseli-30m-v1",
-      crs: asset["proj:code"] ?? "unknown",
-      bounds: scene.bbox ?? [],
-      resolutionMeters: 10,
-      nodataValue: asset.nodata ?? 0,
-      sourceAssetIds: [],
-      parentJobId: `download-sentinel1-rasters:${windowKey}:${scene.id}:${band}`
-    });
+    downloaded.push(assetRecord(scene, band, asset, outputPath, stats.size, href));
 
     console.log(`Downloaded ${path.relative(rootDir, outputPath)} (${stats.size} bytes)`);
   }
@@ -133,4 +125,29 @@ async function requestToken(fields) {
 
 function safeId(value) {
   return String(value).replace(/[^a-zA-Z0-9_-]/g, "_");
+}
+
+function assetRecord(scene, band, asset, outputPath, sizeBytes, href) {
+  return {
+    assetId: `sentinel1-${safeId(scene.id)}-${band}`,
+    assetType: "raw_scene",
+    sceneId: scene.id,
+    band,
+    uri: path.relative(rootDir, outputPath),
+    expectedSizeBytes: asset["file:size"] ?? null,
+    sizeBytes,
+    createdAt: new Date().toISOString(),
+    availableAt: scene.properties?.published ?? scene.properties?.datetime,
+    observedAt: scene.properties?.datetime,
+    platform: scene.properties?.platform,
+    checksum: asset["file:checksum"] ?? null,
+    sourceHref: href,
+    gridVersion: "amboseli-30m-v1",
+    crs: asset["proj:code"] ?? "unknown",
+    bounds: scene.bbox ?? [],
+    resolutionMeters: 10,
+    nodataValue: asset.nodata ?? 0,
+    sourceAssetIds: [],
+    parentJobId: `download-sentinel1-rasters:${windowKey}:${scene.id}:${band}`
+  };
 }

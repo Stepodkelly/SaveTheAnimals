@@ -1,0 +1,58 @@
+{
+  "downloaded": [
+    {
+      "assetId": "sentinel1-S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG-vv",
+      "assetType": "raw_scene",
+      "sceneId": "S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG",
+      "band": "vv",
+      "uri": "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG_vv.tif",
+      "expectedSizeBytes": 630036856,
+      "sizeBytes": 630036856,
+      "createdAt": "2026-08-19T04:44:34.149Z",
+      "availableAt": "2026-02-20T18:35:55.228474Z",
+      "observedAt": "2026-02-20T15:47:48.023501Z",
+      "platform": "sentinel-1a",
+      "checksum": "161056e99233a408b884b9134d1037201835",
+      "sourceHref": "https://zipper.dataspace.copernicus.eu/odata/v1/Products(c5d7bbc2-b3cb-4e06-b49b-6d778172d4b0)/Nodes(S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG.SAFE)/Nodes(measurement)/Nodes(s1a-iw-grd-vv-20260220t154748-20260220t154813-063304-07f31c-001-cog.tiff)/$value",
+      "gridVersion": "amboseli-30m-v1",
+      "crs": "unknown",
+      "bounds": [
+        36.827778,
+        -3.248143,
+        39.398819,
+        -1.248755
+      ],
+      "resolutionMeters": 10,
+      "nodataValue": 0,
+      "sourceAssetIds": [],
+      "parentJobId": "download-sentinel1-rasters:beforeFlooding:S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG:vv"
+    },
+    {
+      "assetId": "sentinel1-S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG-vh",
+      "assetType": "raw_scene",
+      "sceneId": "S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG",
+      "band": "vh",
+      "uri": "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG_vh.tif",
+      "expectedSizeBytes": 565590174,
+      "sizeBytes": 565590174,
+      "createdAt": "2026-08-19T04:45:11.888Z",
+      "availableAt": "2026-02-20T18:35:55.228474Z",
+      "observedAt": "2026-02-20T15:47:48.023501Z",
+      "platform": "sentinel-1a",
+      "checksum": "1610b39c76f3583ac3ea5a690e1d4832ebf4",
+      "sourceHref": "https://zipper.dataspace.copernicus.eu/odata/v1/Products(c5d7bbc2-b3cb-4e06-b49b-6d778172d4b0)/Nodes(S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG.SAFE)/Nodes(measurement)/Nodes(s1a-iw-grd-vh-20260220t154748-20260220t154813-063304-07f31c-002-cog.tiff)/$value",
+      "gridVersion": "amboseli-30m-v1",
+      "crs": "unknown",
+      "bounds": [
+        36.827778,
+        -3.248143,
+        39.398819,
+        -1.248755
+      ],
+      "resolutionMeters": 10,
+      "nodataValue": 0,
+      "sourceAssetIds": [],
+      "parentJobId": "download-sentinel1-rasters:beforeFlooding:S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG:vh"
+    }
+  ]
+}

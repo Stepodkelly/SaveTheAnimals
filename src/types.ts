@@ -76,6 +76,8 @@ export type SentinelFloodMaskManifest = {
   }>;
 };
 
+export type SatelliteFloodMasksByWindow = Partial<Record<ObservationWindowKey, SatelliteFloodMaskCollection>>;
+
 export type ObservationWindow = {
   label: string;
   start: string;

@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-08-19T04:02:13.738Z",
+  "checkedAt": "2026-08-19T04:29:04.983Z",
   "windowKey": "duringFlooding",
   "limit": 1,
   "bands": [
@@ -7,11 +7,12 @@
     "vh"
   ],
   "tokenAvailable": false,
+  "tokenError": "CDSE token request failed: 400 {\"error\":\"invalid_grant\",\"error_description\":\"Account is not fully set up\"}",
   "credentialSources": {
     "CDSE_ACCESS_TOKEN": false,
     "CDSE_REFRESH_TOKEN": false,
-    "CDSE_USERNAME": false,
-    "CDSE_PASSWORD": false
+    "CDSE_USERNAME": true,
+    "CDSE_PASSWORD": true
   },
   "checks": [
     {

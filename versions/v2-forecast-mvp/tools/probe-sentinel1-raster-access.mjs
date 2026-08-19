@@ -1,13 +1,16 @@
 import fs from "node:fs";
 import path from "node:path";
+import { loadProjectEnv } from "./env.mjs";
 
 const rootDir = process.cwd();
+loadProjectEnv(rootDir);
 const stacDir = path.join(rootDir, "versions/v2-forecast-mvp/data/catalog/stac");
 const reportDir = path.join(rootDir, "versions/v2-forecast-mvp/data/reports");
 const windowKey = process.env.WINDOW_KEY ?? "duringFlooding";
 const bands = (process.env.BANDS ?? "vv,vh").split(",").map((band) => band.trim()).filter(Boolean);
 const limit = Number(process.env.LIMIT ?? 1);
-const token = await getAccessToken();
+const tokenResult = await getAccessToken();
+const token = tokenResult.accessToken;
 
 fs.mkdirSync(reportDir, { recursive: true });
 
@@ -63,6 +66,7 @@ const report = {
   limit,
   bands,
   tokenAvailable: Boolean(token),
+  tokenError: tokenResult.error,
   credentialSources: {
     CDSE_ACCESS_TOKEN: Boolean(process.env.CDSE_ACCESS_TOKEN),
     CDSE_REFRESH_TOKEN: Boolean(process.env.CDSE_REFRESH_TOKEN),
@@ -85,23 +89,34 @@ if (checks.some((check) => check.status === "blocked")) {
 }
 
 async function getAccessToken() {
-  if (process.env.CDSE_ACCESS_TOKEN) return process.env.CDSE_ACCESS_TOKEN;
-  if (process.env.CDSE_REFRESH_TOKEN) {
-    return requestToken({
-      grant_type: "refresh_token",
-      refresh_token: process.env.CDSE_REFRESH_TOKEN,
-      client_id: "cdse-public"
-    });
+  try {
+    if (process.env.CDSE_ACCESS_TOKEN) return { accessToken: process.env.CDSE_ACCESS_TOKEN };
+    if (process.env.CDSE_REFRESH_TOKEN) {
+      return {
+        accessToken: await requestToken({
+          grant_type: "refresh_token",
+          refresh_token: process.env.CDSE_REFRESH_TOKEN,
+          client_id: "cdse-public"
+        })
+      };
+    }
+    if (process.env.CDSE_USERNAME && process.env.CDSE_PASSWORD) {
+      return {
+        accessToken: await requestToken({
+          grant_type: "password",
+          username: process.env.CDSE_USERNAME,
+          password: process.env.CDSE_PASSWORD,
+          client_id: "cdse-public"
+        })
+      };
+    }
+    return { accessToken: null, error: "missing_credentials" };
+  } catch (error) {
+    return {
+      accessToken: null,
+      error: sanitizeError(error)
+    };
   }
-  if (process.env.CDSE_USERNAME && process.env.CDSE_PASSWORD) {
-    return requestToken({
-      grant_type: "password",
-      username: process.env.CDSE_USERNAME,
-      password: process.env.CDSE_PASSWORD,
-      client_id: "cdse-public"
-    });
-  }
-  return null;
 }
 
 async function requestToken(fields) {
@@ -124,4 +139,9 @@ async function requestToken(fields) {
   const payload = await response.json();
   if (!payload.access_token) throw new Error("CDSE token response did not include access_token.");
   return payload.access_token;
+}
+
+function sanitizeError(error) {
+  const message = error instanceof Error ? error.message : String(error);
+  return message.replace(/password=[^&\s]+/g, "password=REDACTED").slice(0, 500);
 }

@@ -2,8 +2,10 @@ import fs from "node:fs";
 import path from "node:path";
 import { pipeline } from "node:stream/promises";
 import { Readable } from "node:stream";
+import { loadProjectEnv } from "./env.mjs";
 
 const rootDir = process.cwd();
+loadProjectEnv(rootDir);
 const stacDir = path.join(rootDir, "versions/v2-forecast-mvp/data/catalog/stac");
 const outputDir = path.join(rootDir, "versions/v2-forecast-mvp/data/raw/sentinel1");
 const manifestDir = path.join(rootDir, "versions/v2-forecast-mvp/data/assets/sentinel1");

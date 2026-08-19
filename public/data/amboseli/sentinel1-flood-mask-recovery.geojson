@@ -4,99 +4,16 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-recoveryComparison-1-12",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.538,
-        "classification": "possible_flood",
-        "vvMean": 157.22,
-        "vhMean": 83.11,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.24675,
-              -2.6260952380952385
-            ],
-            [
-              37.2483125,
-              -2.6260952380952385
-            ],
-            [
-              37.2483125,
-              -2.624547619047619
-            ],
-            [
-              37.24675,
-              -2.624547619047619
-            ],
-            [
-              37.24675,
-              -2.6260952380952385
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-4-41",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.563,
-        "classification": "possible_flood",
-        "vvMean": 129,
-        "vhMean": 85.22,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2920625,
-              -2.6307380952380957
-            ],
-            [
-              37.293625,
-              -2.6307380952380957
-            ],
-            [
-              37.293625,
-              -2.6291904761904763
-            ],
-            [
-              37.2920625,
-              -2.6291904761904763
-            ],
-            [
-              37.2920625,
-              -2.6307380952380957
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "cellId": "s1-recoveryComparison-5-43",
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.47,
+        "floodProbability": 0.508,
+        "confidence": 0.547,
         "classification": "possible_flood",
         "vvMean": 146.78,
         "vhMean": 83.56,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -134,11 +51,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.5,
+        "floodProbability": 0.516,
+        "confidence": 0.553,
         "classification": "possible_flood",
         "vvMean": 140.67,
         "vhMean": 84.11,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -164,90 +82,6 @@
             [
               37.296749999999996,
               -2.6322857142857146
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-6-45",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.484,
-        "classification": "possible_flood",
-        "vvMean": 154.44,
-        "vhMean": 75,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.298312499999994,
-              -2.6338333333333335
-            ],
-            [
-              37.299875,
-              -2.6338333333333335
-            ],
-            [
-              37.299875,
-              -2.6322857142857146
-            ],
-            [
-              37.298312499999994,
-              -2.6322857142857146
-            ],
-            [
-              37.298312499999994,
-              -2.6338333333333335
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-9-13",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.46,
-        "classification": "possible_flood",
-        "vvMean": 155.44,
-        "vhMean": 75.67,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2483125,
-              -2.6384761904761906
-            ],
-            [
-              37.249875,
-              -2.6384761904761906
-            ],
-            [
-              37.249875,
-              -2.6369285714285717
-            ],
-            [
-              37.2483125,
-              -2.6369285714285717
-            ],
-            [
-              37.2483125,
-              -2.6384761904761906
             ]
           ]
         ]
@@ -260,11 +94,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.503,
+        "floodProbability": 0.486,
+        "confidence": 0.552,
         "classification": "possible_flood",
         "vvMean": 145.33,
         "vhMean": 85.78,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -302,11 +137,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.621,
-        "classification": "probable_flood",
+        "floodProbability": 0.585,
+        "confidence": 0.61,
+        "classification": "possible_flood",
         "vvMean": 136.33,
         "vhMean": 69.78,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -344,11 +180,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.455,
+        "floodProbability": 0.491,
+        "confidence": 0.548,
         "classification": "possible_flood",
         "vvMean": 134.56,
         "vhMean": 92.33,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -373,48 +210,6 @@
             ],
             [
               37.2451875,
-              -2.641571428571429
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-11-12",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.571,
-        "classification": "possible_flood",
-        "vvMean": 123.56,
-        "vhMean": 79,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.24675,
-              -2.641571428571429
-            ],
-            [
-              37.2483125,
-              -2.641571428571429
-            ],
-            [
-              37.2483125,
-              -2.6400238095238096
-            ],
-            [
-              37.24675,
-              -2.6400238095238096
-            ],
-            [
-              37.24675,
               -2.641571428571429
             ]
           ]
@@ -428,11 +223,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.534,
+        "floodProbability": 0.479,
+        "confidence": 0.557,
         "classification": "possible_flood",
         "vvMean": 138.89,
         "vhMean": 91.67,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -470,11 +266,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.495,
+        "floodProbability": 0.498,
+        "confidence": 0.541,
         "classification": "possible_flood",
         "vvMean": 136.33,
         "vhMean": 94.11,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -512,11 +309,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.516,
+        "floodProbability": 0.452,
+        "confidence": 0.579,
         "classification": "possible_flood",
         "vvMean": 144.67,
         "vhMean": 77.89,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -554,11 +352,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.654,
-        "classification": "probable_flood",
+        "floodProbability": 0.605,
+        "confidence": 0.626,
+        "classification": "possible_flood",
         "vvMean": 134.44,
         "vhMean": 70.44,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -596,11 +395,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.644,
-        "classification": "probable_flood",
+        "floodProbability": 0.576,
+        "confidence": 0.602,
+        "classification": "possible_flood",
         "vvMean": 121.33,
         "vhMean": 83.22,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -625,48 +425,6 @@
             ],
             [
               37.2451875,
-              -2.647761904761905
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-15-12",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.465,
-        "classification": "possible_flood",
-        "vvMean": 150,
-        "vhMean": 81.78,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.24675,
-              -2.647761904761905
-            ],
-            [
-              37.2483125,
-              -2.647761904761905
-            ],
-            [
-              37.2483125,
-              -2.646214285714286
-            ],
-            [
-              37.24675,
-              -2.646214285714286
-            ],
-            [
-              37.24675,
               -2.647761904761905
             ]
           ]
@@ -680,11 +438,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.471,
+        "floodProbability": 0.484,
+        "confidence": 0.553,
         "classification": "possible_flood",
         "vvMean": 161.33,
         "vhMean": 78.67,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -718,15 +477,59 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-recoveryComparison-15-40",
+        "window": "recoveryComparison",
+        "observedAt": "2026-05-15T15:47:47.498591Z",
+        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
+        "floodProbability": 0.451,
+        "confidence": 0.581,
+        "classification": "possible_flood",
+        "vvMean": 159.56,
+        "vhMean": 83.78,
+        "method": "sentinel1-calibrated-low-backscatter-v1",
+        "georeference": "copernicus-stac-bbox-linearized"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.290499999999994,
+              -2.647761904761905
+            ],
+            [
+              37.2920625,
+              -2.647761904761905
+            ],
+            [
+              37.2920625,
+              -2.646214285714286
+            ],
+            [
+              37.290499999999994,
+              -2.646214285714286
+            ],
+            [
+              37.290499999999994,
+              -2.647761904761905
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-recoveryComparison-16-12",
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.535,
+        "floodProbability": 0.528,
+        "confidence": 0.563,
         "classification": "possible_flood",
         "vvMean": 132.44,
         "vhMean": 78.89,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -764,11 +567,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.502,
+        "floodProbability": 0.471,
+        "confidence": 0.563,
         "classification": "possible_flood",
         "vvMean": 137,
         "vhMean": 95.78,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -806,11 +610,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.468,
+        "floodProbability": 0.47,
+        "confidence": 0.565,
         "classification": "possible_flood",
         "vvMean": 151,
         "vhMean": 82.56,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -848,11 +653,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.516,
+        "floodProbability": 0.495,
+        "confidence": 0.545,
         "classification": "possible_flood",
         "vvMean": 134.89,
         "vhMean": 84.22,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -878,132 +684,6 @@
             [
               37.249875,
               -2.6508571428571432
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-18-13",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.469,
-        "classification": "possible_flood",
-        "vvMean": 148.67,
-        "vhMean": 77,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2483125,
-              -2.652404761904762
-            ],
-            [
-              37.249875,
-              -2.652404761904762
-            ],
-            [
-              37.249875,
-              -2.6508571428571432
-            ],
-            [
-              37.2483125,
-              -2.6508571428571432
-            ],
-            [
-              37.2483125,
-              -2.652404761904762
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-20-0",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.498,
-        "classification": "possible_flood",
-        "vvMean": 139.33,
-        "vhMean": 96.11,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.228,
-              -2.6555
-            ],
-            [
-              37.2295625,
-              -2.6555
-            ],
-            [
-              37.2295625,
-              -2.653952380952381
-            ],
-            [
-              37.228,
-              -2.653952380952381
-            ],
-            [
-              37.228,
-              -2.6555
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-20-14",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.507,
-        "classification": "possible_flood",
-        "vvMean": 145.56,
-        "vhMean": 80.56,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.249875,
-              -2.6555
-            ],
-            [
-              37.2514375,
-              -2.6555
-            ],
-            [
-              37.2514375,
-              -2.653952380952381
-            ],
-            [
-              37.249875,
-              -2.653952380952381
-            ],
-            [
-              37.249875,
-              -2.6555
             ]
           ]
         ]
@@ -1016,11 +696,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.534,
+        "floodProbability": 0.461,
+        "confidence": 0.572,
         "classification": "possible_flood",
         "vvMean": 150.11,
         "vhMean": 68.11,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1046,48 +727,6 @@
             [
               37.2670625,
               -2.6570476190476193
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-23-16",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.516,
-        "classification": "possible_flood",
-        "vvMean": 137.67,
-        "vhMean": 86.22,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.253,
-              -2.660142857142857
-            ],
-            [
-              37.2545625,
-              -2.660142857142857
-            ],
-            [
-              37.2545625,
-              -2.6585952380952382
-            ],
-            [
-              37.253,
-              -2.6585952380952382
-            ],
-            [
-              37.253,
-              -2.660142857142857
             ]
           ]
         ]
@@ -1100,11 +739,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.513,
+        "floodProbability": 0.452,
+        "confidence": 0.58,
         "classification": "possible_flood",
         "vvMean": 146.67,
         "vhMean": 84.11,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1142,11 +782,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.546,
+        "floodProbability": 0.499,
+        "confidence": 0.541,
         "classification": "possible_flood",
         "vvMean": 153.33,
         "vhMean": 69.56,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1184,11 +825,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.547,
+        "floodProbability": 0.455,
+        "confidence": 0.577,
         "classification": "possible_flood",
         "vvMean": 141.22,
         "vhMean": 79.33,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1226,11 +868,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.53,
+        "floodProbability": 0.533,
+        "confidence": 0.567,
         "classification": "possible_flood",
         "vvMean": 133.33,
         "vhMean": 91.67,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1264,15 +907,16 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-recoveryComparison-27-5",
+        "cellId": "s1-recoveryComparison-27-22",
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.469,
+        "floodProbability": 0.457,
+        "confidence": 0.575,
         "classification": "possible_flood",
-        "vvMean": 163.11,
-        "vhMean": 76.44,
-        "method": "sentinel1-low-backscatter-v0",
+        "vvMean": 151.56,
+        "vhMean": 92.78,
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1280,65 +924,23 @@
         "coordinates": [
           [
             [
-              37.2358125,
-              -2.6663333333333337
-            ],
-            [
-              37.237375,
-              -2.6663333333333337
-            ],
-            [
-              37.237375,
-              -2.6647857142857143
-            ],
-            [
-              37.2358125,
-              -2.6647857142857143
-            ],
-            [
-              37.2358125,
-              -2.6663333333333337
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-27-21",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.552,
-        "classification": "possible_flood",
-        "vvMean": 133.44,
-        "vhMean": 86.78,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2608125,
-              -2.6663333333333337
-            ],
-            [
               37.262375,
               -2.6663333333333337
+            ],
+            [
+              37.2639375,
+              -2.6663333333333337
+            ],
+            [
+              37.2639375,
+              -2.6647857142857143
             ],
             [
               37.262375,
               -2.6647857142857143
             ],
             [
-              37.2608125,
-              -2.6647857142857143
-            ],
-            [
-              37.2608125,
+              37.262375,
               -2.6663333333333337
             ]
           ]
@@ -1352,11 +954,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.617,
+        "floodProbability": 0.578,
+        "confidence": 0.604,
         "classification": "possible_flood",
         "vvMean": 126.11,
         "vhMean": 82.56,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1390,15 +993,16 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-recoveryComparison-28-4",
+        "cellId": "s1-recoveryComparison-30-20",
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.467,
+        "floodProbability": 0.468,
+        "confidence": 0.567,
         "classification": "possible_flood",
-        "vvMean": 139,
-        "vhMean": 102.56,
-        "method": "sentinel1-low-backscatter-v0",
+        "vvMean": 148.78,
+        "vhMean": 85.78,
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1406,149 +1010,23 @@
         "coordinates": [
           [
             [
-              37.23425,
-              -2.6678809523809526
-            ],
-            [
-              37.2358125,
-              -2.6678809523809526
-            ],
-            [
-              37.2358125,
-              -2.6663333333333337
-            ],
-            [
-              37.23425,
-              -2.6663333333333337
-            ],
-            [
-              37.23425,
-              -2.6678809523809526
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-28-24",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.502,
-        "classification": "possible_flood",
-        "vvMean": 149.22,
-        "vhMean": 80.44,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2655,
-              -2.6678809523809526
-            ],
-            [
-              37.2670625,
-              -2.6678809523809526
-            ],
-            [
-              37.2670625,
-              -2.6663333333333337
-            ],
-            [
-              37.2655,
-              -2.6663333333333337
-            ],
-            [
-              37.2655,
-              -2.6678809523809526
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-30-4",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.493,
-        "classification": "possible_flood",
-        "vvMean": 148.11,
-        "vhMean": 87.44,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.23425,
+              37.25925,
               -2.670976190476191
             ],
             [
-              37.2358125,
+              37.2608125,
               -2.670976190476191
             ],
             [
-              37.2358125,
+              37.2608125,
               -2.6694285714285715
             ],
             [
-              37.23425,
+              37.25925,
               -2.6694285714285715
             ],
             [
-              37.23425,
-              -2.670976190476191
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-30-12",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.456,
-        "classification": "possible_flood",
-        "vvMean": 159,
-        "vhMean": 82.89,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.24675,
-              -2.670976190476191
-            ],
-            [
-              37.2483125,
-              -2.670976190476191
-            ],
-            [
-              37.2483125,
-              -2.6694285714285715
-            ],
-            [
-              37.24675,
-              -2.6694285714285715
-            ],
-            [
-              37.24675,
+              37.25925,
               -2.670976190476191
             ]
           ]
@@ -1562,11 +1040,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.778,
+        "floodProbability": 0.689,
+        "confidence": 0.695,
         "classification": "probable_flood",
         "vvMean": 118.33,
         "vhMean": 64.67,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1604,11 +1083,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.477,
+        "floodProbability": 0.48,
+        "confidence": 0.556,
         "classification": "possible_flood",
         "vvMean": 151.78,
         "vhMean": 84.44,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1646,11 +1126,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.495,
+        "floodProbability": 0.453,
+        "confidence": 0.578,
         "classification": "possible_flood",
         "vvMean": 142,
         "vhMean": 84.22,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1688,11 +1169,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.452,
+        "floodProbability": 0.457,
+        "confidence": 0.575,
         "classification": "possible_flood",
         "vvMean": 151.44,
         "vhMean": 87.22,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1730,11 +1212,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.513,
+        "floodProbability": 0.484,
+        "confidence": 0.553,
         "classification": "possible_flood",
         "vvMean": 152.67,
         "vhMean": 83.44,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1759,48 +1242,6 @@
             ],
             [
               37.232687500000004,
-              -2.6725238095238097
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-31-17",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.488,
-        "classification": "possible_flood",
-        "vvMean": 133.78,
-        "vhMean": 97.56,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2545625,
-              -2.6725238095238097
-            ],
-            [
-              37.256125,
-              -2.6725238095238097
-            ],
-            [
-              37.256125,
-              -2.670976190476191
-            ],
-            [
-              37.2545625,
-              -2.670976190476191
-            ],
-            [
-              37.2545625,
               -2.6725238095238097
             ]
           ]
@@ -1814,11 +1255,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.708,
+        "floodProbability": 0.712,
+        "confidence": 0.714,
         "classification": "probable_flood",
         "vvMean": 107,
         "vhMean": 75.44,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1856,11 +1298,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.834,
+        "floodProbability": 0.82,
+        "confidence": 0.802,
         "classification": "probable_flood",
         "vvMean": 102.56,
         "vhMean": 59.33,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1898,11 +1341,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.557,
+        "floodProbability": 0.606,
+        "confidence": 0.627,
         "classification": "possible_flood",
         "vvMean": 138.56,
         "vhMean": 76.89,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1940,11 +1384,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.575,
+        "floodProbability": 0.579,
+        "confidence": 0.605,
         "classification": "possible_flood",
         "vvMean": 134.67,
         "vhMean": 74.56,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -1982,11 +1427,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.477,
+        "floodProbability": 0.478,
+        "confidence": 0.558,
         "classification": "possible_flood",
         "vvMean": 141,
         "vhMean": 87.56,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2024,11 +1470,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.526,
+        "floodProbability": 0.453,
+        "confidence": 0.579,
         "classification": "possible_flood",
         "vvMean": 152.22,
         "vhMean": 75.33,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2066,11 +1513,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.554,
+        "floodProbability": 0.478,
+        "confidence": 0.558,
         "classification": "possible_flood",
         "vvMean": 151.78,
         "vhMean": 80.11,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2108,11 +1556,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.572,
+        "floodProbability": 0.516,
+        "confidence": 0.553,
         "classification": "possible_flood",
         "vvMean": 141,
         "vhMean": 72.67,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2150,11 +1599,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.807,
+        "floodProbability": 0.765,
+        "confidence": 0.758,
         "classification": "probable_flood",
         "vvMean": 99,
         "vhMean": 66.89,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2192,11 +1642,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.808,
+        "floodProbability": 0.795,
+        "confidence": 0.782,
         "classification": "probable_flood",
         "vvMean": 104.56,
         "vhMean": 62.44,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2235,10 +1686,11 @@
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
         "floodProbability": 0.771,
+        "confidence": 0.762,
         "classification": "probable_flood",
         "vvMean": 107,
         "vhMean": 69.56,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2276,11 +1728,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.588,
+        "floodProbability": 0.589,
+        "confidence": 0.613,
         "classification": "possible_flood",
         "vvMean": 148.78,
         "vhMean": 69.89,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2318,11 +1771,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.592,
+        "floodProbability": 0.517,
+        "confidence": 0.554,
         "classification": "possible_flood",
         "vvMean": 138.78,
         "vhMean": 79.11,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2360,11 +1814,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.573,
+        "floodProbability": 0.515,
+        "confidence": 0.552,
         "classification": "possible_flood",
         "vvMean": 132.89,
         "vhMean": 78.33,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2402,11 +1857,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.596,
+        "floodProbability": 0.547,
+        "confidence": 0.579,
         "classification": "possible_flood",
         "vvMean": 132.67,
         "vhMean": 80.22,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2444,11 +1900,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.795,
+        "floodProbability": 0.802,
+        "confidence": 0.788,
         "classification": "probable_flood",
         "vvMean": 103.11,
         "vhMean": 64.89,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2486,11 +1943,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.721,
+        "floodProbability": 0.756,
+        "confidence": 0.75,
         "classification": "probable_flood",
         "vvMean": 111.22,
         "vhMean": 75.67,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2528,11 +1986,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.69,
+        "floodProbability": 0.683,
+        "confidence": 0.69,
         "classification": "probable_flood",
         "vvMean": 125.44,
         "vhMean": 65.67,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2558,48 +2017,6 @@
             [
               37.262375,
               -2.675619047619048
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-34-17",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.467,
-        "classification": "possible_flood",
-        "vvMean": 139,
-        "vhMean": 84.44,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2545625,
-              -2.677166666666667
-            ],
-            [
-              37.256125,
-              -2.677166666666667
-            ],
-            [
-              37.256125,
-              -2.675619047619048
-            ],
-            [
-              37.2545625,
-              -2.675619047619048
-            ],
-            [
-              37.2545625,
-              -2.677166666666667
             ]
           ]
         ]
@@ -2612,11 +2029,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.695,
+        "floodProbability": 0.669,
+        "confidence": 0.679,
         "classification": "probable_flood",
         "vvMean": 132.67,
         "vhMean": 64.56,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2654,11 +2072,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.696,
+        "floodProbability": 0.67,
+        "confidence": 0.679,
         "classification": "probable_flood",
         "vvMean": 117.44,
         "vhMean": 72.67,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2696,11 +2115,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.47,
+        "floodProbability": 0.454,
+        "confidence": 0.578,
         "classification": "possible_flood",
         "vvMean": 146.11,
         "vhMean": 88.11,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2726,90 +2146,6 @@
             [
               37.2608125,
               -2.678714285714286
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-35-24",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.453,
-        "classification": "possible_flood",
-        "vvMean": 163.11,
-        "vhMean": 74.78,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2655,
-              -2.678714285714286
-            ],
-            [
-              37.2670625,
-              -2.678714285714286
-            ],
-            [
-              37.2670625,
-              -2.677166666666667
-            ],
-            [
-              37.2655,
-              -2.677166666666667
-            ],
-            [
-              37.2655,
-              -2.678714285714286
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-36-19",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.455,
-        "classification": "possible_flood",
-        "vvMean": 152.89,
-        "vhMean": 73.33,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2576875,
-              -2.6802619047619047
-            ],
-            [
-              37.25925,
-              -2.6802619047619047
-            ],
-            [
-              37.25925,
-              -2.678714285714286
-            ],
-            [
-              37.2576875,
-              -2.678714285714286
-            ],
-            [
-              37.2576875,
-              -2.6802619047619047
             ]
           ]
         ]
@@ -2822,11 +2158,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.463,
+        "floodProbability": 0.452,
+        "confidence": 0.58,
         "classification": "possible_flood",
         "vvMean": 146.78,
         "vhMean": 84.78,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2864,11 +2201,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.585,
+        "floodProbability": 0.501,
+        "confidence": 0.541,
         "classification": "possible_flood",
         "vvMean": 135.44,
         "vhMean": 73.11,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2893,48 +2231,6 @@
             ],
             [
               37.256125,
-              -2.681809523809524
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-37-26",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.465,
-        "classification": "possible_flood",
-        "vvMean": 138.89,
-        "vhMean": 91.11,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.268625,
-              -2.681809523809524
-            ],
-            [
-              37.2701875,
-              -2.681809523809524
-            ],
-            [
-              37.2701875,
-              -2.6802619047619047
-            ],
-            [
-              37.268625,
-              -2.6802619047619047
-            ],
-            [
-              37.268625,
               -2.681809523809524
             ]
           ]
@@ -2948,11 +2244,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.568,
+        "floodProbability": 0.526,
+        "confidence": 0.562,
         "classification": "possible_flood",
         "vvMean": 121,
         "vhMean": 83.89,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -2977,48 +2274,6 @@
             ],
             [
               37.228,
-              -2.683357142857143
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-38-28",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.499,
-        "classification": "possible_flood",
-        "vvMean": 151.67,
-        "vhMean": 83.33,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.27175,
-              -2.683357142857143
-            ],
-            [
-              37.273312499999996,
-              -2.683357142857143
-            ],
-            [
-              37.273312499999996,
-              -2.681809523809524
-            ],
-            [
-              37.27175,
-              -2.681809523809524
-            ],
-            [
-              37.27175,
               -2.683357142857143
             ]
           ]
@@ -3032,11 +2287,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.466,
+        "floodProbability": 0.469,
+        "confidence": 0.566,
         "classification": "possible_flood",
         "vvMean": 138.67,
         "vhMean": 87.78,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -3074,11 +2330,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.609,
+        "floodProbability": 0.473,
+        "confidence": 0.562,
         "classification": "possible_flood",
         "vvMean": 138.89,
         "vhMean": 79,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -3116,11 +2373,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.531,
+        "floodProbability": 0.545,
+        "confidence": 0.577,
         "classification": "possible_flood",
         "vvMean": 139,
         "vhMean": 83,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -3145,48 +2403,6 @@
             ],
             [
               37.2764375,
-              -2.683357142857143
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-38-32",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.599,
-        "classification": "possible_flood",
-        "vvMean": 127.67,
-        "vhMean": 77.89,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.278,
-              -2.683357142857143
-            ],
-            [
-              37.2795625,
-              -2.683357142857143
-            ],
-            [
-              37.2795625,
-              -2.681809523809524
-            ],
-            [
-              37.278,
-              -2.681809523809524
-            ],
-            [
-              37.278,
               -2.683357142857143
             ]
           ]
@@ -3200,11 +2416,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.766,
+        "floodProbability": 0.673,
+        "confidence": 0.682,
         "classification": "probable_flood",
         "vvMean": 117.33,
         "vhMean": 69.67,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -3242,11 +2459,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.464,
+        "floodProbability": 0.465,
+        "confidence": 0.569,
         "classification": "possible_flood",
         "vvMean": 129.44,
         "vhMean": 98.33,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -3284,11 +2502,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.485,
+        "floodProbability": 0.513,
+        "confidence": 0.551,
         "classification": "possible_flood",
         "vvMean": 146.78,
         "vhMean": 86.33,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -3322,15 +2541,16 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-recoveryComparison-40-16",
+        "cellId": "s1-recoveryComparison-40-0",
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.478,
+        "floodProbability": 0.486,
+        "confidence": 0.551,
         "classification": "possible_flood",
-        "vvMean": 155.22,
-        "vhMean": 78.67,
-        "method": "sentinel1-low-backscatter-v0",
+        "vvMean": 153.44,
+        "vhMean": 87.33,
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -3338,23 +2558,23 @@
         "coordinates": [
           [
             [
-              37.253,
+              37.228,
               -2.6864523809523813
             ],
             [
-              37.2545625,
+              37.2295625,
               -2.6864523809523813
             ],
             [
-              37.2545625,
+              37.2295625,
               -2.684904761904762
             ],
             [
-              37.253,
+              37.228,
               -2.684904761904762
             ],
             [
-              37.253,
+              37.228,
               -2.6864523809523813
             ]
           ]
@@ -3368,11 +2588,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.576,
+        "floodProbability": 0.453,
+        "confidence": 0.578,
         "classification": "possible_flood",
         "vvMean": 132.78,
         "vhMean": 86.11,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -3410,11 +2631,12 @@
         "window": "recoveryComparison",
         "observedAt": "2026-05-15T15:47:47.498591Z",
         "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.613,
+        "floodProbability": 0.515,
+        "confidence": 0.552,
         "classification": "possible_flood",
         "vvMean": 126.22,
         "vhMean": 78.22,
-        "method": "sentinel1-low-backscatter-v0",
+        "method": "sentinel1-calibrated-low-backscatter-v1",
         "georeference": "copernicus-stac-bbox-linearized"
       },
       "geometry": {
@@ -3440,90 +2662,6 @@
             [
               37.2858125,
               -2.6864523809523813
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-41-0",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.477,
-        "classification": "possible_flood",
-        "vvMean": 142.89,
-        "vhMean": 84.56,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.228,
-              -2.688
-            ],
-            [
-              37.2295625,
-              -2.688
-            ],
-            [
-              37.2295625,
-              -2.6864523809523813
-            ],
-            [
-              37.228,
-              -2.6864523809523813
-            ],
-            [
-              37.228,
-              -2.688
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-recoveryComparison-41-15",
-        "window": "recoveryComparison",
-        "observedAt": "2026-05-15T15:47:47.498591Z",
-        "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-        "floodProbability": 0.493,
-        "classification": "possible_flood",
-        "vvMean": 152.11,
-        "vhMean": 76.78,
-        "method": "sentinel1-low-backscatter-v0",
-        "georeference": "copernicus-stac-bbox-linearized"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2514375,
-              -2.688
-            ],
-            [
-              37.253,
-              -2.688
-            ],
-            [
-              37.253,
-              -2.6864523809523813
-            ],
-            [
-              37.2514375,
-              -2.6864523809523813
-            ],
-            [
-              37.2514375,
-              -2.688
             ]
           ]
         ]

@@ -9,6 +9,7 @@ import type {
   RouteResult,
   SentinelFloodMaskManifest,
   SentinelQuicklookManifest,
+  SentinelRoadMetricsReport,
   V2ReplayEvaluation
 } from "../types";
 import { formatDate, formatMeters } from "../lib/format";
@@ -31,6 +32,7 @@ type RoutePanelProps = {
   activeWindow: ObservationWindowKey;
   sentinelQuicklooks: SentinelQuicklookManifest;
   floodMaskManifest: SentinelFloodMaskManifest;
+  roadMetrics: SentinelRoadMetricsReport;
 };
 
 export function RoutePanel({
@@ -50,7 +52,8 @@ export function RoutePanel({
   v2Evaluation,
   activeWindow,
   sentinelQuicklooks,
-  floodMaskManifest
+  floodMaskManifest,
+  roadMetrics
 }: RoutePanelProps) {
   const [question, setQuestion] = useState("Which public office or ranger contact should verify road access?");
   const blockedEdges = edges.filter((edge) => edge.blocked);
@@ -59,6 +62,8 @@ export function RoutePanel({
   const activeScenes = sentinelQuicklooks.scenes.filter((scene) => scene.window === activeWindow);
   const previewScenes = activeScenes.slice(-2);
   const activeFloodMask = floodMaskManifest.masks.find((mask) => mask.window === activeWindow);
+  const activeRoadMetrics = roadMetrics.windows.find((windowMetrics) => windowMetrics.window === activeWindow);
+  const changeCategories = floodMaskManifest.changeLayer?.categories ?? roadMetrics.changeLayer?.categories;
 
   function submitQuestion(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -166,6 +171,28 @@ export function RoutePanel({
             <span>Satellite-derived layer</span>
             <strong>{activeFloodMask.probableFloodAreaKm2.toFixed(2)} km2 probable</strong>
             <small>{activeFloodMask.method.id}; provisional overlay</small>
+          </div>
+        )}
+        {activeRoadMetrics && (
+          <div className="metric-pills" aria-label="Sentinel-1 road metrics">
+            <span>
+              Direct roads: <strong>{activeRoadMetrics.directRoadTouches.length}</strong>
+            </span>
+            <span>
+              Near roads: <strong>{activeRoadMetrics.nearRoadTouches.length}</strong>
+            </span>
+            <span>
+              Route available: <strong>{asPercent(activeRoadMetrics.routeAvailabilityProxy)}</strong>
+            </span>
+          </div>
+        )}
+        {changeCategories && (
+          <div className="baseline-list" aria-label="Sentinel-1 change categories">
+            {Object.entries(changeCategories).map(([category, count]) => (
+              <span key={category}>
+                {category.replace(/_/g, " ")}: <strong>{count}</strong>
+              </span>
+            ))}
           </div>
         )}
       </section>

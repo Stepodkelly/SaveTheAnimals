@@ -25,7 +25,8 @@
       "resolutionMeters": 10,
       "nodataValue": 0,
       "sourceAssetIds": [],
-      "parentJobId": "download-sentinel1-rasters:duringFlooding:S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG:vv"
+      "parentJobId": "download-sentinel1-rasters:duringFlooding:S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG:vv",
+      "localChecksum": "sha256:f7d2ab8381cd983a5ba5c40da3698638c35f199fd7f02524a25233ab0323bd15"
     },
     {
       "assetId": "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vh",
@@ -52,7 +53,8 @@
       "resolutionMeters": 10,
       "nodataValue": 0,
       "sourceAssetIds": [],
-      "parentJobId": "download-sentinel1-rasters:duringFlooding:S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG:vh"
+      "parentJobId": "download-sentinel1-rasters:duringFlooding:S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG:vh",
+      "localChecksum": "sha256:89b8fb95a44fd14772866b04b6b7bc85866588837bce0cd7d2aae80a6066c748"
     }
   ]
 }

@@ -216,6 +216,11 @@ button {
   background: linear-gradient(90deg, #15803d, #c76a11, #b42318);
 }
 
+.legend-change {
+  height: 14px !important;
+  background: linear-gradient(90deg, #b42318, #075985, #15803d);
+}
+
 .toggle,
 .text-button,
 .primary-button {
@@ -228,6 +233,27 @@ button {
 }
 
 .toggle.active {
+  background: #202020;
+  color: #fffdf5;
+}
+
+.segmented {
+  display: flex;
+  border: 1px solid #232323;
+  background: #232323;
+  gap: 1px;
+}
+
+.segmented button {
+  min-height: 32px;
+  border: 0;
+  background: #fffdf5;
+  color: #202020;
+  padding: 0 9px;
+  font-weight: 800;
+}
+
+.segmented button.active {
   background: #202020;
   color: #fffdf5;
 }

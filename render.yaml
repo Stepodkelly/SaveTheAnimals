@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: save-the-animals-api
+    env: node
+    plan: free
+    buildCommand: npm ci && npm run build
+    startCommand: NODE_ENV=production npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: ALLOWED_ORIGINS
+        value: https://stepodkelly.github.io
+      - key: EXA_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-2.5-flash

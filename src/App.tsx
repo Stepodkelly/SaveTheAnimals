@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { RescueMap } from "./components/RescueMap";
 import { RoutePanel } from "./components/RoutePanel";
+import { apiFetch } from "./lib/api";
 import { loadDemoData } from "./lib/data";
 import { analyzeEdges, calculateRoute } from "./lib/routing";
 import { applySatelliteMaskToEdges } from "./lib/sentinelMasks";
@@ -14,10 +15,12 @@ import type {
   LocationsData,
   ObservationWindowKey,
   RoadCollection,
+  SatelliteFloodChangeCollection,
   SatelliteFloodMaskCollection,
   SceneMetadata,
   SentinelFloodMaskManifest,
   SentinelQuicklookManifest,
+  SentinelRoadMetricsReport,
   V2ReplayCellCollection
 } from "./types";
 
@@ -29,7 +32,9 @@ type DemoData = {
   v2ReplayCells: V2ReplayCellCollection;
   sentinelQuicklooks: SentinelQuicklookManifest;
   satelliteFloodMask: SatelliteFloodMaskCollection;
+  satelliteFloodChange: SatelliteFloodChangeCollection;
   floodMaskManifest: SentinelFloodMaskManifest;
+  roadMetrics: SentinelRoadMetricsReport;
 };
 
 export default function App() {
@@ -37,6 +42,7 @@ export default function App() {
   const [selectedIncidentId, setSelectedIncidentId] = useState("marsh_report");
   const [activeWindow, setActiveWindow] = useState<ObservationWindowKey>("duringFlooding");
   const [showFlood, setShowFlood] = useState(true);
+  const [satelliteLayerMode, setSatelliteLayerMode] = useState<"mask" | "change">("mask");
   const [intelligence, setIntelligence] = useState<IntelligenceResponse | null>(null);
   const [intelligenceStatus, setIntelligenceStatus] = useState<"idle" | "loading" | "ready" | "error">("idle");
   const [evidencePenalties, setEvidencePenalties] = useState<Record<string, number>>({});
@@ -127,7 +133,7 @@ export default function App() {
     if (!data || !selectedIncident || !analyzed) return;
     setIntelligenceStatus("loading");
     try {
-      const response = await fetch("/api/intelligence", {
+      const response = await apiFetch("/api/intelligence", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -173,7 +179,7 @@ export default function App() {
     if (!data || !selectedIncident || !analyzed) return;
     setLocalAnswerStatus("loading");
     try {
-      const response = await fetch("/api/local-question", {
+      const response = await apiFetch("/api/local-question", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -254,6 +260,22 @@ export default function App() {
             >
               Flood overlay
             </button>
+            <div className="segmented" aria-label="Satellite layer mode">
+              <button
+                className={satelliteLayerMode === "mask" ? "active" : ""}
+                onClick={() => setSatelliteLayerMode("mask")}
+                type="button"
+              >
+                Mask
+              </button>
+              <button
+                className={satelliteLayerMode === "change" ? "active" : ""}
+                onClick={() => setSatelliteLayerMode("change")}
+                type="button"
+              >
+                Change
+              </button>
+            </div>
             <span className="map-note">{data.scene.note}</span>
           </div>
           <div className="map-legend" aria-label="Map legend">
@@ -261,6 +283,7 @@ export default function App() {
             <span><i className="legend-rejected" /> rejected route</span>
             <span><i className="legend-flood" /> satellite flood</span>
             <span><i className="legend-risk" /> V2 risk</span>
+            <span><i className="legend-change" /> change</span>
           </div>
           <RescueMap
             locations={data.locations}
@@ -273,6 +296,8 @@ export default function App() {
             activeWindow={activeWindow}
             v2Replay={analyzed.v2Evaluation}
             satelliteFloodMask={data.satelliteFloodMask}
+            satelliteFloodChange={data.satelliteFloodChange}
+            satelliteLayerMode={satelliteLayerMode}
           />
         </div>
 
@@ -301,6 +326,7 @@ export default function App() {
           activeWindow={activeWindow}
           sentinelQuicklooks={data.sentinelQuicklooks}
           floodMaskManifest={data.floodMaskManifest}
+          roadMetrics={data.roadMetrics}
         />
       </section>
 

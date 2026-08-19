@@ -10,8 +10,36 @@ loadEnv(path.join(rootDir, ".env"));
 
 const app = express();
 const port = Number(process.env.PORT ?? 4173);
+const host = process.env.HOST ?? (process.env.NODE_ENV === "production" ? "0.0.0.0" : "127.0.0.1");
+const allowedOrigins = (process.env.ALLOWED_ORIGINS ?? "https://stepodkelly.github.io,http://127.0.0.1:5173,http://127.0.0.1:5174,http://localhost:5173")
+  .split(",")
+  .map((origin) => origin.trim())
+  .filter(Boolean);
 
 app.use(express.json({ limit: "1mb" }));
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (origin && allowedOrigins.includes(origin)) {
+    res.setHeader("Access-Control-Allow-Origin", origin);
+    res.setHeader("Vary", "Origin");
+  }
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader("Access-Control-Allow-Methods", "GET,POST,OPTIONS");
+  if (req.method === "OPTIONS") {
+    res.status(204).end();
+    return;
+  }
+  next();
+});
+
+app.get("/api/health", (_req, res) => {
+  res.json({
+    ok: true,
+    service: "save-the-animals-api",
+    exaConfigured: Boolean(process.env.EXA_API_KEY),
+    geminiConfigured: Boolean(process.env.GEMINI_API_KEY)
+  });
+});
 
 app.get("/api/v2/replays/amboseli-2026-march", (_req, res) => {
   res.json({
@@ -71,7 +99,8 @@ app.post("/api/local-question", async (req, res) => {
 
   try {
     const exaResults = await searchExaQuestion(question, request);
-    const sources = exaResults.slice(0, 5).map((result) => ({
+    const publicResults = filterPublicLocalSources(exaResults);
+    const sources = publicResults.slice(0, 5).map((result) => ({
       title: result.title ?? "Exa source",
       url: result.url,
       publishedDate: result.publishedDate
@@ -190,8 +219,8 @@ if (fs.existsSync(distDir)) {
   app.get("*", (_req, res) => res.sendFile(path.join(distDir, "index.html")));
 }
 
-app.listen(port, "127.0.0.1", () => {
-  console.log(`RangerRoute API listening at http://127.0.0.1:${port}`);
+app.listen(port, host, () => {
+  console.log(`RangerRoute API listening at http://${host}:${port}`);
 });
 
 function loadEnv(filePath) {
@@ -292,7 +321,7 @@ async function searchExa(queries) {
 
 async function searchExaQuestion(question, request) {
   const location = request.scene?.location ?? "Amboseli Kenya";
-  const query = `${question} ${location} public official contact ranger police chief county flood access`;
+  const query = `${question} ${location} official public contact ranger police county KWS conservancy flood road access`;
   const response = await fetch("https://api.exa.ai/search", {
     method: "POST",
     headers: {
@@ -312,6 +341,39 @@ async function searchExaQuestion(question, request) {
   if (!response.ok) throw new Error(`Exa local question search failed: ${response.status}`);
   const payload = await response.json();
   return Array.isArray(payload.results) ? payload.results : [];
+}
+
+function filterPublicLocalSources(results) {
+  const preferred = results.filter((result) => isPublicInstitutionalSource(result));
+  return preferred.length > 0 ? preferred : results.filter((result) => hasUsablePublicUrl(result)).slice(0, 3);
+}
+
+function isPublicInstitutionalSource(result) {
+  const haystack = [result.title, result.url, result.text, ...(Array.isArray(result.highlights) ? result.highlights : [])]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+  return (
+    hasUsablePublicUrl(result) &&
+    [
+      ".go.ke",
+      "kws.go.ke",
+      "kenyapolice.go.ke",
+      "county",
+      "authority",
+      "conservancy",
+      "wildlife",
+      "ranger",
+      "police",
+      "red cross",
+      "official",
+      "contact"
+    ].some((token) => haystack.includes(token))
+  );
+}
+
+function hasUsablePublicUrl(result) {
+  return typeof result.url === "string" && /^https?:\/\//.test(result.url);
 }
 
 function evidenceFromExa(exaSearches, request) {

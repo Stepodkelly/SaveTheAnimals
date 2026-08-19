@@ -9,6 +9,8 @@ import type {
   ObservationWindowKey,
   RoadEdge,
   RouteResult,
+  SatelliteFloodChangeCollection,
+  SatelliteFloodChangeProperties,
   SatelliteFloodMaskCollection,
   SatelliteFloodMaskProperties,
   V2ReplayEvaluation,
@@ -28,6 +30,8 @@ type RescueMapProps = {
   activeWindow: ObservationWindowKey;
   v2Replay: V2ReplayEvaluation | null;
   satelliteFloodMask: SatelliteFloodMaskCollection;
+  satelliteFloodChange: SatelliteFloodChangeCollection;
+  satelliteLayerMode: "mask" | "change";
 };
 
 export function RescueMap({
@@ -40,7 +44,9 @@ export function RescueMap({
   showFlood,
   activeWindow,
   v2Replay,
-  satelliteFloodMask
+  satelliteFloodMask,
+  satelliteFloodChange,
+  satelliteLayerMode
 }: RescueMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<L.Map | null>(null);
@@ -113,7 +119,32 @@ export function RescueMap({
       );
     }
 
-    if (showFlood && activeSatelliteMask.features.length > 0) {
+    if (showFlood && satelliteLayerMode === "change" && satelliteFloodChange.features.length > 0) {
+      layers.addLayer(
+        L.geoJSON(satelliteFloodChange, {
+          style: (feature) => {
+            const cell = feature?.properties as SatelliteFloodChangeProperties;
+            return {
+              color: changeColor(cell.category),
+              fillColor: changeColor(cell.category),
+              weight: 0,
+              opacity: 0.72,
+              fillOpacity: 0.36
+            };
+          },
+          onEachFeature: (feature, layer) => {
+            const cell = feature.properties as SatelliteFloodChangeProperties;
+            layer.bindTooltip(
+              `${cell.category.replace(/_/g, " ")}: ${Math.round(cell.beforeProbability * 100)}% before, ${Math.round(
+                cell.duringProbability * 100
+              )}% during, ${Math.round(cell.recoveryProbability * 100)}% recovery`
+            );
+          }
+        })
+      );
+    }
+
+    if (showFlood && satelliteLayerMode === "mask" && activeSatelliteMask.features.length > 0) {
       layers.addLayer(
         L.geoJSON(activeSatelliteMask, {
           style: (feature) => {
@@ -218,6 +249,8 @@ export function RescueMap({
     locations,
     rejectedRoute,
     satelliteFloodMask,
+    satelliteFloodChange,
+    satelliteLayerMode,
     selectedIncident,
     showFlood,
     v2Replay
@@ -255,6 +288,14 @@ function riskColor(probability: number) {
   if (probability >= 0.68) return "#b42318";
   if (probability >= 0.48) return "#c76a11";
   return "#15803d";
+}
+
+function changeColor(category: SatelliteFloodChangeProperties["category"]) {
+  if (category === "newly_flooded") return "#b42318";
+  if (category === "persistent_water") return "#075985";
+  if (category === "recovered_or_drying") return "#15803d";
+  if (category === "residual_or_later_water") return "#7c2d12";
+  return "#c76a11";
 }
 
 function marker(coordinates: [number, number], kind: "base" | "incident") {

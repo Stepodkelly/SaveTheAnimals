@@ -12,6 +12,17 @@ V2 answers:
 
 The MVP must prove this first through historical replay: issue a prediction at time `t`, use only data available at `t`, predict `t+h`, then compare with the later observed flood state.
 
+## Current Implementation Status
+
+- Sentinel-1A VV/VH rasters have been downloaded locally for matched before, during and recovery comparison scenes.
+- Public mask GeoJSON files are generated for all three windows from the local rasters.
+- A change layer labels newly flooded, persistent water, recovered/drying, residual/later water and possible-change cells.
+- Road metrics are computed from the generated masks against the demonstration road graph.
+- Generated public artifacts have SHA-256 checksums in the mask manifest; raw raster download manifests include local checksums.
+- The frontend can switch between per-window masks and the all-window change layer while keeping the same simple map/side-panel layout.
+- The local API has a health endpoint, GitHub Pages CORS support and a configurable frontend API base URL for a deployed backend.
+- The Chrome/PWA path has static verification via `npm run v2:verify-pwa`; direct external Chrome automation still requires a connected browser extension.
+
 ## Primary Outputs
 
 - Prototype flood-risk surface on a 30 m analysis grid
@@ -28,6 +39,7 @@ The MVP must prove this first through historical replay: issue a prediction at t
 ```text
 versions/v2-forecast-mvp/
 ├── architecture.md
+├── deployment.md
 ├── backend/
 │   ├── api/openapi.yaml
 │   └── services/README.md
@@ -47,6 +59,19 @@ versions/v2-forecast-mvp/
 │   └── tiles/
 ├── frontend/README.md
 └── jobs/README.md
+```
+
+## Key Commands
+
+```sh
+npm run v2:probe-sentinel1-rasters
+CONFIRM_LARGE_DOWNLOAD=true WINDOW_KEY=beforeFlooding SCENE_ID=S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG npm run v2:download-sentinel1-rasters
+CONFIRM_LARGE_DOWNLOAD=true WINDOW_KEY=duringFlooding SCENE_ID=S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG npm run v2:download-sentinel1-rasters
+CONFIRM_LARGE_DOWNLOAD=true WINDOW_KEY=recoveryComparison SCENE_ID=S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG npm run v2:download-sentinel1-rasters
+npm run v2:derive-sentinel1-mask
+npm run v2:compute-road-metrics
+npm run build:pages
+npm run v2:verify-pwa
 ```
 
 ## Completion Gate

@@ -4,11 +4,11 @@
       "window": "beforeFlooding",
       "href": "data/amboseli/sentinel1-flood-mask-before.geojson",
       "status": "generated",
-      "generatedAt": "2026-08-19T04:52:42.336Z",
+      "generatedAt": "2026-08-19T05:02:44.341Z",
       "sceneId": "S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG",
       "observedAt": "2026-02-20T15:47:48.023501Z",
-      "featureCount": 147,
-      "probableFloodAreaKm2": 0.659,
+      "featureCount": 182,
+      "probableFloodAreaKm2": 0.688,
       "sourceAssetIds": [
         "sentinel1-S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG-vv",
         "sentinel1-S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG-vh"
@@ -18,9 +18,9 @@
         "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG_vh.tif"
       ],
       "method": {
-        "id": "sentinel1-low-backscatter-v0",
-        "description": "Downsampled VV/VH low-backscatter likelihood clipped to the demo bounds. This is a provisional planning overlay, not a validated flood product.",
-        "scoreThreshold": 0.626,
+        "id": "sentinel1-calibrated-low-backscatter-v1",
+        "description": "Downsampled VV/VH low-backscatter likelihood clipped to the demo bounds, smoothed with a 3x3 neighborhood and calibrated per scene by quantiles. This is a provisional planning overlay, not a validated flood product.",
+        "scoreThreshold": 0.58,
         "vvLow": 96,
         "vvMid": 150,
         "vhLow": 52,
@@ -33,17 +33,18 @@
       "georeference": {
         "source": "Copernicus STAC bbox",
         "note": "The local GeoTIFF reader did not expose affine tags for this COG, so the demo crop is linearly georeferenced from the STAC scene bbox."
-      }
+      },
+      "checksum": "sha256:66ba7ee2ef5bcfe53c7de3792df6204d14e186db96845c04bdbbfe865a333e34"
     },
     {
       "window": "duringFlooding",
       "href": "data/amboseli/sentinel1-flood-mask-during.geojson",
       "status": "generated",
-      "generatedAt": "2026-08-19T04:52:42.380Z",
+      "generatedAt": "2026-08-19T05:02:44.383Z",
       "sceneId": "S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG",
       "observedAt": "2026-03-16T15:47:47.961154Z",
-      "featureCount": 84,
-      "probableFloodAreaKm2": 0.389,
+      "featureCount": 56,
+      "probableFloodAreaKm2": 0.239,
       "sourceAssetIds": [
         "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vv",
         "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vh"
@@ -53,9 +54,9 @@
         "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG_vh.tif"
       ],
       "method": {
-        "id": "sentinel1-low-backscatter-v0",
-        "description": "Downsampled VV/VH low-backscatter likelihood clipped to the demo bounds. This is a provisional planning overlay, not a validated flood product.",
-        "scoreThreshold": 0.584,
+        "id": "sentinel1-calibrated-low-backscatter-v1",
+        "description": "Downsampled VV/VH low-backscatter likelihood clipped to the demo bounds, smoothed with a 3x3 neighborhood and calibrated per scene by quantiles. This is a provisional planning overlay, not a validated flood product.",
+        "scoreThreshold": 0.58,
         "vvLow": 119,
         "vvMid": 178,
         "vhLow": 64,
@@ -68,17 +69,18 @@
       "georeference": {
         "source": "Copernicus STAC bbox",
         "note": "The local GeoTIFF reader did not expose affine tags for this COG, so the demo crop is linearly georeferenced from the STAC scene bbox."
-      }
+      },
+      "checksum": "sha256:05deb5f43e59ec2a2069b836ceac2aaf5f5fe5b72073da7431092ef45de95071"
     },
     {
       "window": "recoveryComparison",
       "href": "data/amboseli/sentinel1-flood-mask-recovery.geojson",
       "status": "generated",
-      "generatedAt": "2026-08-19T04:52:42.423Z",
+      "generatedAt": "2026-08-19T05:02:44.423Z",
       "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
       "observedAt": "2026-05-15T15:47:47.498591Z",
-      "featureCount": 84,
-      "probableFloodAreaKm2": 0.449,
+      "featureCount": 62,
+      "probableFloodAreaKm2": 0.359,
       "sourceAssetIds": [
         "sentinel1-S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG-vv",
         "sentinel1-S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG-vh"
@@ -88,8 +90,8 @@
         "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG_vh.tif"
       ],
       "method": {
-        "id": "sentinel1-low-backscatter-v0",
-        "description": "Downsampled VV/VH low-backscatter likelihood clipped to the demo bounds. This is a provisional planning overlay, not a validated flood product.",
+        "id": "sentinel1-calibrated-low-backscatter-v1",
+        "description": "Downsampled VV/VH low-backscatter likelihood clipped to the demo bounds, smoothed with a 3x3 neighborhood and calibrated per scene by quantiles. This is a provisional planning overlay, not a validated flood product.",
         "scoreThreshold": 0.58,
         "vvLow": 124,
         "vvMid": 187,
@@ -103,7 +105,24 @@
       "georeference": {
         "source": "Copernicus STAC bbox",
         "note": "The local GeoTIFF reader did not expose affine tags for this COG, so the demo crop is linearly georeferenced from the STAC scene bbox."
-      }
+      },
+      "checksum": "sha256:ea3351e18b8dbdc0067631cc8be42a3adf43c55f28b8dabb5363e2a65f74e52b"
     }
-  ]
+  ],
+  "changeLayer": {
+    "href": "data/amboseli/sentinel1-flood-change.geojson",
+    "status": "generated",
+    "generatedAt": "2026-08-19T05:02:44.424Z",
+    "method": {
+      "id": "sentinel1-window-change-v0",
+      "description": "Cell-wise comparison of before, during and recovery Sentinel-1 flood-likelihood masks. Categories are provisional and intended for planning display."
+    },
+    "categories": {
+      "possible_change": 219,
+      "residual_or_later_water": 5,
+      "persistent_water": 4,
+      "newly_flooded": 1
+    },
+    "checksum": "sha256:dc233c75985f82846ff458ddd5dbf0677e281629c9e7b02c6202ac3af1c91ccd"
+  }
 }

@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-08-19T05:02:56.620Z",
+  "ok": true,
+  "checkedFiles": [
+    "docs/index.html",
+    "docs/404.html",
+    "docs/manifest.webmanifest",
+    "docs/sw.js",
+    "docs/icon.svg"
+  ],
+  "referencedAssets": [
+    "docs/manifest.webmanifest",
+    "docs/icon.svg",
+    "docs/icon.svg",
+    "docs/assets/index-pwTBQfQi.js",
+    "docs/assets/index-BKmiKiWN.css"
+  ],
+  "manifest": {
+    "name": "#save_the_animals",
+    "shortName": "#save_animals",
+    "display": "standalone",
+    "startUrl": ".",
+    "scope": "."
+  },
+  "failures": []
+}

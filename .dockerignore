@@ -1,0 +1,7 @@
+.env
+.git
+node_modules
+docs
+dist
+versions/v2-forecast-mvp/data/raw/sentinel1/*.tif
+versions/v2-forecast-mvp/data/raw/sentinel1/*.zip

@@ -43,6 +43,7 @@ export type SatelliteFloodMaskProperties = {
   observedAt: string;
   sceneId: string;
   floodProbability: number;
+  confidence: number;
   classification: "possible_flood" | "probable_flood";
   vvMean: number;
   vhMean: number;
@@ -64,6 +65,7 @@ export type SentinelFloodMaskManifest = {
     probableFloodAreaKm2: number;
     sourceAssetIds: string[];
     sourceUris?: string[];
+    checksum?: string;
     method: {
       id: string;
       description: string;
@@ -74,9 +76,67 @@ export type SentinelFloodMaskManifest = {
       note: string;
     };
   }>;
+  changeLayer?: {
+    href: string;
+    status: "generated" | "missing";
+    generatedAt?: string;
+    checksum?: string;
+    method: {
+      id: string;
+      description: string;
+    };
+    categories: Record<string, number>;
+  };
 };
 
 export type SatelliteFloodMasksByWindow = Partial<Record<ObservationWindowKey, SatelliteFloodMaskCollection>>;
+
+export type SatelliteFloodChangeProperties = {
+  cellId: string;
+  category: "newly_flooded" | "persistent_water" | "recovered_or_drying" | "residual_or_later_water" | "possible_change";
+  beforeProbability: number;
+  duringProbability: number;
+  recoveryProbability: number;
+  deltaDuringBefore: number;
+  deltaRecoveryDuring: number;
+  method: string;
+};
+
+export type SatelliteFloodChangeCollection = FeatureCollection<Polygon, SatelliteFloodChangeProperties>;
+
+export type SentinelRoadMetricsReport = {
+  generatedAt: string;
+  method: string;
+  caveat: string;
+  windows: Array<{
+    window: ObservationWindowKey;
+    observedAt?: string;
+    sceneId?: string;
+    featureCount: number;
+    probableFloodAreaKm2: number;
+    directRoadTouches: Array<{
+      roadId: string;
+      roadName: string;
+      probableCells: number;
+      possibleCells: number;
+      maxProbability: number;
+    }>;
+    nearRoadTouches: Array<{
+      roadId: string;
+      roadName: string;
+      cellsWithin160m: number;
+      maxProbability: number;
+    }>;
+    falseSafeRoadRate: number;
+    unnecessaryBlockRate: number;
+    routeAvailabilityProxy: number;
+  }>;
+  changeLayer: {
+    href: string;
+    featureCount: number;
+    categories: Record<string, number>;
+  } | null;
+};
 
 export type ObservationWindow = {
   label: string;

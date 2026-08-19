@@ -1,0 +1,15 @@
+{
+  "modelId": "persistence-v1",
+  "modelType": "logistic_regression",
+  "gridVersion": "amboseli-30m-v1",
+  "featureSchemaVersion": "features-v1",
+  "trainedThrough": null,
+  "eventIds": [],
+  "labelSources": [],
+  "coefficients": {},
+  "evaluation": {
+    "method": "leave-one-event-out",
+    "brierScore": null,
+    "roadImpactRecall": null
+  }
+}

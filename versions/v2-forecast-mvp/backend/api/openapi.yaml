@@ -1,0 +1,155 @@
+openapi: 3.1.0
+info:
+  title: SaveTheAnimals V2 Forecast API
+  version: 0.1.0
+  description: Production-shaped MVP contract for flood forecasting, road risk and evidence-backed route explanation.
+paths:
+  /v1/events:
+    get:
+      summary: List reviewed flood events
+      responses:
+        "200":
+          description: Event list
+  /v1/events/{id}:
+    get:
+      summary: Get one flood event
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Event detail
+  /v1/scenes:
+    get:
+      summary: List catalogued satellite scenes
+      responses:
+        "200":
+          description: Scene list
+  /v1/forecast-runs:
+    post:
+      summary: Create a forecast run
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [aoiId, asOf, validAt, latestObservationId, rainfallForecastId]
+              properties:
+                aoiId:
+                  type: string
+                asOf:
+                  type: string
+                  format: date-time
+                validAt:
+                  type: string
+                  format: date-time
+                latestObservationId:
+                  type: string
+                rainfallForecastId:
+                  type: string
+      responses:
+        "202":
+          description: Forecast job accepted
+  /v1/forecast-runs/{id}:
+    get:
+      summary: Get forecast run status
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Forecast run status
+  /v1/forecast-runs/{id}/summary:
+    get:
+      summary: Get forecast summary
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Forecast summary
+  /v1/forecast-runs/{id}/tiles/{z}/{x}/{y}:
+    get:
+      summary: Get forecast probability tile
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: z
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: x
+          in: path
+          required: true
+          schema:
+            type: integer
+        - name: y
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Raster tile
+  /v1/routes:
+    post:
+      summary: Create a provisional lower-risk route
+      responses:
+        "202":
+          description: Route job accepted
+  /v1/routes/{id}:
+    get:
+      summary: Get route result
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Route result
+  /v1/evidence:
+    get:
+      summary: List evidence claims
+      responses:
+        "200":
+          description: Evidence claim list
+  /v1/admin/evidence-searches:
+    post:
+      summary: Start an evidence search job
+      responses:
+        "202":
+          description: Evidence search job accepted
+  /v1/admin/review/events:
+    get:
+      summary: List events awaiting review
+      responses:
+        "200":
+          description: Review queue
+  /v1/admin/review/import-overrides:
+    post:
+      summary: Import human review overrides
+      responses:
+        "202":
+          description: Import accepted
+  /v1/admin/review/export:
+    get:
+      summary: Export review data
+      responses:
+        "200":
+          description: Review archive

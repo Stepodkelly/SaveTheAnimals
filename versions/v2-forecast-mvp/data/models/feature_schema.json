@@ -1,0 +1,22 @@
+{
+  "schemaId": "features-v1",
+  "gridVersion": "amboseli-30m-v1",
+  "features": [
+    "forecast_24h_rain_mm",
+    "forecast_72h_rain_mm",
+    "forecast_7d_rain_mm",
+    "previous_7d_rain_mm",
+    "previous_30d_rain_mm",
+    "historical_flood_frequency",
+    "arrival_rank",
+    "recession_rank",
+    "distance_to_current_flood_m",
+    "flooded_neighbor_fraction",
+    "hand_meters",
+    "slope",
+    "hydrological_zone",
+    "season",
+    "forecast_horizon_days",
+    "observation_age_days"
+  ]
+}

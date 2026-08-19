@@ -28,3 +28,12 @@ The `.env` file is intentionally gitignored.
 ## Safety Note
 
 The app must say “preliminary access route,” not “safe rescue route.” Satellite and web observations may be delayed or incomplete, and field verification is required.
+
+## Versions
+
+The repository has a version filing structure:
+
+- `versions/v1-current-route-demo/` documents the current implemented route demo.
+- `versions/v2-forecast-mvp/` contains the production-shaped forecast MVP architecture scaffold.
+
+The root app remains the active V1 frontend/server while V2 is built separately.

@@ -13,8 +13,9 @@ const windowKey = process.env.WINDOW_KEY ?? "duringFlooding";
 const sceneId = process.env.SCENE_ID;
 const bands = (process.env.BANDS ?? "vv,vh").split(",").map((band) => band.trim()).filter(Boolean);
 const limit = Number(process.env.LIMIT ?? 1);
+const downloadRetries = Number(process.env.DOWNLOAD_RETRIES ?? 2);
 const allowLargeDownload = process.env.CONFIRM_LARGE_DOWNLOAD === "true";
-const token = await getAccessToken();
+let token = await getAccessToken();
 
 if (!allowLargeDownload) {
   throw new Error(
@@ -54,23 +55,18 @@ for (const scene of scenes) {
     const outputPath = path.join(outputDir, filename);
     if (fs.existsSync(outputPath)) {
       const stats = fs.statSync(outputPath);
-      downloaded.push(assetRecord(scene, band, asset, outputPath, stats.size, href));
-      console.log(`Using existing ${path.relative(rootDir, outputPath)} (${stats.size} bytes)`);
-      continue;
-    }
-
-    const response = await fetch(href, {
-      redirect: "follow",
-      headers: {
-        Authorization: `Bearer ${token}`
+      const expectedSize = asset["file:size"];
+      if (!expectedSize || stats.size === expectedSize) {
+        downloaded.push(assetRecord(scene, band, asset, outputPath, stats.size, href));
+        console.log(`Using existing ${path.relative(rootDir, outputPath)} (${stats.size} bytes)`);
+        continue;
       }
-    });
-
-    if (!response.ok || !response.body) {
-      throw new Error(`Download failed ${response.status}: ${scene.id} ${band}`);
+      console.log(
+        `Replacing incomplete ${path.relative(rootDir, outputPath)} (${stats.size}/${expectedSize} bytes)`
+      );
     }
 
-    await pipeline(Readable.fromWeb(response.body), fs.createWriteStream(outputPath));
+    await downloadWithRetries({ href, outputPath, scene, band });
     const stats = fs.statSync(outputPath);
 
     downloaded.push(assetRecord(scene, band, asset, outputPath, stats.size, href));
@@ -101,6 +97,42 @@ async function getAccessToken() {
     });
   }
   return null;
+}
+
+function fetchAsset(href, accessToken) {
+  return fetch(href, {
+    redirect: "follow",
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  });
+}
+
+async function downloadWithRetries({ href, outputPath, scene, band }) {
+  let lastError = null;
+  for (let attempt = 1; attempt <= downloadRetries + 1; attempt += 1) {
+    try {
+      let response = await fetchAsset(href, token);
+      if (response.status === 401 && !process.env.CDSE_ACCESS_TOKEN) {
+        token = await getAccessToken();
+        response = await fetchAsset(href, token);
+      }
+
+      if (!response.ok || !response.body) {
+        throw new Error(`Download failed ${response.status}: ${scene.id} ${band}`);
+      }
+
+      await pipeline(Readable.fromWeb(response.body), fs.createWriteStream(outputPath));
+      return;
+    } catch (error) {
+      lastError = error;
+      if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath);
+      if (attempt > downloadRetries) break;
+      console.log(`Retrying ${scene.id} ${band} after failed attempt ${attempt}`);
+      token = await getAccessToken();
+    }
+  }
+  throw lastError;
 }
 
 async function requestToken(fields) {

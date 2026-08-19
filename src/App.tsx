@@ -9,6 +9,7 @@ import { applyV2RiskToEdges, evaluateV2Replay } from "./lib/v2Engine";
 import { formatDate, formatDateRange } from "./lib/format";
 import type {
   FloodCollection,
+  GroundTruthValidationReport,
   IncidentLocation,
   IntelligenceResponse,
   LocalQuestionResponse,
@@ -38,6 +39,7 @@ type DemoData = {
   floodMaskManifest: SentinelFloodMaskManifest;
   roadMetrics: SentinelRoadMetricsReport;
   realMaskEvaluation: V2RealMaskEvaluation | null;
+  groundTruthValidation: GroundTruthValidationReport;
 };
 
 export default function App() {
@@ -344,6 +346,7 @@ export default function App() {
           floodMaskManifest={data.floodMaskManifest}
           roadMetrics={data.roadMetrics}
           realMaskEvaluation={data.realMaskEvaluation}
+          groundTruthValidation={data.groundTruthValidation}
           />
       </section>
 

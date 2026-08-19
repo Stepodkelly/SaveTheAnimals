@@ -4,7 +4,7 @@
       "window": "beforeFlooding",
       "href": "data/amboseli/sentinel1-flood-mask-before.geojson",
       "status": "generated",
-      "generatedAt": "2026-08-19T07:58:19.000Z",
+      "generatedAt": "2026-08-19T14:31:33.253Z",
       "sceneId": "S1A_IW_GRDH_1SDV_20260115T154750_20260115T154815_062779_07DFB1_604D_COG,S1C_IW_GRDH_1SDV_20260204T031130_20260204T031155_006200_00C731_24F9_COG,S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG",
       "sceneIds": [
         "S1A_IW_GRDH_1SDV_20260115T154750_20260115T154815_062779_07DFB1_604D_COG",
@@ -18,7 +18,7 @@
       },
       "sourceSceneCount": 3,
       "featureCount": 364,
-      "probableFloodAreaKm2": 1.347,
+      "probableFloodAreaKm2": 5.837,
       "sourceAssetIds": [
         "sentinel1-S1A_IW_GRDH_1SDV_20260115T154750_20260115T154815_062779_07DFB1_604D_COG-quicklook",
         "sentinel1-S1C_IW_GRDH_1SDV_20260204T031130_20260204T031155_006200_00C731_24F9_COG-quicklook",
@@ -49,19 +49,20 @@
         "sampleWidth": 144,
         "sampleHeight": 126,
         "cellsX": 48,
-        "cellsY": 42
+        "cellsY": 42,
+        "probableFloodThreshold": 0.52
       },
       "georeference": {
         "source": "Copernicus STAC bbox",
         "note": "The local GeoTIFF reader did not expose affine tags for these COGs, so demo crops are linearly georeferenced from each STAC scene bbox."
       },
-      "checksum": "sha256:26394d8a286d0975816f7ddce5972612d77997985fb19c79fe18eea303ee8cf1"
+      "checksum": "sha256:2169e2e07a37b88c5f9f386adbe67992c08c0c4a72b5f804bd1fd028933527c8"
     },
     {
       "window": "duringFlooding",
       "href": "data/amboseli/sentinel1-flood-mask-during.geojson",
       "status": "generated",
-      "generatedAt": "2026-08-19T07:58:19.063Z",
+      "generatedAt": "2026-08-19T14:31:33.363Z",
       "sceneId": "S1A_IW_GRDH_1SDV_20260309T155545_20260309T155610_063552_07FC94_E210_COG,S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG,S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG",
       "sceneIds": [
         "S1A_IW_GRDH_1SDV_20260309T155545_20260309T155610_063552_07FC94_E210_COG",
@@ -74,28 +75,30 @@
         "end": "2026-03-16T15:47:47.961154Z"
       },
       "sourceSceneCount": 3,
-      "featureCount": 199,
-      "probableFloodAreaKm2": 0.479,
+      "featureCount": 121,
+      "probableFloodAreaKm2": 0.539,
       "sourceAssetIds": [
         "sentinel1-S1A_IW_GRDH_1SDV_20260309T155545_20260309T155610_063552_07FC94_E210_COG-quicklook",
-        "sentinel1-S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG-quicklook",
+        "sentinel1-S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG-vv",
+        "sentinel1-S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG-vh",
         "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vv",
         "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vh"
       ],
       "sourceUris": [
         "data/amboseli/sentinel1-quicklooks/S1A_IW_GRDH_1SDV_20260309T155545_20260309T155610_063552_07FC94_E210_COG.png",
-        "data/amboseli/sentinel1-quicklooks/S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG.png",
+        "versions/v2-forecast-mvp/data/raw/sentinel1/S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG_vv.tif",
+        "versions/v2-forecast-mvp/data/raw/sentinel1/S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG_vh.tif",
         "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG_vv.tif",
         "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG_vh.tif"
       ],
       "sourceSceneTypes": {
-        "quicklook": 2,
-        "raw_vv_vh": 1
+        "quicklook": 1,
+        "raw_vv_vh": 2
       },
       "quality": {
-        "fullRasterFraction": 0.333,
-        "rawSceneCount": 1,
-        "quicklookSceneCount": 2,
+        "fullRasterFraction": 0.667,
+        "rawSceneCount": 2,
+        "quicklookSceneCount": 1,
         "confidenceTier": "mixed",
         "caveat": "Some selected scenes use lower-weight quicklook fallback rather than full VV/VH raster processing."
       },
@@ -106,19 +109,20 @@
         "sampleWidth": 144,
         "sampleHeight": 126,
         "cellsX": 48,
-        "cellsY": 42
+        "cellsY": 42,
+        "probableFloodThreshold": 0.52
       },
       "georeference": {
         "source": "Copernicus STAC bbox",
         "note": "The local GeoTIFF reader did not expose affine tags for these COGs, so demo crops are linearly georeferenced from each STAC scene bbox."
       },
-      "checksum": "sha256:d3de30a687a0c8157a53c5882ad5b299c2f079aebfeeefabb5804bf351de2065"
+      "checksum": "sha256:e18148f44de2497d9fddc9091de4c6ef8d1e4b88623866ae79a3e464aafc5b33"
     },
     {
       "window": "recoveryComparison",
       "href": "data/amboseli/sentinel1-flood-mask-recovery.geojson",
       "status": "generated",
-      "generatedAt": "2026-08-19T07:58:19.121Z",
+      "generatedAt": "2026-08-19T14:31:33.434Z",
       "sceneId": "S1A_IW_GRDH_1SDV_20260508T155545_20260508T155610_064427_081D30_9B81_COG,S1D_IW_GRDH_1SDV_20260512T031143_20260512T031208_002745_004A1D_5B28_COG,S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
       "sceneIds": [
         "S1A_IW_GRDH_1SDV_20260508T155545_20260508T155610_064427_081D30_9B81_COG",
@@ -132,7 +136,7 @@
       },
       "sourceSceneCount": 3,
       "featureCount": 171,
-      "probableFloodAreaKm2": 0.479,
+      "probableFloodAreaKm2": 1.976,
       "sourceAssetIds": [
         "sentinel1-S1A_IW_GRDH_1SDV_20260508T155545_20260508T155610_064427_081D30_9B81_COG-quicklook",
         "sentinel1-S1D_IW_GRDH_1SDV_20260512T031143_20260512T031208_002745_004A1D_5B28_COG-quicklook",
@@ -163,28 +167,31 @@
         "sampleWidth": 144,
         "sampleHeight": 126,
         "cellsX": 48,
-        "cellsY": 42
+        "cellsY": 42,
+        "probableFloodThreshold": 0.52
       },
       "georeference": {
         "source": "Copernicus STAC bbox",
         "note": "The local GeoTIFF reader did not expose affine tags for these COGs, so demo crops are linearly georeferenced from each STAC scene bbox."
       },
-      "checksum": "sha256:dff275c2206ea43bf5cd79a46a140032d3531b7995705cc795ee87531d1d43c4"
+      "checksum": "sha256:fab70d30464b52493890078577b322ee420bc3b1e2b429482709125742996e67"
     }
   ],
   "changeLayer": {
     "href": "data/amboseli/sentinel1-flood-change.geojson",
     "status": "generated",
-    "generatedAt": "2026-08-19T07:58:19.124Z",
+    "generatedAt": "2026-08-19T14:31:33.437Z",
     "method": {
       "id": "sentinel1-window-change-v1",
       "description": "Cell-wise comparison of aggregated before, during and recovery Sentinel-1 flood-likelihood masks. Categories are provisional and intended for planning display."
     },
     "categories": {
-      "possible_change": 456,
-      "persistent_water": 9,
-      "residual_or_later_water": 6
+      "possible_change": 437,
+      "residual_or_later_water": 65,
+      "newly_flooded": 13,
+      "persistent_water": 2,
+      "recovered_or_drying": 2
     },
-    "checksum": "sha256:1a00f7743c9560ba9933ba360b7b19eefd2437eceb80cbcb9d131a844f580202"
+    "checksum": "sha256:da067a935d234740a4a0759c711790d69a456e9f1eb866dd9e74e8ab6e3ffd9c"
   }
 }

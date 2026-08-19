@@ -14,13 +14,14 @@ The MVP must prove this first through historical replay: issue a prediction at t
 
 ## Current Implementation Status
 
-- Sentinel-1A VV/VH rasters have been downloaded locally for matched before, during and recovery comparison scenes.
-- Public mask GeoJSON files are generated for all three windows from the local rasters.
+- Sentinel-1 VV/VH rasters can be downloaded locally for multiple matched before, during and recovery comparison scenes.
+- Public mask GeoJSON files are generated for all three windows from source-weighted multi-scene aggregation.
 - A change layer labels newly flooded, persistent water, recovered/drying, residual/later water and possible-change cells.
 - Road metrics are computed from the generated masks against the demonstration road graph.
 - Generated public artifacts have SHA-256 checksums in the mask manifest; raw raster download manifests include local checksums.
 - The frontend can switch between per-window masks and the all-window change layer while keeping the same simple map/side-panel layout.
 - The local API has a health endpoint, GitHub Pages CORS support and a configurable frontend API base URL for a deployed backend.
+- Ground-truth validation is now tracked separately from satellite/Exa candidates so unreviewed sources cannot silently become route truth.
 - The Chrome/PWA path has static verification via `npm run v2:verify-pwa`; direct external Chrome automation still requires a connected browser extension.
 
 ## Primary Outputs
@@ -68,8 +69,11 @@ npm run v2:probe-sentinel1-rasters
 CONFIRM_LARGE_DOWNLOAD=true WINDOW_KEY=beforeFlooding SCENE_ID=S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG npm run v2:download-sentinel1-rasters
 CONFIRM_LARGE_DOWNLOAD=true WINDOW_KEY=duringFlooding SCENE_ID=S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG npm run v2:download-sentinel1-rasters
 CONFIRM_LARGE_DOWNLOAD=true WINDOW_KEY=recoveryComparison SCENE_ID=S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG npm run v2:download-sentinel1-rasters
+CONFIRM_LARGE_DOWNLOAD=true WINDOW_KEY=duringFlooding LIMIT=3 npm run v2:download-sentinel1-rasters
 npm run v2:derive-sentinel1-mask
 npm run v2:compute-road-metrics
+npm run v2:evaluate-real-mask-model
+RUN_LIVE_EXA=true npm run v2:validate-ground-truth
 npm run build:pages
 npm run v2:verify-pwa
 ```

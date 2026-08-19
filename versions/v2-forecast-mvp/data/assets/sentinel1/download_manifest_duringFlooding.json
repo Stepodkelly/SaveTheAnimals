@@ -1,32 +1,60 @@
 {
   "downloaded": [
     {
-      "assetId": "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vv",
+      "assetId": "sentinel1-S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG-vh",
       "assetType": "raw_scene",
-      "sceneId": "S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG",
-      "band": "vv",
-      "uri": "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG_vv.tif",
-      "expectedSizeBytes": 632925246,
-      "sizeBytes": 632925246,
-      "createdAt": "2026-08-19T04:33:03.346Z",
-      "availableAt": "2026-03-16T18:23:42.041036Z",
-      "observedAt": "2026-03-16T15:47:47.961154Z",
-      "platform": "sentinel-1a",
-      "checksum": "1610531b02c44756d80d6bbcb7953d4c368e",
-      "sourceHref": "https://zipper.dataspace.copernicus.eu/odata/v1/Products(e4aa11b6-3bdf-4430-a005-b10a3353b45f)/Nodes(S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG.SAFE)/Nodes(measurement)/Nodes(s1a-iw-grd-vv-20260316t154747-20260316t154812-063654-080064-001-cog.tiff)/$value",
+      "sceneId": "S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG",
+      "band": "vh",
+      "uri": "versions/v2-forecast-mvp/data/raw/sentinel1/S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG_vh.tif",
+      "expectedSizeBytes": 564544763,
+      "sizeBytes": 564544763,
+      "createdAt": "2026-08-19T14:13:50.564Z",
+      "availableAt": "2026-03-12T04:59:04.978697Z",
+      "observedAt": "2026-03-12T03:11:30.983707Z",
+      "platform": "sentinel-1c",
+      "checksum": "161020235a8d7dbe90ac85ee0a59cf35765d",
+      "sourceHref": "https://zipper.dataspace.copernicus.eu/odata/v1/Products(efa1d645-b100-4d06-92bb-03c82e05230b)/Nodes(S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG.SAFE)/Nodes(measurement)/Nodes(s1c-iw-grd-vh-20260312t031130-20260312t031155-006725-00d94d-002-cog.tiff)/$value",
       "gridVersion": "amboseli-30m-v1",
       "crs": "unknown",
       "bounds": [
-        36.827572,
-        -3.248232,
-        39.398582,
-        -1.248852
+        35.973545,
+        -3.408386,
+        38.543125,
+        -1.410812
       ],
       "resolutionMeters": 10,
       "nodataValue": 0,
       "sourceAssetIds": [],
-      "parentJobId": "download-sentinel1-rasters:duringFlooding:S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG:vv",
-      "localChecksum": "sha256:f7d2ab8381cd983a5ba5c40da3698638c35f199fd7f02524a25233ab0323bd15"
+      "parentJobId": "download-sentinel1-rasters:duringFlooding:S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG:vh",
+      "localChecksum": "sha256:d1c844793530e374533b9da2f1e6a202ffb1e4978bcbe66edbf06eafca9a5857"
+    },
+    {
+      "assetId": "sentinel1-S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG-vv",
+      "assetType": "raw_scene",
+      "sceneId": "S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG",
+      "band": "vv",
+      "uri": "versions/v2-forecast-mvp/data/raw/sentinel1/S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG_vv.tif",
+      "expectedSizeBytes": 637102966,
+      "sizeBytes": 637102966,
+      "createdAt": "2026-08-19T14:13:50.562Z",
+      "availableAt": "2026-03-12T04:59:04.978697Z",
+      "observedAt": "2026-03-12T03:11:30.983707Z",
+      "platform": "sentinel-1c",
+      "checksum": "161063d27081af9f4426c4318bba595c76bc",
+      "sourceHref": "https://zipper.dataspace.copernicus.eu/odata/v1/Products(efa1d645-b100-4d06-92bb-03c82e05230b)/Nodes(S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG.SAFE)/Nodes(measurement)/Nodes(s1c-iw-grd-vv-20260312t031130-20260312t031155-006725-00d94d-001-cog.tiff)/$value",
+      "gridVersion": "amboseli-30m-v1",
+      "crs": "unknown",
+      "bounds": [
+        35.973545,
+        -3.408386,
+        38.543125,
+        -1.410812
+      ],
+      "resolutionMeters": 10,
+      "nodataValue": 0,
+      "sourceAssetIds": [],
+      "parentJobId": "download-sentinel1-rasters:duringFlooding:S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG:vv",
+      "localChecksum": "sha256:a35b23de4a13b81ee35c8b63ef0ebff88cbf1aefa8e43564ad951786d66ce61c"
     },
     {
       "assetId": "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vh",
@@ -55,6 +83,34 @@
       "sourceAssetIds": [],
       "parentJobId": "download-sentinel1-rasters:duringFlooding:S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG:vh",
       "localChecksum": "sha256:89b8fb95a44fd14772866b04b6b7bc85866588837bce0cd7d2aae80a6066c748"
+    },
+    {
+      "assetId": "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vv",
+      "assetType": "raw_scene",
+      "sceneId": "S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG",
+      "band": "vv",
+      "uri": "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG_vv.tif",
+      "expectedSizeBytes": 632925246,
+      "sizeBytes": 632925246,
+      "createdAt": "2026-08-19T04:33:03.346Z",
+      "availableAt": "2026-03-16T18:23:42.041036Z",
+      "observedAt": "2026-03-16T15:47:47.961154Z",
+      "platform": "sentinel-1a",
+      "checksum": "1610531b02c44756d80d6bbcb7953d4c368e",
+      "sourceHref": "https://zipper.dataspace.copernicus.eu/odata/v1/Products(e4aa11b6-3bdf-4430-a005-b10a3353b45f)/Nodes(S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG.SAFE)/Nodes(measurement)/Nodes(s1a-iw-grd-vv-20260316t154747-20260316t154812-063654-080064-001-cog.tiff)/$value",
+      "gridVersion": "amboseli-30m-v1",
+      "crs": "unknown",
+      "bounds": [
+        36.827572,
+        -3.248232,
+        39.398582,
+        -1.248852
+      ],
+      "resolutionMeters": 10,
+      "nodataValue": 0,
+      "sourceAssetIds": [],
+      "parentJobId": "download-sentinel1-rasters:duringFlooding:S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG:vv",
+      "localChecksum": "sha256:f7d2ab8381cd983a5ba5c40da3698638c35f199fd7f02524a25233ab0323bd15"
     }
   ]
 }

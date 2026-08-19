@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T07:58:27.548Z",
+  "generatedAt": "2026-08-19T14:31:56.198Z",
   "replayId": "amboseli-2026-march",
   "method": "v2-simple-regression-vs-generated-sentinel1-mask-grid-v1",
   "caveat": "This evaluates the current V2 simple regression against generated Sentinel-1 planning masks, not against a hand-labeled authoritative inundation product.",
@@ -10,7 +10,7 @@
       "end": "2026-03-16T15:47:47.961154Z"
     },
     "maskMethod": "sentinel1-multiscene-hybrid-v3",
-    "maskWetThreshold": 0.62
+    "maskWetThreshold": 0.52
   },
   "comparisonWindows": {
     "beforeFlooding": {
@@ -22,13 +22,19 @@
       "end": "2026-05-15T15:47:47.498591Z"
     }
   },
+  "sampleSummary": {
+    "replayFixtureCells": 8,
+    "replayCellsWithMaskCoverage": 6,
+    "maskGridDiagnosticCells": 519,
+    "note": "Replay-cell metrics keep the hand-authored scenario fixtures. Mask-grid diagnostics add broader Sentinel-derived cells without treating them as field truth."
+  },
   "metrics": {
-    "evaluatedCells": 8,
-    "brierScore": 0.622,
-    "calibrationError": 0.726,
-    "precision": 0,
-    "recall": 0,
-    "fixtureAgreement": 0.125
+    "evaluatedCells": 6,
+    "brierScore": 0.454,
+    "calibrationError": 0.644,
+    "precision": 0.5,
+    "recall": 0.5,
+    "fixtureAgreement": 0.333
   },
   "trainedRegression": {
     "protocol": "leave-one-mask-cell-out-logistic-regression",
@@ -46,248 +52,4995 @@
       "historical_residence_30d"
     ],
     "metrics": {
-      "evaluatedCells": 8,
-      "brierScore": 0.036,
-      "calibrationError": 0.19,
-      "precision": 1,
-      "recall": 1
+      "evaluatedCells": 6,
+      "brierScore": 0.459,
+      "calibrationError": 0.575,
+      "precision": 0.6,
+      "recall": 0.75
     },
     "predictions": [
       {
         "cellId": "amboseli-30m-v1:central-marsh",
         "label": "Central Marsh",
-        "trainedProbability": 0.011,
-        "observedWet": false
+        "trainedProbability": 0.074,
+        "observedWet": true
       },
       {
         "cellId": "amboseli-30m-v1:north-causeway",
         "label": "Northern Causeway Wetland",
-        "trainedProbability": 0.014,
+        "trainedProbability": 0.873,
         "observedWet": false
       },
       {
         "cellId": "amboseli-30m-v1:eastern-access",
         "label": "Eastern Access Margin",
-        "trainedProbability": 0.054,
+        "trainedProbability": 0.929,
         "observedWet": false
       },
       {
         "cellId": "amboseli-30m-v1:southern-bypass",
         "label": "Southern Bypass Margin",
-        "trainedProbability": 0.329,
-        "observedWet": false
+        "trainedProbability": 0.735,
+        "observedWet": true
       },
       {
         "cellId": "amboseli-30m-v1:dry-ridge",
         "label": "Dry Ridge",
-        "trainedProbability": 0.654,
-        "observedWet": true
-      },
-      {
-        "cellId": "amboseli-30m-v1:western-gate",
-        "label": "Western Gate Road",
-        "trainedProbability": 0.808,
-        "observedWet": true
-      },
-      {
-        "cellId": "amboseli-30m-v1:observation-hill",
-        "label": "Observation Hill",
-        "trainedProbability": 0.958,
+        "trainedProbability": 0.901,
         "observedWet": true
       },
       {
         "cellId": "amboseli-30m-v1:northern-loop",
         "label": "Northern Loop Margin",
-        "trainedProbability": 0.12,
-        "observedWet": false
+        "trainedProbability": 0.561,
+        "observedWet": true
+      }
+    ]
+  },
+  "maskGridRegression": {
+    "protocol": "leave-one-mask-grid-cell-out-logistic-regression",
+    "status": "evaluated",
+    "caveat": "This larger diagnostic is trained and evaluated against generated Sentinel mask cells. It broadens the regression check but is not independent field validation.",
+    "featureNames": [
+      "bias",
+      "before_mask_probability",
+      "historical_water_proxy",
+      "distance_to_before_wet_1000m",
+      "before_mask_wet"
+    ],
+    "metrics": {
+      "evaluatedCells": 519,
+      "observedWetCells": 19,
+      "observedDryOrPossibleCells": 500,
+      "brierScore": 0.204,
+      "calibrationError": 0.446,
+      "precision": 0.088,
+      "recall": 0.684
+    },
+    "baselines": [
+      {
+        "id": "before_mask_persistence",
+        "label": "Before-mask persistence",
+        "brierScore": 0.231
+      },
+      {
+        "id": "historical_water_proxy",
+        "label": "Before/recovery water proxy",
+        "brierScore": 0.267
+      },
+      {
+        "id": "mask_grid_heuristic",
+        "label": "Mask-grid heuristic",
+        "brierScore": 0.201
+      }
+    ],
+    "predictions": [
+      {
+        "cellId": "mask-grid:0-0",
+        "label": "Sentinel grid 0-0",
+        "gridCellKey": "0-0",
+        "trainedProbability": 0.291,
+        "observedWet": false,
+        "beforeMaskProbability": 0.529,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:0-1",
+        "label": "Sentinel grid 0-1",
+        "gridCellKey": "0-1",
+        "trainedProbability": 0.431,
+        "observedWet": false,
+        "beforeMaskProbability": 0.468,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:0-6",
+        "label": "Sentinel grid 0-6",
+        "gridCellKey": "0-6",
+        "trainedProbability": 0.433,
+        "observedWet": false,
+        "beforeMaskProbability": 0.462,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:0-44",
+        "label": "Sentinel grid 0-44",
+        "gridCellKey": "0-44",
+        "trainedProbability": 0.3,
+        "observedWet": false,
+        "beforeMaskProbability": 0.503,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:1-0",
+        "label": "Sentinel grid 1-0",
+        "gridCellKey": "1-0",
+        "trainedProbability": 0.425,
+        "observedWet": false,
+        "beforeMaskProbability": 0.482,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:1-6",
+        "label": "Sentinel grid 1-6",
+        "gridCellKey": "1-6",
+        "trainedProbability": 0.292,
+        "observedWet": false,
+        "beforeMaskProbability": 0.526,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:2-21",
+        "label": "Sentinel grid 2-21",
+        "gridCellKey": "2-21",
+        "trainedProbability": 0.67,
+        "observedWet": false,
+        "beforeMaskProbability": 0.474,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:3-41",
+        "label": "Sentinel grid 3-41",
+        "gridCellKey": "3-41",
+        "trainedProbability": 0.397,
+        "observedWet": true,
+        "beforeMaskProbability": 0.471,
+        "observedMaskProbability": 0.521
+      },
+      {
+        "cellId": "mask-grid:3-42",
+        "label": "Sentinel grid 3-42",
+        "gridCellKey": "3-42",
+        "trainedProbability": 0.297,
+        "observedWet": false,
+        "beforeMaskProbability": 0.512,
+        "observedMaskProbability": 0.452
+      },
+      {
+        "cellId": "mask-grid:4-41",
+        "label": "Sentinel grid 4-41",
+        "gridCellKey": "4-41",
+        "trainedProbability": 0.299,
+        "observedWet": false,
+        "beforeMaskProbability": 0.505,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:4-42",
+        "label": "Sentinel grid 4-42",
+        "gridCellKey": "4-42",
+        "trainedProbability": 0.287,
+        "observedWet": false,
+        "beforeMaskProbability": 0.54,
+        "observedMaskProbability": 0.458
+      },
+      {
+        "cellId": "mask-grid:4-43",
+        "label": "Sentinel grid 4-43",
+        "gridCellKey": "4-43",
+        "trainedProbability": 0.235,
+        "observedWet": false,
+        "beforeMaskProbability": 0.695,
+        "observedMaskProbability": 0.479
+      },
+      {
+        "cellId": "mask-grid:4-44",
+        "label": "Sentinel grid 4-44",
+        "gridCellKey": "4-44",
+        "trainedProbability": 0.268,
+        "observedWet": false,
+        "beforeMaskProbability": 0.594,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:5-43",
+        "label": "Sentinel grid 5-43",
+        "gridCellKey": "5-43",
+        "trainedProbability": 0.215,
+        "observedWet": true,
+        "beforeMaskProbability": 0.606,
+        "observedMaskProbability": 0.521
+      },
+      {
+        "cellId": "mask-grid:5-44",
+        "label": "Sentinel grid 5-44",
+        "gridCellKey": "5-44",
+        "trainedProbability": 0.286,
+        "observedWet": false,
+        "beforeMaskProbability": 0.541,
+        "observedMaskProbability": 0.5
+      },
+      {
+        "cellId": "mask-grid:5-45",
+        "label": "Sentinel grid 5-45",
+        "gridCellKey": "5-45",
+        "trainedProbability": 0.286,
+        "observedWet": false,
+        "beforeMaskProbability": 0.543,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:6-43",
+        "label": "Sentinel grid 6-43",
+        "gridCellKey": "6-43",
+        "trainedProbability": 0.288,
+        "observedWet": false,
+        "beforeMaskProbability": 0.536,
+        "observedMaskProbability": 0.454
+      },
+      {
+        "cellId": "mask-grid:6-44",
+        "label": "Sentinel grid 6-44",
+        "gridCellKey": "6-44",
+        "trainedProbability": 0.288,
+        "observedWet": false,
+        "beforeMaskProbability": 0.536,
+        "observedMaskProbability": 0.496
+      },
+      {
+        "cellId": "mask-grid:6-45",
+        "label": "Sentinel grid 6-45",
+        "gridCellKey": "6-45",
+        "trainedProbability": 0.435,
+        "observedWet": false,
+        "beforeMaskProbability": 0.457,
+        "observedMaskProbability": 0.482
+      },
+      {
+        "cellId": "mask-grid:7-43",
+        "label": "Sentinel grid 7-43",
+        "gridCellKey": "7-43",
+        "trainedProbability": 0.438,
+        "observedWet": false,
+        "beforeMaskProbability": 0.45,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:8-45",
+        "label": "Sentinel grid 8-45",
+        "gridCellKey": "8-45",
+        "trainedProbability": 0.458,
+        "observedWet": false,
+        "beforeMaskProbability": 0.474,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:9-0",
+        "label": "Sentinel grid 9-0",
+        "gridCellKey": "9-0",
+        "trainedProbability": 0.433,
+        "observedWet": false,
+        "beforeMaskProbability": 0.461,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:9-12",
+        "label": "Sentinel grid 9-12",
+        "gridCellKey": "9-12",
+        "trainedProbability": 0.442,
+        "observedWet": false,
+        "beforeMaskProbability": 0.458,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:10-0",
+        "label": "Sentinel grid 10-0",
+        "gridCellKey": "10-0",
+        "trainedProbability": 0.279,
+        "observedWet": false,
+        "beforeMaskProbability": 0.561,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:10-1",
+        "label": "Sentinel grid 10-1",
+        "gridCellKey": "10-1",
+        "trainedProbability": 0.279,
+        "observedWet": false,
+        "beforeMaskProbability": 0.563,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:10-2",
+        "label": "Sentinel grid 10-2",
+        "gridCellKey": "10-2",
+        "trainedProbability": 0.282,
+        "observedWet": false,
+        "beforeMaskProbability": 0.553,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:10-3",
+        "label": "Sentinel grid 10-3",
+        "gridCellKey": "10-3",
+        "trainedProbability": 0.428,
+        "observedWet": false,
+        "beforeMaskProbability": 0.475,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:10-10",
+        "label": "Sentinel grid 10-10",
+        "gridCellKey": "10-10",
+        "trainedProbability": 0.289,
+        "observedWet": false,
+        "beforeMaskProbability": 0.534,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:10-11",
+        "label": "Sentinel grid 10-11",
+        "gridCellKey": "10-11",
+        "trainedProbability": 0.418,
+        "observedWet": false,
+        "beforeMaskProbability": 0.498,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:11-0",
+        "label": "Sentinel grid 11-0",
+        "gridCellKey": "11-0",
+        "trainedProbability": 0.26,
+        "observedWet": false,
+        "beforeMaskProbability": 0.619,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:11-1",
+        "label": "Sentinel grid 11-1",
+        "gridCellKey": "11-1",
+        "trainedProbability": 0.438,
+        "observedWet": false,
+        "beforeMaskProbability": 0.451,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:11-2",
+        "label": "Sentinel grid 11-2",
+        "gridCellKey": "11-2",
+        "trainedProbability": 0.299,
+        "observedWet": false,
+        "beforeMaskProbability": 0.505,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:11-10",
+        "label": "Sentinel grid 11-10",
+        "gridCellKey": "11-10",
+        "trainedProbability": 0.286,
+        "observedWet": false,
+        "beforeMaskProbability": 0.52,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:11-11",
+        "label": "Sentinel grid 11-11",
+        "gridCellKey": "11-11",
+        "trainedProbability": 0.27,
+        "observedWet": false,
+        "beforeMaskProbability": 0.589,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:11-12",
+        "label": "Sentinel grid 11-12",
+        "gridCellKey": "11-12",
+        "trainedProbability": 0.401,
+        "observedWet": false,
+        "beforeMaskProbability": 0.495,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:11-42",
+        "label": "Sentinel grid 11-42",
+        "gridCellKey": "11-42",
+        "trainedProbability": 0.301,
+        "observedWet": false,
+        "beforeMaskProbability": 0.5,
+        "observedMaskProbability": 0.488
+      },
+      {
+        "cellId": "mask-grid:12-0",
+        "label": "Sentinel grid 12-0",
+        "gridCellKey": "12-0",
+        "trainedProbability": 0.279,
+        "observedWet": false,
+        "beforeMaskProbability": 0.563,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:12-12",
+        "label": "Sentinel grid 12-12",
+        "gridCellKey": "12-12",
+        "trainedProbability": 0.407,
+        "observedWet": false,
+        "beforeMaskProbability": 0.457,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:12-13",
+        "label": "Sentinel grid 12-13",
+        "gridCellKey": "12-13",
+        "trainedProbability": 0.46,
+        "observedWet": false,
+        "beforeMaskProbability": 0.468,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:12-41",
+        "label": "Sentinel grid 12-41",
+        "gridCellKey": "12-41",
+        "trainedProbability": 0.421,
+        "observedWet": false,
+        "beforeMaskProbability": 0.491,
+        "observedMaskProbability": 0.486
+      },
+      {
+        "cellId": "mask-grid:12-42",
+        "label": "Sentinel grid 12-42",
+        "gridCellKey": "12-42",
+        "trainedProbability": 0.28,
+        "observedWet": false,
+        "beforeMaskProbability": 0.56,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:13-0",
+        "label": "Sentinel grid 13-0",
+        "gridCellKey": "13-0",
+        "trainedProbability": 0.22,
+        "observedWet": false,
+        "beforeMaskProbability": 0.744,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:13-1",
+        "label": "Sentinel grid 13-1",
+        "gridCellKey": "13-1",
+        "trainedProbability": 0.435,
+        "observedWet": false,
+        "beforeMaskProbability": 0.458,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:13-10",
+        "label": "Sentinel grid 13-10",
+        "gridCellKey": "13-10",
+        "trainedProbability": 0.428,
+        "observedWet": false,
+        "beforeMaskProbability": 0.474,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:13-11",
+        "label": "Sentinel grid 13-11",
+        "gridCellKey": "13-11",
+        "trainedProbability": 0.295,
+        "observedWet": false,
+        "beforeMaskProbability": 0.516,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:13-13",
+        "label": "Sentinel grid 13-13",
+        "gridCellKey": "13-13",
+        "trainedProbability": 0.458,
+        "observedWet": false,
+        "beforeMaskProbability": 0.459,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:13-17",
+        "label": "Sentinel grid 13-17",
+        "gridCellKey": "13-17",
+        "trainedProbability": 0.446,
+        "observedWet": false,
+        "beforeMaskProbability": 0.488,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:13-21",
+        "label": "Sentinel grid 13-21",
+        "gridCellKey": "13-21",
+        "trainedProbability": 0.245,
+        "observedWet": true,
+        "beforeMaskProbability": 0.525,
+        "observedMaskProbability": 0.573
+      },
+      {
+        "cellId": "mask-grid:13-40",
+        "label": "Sentinel grid 13-40",
+        "gridCellKey": "13-40",
+        "trainedProbability": 0.285,
+        "observedWet": false,
+        "beforeMaskProbability": 0.546,
+        "observedMaskProbability": 0.461
+      },
+      {
+        "cellId": "mask-grid:14-0",
+        "label": "Sentinel grid 14-0",
+        "gridCellKey": "14-0",
+        "trainedProbability": 0.222,
+        "observedWet": false,
+        "beforeMaskProbability": 0.74,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:14-1",
+        "label": "Sentinel grid 14-1",
+        "gridCellKey": "14-1",
+        "trainedProbability": 0.434,
+        "observedWet": false,
+        "beforeMaskProbability": 0.46,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:14-11",
+        "label": "Sentinel grid 14-11",
+        "gridCellKey": "14-11",
+        "trainedProbability": 0.264,
+        "observedWet": false,
+        "beforeMaskProbability": 0.607,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:14-17",
+        "label": "Sentinel grid 14-17",
+        "gridCellKey": "14-17",
+        "trainedProbability": 0.424,
+        "observedWet": false,
+        "beforeMaskProbability": 0.484,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:14-18",
+        "label": "Sentinel grid 14-18",
+        "gridCellKey": "14-18",
+        "trainedProbability": 0.431,
+        "observedWet": false,
+        "beforeMaskProbability": 0.491,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:15-0",
+        "label": "Sentinel grid 15-0",
+        "gridCellKey": "15-0",
+        "trainedProbability": 0.214,
+        "observedWet": false,
+        "beforeMaskProbability": 0.767,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:15-1",
+        "label": "Sentinel grid 15-1",
+        "gridCellKey": "15-1",
+        "trainedProbability": 0.286,
+        "observedWet": false,
+        "beforeMaskProbability": 0.543,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:15-11",
+        "label": "Sentinel grid 15-11",
+        "gridCellKey": "15-11",
+        "trainedProbability": 0.411,
+        "observedWet": false,
+        "beforeMaskProbability": 0.461,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:15-12",
+        "label": "Sentinel grid 15-12",
+        "gridCellKey": "15-12",
+        "trainedProbability": 0.26,
+        "observedWet": false,
+        "beforeMaskProbability": 0.618,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:15-13",
+        "label": "Sentinel grid 15-13",
+        "gridCellKey": "15-13",
+        "trainedProbability": 0.281,
+        "observedWet": false,
+        "beforeMaskProbability": 0.556,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:15-14",
+        "label": "Sentinel grid 15-14",
+        "gridCellKey": "15-14",
+        "trainedProbability": 0.426,
+        "observedWet": false,
+        "beforeMaskProbability": 0.479,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:15-17",
+        "label": "Sentinel grid 15-17",
+        "gridCellKey": "15-17",
+        "trainedProbability": 0.27,
+        "observedWet": false,
+        "beforeMaskProbability": 0.587,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:15-18",
+        "label": "Sentinel grid 15-18",
+        "gridCellKey": "15-18",
+        "trainedProbability": 0.436,
+        "observedWet": false,
+        "beforeMaskProbability": 0.456,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:15-40",
+        "label": "Sentinel grid 15-40",
+        "gridCellKey": "15-40",
+        "trainedProbability": 0.426,
+        "observedWet": true,
+        "beforeMaskProbability": 0.452,
+        "observedMaskProbability": 0.53
+      },
+      {
+        "cellId": "mask-grid:16-0",
+        "label": "Sentinel grid 16-0",
+        "gridCellKey": "16-0",
+        "trainedProbability": 0.254,
+        "observedWet": false,
+        "beforeMaskProbability": 0.636,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:16-3",
+        "label": "Sentinel grid 16-3",
+        "gridCellKey": "16-3",
+        "trainedProbability": 0.456,
+        "observedWet": false,
+        "beforeMaskProbability": 0.479,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:16-12",
+        "label": "Sentinel grid 16-12",
+        "gridCellKey": "16-12",
+        "trainedProbability": 0.283,
+        "observedWet": false,
+        "beforeMaskProbability": 0.551,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:16-13",
+        "label": "Sentinel grid 16-13",
+        "gridCellKey": "16-13",
+        "trainedProbability": 0.254,
+        "observedWet": false,
+        "beforeMaskProbability": 0.635,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:16-14",
+        "label": "Sentinel grid 16-14",
+        "gridCellKey": "16-14",
+        "trainedProbability": 0.274,
+        "observedWet": false,
+        "beforeMaskProbability": 0.553,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:16-15",
+        "label": "Sentinel grid 16-15",
+        "gridCellKey": "16-15",
+        "trainedProbability": 0.427,
+        "observedWet": false,
+        "beforeMaskProbability": 0.476,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:16-16",
+        "label": "Sentinel grid 16-16",
+        "gridCellKey": "16-16",
+        "trainedProbability": 0.418,
+        "observedWet": false,
+        "beforeMaskProbability": 0.497,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:16-17",
+        "label": "Sentinel grid 16-17",
+        "gridCellKey": "16-17",
+        "trainedProbability": 0.287,
+        "observedWet": false,
+        "beforeMaskProbability": 0.538,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:16-18",
+        "label": "Sentinel grid 16-18",
+        "gridCellKey": "16-18",
+        "trainedProbability": 0.431,
+        "observedWet": false,
+        "beforeMaskProbability": 0.466,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:16-20",
+        "label": "Sentinel grid 16-20",
+        "gridCellKey": "16-20",
+        "trainedProbability": 0.299,
+        "observedWet": false,
+        "beforeMaskProbability": 0.505,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:16-21",
+        "label": "Sentinel grid 16-21",
+        "gridCellKey": "16-21",
+        "trainedProbability": 0.422,
+        "observedWet": false,
+        "beforeMaskProbability": 0.489,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:16-41",
+        "label": "Sentinel grid 16-41",
+        "gridCellKey": "16-41",
+        "trainedProbability": 0.461,
+        "observedWet": true,
+        "beforeMaskProbability": 0.463,
+        "observedMaskProbability": 0.534
+      },
+      {
+        "cellId": "mask-grid:17-0",
+        "label": "Sentinel grid 17-0",
+        "gridCellKey": "17-0",
+        "trainedProbability": 0.285,
+        "observedWet": false,
+        "beforeMaskProbability": 0.545,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:17-1",
+        "label": "Sentinel grid 17-1",
+        "gridCellKey": "17-1",
+        "trainedProbability": 0.297,
+        "observedWet": false,
+        "beforeMaskProbability": 0.51,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:17-12",
+        "label": "Sentinel grid 17-12",
+        "gridCellKey": "17-12",
+        "trainedProbability": 0.423,
+        "observedWet": false,
+        "beforeMaskProbability": 0.486,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:17-13",
+        "label": "Sentinel grid 17-13",
+        "gridCellKey": "17-13",
+        "trainedProbability": 0.259,
+        "observedWet": false,
+        "beforeMaskProbability": 0.622,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:17-14",
+        "label": "Sentinel grid 17-14",
+        "gridCellKey": "17-14",
+        "trainedProbability": 0.243,
+        "observedWet": false,
+        "beforeMaskProbability": 0.669,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:17-15",
+        "label": "Sentinel grid 17-15",
+        "gridCellKey": "17-15",
+        "trainedProbability": 0.272,
+        "observedWet": false,
+        "beforeMaskProbability": 0.582,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:17-16",
+        "label": "Sentinel grid 17-16",
+        "gridCellKey": "17-16",
+        "trainedProbability": 0.298,
+        "observedWet": false,
+        "beforeMaskProbability": 0.509,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:17-17",
+        "label": "Sentinel grid 17-17",
+        "gridCellKey": "17-17",
+        "trainedProbability": 0.419,
+        "observedWet": false,
+        "beforeMaskProbability": 0.496,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:17-18",
+        "label": "Sentinel grid 17-18",
+        "gridCellKey": "17-18",
+        "trainedProbability": 0.299,
+        "observedWet": false,
+        "beforeMaskProbability": 0.507,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:17-20",
+        "label": "Sentinel grid 17-20",
+        "gridCellKey": "17-20",
+        "trainedProbability": 0.438,
+        "observedWet": false,
+        "beforeMaskProbability": 0.45,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:17-21",
+        "label": "Sentinel grid 17-21",
+        "gridCellKey": "17-21",
+        "trainedProbability": 0.444,
+        "observedWet": false,
+        "beforeMaskProbability": 0.459,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:18-0",
+        "label": "Sentinel grid 18-0",
+        "gridCellKey": "18-0",
+        "trainedProbability": 0.242,
+        "observedWet": false,
+        "beforeMaskProbability": 0.672,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:18-13",
+        "label": "Sentinel grid 18-13",
+        "gridCellKey": "18-13",
+        "trainedProbability": 0.42,
+        "observedWet": false,
+        "beforeMaskProbability": 0.492,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:18-14",
+        "label": "Sentinel grid 18-14",
+        "gridCellKey": "18-14",
+        "trainedProbability": 0.264,
+        "observedWet": false,
+        "beforeMaskProbability": 0.605,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:18-15",
+        "label": "Sentinel grid 18-15",
+        "gridCellKey": "18-15",
+        "trainedProbability": 0.428,
+        "observedWet": false,
+        "beforeMaskProbability": 0.462,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:18-17",
+        "label": "Sentinel grid 18-17",
+        "gridCellKey": "18-17",
+        "trainedProbability": 0.432,
+        "observedWet": false,
+        "beforeMaskProbability": 0.489,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:18-19",
+        "label": "Sentinel grid 18-19",
+        "gridCellKey": "18-19",
+        "trainedProbability": 0.283,
+        "observedWet": false,
+        "beforeMaskProbability": 0.55,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:18-20",
+        "label": "Sentinel grid 18-20",
+        "gridCellKey": "18-20",
+        "trainedProbability": 0.291,
+        "observedWet": false,
+        "beforeMaskProbability": 0.529,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:19-0",
+        "label": "Sentinel grid 19-0",
+        "gridCellKey": "19-0",
+        "trainedProbability": 0.257,
+        "observedWet": false,
+        "beforeMaskProbability": 0.626,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:19-12",
+        "label": "Sentinel grid 19-12",
+        "gridCellKey": "19-12",
+        "trainedProbability": 0.429,
+        "observedWet": false,
+        "beforeMaskProbability": 0.472,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:19-14",
+        "label": "Sentinel grid 19-14",
+        "gridCellKey": "19-14",
+        "trainedProbability": 0.265,
+        "observedWet": false,
+        "beforeMaskProbability": 0.603,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:19-15",
+        "label": "Sentinel grid 19-15",
+        "gridCellKey": "19-15",
+        "trainedProbability": 0.282,
+        "observedWet": false,
+        "beforeMaskProbability": 0.553,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:19-18",
+        "label": "Sentinel grid 19-18",
+        "gridCellKey": "19-18",
+        "trainedProbability": 0.427,
+        "observedWet": false,
+        "beforeMaskProbability": 0.476,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:19-19",
+        "label": "Sentinel grid 19-19",
+        "gridCellKey": "19-19",
+        "trainedProbability": 0.275,
+        "observedWet": false,
+        "beforeMaskProbability": 0.573,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:19-20",
+        "label": "Sentinel grid 19-20",
+        "gridCellKey": "19-20",
+        "trainedProbability": 0.285,
+        "observedWet": false,
+        "beforeMaskProbability": 0.546,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:19-21",
+        "label": "Sentinel grid 19-21",
+        "gridCellKey": "19-21",
+        "trainedProbability": 0.284,
+        "observedWet": false,
+        "beforeMaskProbability": 0.547,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-12",
+        "label": "Sentinel grid 20-12",
+        "gridCellKey": "20-12",
+        "trainedProbability": 0.298,
+        "observedWet": false,
+        "beforeMaskProbability": 0.509,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-13",
+        "label": "Sentinel grid 20-13",
+        "gridCellKey": "20-13",
+        "trainedProbability": 0.294,
+        "observedWet": false,
+        "beforeMaskProbability": 0.521,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-14",
+        "label": "Sentinel grid 20-14",
+        "gridCellKey": "20-14",
+        "trainedProbability": 0.263,
+        "observedWet": false,
+        "beforeMaskProbability": 0.608,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-15",
+        "label": "Sentinel grid 20-15",
+        "gridCellKey": "20-15",
+        "trainedProbability": 0.264,
+        "observedWet": false,
+        "beforeMaskProbability": 0.606,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-16",
+        "label": "Sentinel grid 20-16",
+        "gridCellKey": "20-16",
+        "trainedProbability": 0.419,
+        "observedWet": false,
+        "beforeMaskProbability": 0.496,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-17",
+        "label": "Sentinel grid 20-17",
+        "gridCellKey": "20-17",
+        "trainedProbability": 0.3,
+        "observedWet": false,
+        "beforeMaskProbability": 0.503,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-18",
+        "label": "Sentinel grid 20-18",
+        "gridCellKey": "20-18",
+        "trainedProbability": 0.246,
+        "observedWet": false,
+        "beforeMaskProbability": 0.66,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-19",
+        "label": "Sentinel grid 20-19",
+        "gridCellKey": "20-19",
+        "trainedProbability": 0.272,
+        "observedWet": false,
+        "beforeMaskProbability": 0.582,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-20",
+        "label": "Sentinel grid 20-20",
+        "gridCellKey": "20-20",
+        "trainedProbability": 0.432,
+        "observedWet": false,
+        "beforeMaskProbability": 0.458,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-21",
+        "label": "Sentinel grid 20-21",
+        "gridCellKey": "20-21",
+        "trainedProbability": 0.287,
+        "observedWet": false,
+        "beforeMaskProbability": 0.54,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-22",
+        "label": "Sentinel grid 20-22",
+        "gridCellKey": "20-22",
+        "trainedProbability": 0.283,
+        "observedWet": false,
+        "beforeMaskProbability": 0.552,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-23",
+        "label": "Sentinel grid 20-23",
+        "gridCellKey": "20-23",
+        "trainedProbability": 0.285,
+        "observedWet": false,
+        "beforeMaskProbability": 0.545,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-24",
+        "label": "Sentinel grid 20-24",
+        "gridCellKey": "20-24",
+        "trainedProbability": 0.421,
+        "observedWet": false,
+        "beforeMaskProbability": 0.49,
+        "observedMaskProbability": 0.484
+      },
+      {
+        "cellId": "mask-grid:20-25",
+        "label": "Sentinel grid 20-25",
+        "gridCellKey": "20-25",
+        "trainedProbability": 0.419,
+        "observedWet": false,
+        "beforeMaskProbability": 0.495,
+        "observedMaskProbability": 0.484
+      },
+      {
+        "cellId": "mask-grid:21-0",
+        "label": "Sentinel grid 21-0",
+        "gridCellKey": "21-0",
+        "trainedProbability": 0.448,
+        "observedWet": false,
+        "beforeMaskProbability": 0.484,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-2",
+        "label": "Sentinel grid 21-2",
+        "gridCellKey": "21-2",
+        "trainedProbability": 0.266,
+        "observedWet": false,
+        "beforeMaskProbability": 0.599,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-3",
+        "label": "Sentinel grid 21-3",
+        "gridCellKey": "21-3",
+        "trainedProbability": 0.422,
+        "observedWet": false,
+        "beforeMaskProbability": 0.489,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-4",
+        "label": "Sentinel grid 21-4",
+        "gridCellKey": "21-4",
+        "trainedProbability": 0.282,
+        "observedWet": false,
+        "beforeMaskProbability": 0.554,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-5",
+        "label": "Sentinel grid 21-5",
+        "gridCellKey": "21-5",
+        "trainedProbability": 0.283,
+        "observedWet": false,
+        "beforeMaskProbability": 0.551,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-6",
+        "label": "Sentinel grid 21-6",
+        "gridCellKey": "21-6",
+        "trainedProbability": 0.255,
+        "observedWet": false,
+        "beforeMaskProbability": 0.632,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-7",
+        "label": "Sentinel grid 21-7",
+        "gridCellKey": "21-7",
+        "trainedProbability": 0.28,
+        "observedWet": false,
+        "beforeMaskProbability": 0.559,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-8",
+        "label": "Sentinel grid 21-8",
+        "gridCellKey": "21-8",
+        "trainedProbability": 0.265,
+        "observedWet": false,
+        "beforeMaskProbability": 0.604,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-9",
+        "label": "Sentinel grid 21-9",
+        "gridCellKey": "21-9",
+        "trainedProbability": 0.427,
+        "observedWet": false,
+        "beforeMaskProbability": 0.477,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-11",
+        "label": "Sentinel grid 21-11",
+        "gridCellKey": "21-11",
+        "trainedProbability": 0.286,
+        "observedWet": false,
+        "beforeMaskProbability": 0.543,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-12",
+        "label": "Sentinel grid 21-12",
+        "gridCellKey": "21-12",
+        "trainedProbability": 0.251,
+        "observedWet": false,
+        "beforeMaskProbability": 0.644,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-13",
+        "label": "Sentinel grid 21-13",
+        "gridCellKey": "21-13",
+        "trainedProbability": 0.287,
+        "observedWet": false,
+        "beforeMaskProbability": 0.54,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-14",
+        "label": "Sentinel grid 21-14",
+        "gridCellKey": "21-14",
+        "trainedProbability": 0.251,
+        "observedWet": false,
+        "beforeMaskProbability": 0.644,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-15",
+        "label": "Sentinel grid 21-15",
+        "gridCellKey": "21-15",
+        "trainedProbability": 0.299,
+        "observedWet": false,
+        "beforeMaskProbability": 0.505,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-16",
+        "label": "Sentinel grid 21-16",
+        "gridCellKey": "21-16",
+        "trainedProbability": 0.425,
+        "observedWet": false,
+        "beforeMaskProbability": 0.476,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-17",
+        "label": "Sentinel grid 21-17",
+        "gridCellKey": "21-17",
+        "trainedProbability": 0.265,
+        "observedWet": false,
+        "beforeMaskProbability": 0.603,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-18",
+        "label": "Sentinel grid 21-18",
+        "gridCellKey": "21-18",
+        "trainedProbability": 0.24,
+        "observedWet": false,
+        "beforeMaskProbability": 0.68,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-19",
+        "label": "Sentinel grid 21-19",
+        "gridCellKey": "21-19",
+        "trainedProbability": 0.263,
+        "observedWet": false,
+        "beforeMaskProbability": 0.608,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-20",
+        "label": "Sentinel grid 21-20",
+        "gridCellKey": "21-20",
+        "trainedProbability": 0.271,
+        "observedWet": false,
+        "beforeMaskProbability": 0.584,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-21",
+        "label": "Sentinel grid 21-21",
+        "gridCellKey": "21-21",
+        "trainedProbability": 0.282,
+        "observedWet": false,
+        "beforeMaskProbability": 0.554,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-22",
+        "label": "Sentinel grid 21-22",
+        "gridCellKey": "21-22",
+        "trainedProbability": 0.285,
+        "observedWet": false,
+        "beforeMaskProbability": 0.545,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:21-24",
+        "label": "Sentinel grid 21-24",
+        "gridCellKey": "21-24",
+        "trainedProbability": 0.424,
+        "observedWet": false,
+        "beforeMaskProbability": 0.483,
+        "observedMaskProbability": 0.459
+      },
+      {
+        "cellId": "mask-grid:21-25",
+        "label": "Sentinel grid 21-25",
+        "gridCellKey": "21-25",
+        "trainedProbability": 0.248,
+        "observedWet": true,
+        "beforeMaskProbability": 0.515,
+        "observedMaskProbability": 0.522
+      },
+      {
+        "cellId": "mask-grid:22-0",
+        "label": "Sentinel grid 22-0",
+        "gridCellKey": "22-0",
+        "trainedProbability": 0.428,
+        "observedWet": false,
+        "beforeMaskProbability": 0.473,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-1",
+        "label": "Sentinel grid 22-1",
+        "gridCellKey": "22-1",
+        "trainedProbability": 0.429,
+        "observedWet": false,
+        "beforeMaskProbability": 0.471,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-2",
+        "label": "Sentinel grid 22-2",
+        "gridCellKey": "22-2",
+        "trainedProbability": 0.281,
+        "observedWet": false,
+        "beforeMaskProbability": 0.556,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-3",
+        "label": "Sentinel grid 22-3",
+        "gridCellKey": "22-3",
+        "trainedProbability": 0.263,
+        "observedWet": false,
+        "beforeMaskProbability": 0.608,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-4",
+        "label": "Sentinel grid 22-4",
+        "gridCellKey": "22-4",
+        "trainedProbability": 0.267,
+        "observedWet": false,
+        "beforeMaskProbability": 0.596,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-5",
+        "label": "Sentinel grid 22-5",
+        "gridCellKey": "22-5",
+        "trainedProbability": 0.432,
+        "observedWet": false,
+        "beforeMaskProbability": 0.465,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-6",
+        "label": "Sentinel grid 22-6",
+        "gridCellKey": "22-6",
+        "trainedProbability": 0.289,
+        "observedWet": false,
+        "beforeMaskProbability": 0.533,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-7",
+        "label": "Sentinel grid 22-7",
+        "gridCellKey": "22-7",
+        "trainedProbability": 0.264,
+        "observedWet": false,
+        "beforeMaskProbability": 0.607,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-8",
+        "label": "Sentinel grid 22-8",
+        "gridCellKey": "22-8",
+        "trainedProbability": 0.273,
+        "observedWet": false,
+        "beforeMaskProbability": 0.58,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-9",
+        "label": "Sentinel grid 22-9",
+        "gridCellKey": "22-9",
+        "trainedProbability": 0.424,
+        "observedWet": false,
+        "beforeMaskProbability": 0.485,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-10",
+        "label": "Sentinel grid 22-10",
+        "gridCellKey": "22-10",
+        "trainedProbability": 0.29,
+        "observedWet": false,
+        "beforeMaskProbability": 0.53,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-11",
+        "label": "Sentinel grid 22-11",
+        "gridCellKey": "22-11",
+        "trainedProbability": 0.29,
+        "observedWet": false,
+        "beforeMaskProbability": 0.53,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-12",
+        "label": "Sentinel grid 22-12",
+        "gridCellKey": "22-12",
+        "trainedProbability": 0.282,
+        "observedWet": false,
+        "beforeMaskProbability": 0.553,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-13",
+        "label": "Sentinel grid 22-13",
+        "gridCellKey": "22-13",
+        "trainedProbability": 0.262,
+        "observedWet": false,
+        "beforeMaskProbability": 0.613,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-14",
+        "label": "Sentinel grid 22-14",
+        "gridCellKey": "22-14",
+        "trainedProbability": 0.241,
+        "observedWet": false,
+        "beforeMaskProbability": 0.676,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-15",
+        "label": "Sentinel grid 22-15",
+        "gridCellKey": "22-15",
+        "trainedProbability": 0.266,
+        "observedWet": false,
+        "beforeMaskProbability": 0.601,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-16",
+        "label": "Sentinel grid 22-16",
+        "gridCellKey": "22-16",
+        "trainedProbability": 0.265,
+        "observedWet": false,
+        "beforeMaskProbability": 0.603,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-17",
+        "label": "Sentinel grid 22-17",
+        "gridCellKey": "22-17",
+        "trainedProbability": 0.296,
+        "observedWet": false,
+        "beforeMaskProbability": 0.515,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-18",
+        "label": "Sentinel grid 22-18",
+        "gridCellKey": "22-18",
+        "trainedProbability": 0.268,
+        "observedWet": false,
+        "beforeMaskProbability": 0.595,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-19",
+        "label": "Sentinel grid 22-19",
+        "gridCellKey": "22-19",
+        "trainedProbability": 0.265,
+        "observedWet": false,
+        "beforeMaskProbability": 0.602,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-20",
+        "label": "Sentinel grid 22-20",
+        "gridCellKey": "22-20",
+        "trainedProbability": 0.287,
+        "observedWet": false,
+        "beforeMaskProbability": 0.538,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:22-24",
+        "label": "Sentinel grid 22-24",
+        "gridCellKey": "22-24",
+        "trainedProbability": 0.428,
+        "observedWet": false,
+        "beforeMaskProbability": 0.473,
+        "observedMaskProbability": 0.454
+      },
+      {
+        "cellId": "mask-grid:22-25",
+        "label": "Sentinel grid 22-25",
+        "gridCellKey": "22-25",
+        "trainedProbability": 0.268,
+        "observedWet": false,
+        "beforeMaskProbability": 0.593,
+        "observedMaskProbability": 0.514
+      },
+      {
+        "cellId": "mask-grid:22-26",
+        "label": "Sentinel grid 22-26",
+        "gridCellKey": "22-26",
+        "trainedProbability": 0.436,
+        "observedWet": false,
+        "beforeMaskProbability": 0.456,
+        "observedMaskProbability": 0.48
+      },
+      {
+        "cellId": "mask-grid:23-0",
+        "label": "Sentinel grid 23-0",
+        "gridCellKey": "23-0",
+        "trainedProbability": 0.289,
+        "observedWet": false,
+        "beforeMaskProbability": 0.535,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-1",
+        "label": "Sentinel grid 23-1",
+        "gridCellKey": "23-1",
+        "trainedProbability": 0.291,
+        "observedWet": false,
+        "beforeMaskProbability": 0.527,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-2",
+        "label": "Sentinel grid 23-2",
+        "gridCellKey": "23-2",
+        "trainedProbability": 0.261,
+        "observedWet": false,
+        "beforeMaskProbability": 0.616,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-3",
+        "label": "Sentinel grid 23-3",
+        "gridCellKey": "23-3",
+        "trainedProbability": 0.25,
+        "observedWet": false,
+        "beforeMaskProbability": 0.649,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-4",
+        "label": "Sentinel grid 23-4",
+        "gridCellKey": "23-4",
+        "trainedProbability": 0.252,
+        "observedWet": false,
+        "beforeMaskProbability": 0.642,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-5",
+        "label": "Sentinel grid 23-5",
+        "gridCellKey": "23-5",
+        "trainedProbability": 0.275,
+        "observedWet": false,
+        "beforeMaskProbability": 0.575,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-6",
+        "label": "Sentinel grid 23-6",
+        "gridCellKey": "23-6",
+        "trainedProbability": 0.295,
+        "observedWet": false,
+        "beforeMaskProbability": 0.518,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-7",
+        "label": "Sentinel grid 23-7",
+        "gridCellKey": "23-7",
+        "trainedProbability": 0.283,
+        "observedWet": false,
+        "beforeMaskProbability": 0.55,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-8",
+        "label": "Sentinel grid 23-8",
+        "gridCellKey": "23-8",
+        "trainedProbability": 0.285,
+        "observedWet": false,
+        "beforeMaskProbability": 0.544,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-9",
+        "label": "Sentinel grid 23-9",
+        "gridCellKey": "23-9",
+        "trainedProbability": 0.431,
+        "observedWet": false,
+        "beforeMaskProbability": 0.467,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-10",
+        "label": "Sentinel grid 23-10",
+        "gridCellKey": "23-10",
+        "trainedProbability": 0.435,
+        "observedWet": false,
+        "beforeMaskProbability": 0.458,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-11",
+        "label": "Sentinel grid 23-11",
+        "gridCellKey": "23-11",
+        "trainedProbability": 0.257,
+        "observedWet": false,
+        "beforeMaskProbability": 0.628,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-12",
+        "label": "Sentinel grid 23-12",
+        "gridCellKey": "23-12",
+        "trainedProbability": 0.259,
+        "observedWet": false,
+        "beforeMaskProbability": 0.62,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-13",
+        "label": "Sentinel grid 23-13",
+        "gridCellKey": "23-13",
+        "trainedProbability": 0.256,
+        "observedWet": false,
+        "beforeMaskProbability": 0.631,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-14",
+        "label": "Sentinel grid 23-14",
+        "gridCellKey": "23-14",
+        "trainedProbability": 0.28,
+        "observedWet": false,
+        "beforeMaskProbability": 0.558,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-15",
+        "label": "Sentinel grid 23-15",
+        "gridCellKey": "23-15",
+        "trainedProbability": 0.424,
+        "observedWet": false,
+        "beforeMaskProbability": 0.483,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-16",
+        "label": "Sentinel grid 23-16",
+        "gridCellKey": "23-16",
+        "trainedProbability": 0.271,
+        "observedWet": false,
+        "beforeMaskProbability": 0.584,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-17",
+        "label": "Sentinel grid 23-17",
+        "gridCellKey": "23-17",
+        "trainedProbability": 0.27,
+        "observedWet": false,
+        "beforeMaskProbability": 0.589,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-18",
+        "label": "Sentinel grid 23-18",
+        "gridCellKey": "23-18",
+        "trainedProbability": 0.299,
+        "observedWet": false,
+        "beforeMaskProbability": 0.506,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-19",
+        "label": "Sentinel grid 23-19",
+        "gridCellKey": "23-19",
+        "trainedProbability": 0.421,
+        "observedWet": false,
+        "beforeMaskProbability": 0.49,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-20",
+        "label": "Sentinel grid 23-20",
+        "gridCellKey": "23-20",
+        "trainedProbability": 0.429,
+        "observedWet": false,
+        "beforeMaskProbability": 0.471,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-21",
+        "label": "Sentinel grid 23-21",
+        "gridCellKey": "23-21",
+        "trainedProbability": 0.288,
+        "observedWet": false,
+        "beforeMaskProbability": 0.536,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-22",
+        "label": "Sentinel grid 23-22",
+        "gridCellKey": "23-22",
+        "trainedProbability": 0.422,
+        "observedWet": false,
+        "beforeMaskProbability": 0.488,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-24",
+        "label": "Sentinel grid 23-24",
+        "gridCellKey": "23-24",
+        "trainedProbability": 0.279,
+        "observedWet": false,
+        "beforeMaskProbability": 0.562,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-25",
+        "label": "Sentinel grid 23-25",
+        "gridCellKey": "23-25",
+        "trainedProbability": 0.409,
+        "observedWet": false,
+        "beforeMaskProbability": 0.47,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-30",
+        "label": "Sentinel grid 23-30",
+        "gridCellKey": "23-30",
+        "trainedProbability": 0.539,
+        "observedWet": false,
+        "beforeMaskProbability": 0.45,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-0",
+        "label": "Sentinel grid 24-0",
+        "gridCellKey": "24-0",
+        "trainedProbability": 0.419,
+        "observedWet": false,
+        "beforeMaskProbability": 0.496,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-1",
+        "label": "Sentinel grid 24-1",
+        "gridCellKey": "24-1",
+        "trainedProbability": 0.425,
+        "observedWet": false,
+        "beforeMaskProbability": 0.481,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-2",
+        "label": "Sentinel grid 24-2",
+        "gridCellKey": "24-2",
+        "trainedProbability": 0.249,
+        "observedWet": false,
+        "beforeMaskProbability": 0.651,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-3",
+        "label": "Sentinel grid 24-3",
+        "gridCellKey": "24-3",
+        "trainedProbability": 0.259,
+        "observedWet": false,
+        "beforeMaskProbability": 0.62,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-4",
+        "label": "Sentinel grid 24-4",
+        "gridCellKey": "24-4",
+        "trainedProbability": 0.266,
+        "observedWet": false,
+        "beforeMaskProbability": 0.599,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-5",
+        "label": "Sentinel grid 24-5",
+        "gridCellKey": "24-5",
+        "trainedProbability": 0.253,
+        "observedWet": false,
+        "beforeMaskProbability": 0.64,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-6",
+        "label": "Sentinel grid 24-6",
+        "gridCellKey": "24-6",
+        "trainedProbability": 0.257,
+        "observedWet": false,
+        "beforeMaskProbability": 0.626,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-7",
+        "label": "Sentinel grid 24-7",
+        "gridCellKey": "24-7",
+        "trainedProbability": 0.275,
+        "observedWet": false,
+        "beforeMaskProbability": 0.575,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-9",
+        "label": "Sentinel grid 24-9",
+        "gridCellKey": "24-9",
+        "trainedProbability": 0.427,
+        "observedWet": false,
+        "beforeMaskProbability": 0.477,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-10",
+        "label": "Sentinel grid 24-10",
+        "gridCellKey": "24-10",
+        "trainedProbability": 0.292,
+        "observedWet": false,
+        "beforeMaskProbability": 0.526,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-11",
+        "label": "Sentinel grid 24-11",
+        "gridCellKey": "24-11",
+        "trainedProbability": 0.284,
+        "observedWet": false,
+        "beforeMaskProbability": 0.549,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-12",
+        "label": "Sentinel grid 24-12",
+        "gridCellKey": "24-12",
+        "trainedProbability": 0.236,
+        "observedWet": false,
+        "beforeMaskProbability": 0.694,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-13",
+        "label": "Sentinel grid 24-13",
+        "gridCellKey": "24-13",
+        "trainedProbability": 0.267,
+        "observedWet": false,
+        "beforeMaskProbability": 0.597,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-14",
+        "label": "Sentinel grid 24-14",
+        "gridCellKey": "24-14",
+        "trainedProbability": 0.433,
+        "observedWet": false,
+        "beforeMaskProbability": 0.462,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-17",
+        "label": "Sentinel grid 24-17",
+        "gridCellKey": "24-17",
+        "trainedProbability": 0.431,
+        "observedWet": false,
+        "beforeMaskProbability": 0.467,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-18",
+        "label": "Sentinel grid 24-18",
+        "gridCellKey": "24-18",
+        "trainedProbability": 0.425,
+        "observedWet": false,
+        "beforeMaskProbability": 0.481,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-21",
+        "label": "Sentinel grid 24-21",
+        "gridCellKey": "24-21",
+        "trainedProbability": 0.277,
+        "observedWet": false,
+        "beforeMaskProbability": 0.569,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-22",
+        "label": "Sentinel grid 24-22",
+        "gridCellKey": "24-22",
+        "trainedProbability": 0.262,
+        "observedWet": false,
+        "beforeMaskProbability": 0.612,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-23",
+        "label": "Sentinel grid 24-23",
+        "gridCellKey": "24-23",
+        "trainedProbability": 0.428,
+        "observedWet": false,
+        "beforeMaskProbability": 0.475,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-1",
+        "label": "Sentinel grid 25-1",
+        "gridCellKey": "25-1",
+        "trainedProbability": 0.295,
+        "observedWet": false,
+        "beforeMaskProbability": 0.516,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-2",
+        "label": "Sentinel grid 25-2",
+        "gridCellKey": "25-2",
+        "trainedProbability": 0.26,
+        "observedWet": false,
+        "beforeMaskProbability": 0.618,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-3",
+        "label": "Sentinel grid 25-3",
+        "gridCellKey": "25-3",
+        "trainedProbability": 0.423,
+        "observedWet": false,
+        "beforeMaskProbability": 0.487,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-4",
+        "label": "Sentinel grid 25-4",
+        "gridCellKey": "25-4",
+        "trainedProbability": 0.278,
+        "observedWet": false,
+        "beforeMaskProbability": 0.565,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-5",
+        "label": "Sentinel grid 25-5",
+        "gridCellKey": "25-5",
+        "trainedProbability": 0.255,
+        "observedWet": false,
+        "beforeMaskProbability": 0.634,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-6",
+        "label": "Sentinel grid 25-6",
+        "gridCellKey": "25-6",
+        "trainedProbability": 0.281,
+        "observedWet": false,
+        "beforeMaskProbability": 0.557,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-7",
+        "label": "Sentinel grid 25-7",
+        "gridCellKey": "25-7",
+        "trainedProbability": 0.292,
+        "observedWet": false,
+        "beforeMaskProbability": 0.524,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-10",
+        "label": "Sentinel grid 25-10",
+        "gridCellKey": "25-10",
+        "trainedProbability": 0.429,
+        "observedWet": false,
+        "beforeMaskProbability": 0.471,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-12",
+        "label": "Sentinel grid 25-12",
+        "gridCellKey": "25-12",
+        "trainedProbability": 0.292,
+        "observedWet": false,
+        "beforeMaskProbability": 0.525,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-17",
+        "label": "Sentinel grid 25-17",
+        "gridCellKey": "25-17",
+        "trainedProbability": 0.279,
+        "observedWet": false,
+        "beforeMaskProbability": 0.561,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-18",
+        "label": "Sentinel grid 25-18",
+        "gridCellKey": "25-18",
+        "trainedProbability": 0.264,
+        "observedWet": false,
+        "beforeMaskProbability": 0.607,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-19",
+        "label": "Sentinel grid 25-19",
+        "gridCellKey": "25-19",
+        "trainedProbability": 0.434,
+        "observedWet": false,
+        "beforeMaskProbability": 0.46,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-22",
+        "label": "Sentinel grid 25-22",
+        "gridCellKey": "25-22",
+        "trainedProbability": 0.263,
+        "observedWet": false,
+        "beforeMaskProbability": 0.608,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-23",
+        "label": "Sentinel grid 25-23",
+        "gridCellKey": "25-23",
+        "trainedProbability": 0.405,
+        "observedWet": false,
+        "beforeMaskProbability": 0.499,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-1",
+        "label": "Sentinel grid 26-1",
+        "gridCellKey": "26-1",
+        "trainedProbability": 0.29,
+        "observedWet": false,
+        "beforeMaskProbability": 0.531,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-2",
+        "label": "Sentinel grid 26-2",
+        "gridCellKey": "26-2",
+        "trainedProbability": 0.291,
+        "observedWet": false,
+        "beforeMaskProbability": 0.527,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-3",
+        "label": "Sentinel grid 26-3",
+        "gridCellKey": "26-3",
+        "trainedProbability": 0.285,
+        "observedWet": false,
+        "beforeMaskProbability": 0.544,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-4",
+        "label": "Sentinel grid 26-4",
+        "gridCellKey": "26-4",
+        "trainedProbability": 0.262,
+        "observedWet": false,
+        "beforeMaskProbability": 0.611,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-5",
+        "label": "Sentinel grid 26-5",
+        "gridCellKey": "26-5",
+        "trainedProbability": 0.292,
+        "observedWet": false,
+        "beforeMaskProbability": 0.524,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-8",
+        "label": "Sentinel grid 26-8",
+        "gridCellKey": "26-8",
+        "trainedProbability": 0.292,
+        "observedWet": false,
+        "beforeMaskProbability": 0.524,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-9",
+        "label": "Sentinel grid 26-9",
+        "gridCellKey": "26-9",
+        "trainedProbability": 0.435,
+        "observedWet": false,
+        "beforeMaskProbability": 0.457,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-11",
+        "label": "Sentinel grid 26-11",
+        "gridCellKey": "26-11",
+        "trainedProbability": 0.438,
+        "observedWet": false,
+        "beforeMaskProbability": 0.473,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-14",
+        "label": "Sentinel grid 26-14",
+        "gridCellKey": "26-14",
+        "trainedProbability": 0.46,
+        "observedWet": false,
+        "beforeMaskProbability": 0.468,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-21",
+        "label": "Sentinel grid 26-21",
+        "gridCellKey": "26-21",
+        "trainedProbability": 0.431,
+        "observedWet": false,
+        "beforeMaskProbability": 0.468,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-22",
+        "label": "Sentinel grid 26-22",
+        "gridCellKey": "26-22",
+        "trainedProbability": 0.287,
+        "observedWet": false,
+        "beforeMaskProbability": 0.512,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-23",
+        "label": "Sentinel grid 26-23",
+        "gridCellKey": "26-23",
+        "trainedProbability": 0.382,
+        "observedWet": false,
+        "beforeMaskProbability": 0.482,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-2",
+        "label": "Sentinel grid 27-2",
+        "gridCellKey": "27-2",
+        "trainedProbability": 0.428,
+        "observedWet": false,
+        "beforeMaskProbability": 0.475,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-3",
+        "label": "Sentinel grid 27-3",
+        "gridCellKey": "27-3",
+        "trainedProbability": 0.272,
+        "observedWet": false,
+        "beforeMaskProbability": 0.583,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-4",
+        "label": "Sentinel grid 27-4",
+        "gridCellKey": "27-4",
+        "trainedProbability": 0.266,
+        "observedWet": false,
+        "beforeMaskProbability": 0.599,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-5",
+        "label": "Sentinel grid 27-5",
+        "gridCellKey": "27-5",
+        "trainedProbability": 0.276,
+        "observedWet": false,
+        "beforeMaskProbability": 0.572,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-7",
+        "label": "Sentinel grid 27-7",
+        "gridCellKey": "27-7",
+        "trainedProbability": 0.43,
+        "observedWet": false,
+        "beforeMaskProbability": 0.47,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-8",
+        "label": "Sentinel grid 27-8",
+        "gridCellKey": "27-8",
+        "trainedProbability": 0.285,
+        "observedWet": false,
+        "beforeMaskProbability": 0.544,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-9",
+        "label": "Sentinel grid 27-9",
+        "gridCellKey": "27-9",
+        "trainedProbability": 0.426,
+        "observedWet": false,
+        "beforeMaskProbability": 0.48,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-10",
+        "label": "Sentinel grid 27-10",
+        "gridCellKey": "27-10",
+        "trainedProbability": 0.454,
+        "observedWet": false,
+        "beforeMaskProbability": 0.47,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-20",
+        "label": "Sentinel grid 27-20",
+        "gridCellKey": "27-20",
+        "trainedProbability": 0.458,
+        "observedWet": false,
+        "beforeMaskProbability": 0.474,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-21",
+        "label": "Sentinel grid 27-21",
+        "gridCellKey": "27-21",
+        "trainedProbability": 0.407,
+        "observedWet": false,
+        "beforeMaskProbability": 0.495,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-23",
+        "label": "Sentinel grid 27-23",
+        "gridCellKey": "27-23",
+        "trainedProbability": 0.388,
+        "observedWet": false,
+        "beforeMaskProbability": 0.472,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-24",
+        "label": "Sentinel grid 27-24",
+        "gridCellKey": "27-24",
+        "trainedProbability": 0.297,
+        "observedWet": false,
+        "beforeMaskProbability": 0.512,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-28",
+        "label": "Sentinel grid 27-28",
+        "gridCellKey": "27-28",
+        "trainedProbability": 0.491,
+        "observedWet": false,
+        "beforeMaskProbability": 0.463,
+        "observedMaskProbability": 0.497
+      },
+      {
+        "cellId": "mask-grid:28-2",
+        "label": "Sentinel grid 28-2",
+        "gridCellKey": "28-2",
+        "trainedProbability": 0.296,
+        "observedWet": false,
+        "beforeMaskProbability": 0.515,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:28-3",
+        "label": "Sentinel grid 28-3",
+        "gridCellKey": "28-3",
+        "trainedProbability": 0.26,
+        "observedWet": false,
+        "beforeMaskProbability": 0.618,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:28-4",
+        "label": "Sentinel grid 28-4",
+        "gridCellKey": "28-4",
+        "trainedProbability": 0.273,
+        "observedWet": false,
+        "beforeMaskProbability": 0.579,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:28-5",
+        "label": "Sentinel grid 28-5",
+        "gridCellKey": "28-5",
+        "trainedProbability": 0.27,
+        "observedWet": false,
+        "beforeMaskProbability": 0.588,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:28-6",
+        "label": "Sentinel grid 28-6",
+        "gridCellKey": "28-6",
+        "trainedProbability": 0.279,
+        "observedWet": false,
+        "beforeMaskProbability": 0.563,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:28-7",
+        "label": "Sentinel grid 28-7",
+        "gridCellKey": "28-7",
+        "trainedProbability": 0.421,
+        "observedWet": false,
+        "beforeMaskProbability": 0.492,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:28-8",
+        "label": "Sentinel grid 28-8",
+        "gridCellKey": "28-8",
+        "trainedProbability": 0.425,
+        "observedWet": false,
+        "beforeMaskProbability": 0.482,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:28-9",
+        "label": "Sentinel grid 28-9",
+        "gridCellKey": "28-9",
+        "trainedProbability": 0.433,
+        "observedWet": false,
+        "beforeMaskProbability": 0.485,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:28-21",
+        "label": "Sentinel grid 28-21",
+        "gridCellKey": "28-21",
+        "trainedProbability": 0.426,
+        "observedWet": false,
+        "beforeMaskProbability": 0.474,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:28-24",
+        "label": "Sentinel grid 28-24",
+        "gridCellKey": "28-24",
+        "trainedProbability": 0.417,
+        "observedWet": false,
+        "beforeMaskProbability": 0.472,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:29-0",
+        "label": "Sentinel grid 29-0",
+        "gridCellKey": "29-0",
+        "trainedProbability": 0.266,
+        "observedWet": false,
+        "beforeMaskProbability": 0.6,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:29-3",
+        "label": "Sentinel grid 29-3",
+        "gridCellKey": "29-3",
+        "trainedProbability": 0.277,
+        "observedWet": false,
+        "beforeMaskProbability": 0.569,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:29-4",
+        "label": "Sentinel grid 29-4",
+        "gridCellKey": "29-4",
+        "trainedProbability": 0.258,
+        "observedWet": false,
+        "beforeMaskProbability": 0.625,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:29-5",
+        "label": "Sentinel grid 29-5",
+        "gridCellKey": "29-5",
+        "trainedProbability": 0.291,
+        "observedWet": false,
+        "beforeMaskProbability": 0.529,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:29-7",
+        "label": "Sentinel grid 29-7",
+        "gridCellKey": "29-7",
+        "trainedProbability": 0.425,
+        "observedWet": false,
+        "beforeMaskProbability": 0.482,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:29-8",
+        "label": "Sentinel grid 29-8",
+        "gridCellKey": "29-8",
+        "trainedProbability": 0.3,
+        "observedWet": false,
+        "beforeMaskProbability": 0.504,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:29-21",
+        "label": "Sentinel grid 29-21",
+        "gridCellKey": "29-21",
+        "trainedProbability": 0.281,
+        "observedWet": false,
+        "beforeMaskProbability": 0.546,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:29-22",
+        "label": "Sentinel grid 29-22",
+        "gridCellKey": "29-22",
+        "trainedProbability": 0.29,
+        "observedWet": false,
+        "beforeMaskProbability": 0.532,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:29-24",
+        "label": "Sentinel grid 29-24",
+        "gridCellKey": "29-24",
+        "trainedProbability": 0.43,
+        "observedWet": false,
+        "beforeMaskProbability": 0.494,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:29-25",
+        "label": "Sentinel grid 29-25",
+        "gridCellKey": "29-25",
+        "trainedProbability": 0.423,
+        "observedWet": false,
+        "beforeMaskProbability": 0.486,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:29-26",
+        "label": "Sentinel grid 29-26",
+        "gridCellKey": "29-26",
+        "trainedProbability": 0.432,
+        "observedWet": false,
+        "beforeMaskProbability": 0.465,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:29-27",
+        "label": "Sentinel grid 29-27",
+        "gridCellKey": "29-27",
+        "trainedProbability": 0.441,
+        "observedWet": false,
+        "beforeMaskProbability": 0.466,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:29-37",
+        "label": "Sentinel grid 29-37",
+        "gridCellKey": "29-37",
+        "trainedProbability": 0.656,
+        "observedWet": false,
+        "beforeMaskProbability": 0.454,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-2",
+        "label": "Sentinel grid 30-2",
+        "gridCellKey": "30-2",
+        "trainedProbability": 0.437,
+        "observedWet": false,
+        "beforeMaskProbability": 0.453,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-3",
+        "label": "Sentinel grid 30-3",
+        "gridCellKey": "30-3",
+        "trainedProbability": 0.259,
+        "observedWet": false,
+        "beforeMaskProbability": 0.62,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-4",
+        "label": "Sentinel grid 30-4",
+        "gridCellKey": "30-4",
+        "trainedProbability": 0.256,
+        "observedWet": false,
+        "beforeMaskProbability": 0.631,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-5",
+        "label": "Sentinel grid 30-5",
+        "gridCellKey": "30-5",
+        "trainedProbability": 0.296,
+        "observedWet": false,
+        "beforeMaskProbability": 0.515,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-17",
+        "label": "Sentinel grid 30-17",
+        "gridCellKey": "30-17",
+        "trainedProbability": 0.289,
+        "observedWet": false,
+        "beforeMaskProbability": 0.534,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-20",
+        "label": "Sentinel grid 30-20",
+        "gridCellKey": "30-20",
+        "trainedProbability": 0.267,
+        "observedWet": false,
+        "beforeMaskProbability": 0.597,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-21",
+        "label": "Sentinel grid 30-21",
+        "gridCellKey": "30-21",
+        "trainedProbability": 0.24,
+        "observedWet": false,
+        "beforeMaskProbability": 0.631,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-22",
+        "label": "Sentinel grid 30-22",
+        "gridCellKey": "30-22",
+        "trainedProbability": 0.415,
+        "observedWet": false,
+        "beforeMaskProbability": 0.459,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-23",
+        "label": "Sentinel grid 30-23",
+        "gridCellKey": "30-23",
+        "trainedProbability": 0.441,
+        "observedWet": false,
+        "beforeMaskProbability": 0.458,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-24",
+        "label": "Sentinel grid 30-24",
+        "gridCellKey": "30-24",
+        "trainedProbability": 0.43,
+        "observedWet": false,
+        "beforeMaskProbability": 0.47,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-25",
+        "label": "Sentinel grid 30-25",
+        "gridCellKey": "30-25",
+        "trainedProbability": 0.288,
+        "observedWet": false,
+        "beforeMaskProbability": 0.537,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-26",
+        "label": "Sentinel grid 30-26",
+        "gridCellKey": "30-26",
+        "trainedProbability": 0.287,
+        "observedWet": false,
+        "beforeMaskProbability": 0.538,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-27",
+        "label": "Sentinel grid 30-27",
+        "gridCellKey": "30-27",
+        "trainedProbability": 0.43,
+        "observedWet": false,
+        "beforeMaskProbability": 0.469,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-0",
+        "label": "Sentinel grid 31-0",
+        "gridCellKey": "31-0",
+        "trainedProbability": 0.423,
+        "observedWet": false,
+        "beforeMaskProbability": 0.486,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-2",
+        "label": "Sentinel grid 31-2",
+        "gridCellKey": "31-2",
+        "trainedProbability": 0.272,
+        "observedWet": false,
+        "beforeMaskProbability": 0.583,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-3",
+        "label": "Sentinel grid 31-3",
+        "gridCellKey": "31-3",
+        "trainedProbability": 0.263,
+        "observedWet": false,
+        "beforeMaskProbability": 0.608,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-4",
+        "label": "Sentinel grid 31-4",
+        "gridCellKey": "31-4",
+        "trainedProbability": 0.269,
+        "observedWet": false,
+        "beforeMaskProbability": 0.59,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-5",
+        "label": "Sentinel grid 31-5",
+        "gridCellKey": "31-5",
+        "trainedProbability": 0.299,
+        "observedWet": false,
+        "beforeMaskProbability": 0.505,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-17",
+        "label": "Sentinel grid 31-17",
+        "gridCellKey": "31-17",
+        "trainedProbability": 0.416,
+        "observedWet": false,
+        "beforeMaskProbability": 0.495,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-19",
+        "label": "Sentinel grid 31-19",
+        "gridCellKey": "31-19",
+        "trainedProbability": 0.298,
+        "observedWet": false,
+        "beforeMaskProbability": 0.508,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-20",
+        "label": "Sentinel grid 31-20",
+        "gridCellKey": "31-20",
+        "trainedProbability": 0.243,
+        "observedWet": false,
+        "beforeMaskProbability": 0.631,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-21",
+        "label": "Sentinel grid 31-21",
+        "gridCellKey": "31-21",
+        "trainedProbability": 0.23,
+        "observedWet": false,
+        "beforeMaskProbability": 0.63,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-22",
+        "label": "Sentinel grid 31-22",
+        "gridCellKey": "31-22",
+        "trainedProbability": 0.27,
+        "observedWet": false,
+        "beforeMaskProbability": 0.545,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-24",
+        "label": "Sentinel grid 31-24",
+        "gridCellKey": "31-24",
+        "trainedProbability": 0.424,
+        "observedWet": false,
+        "beforeMaskProbability": 0.453,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-25",
+        "label": "Sentinel grid 31-25",
+        "gridCellKey": "31-25",
+        "trainedProbability": 0.287,
+        "observedWet": false,
+        "beforeMaskProbability": 0.539,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-26",
+        "label": "Sentinel grid 31-26",
+        "gridCellKey": "31-26",
+        "trainedProbability": 0.434,
+        "observedWet": false,
+        "beforeMaskProbability": 0.457,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:32-0",
+        "label": "Sentinel grid 32-0",
+        "gridCellKey": "32-0",
+        "trainedProbability": 0.262,
+        "observedWet": false,
+        "beforeMaskProbability": 0.612,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:32-2",
+        "label": "Sentinel grid 32-2",
+        "gridCellKey": "32-2",
+        "trainedProbability": 0.275,
+        "observedWet": false,
+        "beforeMaskProbability": 0.574,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:32-3",
+        "label": "Sentinel grid 32-3",
+        "gridCellKey": "32-3",
+        "trainedProbability": 0.283,
+        "observedWet": false,
+        "beforeMaskProbability": 0.551,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:32-4",
+        "label": "Sentinel grid 32-4",
+        "gridCellKey": "32-4",
+        "trainedProbability": 0.434,
+        "observedWet": false,
+        "beforeMaskProbability": 0.46,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:32-16",
+        "label": "Sentinel grid 32-16",
+        "gridCellKey": "32-16",
+        "trainedProbability": 0.274,
+        "observedWet": false,
+        "beforeMaskProbability": 0.577,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:32-17",
+        "label": "Sentinel grid 32-17",
+        "gridCellKey": "32-17",
+        "trainedProbability": 0.295,
+        "observedWet": false,
+        "beforeMaskProbability": 0.516,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:32-19",
+        "label": "Sentinel grid 32-19",
+        "gridCellKey": "32-19",
+        "trainedProbability": 0.274,
+        "observedWet": false,
+        "beforeMaskProbability": 0.576,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:32-20",
+        "label": "Sentinel grid 32-20",
+        "gridCellKey": "32-20",
+        "trainedProbability": 0.235,
+        "observedWet": false,
+        "beforeMaskProbability": 0.651,
+        "observedMaskProbability": 0.504
+      },
+      {
+        "cellId": "mask-grid:32-21",
+        "label": "Sentinel grid 32-21",
+        "gridCellKey": "32-21",
+        "trainedProbability": 0.236,
+        "observedWet": false,
+        "beforeMaskProbability": 0.602,
+        "observedMaskProbability": 0.451
+      },
+      {
+        "cellId": "mask-grid:32-22",
+        "label": "Sentinel grid 32-22",
+        "gridCellKey": "32-22",
+        "trainedProbability": 0.255,
+        "observedWet": false,
+        "beforeMaskProbability": 0.514,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:32-23",
+        "label": "Sentinel grid 32-23",
+        "gridCellKey": "32-23",
+        "trainedProbability": 0.401,
+        "observedWet": false,
+        "beforeMaskProbability": 0.49,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:32-27",
+        "label": "Sentinel grid 32-27",
+        "gridCellKey": "32-27",
+        "trainedProbability": 0.465,
+        "observedWet": false,
+        "beforeMaskProbability": 0.456,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:32-28",
+        "label": "Sentinel grid 32-28",
+        "gridCellKey": "32-28",
+        "trainedProbability": 0.481,
+        "observedWet": false,
+        "beforeMaskProbability": 0.453,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:33-0",
+        "label": "Sentinel grid 33-0",
+        "gridCellKey": "33-0",
+        "trainedProbability": 0.428,
+        "observedWet": false,
+        "beforeMaskProbability": 0.466,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:33-1",
+        "label": "Sentinel grid 33-1",
+        "gridCellKey": "33-1",
+        "trainedProbability": 0.418,
+        "observedWet": false,
+        "beforeMaskProbability": 0.497,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:33-2",
+        "label": "Sentinel grid 33-2",
+        "gridCellKey": "33-2",
+        "trainedProbability": 0.284,
+        "observedWet": false,
+        "beforeMaskProbability": 0.549,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:33-3",
+        "label": "Sentinel grid 33-3",
+        "gridCellKey": "33-3",
+        "trainedProbability": 0.274,
+        "observedWet": false,
+        "beforeMaskProbability": 0.577,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:33-16",
+        "label": "Sentinel grid 33-16",
+        "gridCellKey": "33-16",
+        "trainedProbability": 0.28,
+        "observedWet": false,
+        "beforeMaskProbability": 0.558,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:33-17",
+        "label": "Sentinel grid 33-17",
+        "gridCellKey": "33-17",
+        "trainedProbability": 0.277,
+        "observedWet": false,
+        "beforeMaskProbability": 0.568,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:33-20",
+        "label": "Sentinel grid 33-20",
+        "gridCellKey": "33-20",
+        "trainedProbability": 0.232,
+        "observedWet": false,
+        "beforeMaskProbability": 0.627,
+        "observedMaskProbability": 0.514
+      },
+      {
+        "cellId": "mask-grid:33-21",
+        "label": "Sentinel grid 33-21",
+        "gridCellKey": "33-21",
+        "trainedProbability": 0.255,
+        "observedWet": false,
+        "beforeMaskProbability": 0.502,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:34-0",
+        "label": "Sentinel grid 34-0",
+        "gridCellKey": "34-0",
+        "trainedProbability": 0.286,
+        "observedWet": false,
+        "beforeMaskProbability": 0.541,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:34-1",
+        "label": "Sentinel grid 34-1",
+        "gridCellKey": "34-1",
+        "trainedProbability": 0.275,
+        "observedWet": false,
+        "beforeMaskProbability": 0.575,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:34-2",
+        "label": "Sentinel grid 34-2",
+        "gridCellKey": "34-2",
+        "trainedProbability": 0.433,
+        "observedWet": false,
+        "beforeMaskProbability": 0.461,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:34-16",
+        "label": "Sentinel grid 34-16",
+        "gridCellKey": "34-16",
+        "trainedProbability": 0.285,
+        "observedWet": false,
+        "beforeMaskProbability": 0.544,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:34-17",
+        "label": "Sentinel grid 34-17",
+        "gridCellKey": "34-17",
+        "trainedProbability": 0.288,
+        "observedWet": false,
+        "beforeMaskProbability": 0.537,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:35-0",
+        "label": "Sentinel grid 35-0",
+        "gridCellKey": "35-0",
+        "trainedProbability": 0.299,
+        "observedWet": false,
+        "beforeMaskProbability": 0.505,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:35-1",
+        "label": "Sentinel grid 35-1",
+        "gridCellKey": "35-1",
+        "trainedProbability": 0.295,
+        "observedWet": false,
+        "beforeMaskProbability": 0.518,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:35-2",
+        "label": "Sentinel grid 35-2",
+        "gridCellKey": "35-2",
+        "trainedProbability": 0.296,
+        "observedWet": false,
+        "beforeMaskProbability": 0.514,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:35-3",
+        "label": "Sentinel grid 35-3",
+        "gridCellKey": "35-3",
+        "trainedProbability": 0.437,
+        "observedWet": false,
+        "beforeMaskProbability": 0.452,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:36-0",
+        "label": "Sentinel grid 36-0",
+        "gridCellKey": "36-0",
+        "trainedProbability": 0.278,
+        "observedWet": false,
+        "beforeMaskProbability": 0.565,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:36-3",
+        "label": "Sentinel grid 36-3",
+        "gridCellKey": "36-3",
+        "trainedProbability": 0.277,
+        "observedWet": false,
+        "beforeMaskProbability": 0.569,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:36-18",
+        "label": "Sentinel grid 36-18",
+        "gridCellKey": "36-18",
+        "trainedProbability": 0.275,
+        "observedWet": false,
+        "beforeMaskProbability": 0.575,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:36-19",
+        "label": "Sentinel grid 36-19",
+        "gridCellKey": "36-19",
+        "trainedProbability": 0.29,
+        "observedWet": false,
+        "beforeMaskProbability": 0.507,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:37-0",
+        "label": "Sentinel grid 37-0",
+        "gridCellKey": "37-0",
+        "trainedProbability": 0.256,
+        "observedWet": false,
+        "beforeMaskProbability": 0.631,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:37-1",
+        "label": "Sentinel grid 37-1",
+        "gridCellKey": "37-1",
+        "trainedProbability": 0.275,
+        "observedWet": false,
+        "beforeMaskProbability": 0.574,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:37-3",
+        "label": "Sentinel grid 37-3",
+        "gridCellKey": "37-3",
+        "trainedProbability": 0.418,
+        "observedWet": false,
+        "beforeMaskProbability": 0.498,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:37-35",
+        "label": "Sentinel grid 37-35",
+        "gridCellKey": "37-35",
+        "trainedProbability": 0.453,
+        "observedWet": false,
+        "beforeMaskProbability": 0.485,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:37-47",
+        "label": "Sentinel grid 37-47",
+        "gridCellKey": "37-47",
+        "trainedProbability": 0.426,
+        "observedWet": false,
+        "beforeMaskProbability": 0.478,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-0",
+        "label": "Sentinel grid 38-0",
+        "gridCellKey": "38-0",
+        "trainedProbability": 0.227,
+        "observedWet": false,
+        "beforeMaskProbability": 0.723,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-1",
+        "label": "Sentinel grid 38-1",
+        "gridCellKey": "38-1",
+        "trainedProbability": 0.253,
+        "observedWet": false,
+        "beforeMaskProbability": 0.638,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-2",
+        "label": "Sentinel grid 38-2",
+        "gridCellKey": "38-2",
+        "trainedProbability": 0.287,
+        "observedWet": false,
+        "beforeMaskProbability": 0.54,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-3",
+        "label": "Sentinel grid 38-3",
+        "gridCellKey": "38-3",
+        "trainedProbability": 0.291,
+        "observedWet": false,
+        "beforeMaskProbability": 0.527,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-36",
+        "label": "Sentinel grid 38-36",
+        "gridCellKey": "38-36",
+        "trainedProbability": 0.42,
+        "observedWet": false,
+        "beforeMaskProbability": 0.492,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-47",
+        "label": "Sentinel grid 38-47",
+        "gridCellKey": "38-47",
+        "trainedProbability": 0.276,
+        "observedWet": false,
+        "beforeMaskProbability": 0.571,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:39-0",
+        "label": "Sentinel grid 39-0",
+        "gridCellKey": "39-0",
+        "trainedProbability": 0.21,
+        "observedWet": false,
+        "beforeMaskProbability": 0.778,
+        "observedMaskProbability": 0.454
+      },
+      {
+        "cellId": "mask-grid:39-1",
+        "label": "Sentinel grid 39-1",
+        "gridCellKey": "39-1",
+        "trainedProbability": 0.246,
+        "observedWet": false,
+        "beforeMaskProbability": 0.66,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:39-2",
+        "label": "Sentinel grid 39-2",
+        "gridCellKey": "39-2",
+        "trainedProbability": 0.269,
+        "observedWet": false,
+        "beforeMaskProbability": 0.592,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:39-5",
+        "label": "Sentinel grid 39-5",
+        "gridCellKey": "39-5",
+        "trainedProbability": 0.429,
+        "observedWet": false,
+        "beforeMaskProbability": 0.472,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:39-6",
+        "label": "Sentinel grid 39-6",
+        "gridCellKey": "39-6",
+        "trainedProbability": 0.441,
+        "observedWet": false,
+        "beforeMaskProbability": 0.466,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:39-36",
+        "label": "Sentinel grid 39-36",
+        "gridCellKey": "39-36",
+        "trainedProbability": 0.301,
+        "observedWet": false,
+        "beforeMaskProbability": 0.5,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:39-38",
+        "label": "Sentinel grid 39-38",
+        "gridCellKey": "39-38",
+        "trainedProbability": 0.446,
+        "observedWet": false,
+        "beforeMaskProbability": 0.454,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:39-47",
+        "label": "Sentinel grid 39-47",
+        "gridCellKey": "39-47",
+        "trainedProbability": 0.431,
+        "observedWet": false,
+        "beforeMaskProbability": 0.459,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:40-0",
+        "label": "Sentinel grid 40-0",
+        "gridCellKey": "40-0",
+        "trainedProbability": 0.21,
+        "observedWet": false,
+        "beforeMaskProbability": 0.78,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:40-1",
+        "label": "Sentinel grid 40-1",
+        "gridCellKey": "40-1",
+        "trainedProbability": 0.249,
+        "observedWet": false,
+        "beforeMaskProbability": 0.65,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:40-2",
+        "label": "Sentinel grid 40-2",
+        "gridCellKey": "40-2",
+        "trainedProbability": 0.279,
+        "observedWet": false,
+        "beforeMaskProbability": 0.562,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:40-3",
+        "label": "Sentinel grid 40-3",
+        "gridCellKey": "40-3",
+        "trainedProbability": 0.437,
+        "observedWet": false,
+        "beforeMaskProbability": 0.452,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:40-4",
+        "label": "Sentinel grid 40-4",
+        "gridCellKey": "40-4",
+        "trainedProbability": 0.297,
+        "observedWet": false,
+        "beforeMaskProbability": 0.511,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:40-5",
+        "label": "Sentinel grid 40-5",
+        "gridCellKey": "40-5",
+        "trainedProbability": 0.29,
+        "observedWet": false,
+        "beforeMaskProbability": 0.532,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:40-6",
+        "label": "Sentinel grid 40-6",
+        "gridCellKey": "40-6",
+        "trainedProbability": 0.428,
+        "observedWet": false,
+        "beforeMaskProbability": 0.473,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:40-37",
+        "label": "Sentinel grid 40-37",
+        "gridCellKey": "40-37",
+        "trainedProbability": 0.292,
+        "observedWet": false,
+        "beforeMaskProbability": 0.508,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:41-0",
+        "label": "Sentinel grid 41-0",
+        "gridCellKey": "41-0",
+        "trainedProbability": 0.22,
+        "observedWet": false,
+        "beforeMaskProbability": 0.744,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:41-1",
+        "label": "Sentinel grid 41-1",
+        "gridCellKey": "41-1",
+        "trainedProbability": 0.245,
+        "observedWet": false,
+        "beforeMaskProbability": 0.663,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:41-2",
+        "label": "Sentinel grid 41-2",
+        "gridCellKey": "41-2",
+        "trainedProbability": 0.258,
+        "observedWet": false,
+        "beforeMaskProbability": 0.623,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:41-3",
+        "label": "Sentinel grid 41-3",
+        "gridCellKey": "41-3",
+        "trainedProbability": 0.426,
+        "observedWet": false,
+        "beforeMaskProbability": 0.48,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:41-4",
+        "label": "Sentinel grid 41-4",
+        "gridCellKey": "41-4",
+        "trainedProbability": 0.427,
+        "observedWet": false,
+        "beforeMaskProbability": 0.476,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:41-5",
+        "label": "Sentinel grid 41-5",
+        "gridCellKey": "41-5",
+        "trainedProbability": 0.429,
+        "observedWet": false,
+        "beforeMaskProbability": 0.455,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:41-6",
+        "label": "Sentinel grid 41-6",
+        "gridCellKey": "41-6",
+        "trainedProbability": 0.299,
+        "observedWet": false,
+        "beforeMaskProbability": 0.506,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:41-44",
+        "label": "Sentinel grid 41-44",
+        "gridCellKey": "41-44",
+        "trainedProbability": 0.498,
+        "observedWet": false,
+        "beforeMaskProbability": 0.494,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:0-45",
+        "label": "Sentinel grid 0-45",
+        "gridCellKey": "0-45",
+        "trainedProbability": 0.63,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.477
+      },
+      {
+        "cellId": "mask-grid:2-26",
+        "label": "Sentinel grid 2-26",
+        "gridCellKey": "2-26",
+        "trainedProbability": 0.838,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.466
+      },
+      {
+        "cellId": "mask-grid:3-46",
+        "label": "Sentinel grid 3-46",
+        "gridCellKey": "3-46",
+        "trainedProbability": 0.645,
+        "observedWet": true,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.534
+      },
+      {
+        "cellId": "mask-grid:4-30",
+        "label": "Sentinel grid 4-30",
+        "gridCellKey": "4-30",
+        "trainedProbability": 0.823,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.501
+      },
+      {
+        "cellId": "mask-grid:4-46",
+        "label": "Sentinel grid 4-46",
+        "gridCellKey": "4-46",
+        "trainedProbability": 0.639,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.48
+      },
+      {
+        "cellId": "mask-grid:4-47",
+        "label": "Sentinel grid 4-47",
+        "gridCellKey": "4-47",
+        "trainedProbability": 0.645,
+        "observedWet": true,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.53
+      },
+      {
+        "cellId": "mask-grid:5-30",
+        "label": "Sentinel grid 5-30",
+        "gridCellKey": "5-30",
+        "trainedProbability": 0.824,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.491
+      },
+      {
+        "cellId": "mask-grid:5-47",
+        "label": "Sentinel grid 5-47",
+        "gridCellKey": "5-47",
+        "trainedProbability": 0.653,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.48
+      },
+      {
+        "cellId": "mask-grid:6-47",
+        "label": "Sentinel grid 6-47",
+        "gridCellKey": "6-47",
+        "trainedProbability": 0.658,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.466
+      },
+      {
+        "cellId": "mask-grid:10-22",
+        "label": "Sentinel grid 10-22",
+        "gridCellKey": "10-22",
+        "trainedProbability": 0.677,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.469
+      },
+      {
+        "cellId": "mask-grid:11-18",
+        "label": "Sentinel grid 11-18",
+        "gridCellKey": "11-18",
+        "trainedProbability": 0.687,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.459
+      },
+      {
+        "cellId": "mask-grid:11-41",
+        "label": "Sentinel grid 11-41",
+        "gridCellKey": "11-41",
+        "trainedProbability": 0.608,
+        "observedWet": true,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.542
+      },
+      {
+        "cellId": "mask-grid:11-44",
+        "label": "Sentinel grid 11-44",
+        "gridCellKey": "11-44",
+        "trainedProbability": 0.653,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.462
+      },
+      {
+        "cellId": "mask-grid:12-20",
+        "label": "Sentinel grid 12-20",
+        "gridCellKey": "12-20",
+        "trainedProbability": 0.639,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.453
+      },
+      {
+        "cellId": "mask-grid:12-21",
+        "label": "Sentinel grid 12-21",
+        "gridCellKey": "12-21",
+        "trainedProbability": 0.608,
+        "observedWet": true,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.589
+      },
+      {
+        "cellId": "mask-grid:12-22",
+        "label": "Sentinel grid 12-22",
+        "gridCellKey": "12-22",
+        "trainedProbability": 0.639,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.509
+      },
+      {
+        "cellId": "mask-grid:13-19",
+        "label": "Sentinel grid 13-19",
+        "gridCellKey": "13-19",
+        "trainedProbability": 0.653,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.494
+      },
+      {
+        "cellId": "mask-grid:13-22",
+        "label": "Sentinel grid 13-22",
+        "gridCellKey": "13-22",
+        "trainedProbability": 0.63,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.475
+      },
+      {
+        "cellId": "mask-grid:13-39",
+        "label": "Sentinel grid 13-39",
+        "gridCellKey": "13-39",
+        "trainedProbability": 0.63,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.48
+      },
+      {
+        "cellId": "mask-grid:14-22",
+        "label": "Sentinel grid 14-22",
+        "gridCellKey": "14-22",
+        "trainedProbability": 0.503,
+        "observedWet": true,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.533
+      },
+      {
+        "cellId": "mask-grid:14-23",
+        "label": "Sentinel grid 14-23",
+        "gridCellKey": "14-23",
+        "trainedProbability": 0.658,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.457
+      },
+      {
+        "cellId": "mask-grid:14-28",
+        "label": "Sentinel grid 14-28",
+        "gridCellKey": "14-28",
+        "trainedProbability": 0.756,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.473
+      },
+      {
+        "cellId": "mask-grid:14-39",
+        "label": "Sentinel grid 14-39",
+        "gridCellKey": "14-39",
+        "trainedProbability": 0.639,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.477
+      },
+      {
+        "cellId": "mask-grid:14-40",
+        "label": "Sentinel grid 14-40",
+        "gridCellKey": "14-40",
+        "trainedProbability": 0.63,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.485
+      },
+      {
+        "cellId": "mask-grid:14-41",
+        "label": "Sentinel grid 14-41",
+        "gridCellKey": "14-41",
+        "trainedProbability": 0.639,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.484
+      },
+      {
+        "cellId": "mask-grid:15-23",
+        "label": "Sentinel grid 15-23",
+        "gridCellKey": "15-23",
+        "trainedProbability": 0.67,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.476
+      },
+      {
+        "cellId": "mask-grid:15-24",
+        "label": "Sentinel grid 15-24",
+        "gridCellKey": "15-24",
+        "trainedProbability": 0.68,
+        "observedWet": true,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.569
+      },
+      {
+        "cellId": "mask-grid:15-25",
+        "label": "Sentinel grid 15-25",
+        "gridCellKey": "15-25",
+        "trainedProbability": 0.705,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.488
+      },
+      {
+        "cellId": "mask-grid:15-26",
+        "label": "Sentinel grid 15-26",
+        "gridCellKey": "15-26",
+        "trainedProbability": 0.724,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.469
+      },
+      {
+        "cellId": "mask-grid:15-28",
+        "label": "Sentinel grid 15-28",
+        "gridCellKey": "15-28",
+        "trainedProbability": 0.748,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.502
+      },
+      {
+        "cellId": "mask-grid:15-35",
+        "label": "Sentinel grid 15-35",
+        "gridCellKey": "15-35",
+        "trainedProbability": 0.724,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.51
+      },
+      {
+        "cellId": "mask-grid:15-36",
+        "label": "Sentinel grid 15-36",
+        "gridCellKey": "15-36",
+        "trainedProbability": 0.596,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.459
+      },
+      {
+        "cellId": "mask-grid:15-38",
+        "label": "Sentinel grid 15-38",
+        "gridCellKey": "15-38",
+        "trainedProbability": 0.67,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.468
+      },
+      {
+        "cellId": "mask-grid:15-42",
+        "label": "Sentinel grid 15-42",
+        "gridCellKey": "15-42",
+        "trainedProbability": 0.67,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.469
+      },
+      {
+        "cellId": "mask-grid:16-24",
+        "label": "Sentinel grid 16-24",
+        "gridCellKey": "16-24",
+        "trainedProbability": 0.695,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.453
+      },
+      {
+        "cellId": "mask-grid:16-27",
+        "label": "Sentinel grid 16-27",
+        "gridCellKey": "16-27",
+        "trainedProbability": 0.723,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.46
+      },
+      {
+        "cellId": "mask-grid:16-30",
+        "label": "Sentinel grid 16-30",
+        "gridCellKey": "16-30",
+        "trainedProbability": 0.756,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.459
+      },
+      {
+        "cellId": "mask-grid:16-35",
+        "label": "Sentinel grid 16-35",
+        "gridCellKey": "16-35",
+        "trainedProbability": 0.732,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.501
+      },
+      {
+        "cellId": "mask-grid:16-36",
+        "label": "Sentinel grid 16-36",
+        "gridCellKey": "16-36",
+        "trainedProbability": 0.716,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.488
+      },
+      {
+        "cellId": "mask-grid:17-24",
+        "label": "Sentinel grid 17-24",
+        "gridCellKey": "17-24",
+        "trainedProbability": 0.677,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.502
+      },
+      {
+        "cellId": "mask-grid:17-26",
+        "label": "Sentinel grid 17-26",
+        "gridCellKey": "17-26",
+        "trainedProbability": 0.697,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.472
+      },
+      {
+        "cellId": "mask-grid:17-27",
+        "label": "Sentinel grid 17-27",
+        "gridCellKey": "17-27",
+        "trainedProbability": 0.705,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.467
+      },
+      {
+        "cellId": "mask-grid:17-30",
+        "label": "Sentinel grid 17-30",
+        "gridCellKey": "17-30",
+        "trainedProbability": 0.743,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.452
+      },
+      {
+        "cellId": "mask-grid:17-34",
+        "label": "Sentinel grid 17-34",
+        "gridCellKey": "17-34",
+        "trainedProbability": 0.663,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.497
+      },
+      {
+        "cellId": "mask-grid:17-43",
+        "label": "Sentinel grid 17-43",
+        "gridCellKey": "17-43",
+        "trainedProbability": 0.715,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.451
+      },
+      {
+        "cellId": "mask-grid:17-47",
+        "label": "Sentinel grid 17-47",
+        "gridCellKey": "17-47",
+        "trainedProbability": 0.756,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.462
+      },
+      {
+        "cellId": "mask-grid:18-21",
+        "label": "Sentinel grid 18-21",
+        "gridCellKey": "18-21",
+        "trainedProbability": 0.63,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.455
+      },
+      {
+        "cellId": "mask-grid:18-26",
+        "label": "Sentinel grid 18-26",
+        "gridCellKey": "18-26",
+        "trainedProbability": 0.669,
+        "observedWet": true,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.521
+      },
+      {
+        "cellId": "mask-grid:18-34",
+        "label": "Sentinel grid 18-34",
+        "gridCellKey": "18-34",
+        "trainedProbability": 0.769,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.517
+      },
+      {
+        "cellId": "mask-grid:18-37",
+        "label": "Sentinel grid 18-37",
+        "gridCellKey": "18-37",
+        "trainedProbability": 0.732,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.458
+      },
+      {
+        "cellId": "mask-grid:18-46",
+        "label": "Sentinel grid 18-46",
+        "gridCellKey": "18-46",
+        "trainedProbability": 0.758,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.451
+      },
+      {
+        "cellId": "mask-grid:18-47",
+        "label": "Sentinel grid 18-47",
+        "gridCellKey": "18-47",
+        "trainedProbability": 0.652,
+        "observedWet": true,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.52
+      },
+      {
+        "cellId": "mask-grid:19-25",
+        "label": "Sentinel grid 19-25",
+        "gridCellKey": "19-25",
+        "trainedProbability": 0.652,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.505
+      },
+      {
+        "cellId": "mask-grid:19-26",
+        "label": "Sentinel grid 19-26",
+        "gridCellKey": "19-26",
+        "trainedProbability": 0.657,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.471
+      },
+      {
+        "cellId": "mask-grid:19-30",
+        "label": "Sentinel grid 19-30",
+        "gridCellKey": "19-30",
+        "trainedProbability": 0.717,
+        "observedWet": true,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.534
+      },
+      {
+        "cellId": "mask-grid:19-32",
+        "label": "Sentinel grid 19-32",
+        "gridCellKey": "19-32",
+        "trainedProbability": 0.76,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.489
+      },
+      {
+        "cellId": "mask-grid:19-47",
+        "label": "Sentinel grid 19-47",
+        "gridCellKey": "19-47",
+        "trainedProbability": 0.783,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.49
+      },
+      {
+        "cellId": "mask-grid:20-30",
+        "label": "Sentinel grid 20-30",
+        "gridCellKey": "20-30",
+        "trainedProbability": 0.718,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.508
+      },
+      {
+        "cellId": "mask-grid:20-32",
+        "label": "Sentinel grid 20-32",
+        "gridCellKey": "20-32",
+        "trainedProbability": 0.756,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.464
+      },
+      {
+        "cellId": "mask-grid:20-33",
+        "label": "Sentinel grid 20-33",
+        "gridCellKey": "20-33",
+        "trainedProbability": 0.679,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.506
+      },
+      {
+        "cellId": "mask-grid:20-38",
+        "label": "Sentinel grid 20-38",
+        "gridCellKey": "20-38",
+        "trainedProbability": 0.666,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.47
+      },
+      {
+        "cellId": "mask-grid:20-39",
+        "label": "Sentinel grid 20-39",
+        "gridCellKey": "20-39",
+        "trainedProbability": 0.755,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.452
+      },
+      {
+        "cellId": "mask-grid:21-26",
+        "label": "Sentinel grid 21-26",
+        "gridCellKey": "21-26",
+        "trainedProbability": 0.63,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.483
+      },
+      {
+        "cellId": "mask-grid:23-28",
+        "label": "Sentinel grid 23-28",
+        "gridCellKey": "23-28",
+        "trainedProbability": 0.678,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.474
+      },
+      {
+        "cellId": "mask-grid:23-29",
+        "label": "Sentinel grid 23-29",
+        "gridCellKey": "23-29",
+        "trainedProbability": 0.698,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.496
+      },
+      {
+        "cellId": "mask-grid:24-27",
+        "label": "Sentinel grid 24-27",
+        "gridCellKey": "24-27",
+        "trainedProbability": 0.67,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.451
+      },
+      {
+        "cellId": "mask-grid:24-28",
+        "label": "Sentinel grid 24-28",
+        "gridCellKey": "24-28",
+        "trainedProbability": 0.687,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.476
+      },
+      {
+        "cellId": "mask-grid:24-29",
+        "label": "Sentinel grid 24-29",
+        "gridCellKey": "24-29",
+        "trainedProbability": 0.705,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.482
+      },
+      {
+        "cellId": "mask-grid:24-30",
+        "label": "Sentinel grid 24-30",
+        "gridCellKey": "24-30",
+        "trainedProbability": 0.724,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.489
+      },
+      {
+        "cellId": "mask-grid:24-41",
+        "label": "Sentinel grid 24-41",
+        "gridCellKey": "24-41",
+        "trainedProbability": 0.822,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.463
+      },
+      {
+        "cellId": "mask-grid:24-42",
+        "label": "Sentinel grid 24-42",
+        "gridCellKey": "24-42",
+        "trainedProbability": 0.824,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.504
+      },
+      {
+        "cellId": "mask-grid:24-43",
+        "label": "Sentinel grid 24-43",
+        "gridCellKey": "24-43",
+        "trainedProbability": 0.828,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.469
+      },
+      {
+        "cellId": "mask-grid:24-47",
+        "label": "Sentinel grid 24-47",
+        "gridCellKey": "24-47",
+        "trainedProbability": 0.85,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.458
+      },
+      {
+        "cellId": "mask-grid:25-27",
+        "label": "Sentinel grid 25-27",
+        "gridCellKey": "25-27",
+        "trainedProbability": 0.583,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.47
+      },
+      {
+        "cellId": "mask-grid:25-28",
+        "label": "Sentinel grid 25-28",
+        "gridCellKey": "25-28",
+        "trainedProbability": 0.694,
+        "observedWet": true,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.532
+      },
+      {
+        "cellId": "mask-grid:25-30",
+        "label": "Sentinel grid 25-30",
+        "gridCellKey": "25-30",
+        "trainedProbability": 0.732,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.511
+      },
+      {
+        "cellId": "mask-grid:25-44",
+        "label": "Sentinel grid 25-44",
+        "gridCellKey": "25-44",
+        "trainedProbability": 0.704,
+        "observedWet": true,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.54
+      },
+      {
+        "cellId": "mask-grid:25-47",
+        "label": "Sentinel grid 25-47",
+        "gridCellKey": "25-47",
+        "trainedProbability": 0.78,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.477
+      },
+      {
+        "cellId": "mask-grid:26-28",
+        "label": "Sentinel grid 26-28",
+        "gridCellKey": "26-28",
+        "trainedProbability": 0.595,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.465
+      },
+      {
+        "cellId": "mask-grid:26-30",
+        "label": "Sentinel grid 26-30",
+        "gridCellKey": "26-30",
+        "trainedProbability": 0.729,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.457
+      },
+      {
+        "cellId": "mask-grid:27-29",
+        "label": "Sentinel grid 27-29",
+        "gridCellKey": "27-29",
+        "trainedProbability": 0.7,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.487
+      },
+      {
+        "cellId": "mask-grid:28-29",
+        "label": "Sentinel grid 28-29",
+        "gridCellKey": "28-29",
+        "trainedProbability": 0.687,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.466
+      },
+      {
+        "cellId": "mask-grid:28-31",
+        "label": "Sentinel grid 28-31",
+        "gridCellKey": "28-31",
+        "trainedProbability": 0.724,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.451
+      },
+      {
+        "cellId": "mask-grid:29-33",
+        "label": "Sentinel grid 29-33",
+        "gridCellKey": "29-33",
+        "trainedProbability": 0.756,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.489
+      },
+      {
+        "cellId": "mask-grid:29-34",
+        "label": "Sentinel grid 29-34",
+        "gridCellKey": "29-34",
+        "trainedProbability": 0.774,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.464
+      },
+      {
+        "cellId": "mask-grid:29-35",
+        "label": "Sentinel grid 29-35",
+        "gridCellKey": "29-35",
+        "trainedProbability": 0.773,
+        "observedWet": true,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.541
+      },
+      {
+        "cellId": "mask-grid:29-43",
+        "label": "Sentinel grid 29-43",
+        "gridCellKey": "29-43",
+        "trainedProbability": 0.804,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.472
+      },
+      {
+        "cellId": "mask-grid:30-31",
+        "label": "Sentinel grid 30-31",
+        "gridCellKey": "30-31",
+        "trainedProbability": 0.716,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.453
+      },
+      {
+        "cellId": "mask-grid:30-34",
+        "label": "Sentinel grid 30-34",
+        "gridCellKey": "30-34",
+        "trainedProbability": 0.67,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.468
+      },
+      {
+        "cellId": "mask-grid:30-35",
+        "label": "Sentinel grid 30-35",
+        "gridCellKey": "30-35",
+        "trainedProbability": 0.666,
+        "observedWet": true,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.545
+      },
+      {
+        "cellId": "mask-grid:30-38",
+        "label": "Sentinel grid 30-38",
+        "gridCellKey": "30-38",
+        "trainedProbability": 0.793,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.477
+      },
+      {
+        "cellId": "mask-grid:30-39",
+        "label": "Sentinel grid 30-39",
+        "gridCellKey": "30-39",
+        "trainedProbability": 0.798,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.468
+      },
+      {
+        "cellId": "mask-grid:30-44",
+        "label": "Sentinel grid 30-44",
+        "gridCellKey": "30-44",
+        "trainedProbability": 0.782,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.466
+      },
+      {
+        "cellId": "mask-grid:31-35",
+        "label": "Sentinel grid 31-35",
+        "gridCellKey": "31-35",
+        "trainedProbability": 0.773,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0.462
+      },
+      {
+        "cellId": "mask-grid:7-11",
+        "label": "Sentinel grid 7-11",
+        "gridCellKey": "7-11",
+        "trainedProbability": 0.566,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:9-13",
+        "label": "Sentinel grid 9-13",
+        "gridCellKey": "9-13",
+        "trainedProbability": 0.558,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:10-12",
+        "label": "Sentinel grid 10-12",
+        "gridCellKey": "10-12",
+        "trainedProbability": 0.504,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:11-13",
+        "label": "Sentinel grid 11-13",
+        "gridCellKey": "11-13",
+        "trainedProbability": 0.529,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:12-10",
+        "label": "Sentinel grid 12-10",
+        "gridCellKey": "12-10",
+        "trainedProbability": 0.513,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:14-12",
+        "label": "Sentinel grid 14-12",
+        "gridCellKey": "14-12",
+        "trainedProbability": 0.517,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:20-0",
+        "label": "Sentinel grid 20-0",
+        "gridCellKey": "20-0",
+        "trainedProbability": 0.499,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:23-23",
+        "label": "Sentinel grid 23-23",
+        "gridCellKey": "23-23",
+        "trainedProbability": 0.519,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-24",
+        "label": "Sentinel grid 24-24",
+        "gridCellKey": "24-24",
+        "trainedProbability": 0.503,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:24-25",
+        "label": "Sentinel grid 24-25",
+        "gridCellKey": "24-25",
+        "trainedProbability": 0.502,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:25-21",
+        "label": "Sentinel grid 25-21",
+        "gridCellKey": "25-21",
+        "trainedProbability": 0.513,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-24",
+        "label": "Sentinel grid 26-24",
+        "gridCellKey": "26-24",
+        "trainedProbability": 0.515,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:26-47",
+        "label": "Sentinel grid 26-47",
+        "gridCellKey": "26-47",
+        "trainedProbability": 0.761,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-22",
+        "label": "Sentinel grid 27-22",
+        "gridCellKey": "27-22",
+        "trainedProbability": 0.488,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:27-27",
+        "label": "Sentinel grid 27-27",
+        "gridCellKey": "27-27",
+        "trainedProbability": 0.556,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:28-23",
+        "label": "Sentinel grid 28-23",
+        "gridCellKey": "28-23",
+        "trainedProbability": 0.522,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:28-25",
+        "label": "Sentinel grid 28-25",
+        "gridCellKey": "28-25",
+        "trainedProbability": 0.527,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-12",
+        "label": "Sentinel grid 30-12",
+        "gridCellKey": "30-12",
+        "trainedProbability": 0.593,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:30-36",
+        "label": "Sentinel grid 30-36",
+        "gridCellKey": "30-36",
+        "trainedProbability": 0.704,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-16",
+        "label": "Sentinel grid 31-16",
+        "gridCellKey": "31-16",
+        "trainedProbability": 0.519,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:31-23",
+        "label": "Sentinel grid 31-23",
+        "gridCellKey": "31-23",
+        "trainedProbability": 0.495,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:32-24",
+        "label": "Sentinel grid 32-24",
+        "gridCellKey": "32-24",
+        "trainedProbability": 0.516,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:33-4",
+        "label": "Sentinel grid 33-4",
+        "gridCellKey": "33-4",
+        "trainedProbability": 0.516,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:33-19",
+        "label": "Sentinel grid 33-19",
+        "gridCellKey": "33-19",
+        "trainedProbability": 0.486,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:33-22",
+        "label": "Sentinel grid 33-22",
+        "gridCellKey": "33-22",
+        "trainedProbability": 0.466,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:33-23",
+        "label": "Sentinel grid 33-23",
+        "gridCellKey": "33-23",
+        "trainedProbability": 0.519,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:34-19",
+        "label": "Sentinel grid 34-19",
+        "gridCellKey": "34-19",
+        "trainedProbability": 0.522,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:34-20",
+        "label": "Sentinel grid 34-20",
+        "gridCellKey": "34-20",
+        "trainedProbability": 0.467,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:34-21",
+        "label": "Sentinel grid 34-21",
+        "gridCellKey": "34-21",
+        "trainedProbability": 0.469,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:34-22",
+        "label": "Sentinel grid 34-22",
+        "gridCellKey": "34-22",
+        "trainedProbability": 0.52,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:35-20",
+        "label": "Sentinel grid 35-20",
+        "gridCellKey": "35-20",
+        "trainedProbability": 0.53,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:35-21",
+        "label": "Sentinel grid 35-21",
+        "gridCellKey": "35-21",
+        "trainedProbability": 0.529,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:35-24",
+        "label": "Sentinel grid 35-24",
+        "gridCellKey": "35-24",
+        "trainedProbability": 0.584,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:36-20",
+        "label": "Sentinel grid 36-20",
+        "gridCellKey": "36-20",
+        "trainedProbability": 0.509,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:36-47",
+        "label": "Sentinel grid 36-47",
+        "gridCellKey": "36-47",
+        "trainedProbability": 0.533,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:37-17",
+        "label": "Sentinel grid 37-17",
+        "gridCellKey": "37-17",
+        "trainedProbability": 0.5,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:37-18",
+        "label": "Sentinel grid 37-18",
+        "gridCellKey": "37-18",
+        "trainedProbability": 0.481,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:37-19",
+        "label": "Sentinel grid 37-19",
+        "gridCellKey": "37-19",
+        "trainedProbability": 0.479,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:37-20",
+        "label": "Sentinel grid 37-20",
+        "gridCellKey": "37-20",
+        "trainedProbability": 0.518,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:37-26",
+        "label": "Sentinel grid 37-26",
+        "gridCellKey": "37-26",
+        "trainedProbability": 0.635,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:37-30",
+        "label": "Sentinel grid 37-30",
+        "gridCellKey": "37-30",
+        "trainedProbability": 0.637,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-18",
+        "label": "Sentinel grid 38-18",
+        "gridCellKey": "38-18",
+        "trainedProbability": 0.525,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-19",
+        "label": "Sentinel grid 38-19",
+        "gridCellKey": "38-19",
+        "trainedProbability": 0.527,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-20",
+        "label": "Sentinel grid 38-20",
+        "gridCellKey": "38-20",
+        "trainedProbability": 0.53,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-21",
+        "label": "Sentinel grid 38-21",
+        "gridCellKey": "38-21",
+        "trainedProbability": 0.553,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-28",
+        "label": "Sentinel grid 38-28",
+        "gridCellKey": "38-28",
+        "trainedProbability": 0.673,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-29",
+        "label": "Sentinel grid 38-29",
+        "gridCellKey": "38-29",
+        "trainedProbability": 0.657,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-30",
+        "label": "Sentinel grid 38-30",
+        "gridCellKey": "38-30",
+        "trainedProbability": 0.626,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-31",
+        "label": "Sentinel grid 38-31",
+        "gridCellKey": "38-31",
+        "trainedProbability": 0.594,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:38-32",
+        "label": "Sentinel grid 38-32",
+        "gridCellKey": "38-32",
+        "trainedProbability": 0.594,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:39-16",
+        "label": "Sentinel grid 39-16",
+        "gridCellKey": "39-16",
+        "trainedProbability": 0.57,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:39-19",
+        "label": "Sentinel grid 39-19",
+        "gridCellKey": "39-19",
+        "trainedProbability": 0.559,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:39-20",
+        "label": "Sentinel grid 39-20",
+        "gridCellKey": "39-20",
+        "trainedProbability": 0.562,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:39-21",
+        "label": "Sentinel grid 39-21",
+        "gridCellKey": "39-21",
+        "trainedProbability": 0.563,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:39-30",
+        "label": "Sentinel grid 39-30",
+        "gridCellKey": "39-30",
+        "trainedProbability": 0.633,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:39-31",
+        "label": "Sentinel grid 39-31",
+        "gridCellKey": "39-31",
+        "trainedProbability": 0.599,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:40-16",
+        "label": "Sentinel grid 40-16",
+        "gridCellKey": "40-16",
+        "trainedProbability": 0.586,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:40-19",
+        "label": "Sentinel grid 40-19",
+        "gridCellKey": "40-19",
+        "trainedProbability": 0.568,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:40-21",
+        "label": "Sentinel grid 40-21",
+        "gridCellKey": "40-21",
+        "trainedProbability": 0.594,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:41-15",
+        "label": "Sentinel grid 41-15",
+        "gridCellKey": "41-15",
+        "trainedProbability": 0.627,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
+      },
+      {
+        "cellId": "mask-grid:41-16",
+        "label": "Sentinel grid 41-16",
+        "gridCellKey": "41-16",
+        "trainedProbability": 0.614,
+        "observedWet": false,
+        "beforeMaskProbability": 0,
+        "observedMaskProbability": 0
       }
     ]
   },
   "thresholdTuning": {
     "heuristic": {
       "status": "evaluated",
-      "selectedThreshold": 0.85,
+      "selectedThreshold": 0.02,
       "selectedMetric": "f1_then_false_safe",
       "selected": {
-        "threshold": 0.85,
-        "precision": 1,
-        "recall": 0,
-        "f1": 0,
-        "falseSafeRate": 1,
-        "unnecessaryBlockRate": 0,
-        "truePositive": 0,
-        "falsePositive": 0,
-        "falseNegative": 3,
-        "trueNegative": 5
+        "threshold": 0.02,
+        "precision": 0.667,
+        "recall": 1,
+        "f1": 0.8,
+        "falseSafeRate": 0,
+        "unnecessaryBlockRate": 0.333,
+        "truePositive": 4,
+        "falsePositive": 2,
+        "falseNegative": 0,
+        "trueNegative": 0
       },
       "candidates": [
         {
+          "threshold": 0.02,
+          "precision": 0.667,
+          "recall": 1,
+          "f1": 0.8,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 4,
+          "falsePositive": 2,
+          "falseNegative": 0,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.04,
+          "precision": 0.667,
+          "recall": 1,
+          "f1": 0.8,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 4,
+          "falsePositive": 2,
+          "falseNegative": 0,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.06,
+          "precision": 0.667,
+          "recall": 1,
+          "f1": 0.8,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 4,
+          "falsePositive": 2,
+          "falseNegative": 0,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.08,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 3,
+          "falsePositive": 2,
+          "falseNegative": 1,
+          "trueNegative": 0
+        },
+        {
           "threshold": 0.1,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.625,
-          "truePositive": 0,
-          "falsePositive": 5,
-          "falseNegative": 3,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 3,
+          "falsePositive": 2,
+          "falseNegative": 1,
           "trueNegative": 0
         },
         {
           "threshold": 0.15,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.625,
-          "truePositive": 0,
-          "falsePositive": 5,
-          "falseNegative": 3,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 3,
+          "falsePositive": 2,
+          "falseNegative": 1,
           "trueNegative": 0
         },
         {
           "threshold": 0.2,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.625,
-          "truePositive": 0,
-          "falsePositive": 5,
-          "falseNegative": 3,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 3,
+          "falsePositive": 2,
+          "falseNegative": 1,
           "trueNegative": 0
         },
         {
           "threshold": 0.25,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.625,
-          "truePositive": 0,
-          "falsePositive": 5,
-          "falseNegative": 3,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 3,
+          "falsePositive": 2,
+          "falseNegative": 1,
           "trueNegative": 0
         },
         {
           "threshold": 0.3,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.625,
-          "truePositive": 0,
-          "falsePositive": 5,
-          "falseNegative": 3,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 3,
+          "falsePositive": 2,
+          "falseNegative": 1,
           "trueNegative": 0
         },
         {
           "threshold": 0.35,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.5,
-          "truePositive": 0,
-          "falsePositive": 4,
-          "falseNegative": 3,
-          "trueNegative": 1
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "falseSafeRate": 0.5,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 2,
+          "falsePositive": 2,
+          "falseNegative": 2,
+          "trueNegative": 0
         },
         {
           "threshold": 0.4,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.5,
-          "truePositive": 0,
-          "falsePositive": 4,
-          "falseNegative": 3,
-          "trueNegative": 1
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "falseSafeRate": 0.5,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 2,
+          "falsePositive": 2,
+          "falseNegative": 2,
+          "trueNegative": 0
         },
         {
           "threshold": 0.45,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.5,
-          "truePositive": 0,
-          "falsePositive": 4,
-          "falseNegative": 3,
-          "trueNegative": 1
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "falseSafeRate": 0.5,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 2,
+          "falsePositive": 2,
+          "falseNegative": 2,
+          "trueNegative": 0
         },
         {
           "threshold": 0.5,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.5,
-          "truePositive": 0,
-          "falsePositive": 4,
-          "falseNegative": 3,
-          "trueNegative": 1
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "falseSafeRate": 0.5,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 2,
+          "falsePositive": 2,
+          "falseNegative": 2,
+          "trueNegative": 0
         },
         {
           "threshold": 0.55,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.375,
-          "truePositive": 0,
-          "falsePositive": 3,
+          "precision": 0.333,
+          "recall": 0.25,
+          "f1": 0.286,
+          "falseSafeRate": 0.75,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 1,
+          "falsePositive": 2,
           "falseNegative": 3,
-          "trueNegative": 2
+          "trueNegative": 0
         },
         {
           "threshold": 0.6,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.375,
-          "truePositive": 0,
-          "falsePositive": 3,
+          "precision": 0.333,
+          "recall": 0.25,
+          "f1": 0.286,
+          "falseSafeRate": 0.75,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 1,
+          "falsePositive": 2,
           "falseNegative": 3,
-          "trueNegative": 2
+          "trueNegative": 0
         },
         {
           "threshold": 0.65,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.375,
-          "truePositive": 0,
-          "falsePositive": 3,
+          "precision": 0.333,
+          "recall": 0.25,
+          "f1": 0.286,
+          "falseSafeRate": 0.75,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 1,
+          "falsePositive": 2,
           "falseNegative": 3,
-          "trueNegative": 2
+          "trueNegative": 0
         },
         {
           "threshold": 0.7,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.375,
-          "truePositive": 0,
-          "falsePositive": 3,
+          "precision": 0.333,
+          "recall": 0.25,
+          "f1": 0.286,
+          "falseSafeRate": 0.75,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 1,
+          "falsePositive": 2,
           "falseNegative": 3,
-          "trueNegative": 2
+          "trueNegative": 0
         },
         {
           "threshold": 0.75,
-          "precision": 0,
-          "recall": 0,
-          "f1": 0,
-          "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.25,
-          "truePositive": 0,
-          "falsePositive": 2,
+          "precision": 0.5,
+          "recall": 0.25,
+          "f1": 0.333,
+          "falseSafeRate": 0.75,
+          "unnecessaryBlockRate": 0.167,
+          "truePositive": 1,
+          "falsePositive": 1,
           "falseNegative": 3,
-          "trueNegative": 3
+          "trueNegative": 1
         },
         {
           "threshold": 0.8,
@@ -295,11 +5048,11 @@
           "recall": 0,
           "f1": 0,
           "falseSafeRate": 1,
-          "unnecessaryBlockRate": 0.125,
+          "unnecessaryBlockRate": 0.167,
           "truePositive": 0,
           "falsePositive": 1,
-          "falseNegative": 3,
-          "trueNegative": 4
+          "falseNegative": 4,
+          "trueNegative": 1
         },
         {
           "threshold": 0.85,
@@ -310,8 +5063,8 @@
           "unnecessaryBlockRate": 0,
           "truePositive": 0,
           "falsePositive": 0,
-          "falseNegative": 3,
-          "trueNegative": 5
+          "falseNegative": 4,
+          "trueNegative": 2
         },
         {
           "threshold": 0.9,
@@ -322,8 +5075,8 @@
           "unnecessaryBlockRate": 0,
           "truePositive": 0,
           "falsePositive": 0,
-          "falseNegative": 3,
-          "trueNegative": 5
+          "falseNegative": 4,
+          "trueNegative": 2
         },
         {
           "threshold": 0.95,
@@ -334,243 +5087,574 @@
           "unnecessaryBlockRate": 0,
           "truePositive": 0,
           "falsePositive": 0,
-          "falseNegative": 3,
-          "trueNegative": 5
+          "falseNegative": 4,
+          "trueNegative": 2
         }
       ]
     },
     "trained": {
       "status": "evaluated",
-      "selectedThreshold": 0.35,
+      "selectedThreshold": 0.02,
       "selectedMetric": "f1_then_false_safe",
       "selected": {
-        "threshold": 0.35,
-        "precision": 1,
+        "threshold": 0.02,
+        "precision": 0.667,
         "recall": 1,
-        "f1": 1,
+        "f1": 0.8,
         "falseSafeRate": 0,
-        "unnecessaryBlockRate": 0,
-        "truePositive": 3,
-        "falsePositive": 0,
+        "unnecessaryBlockRate": 0.333,
+        "truePositive": 4,
+        "falsePositive": 2,
         "falseNegative": 0,
-        "trueNegative": 5
+        "trueNegative": 0
       },
       "candidates": [
         {
-          "threshold": 0.1,
-          "precision": 0.6,
+          "threshold": 0.02,
+          "precision": 0.667,
           "recall": 1,
-          "f1": 0.75,
+          "f1": 0.8,
           "falseSafeRate": 0,
-          "unnecessaryBlockRate": 0.25,
-          "truePositive": 3,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 4,
           "falsePositive": 2,
           "falseNegative": 0,
-          "trueNegative": 3
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.04,
+          "precision": 0.667,
+          "recall": 1,
+          "f1": 0.8,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 4,
+          "falsePositive": 2,
+          "falseNegative": 0,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.06,
+          "precision": 0.667,
+          "recall": 1,
+          "f1": 0.8,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 4,
+          "falsePositive": 2,
+          "falseNegative": 0,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.08,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 3,
+          "falsePositive": 2,
+          "falseNegative": 1,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.1,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 3,
+          "falsePositive": 2,
+          "falseNegative": 1,
+          "trueNegative": 0
         },
         {
           "threshold": 0.15,
-          "precision": 0.75,
-          "recall": 1,
-          "f1": 0.857,
-          "falseSafeRate": 0,
-          "unnecessaryBlockRate": 0.125,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
           "truePositive": 3,
-          "falsePositive": 1,
-          "falseNegative": 0,
-          "trueNegative": 4
+          "falsePositive": 2,
+          "falseNegative": 1,
+          "trueNegative": 0
         },
         {
           "threshold": 0.2,
-          "precision": 0.75,
-          "recall": 1,
-          "f1": 0.857,
-          "falseSafeRate": 0,
-          "unnecessaryBlockRate": 0.125,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
           "truePositive": 3,
-          "falsePositive": 1,
-          "falseNegative": 0,
-          "trueNegative": 4
+          "falsePositive": 2,
+          "falseNegative": 1,
+          "trueNegative": 0
         },
         {
           "threshold": 0.25,
-          "precision": 0.75,
-          "recall": 1,
-          "f1": 0.857,
-          "falseSafeRate": 0,
-          "unnecessaryBlockRate": 0.125,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
           "truePositive": 3,
-          "falsePositive": 1,
-          "falseNegative": 0,
-          "trueNegative": 4
+          "falsePositive": 2,
+          "falseNegative": 1,
+          "trueNegative": 0
         },
         {
           "threshold": 0.3,
-          "precision": 0.75,
-          "recall": 1,
-          "f1": 0.857,
-          "falseSafeRate": 0,
-          "unnecessaryBlockRate": 0.125,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
           "truePositive": 3,
-          "falsePositive": 1,
-          "falseNegative": 0,
-          "trueNegative": 4
+          "falsePositive": 2,
+          "falseNegative": 1,
+          "trueNegative": 0
         },
         {
           "threshold": 0.35,
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "falseSafeRate": 0,
-          "unnecessaryBlockRate": 0,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
           "truePositive": 3,
-          "falsePositive": 0,
-          "falseNegative": 0,
-          "trueNegative": 5
+          "falsePositive": 2,
+          "falseNegative": 1,
+          "trueNegative": 0
         },
         {
           "threshold": 0.4,
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "falseSafeRate": 0,
-          "unnecessaryBlockRate": 0,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
           "truePositive": 3,
-          "falsePositive": 0,
-          "falseNegative": 0,
-          "trueNegative": 5
+          "falsePositive": 2,
+          "falseNegative": 1,
+          "trueNegative": 0
         },
         {
           "threshold": 0.45,
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "falseSafeRate": 0,
-          "unnecessaryBlockRate": 0,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
           "truePositive": 3,
-          "falsePositive": 0,
-          "falseNegative": 0,
-          "trueNegative": 5
+          "falsePositive": 2,
+          "falseNegative": 1,
+          "trueNegative": 0
         },
         {
           "threshold": 0.5,
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "falseSafeRate": 0,
-          "unnecessaryBlockRate": 0,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
           "truePositive": 3,
-          "falsePositive": 0,
-          "falseNegative": 0,
-          "trueNegative": 5
+          "falsePositive": 2,
+          "falseNegative": 1,
+          "trueNegative": 0
         },
         {
           "threshold": 0.55,
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "falseSafeRate": 0,
-          "unnecessaryBlockRate": 0,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.667,
+          "falseSafeRate": 0.25,
+          "unnecessaryBlockRate": 0.333,
           "truePositive": 3,
-          "falsePositive": 0,
-          "falseNegative": 0,
-          "trueNegative": 5
+          "falsePositive": 2,
+          "falseNegative": 1,
+          "trueNegative": 0
         },
         {
           "threshold": 0.6,
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "falseSafeRate": 0,
-          "unnecessaryBlockRate": 0,
-          "truePositive": 3,
-          "falsePositive": 0,
-          "falseNegative": 0,
-          "trueNegative": 5
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "falseSafeRate": 0.5,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 2,
+          "falsePositive": 2,
+          "falseNegative": 2,
+          "trueNegative": 0
         },
         {
           "threshold": 0.65,
-          "precision": 1,
-          "recall": 1,
-          "f1": 1,
-          "falseSafeRate": 0,
-          "unnecessaryBlockRate": 0,
-          "truePositive": 3,
-          "falsePositive": 0,
-          "falseNegative": 0,
-          "trueNegative": 5
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "falseSafeRate": 0.5,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 2,
+          "falsePositive": 2,
+          "falseNegative": 2,
+          "trueNegative": 0
         },
         {
           "threshold": 0.7,
-          "precision": 1,
-          "recall": 0.667,
-          "f1": 0.8,
-          "falseSafeRate": 0.333,
-          "unnecessaryBlockRate": 0,
+          "precision": 0.5,
+          "recall": 0.5,
+          "f1": 0.5,
+          "falseSafeRate": 0.5,
+          "unnecessaryBlockRate": 0.333,
           "truePositive": 2,
-          "falsePositive": 0,
-          "falseNegative": 1,
-          "trueNegative": 5
+          "falsePositive": 2,
+          "falseNegative": 2,
+          "trueNegative": 0
         },
         {
           "threshold": 0.75,
-          "precision": 1,
-          "recall": 0.667,
-          "f1": 0.8,
-          "falseSafeRate": 0.333,
-          "unnecessaryBlockRate": 0,
-          "truePositive": 2,
-          "falsePositive": 0,
-          "falseNegative": 1,
-          "trueNegative": 5
+          "precision": 0.333,
+          "recall": 0.25,
+          "f1": 0.286,
+          "falseSafeRate": 0.75,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 1,
+          "falsePositive": 2,
+          "falseNegative": 3,
+          "trueNegative": 0
         },
         {
           "threshold": 0.8,
-          "precision": 1,
-          "recall": 0.667,
-          "f1": 0.8,
-          "falseSafeRate": 0.333,
-          "unnecessaryBlockRate": 0,
-          "truePositive": 2,
-          "falsePositive": 0,
-          "falseNegative": 1,
-          "trueNegative": 5
+          "precision": 0.333,
+          "recall": 0.25,
+          "f1": 0.286,
+          "falseSafeRate": 0.75,
+          "unnecessaryBlockRate": 0.333,
+          "truePositive": 1,
+          "falsePositive": 2,
+          "falseNegative": 3,
+          "trueNegative": 0
         },
         {
           "threshold": 0.85,
-          "precision": 1,
-          "recall": 0.333,
-          "f1": 0.5,
-          "falseSafeRate": 0.667,
-          "unnecessaryBlockRate": 0,
+          "precision": 0.333,
+          "recall": 0.25,
+          "f1": 0.286,
+          "falseSafeRate": 0.75,
+          "unnecessaryBlockRate": 0.333,
           "truePositive": 1,
-          "falsePositive": 0,
-          "falseNegative": 2,
-          "trueNegative": 5
+          "falsePositive": 2,
+          "falseNegative": 3,
+          "trueNegative": 0
         },
         {
           "threshold": 0.9,
-          "precision": 1,
-          "recall": 0.333,
-          "f1": 0.5,
-          "falseSafeRate": 0.667,
-          "unnecessaryBlockRate": 0,
+          "precision": 0.5,
+          "recall": 0.25,
+          "f1": 0.333,
+          "falseSafeRate": 0.75,
+          "unnecessaryBlockRate": 0.167,
           "truePositive": 1,
-          "falsePositive": 0,
-          "falseNegative": 2,
-          "trueNegative": 5
+          "falsePositive": 1,
+          "falseNegative": 3,
+          "trueNegative": 1
         },
         {
           "threshold": 0.95,
           "precision": 1,
-          "recall": 0.333,
-          "f1": 0.5,
-          "falseSafeRate": 0.667,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
           "unnecessaryBlockRate": 0,
-          "truePositive": 1,
+          "truePositive": 0,
           "falsePositive": 0,
-          "falseNegative": 2,
-          "trueNegative": 5
+          "falseNegative": 4,
+          "trueNegative": 2
+        }
+      ]
+    },
+    "maskGrid": {
+      "status": "evaluated",
+      "selectedThreshold": 0.6,
+      "selectedMetric": "f1_then_false_safe",
+      "selected": {
+        "threshold": 0.6,
+        "precision": 0.118,
+        "recall": 0.632,
+        "f1": 0.198,
+        "falseSafeRate": 0.368,
+        "unnecessaryBlockRate": 0.173,
+        "truePositive": 12,
+        "falsePositive": 90,
+        "falseNegative": 7,
+        "trueNegative": 410
+      },
+      "candidates": [
+        {
+          "threshold": 0.02,
+          "precision": 0.037,
+          "recall": 1,
+          "f1": 0.071,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.963,
+          "truePositive": 19,
+          "falsePositive": 500,
+          "falseNegative": 0,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.04,
+          "precision": 0.037,
+          "recall": 1,
+          "f1": 0.071,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.963,
+          "truePositive": 19,
+          "falsePositive": 500,
+          "falseNegative": 0,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.06,
+          "precision": 0.037,
+          "recall": 1,
+          "f1": 0.071,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.963,
+          "truePositive": 19,
+          "falsePositive": 500,
+          "falseNegative": 0,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.08,
+          "precision": 0.037,
+          "recall": 1,
+          "f1": 0.071,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.963,
+          "truePositive": 19,
+          "falsePositive": 500,
+          "falseNegative": 0,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.1,
+          "precision": 0.037,
+          "recall": 1,
+          "f1": 0.071,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.963,
+          "truePositive": 19,
+          "falsePositive": 500,
+          "falseNegative": 0,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.15,
+          "precision": 0.037,
+          "recall": 1,
+          "f1": 0.071,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.963,
+          "truePositive": 19,
+          "falsePositive": 500,
+          "falseNegative": 0,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.2,
+          "precision": 0.037,
+          "recall": 1,
+          "f1": 0.071,
+          "falseSafeRate": 0,
+          "unnecessaryBlockRate": 0.963,
+          "truePositive": 19,
+          "falsePositive": 500,
+          "falseNegative": 0,
+          "trueNegative": 0
+        },
+        {
+          "threshold": 0.25,
+          "precision": 0.033,
+          "recall": 0.842,
+          "f1": 0.063,
+          "falseSafeRate": 0.158,
+          "unnecessaryBlockRate": 0.917,
+          "truePositive": 16,
+          "falsePositive": 476,
+          "falseNegative": 3,
+          "trueNegative": 24
+        },
+        {
+          "threshold": 0.3,
+          "precision": 0.055,
+          "recall": 0.842,
+          "f1": 0.103,
+          "falseSafeRate": 0.158,
+          "unnecessaryBlockRate": 0.532,
+          "truePositive": 16,
+          "falsePositive": 276,
+          "falseNegative": 3,
+          "trueNegative": 224
+        },
+        {
+          "threshold": 0.35,
+          "precision": 0.056,
+          "recall": 0.842,
+          "f1": 0.105,
+          "falseSafeRate": 0.158,
+          "unnecessaryBlockRate": 0.522,
+          "truePositive": 16,
+          "falsePositive": 271,
+          "falseNegative": 3,
+          "trueNegative": 229
+        },
+        {
+          "threshold": 0.4,
+          "precision": 0.053,
+          "recall": 0.789,
+          "f1": 0.099,
+          "falseSafeRate": 0.211,
+          "unnecessaryBlockRate": 0.518,
+          "truePositive": 15,
+          "falsePositive": 269,
+          "falseNegative": 4,
+          "trueNegative": 231
+        },
+        {
+          "threshold": 0.45,
+          "precision": 0.082,
+          "recall": 0.737,
+          "f1": 0.147,
+          "falseSafeRate": 0.263,
+          "unnecessaryBlockRate": 0.303,
+          "truePositive": 14,
+          "falsePositive": 157,
+          "falseNegative": 5,
+          "trueNegative": 343
+        },
+        {
+          "threshold": 0.5,
+          "precision": 0.087,
+          "recall": 0.684,
+          "f1": 0.155,
+          "falseSafeRate": 0.316,
+          "unnecessaryBlockRate": 0.262,
+          "truePositive": 13,
+          "falsePositive": 136,
+          "falseNegative": 6,
+          "trueNegative": 364
+        },
+        {
+          "threshold": 0.55,
+          "precision": 0.099,
+          "recall": 0.632,
+          "f1": 0.171,
+          "falseSafeRate": 0.368,
+          "unnecessaryBlockRate": 0.21,
+          "truePositive": 12,
+          "falsePositive": 109,
+          "falseNegative": 7,
+          "trueNegative": 391
+        },
+        {
+          "threshold": 0.6,
+          "precision": 0.118,
+          "recall": 0.632,
+          "f1": 0.198,
+          "falseSafeRate": 0.368,
+          "unnecessaryBlockRate": 0.173,
+          "truePositive": 12,
+          "falsePositive": 90,
+          "falseNegative": 7,
+          "trueNegative": 410
+        },
+        {
+          "threshold": 0.65,
+          "precision": 0.099,
+          "recall": 0.421,
+          "f1": 0.16,
+          "falseSafeRate": 0.579,
+          "unnecessaryBlockRate": 0.141,
+          "truePositive": 8,
+          "falsePositive": 73,
+          "falseNegative": 11,
+          "trueNegative": 427
+        },
+        {
+          "threshold": 0.7,
+          "precision": 0.063,
+          "recall": 0.158,
+          "f1": 0.09,
+          "falseSafeRate": 0.842,
+          "unnecessaryBlockRate": 0.087,
+          "truePositive": 3,
+          "falsePositive": 45,
+          "falseNegative": 16,
+          "trueNegative": 455
+        },
+        {
+          "threshold": 0.75,
+          "precision": 0.038,
+          "recall": 0.053,
+          "f1": 0.044,
+          "falseSafeRate": 0.947,
+          "unnecessaryBlockRate": 0.048,
+          "truePositive": 1,
+          "falsePositive": 25,
+          "falseNegative": 18,
+          "trueNegative": 475
+        },
+        {
+          "threshold": 0.8,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.015,
+          "truePositive": 0,
+          "falsePositive": 8,
+          "falseNegative": 19,
+          "trueNegative": 492
+        },
+        {
+          "threshold": 0.85,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0.002,
+          "truePositive": 0,
+          "falsePositive": 1,
+          "falseNegative": 19,
+          "trueNegative": 499
+        },
+        {
+          "threshold": 0.9,
+          "precision": 1,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 0,
+          "falsePositive": 0,
+          "falseNegative": 19,
+          "trueNegative": 500
+        },
+        {
+          "threshold": 0.95,
+          "precision": 1,
+          "recall": 0,
+          "f1": 0,
+          "falseSafeRate": 1,
+          "unnecessaryBlockRate": 0,
+          "truePositive": 0,
+          "falsePositive": 0,
+          "falseNegative": 19,
+          "trueNegative": 500
         }
       ]
     }
@@ -579,24 +5663,24 @@
     {
       "id": "current_flood_persistence",
       "label": "Current flood persists",
-      "brierScore": 0.432
+      "brierScore": 0.459
     },
     {
       "id": "historical_frequency",
       "label": "Historical frequency",
-      "brierScore": 0.548
+      "brierScore": 0.408
     },
     {
       "id": "rainfall_threshold",
       "label": "Rainfall threshold",
-      "brierScore": 0.504
+      "brierScore": 0.388
     }
   ],
   "confusion": {
-    "truePositive": 0,
-    "falsePositive": 4,
-    "falseNegative": 3,
-    "trueNegative": 1
+    "truePositive": 2,
+    "falsePositive": 2,
+    "falseNegative": 2,
+    "trueNegative": 0
   },
   "examples": [
     {
@@ -605,12 +5689,12 @@
       "model": "persistence-v1",
       "modelProbability": 0.796,
       "predictedWet": true,
-      "observedWet": false,
-      "observedMaskProbability": 0.594,
+      "observedWet": true,
+      "observedMaskProbability": 0.534,
       "beforeMaskProbability": 0.593,
       "recoveryMaskProbability": 0.569,
       "changedFromBefore": false,
-      "maskCoverage": 0.087,
+      "maskCoverage": 0.277,
       "fixtureObservedWet": true,
       "baselines": {
         "currentFloodPersistence": 0.82,
@@ -637,11 +5721,11 @@
       "modelProbability": 0.801,
       "predictedWet": true,
       "observedWet": false,
-      "observedMaskProbability": 0.456,
+      "observedMaskProbability": 0.501,
       "beforeMaskProbability": 0,
       "recoveryMaskProbability": 0,
       "changedFromBefore": false,
-      "maskCoverage": 0.01,
+      "maskCoverage": 0.031,
       "fixtureObservedWet": true,
       "baselines": {
         "currentFloodPersistence": 0.82,
@@ -668,11 +5752,11 @@
       "modelProbability": 0.731,
       "predictedWet": true,
       "observedWet": false,
-      "observedMaskProbability": 0.474,
+      "observedMaskProbability": 0.506,
       "beforeMaskProbability": 0,
       "recoveryMaskProbability": 0.485,
       "changedFromBefore": false,
-      "maskCoverage": 0.018,
+      "maskCoverage": 0.081,
       "fixtureObservedWet": true,
       "baselines": {
         "currentFloodPersistence": 0.18,
@@ -698,12 +5782,12 @@
       "model": "wetting-v1",
       "modelProbability": 0.343,
       "predictedWet": false,
-      "observedWet": false,
-      "observedMaskProbability": 0.565,
+      "observedWet": true,
+      "observedMaskProbability": 0.545,
       "beforeMaskProbability": 0.454,
       "recoveryMaskProbability": 0.523,
-      "changedFromBefore": false,
-      "maskCoverage": 0.002,
+      "changedFromBefore": true,
+      "maskCoverage": 0.088,
       "fixtureObservedWet": false,
       "baselines": {
         "currentFloodPersistence": 0.18,
@@ -730,11 +5814,11 @@
       "modelProbability": 0.066,
       "predictedWet": false,
       "observedWet": true,
-      "observedMaskProbability": 0.697,
+      "observedMaskProbability": 0.532,
       "beforeMaskProbability": 0.631,
       "recoveryMaskProbability": 0.771,
       "changedFromBefore": false,
-      "maskCoverage": 0.328,
+      "maskCoverage": 0.025,
       "fixtureObservedWet": false,
       "baselines": {
         "currentFloodPersistence": 0.18,
@@ -755,79 +5839,17 @@
       ]
     },
     {
-      "cellId": "amboseli-30m-v1:western-gate",
-      "label": "Western Gate Road",
-      "model": "wetting-v1",
-      "modelProbability": 0.044,
-      "predictedWet": false,
-      "observedWet": true,
-      "observedMaskProbability": 0.643,
-      "beforeMaskProbability": 0.767,
-      "recoveryMaskProbability": 0.556,
-      "changedFromBefore": false,
-      "maskCoverage": 0.097,
-      "fixtureObservedWet": false,
-      "baselines": {
-        "currentFloodPersistence": 0.18,
-        "historicalFrequency": 0.1,
-        "rainfallThreshold": 0.18
-      },
-      "features": [
-        1,
-        0,
-        0.38,
-        0.45,
-        0.1,
-        1.1,
-        0.04,
-        0.42000000000000004,
-        0,
-        0.06666666666666667
-      ]
-    },
-    {
-      "cellId": "amboseli-30m-v1:observation-hill",
-      "label": "Observation Hill",
-      "model": "wetting-v1",
-      "modelProbability": 0.017,
-      "predictedWet": false,
-      "observedWet": true,
-      "observedMaskProbability": 0.627,
-      "beforeMaskProbability": 0.723,
-      "recoveryMaskProbability": 0.623,
-      "changedFromBefore": false,
-      "maskCoverage": 0.175,
-      "fixtureObservedWet": false,
-      "baselines": {
-        "currentFloodPersistence": 0.18,
-        "historicalFrequency": 0.06,
-        "rainfallThreshold": 0.18
-      },
-      "features": [
-        1,
-        0,
-        0.35,
-        0.42,
-        0.06,
-        1.36,
-        0.02,
-        0,
-        0,
-        0.03333333333333333
-      ]
-    },
-    {
       "cellId": "amboseli-30m-v1:northern-loop",
       "label": "Northern Loop Margin",
       "model": "wetting-v1",
       "modelProbability": 0.547,
       "predictedWet": true,
-      "observedWet": false,
-      "observedMaskProbability": 0.55,
+      "observedWet": true,
+      "observedMaskProbability": 0.589,
       "beforeMaskProbability": 0.525,
       "recoveryMaskProbability": 0.513,
       "changedFromBefore": false,
-      "maskCoverage": 0.032,
+      "maskCoverage": 0.088,
       "fixtureObservedWet": true,
       "baselines": {
         "currentFloodPersistence": 0.18,

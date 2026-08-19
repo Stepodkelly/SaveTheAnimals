@@ -91,6 +91,7 @@ export type SentinelFloodMaskManifest = {
       sampleHeight?: number;
       cellsX?: number;
       cellsY?: number;
+      probableFloodThreshold?: number;
     };
     georeference: {
       source: string;
@@ -310,6 +311,12 @@ export type V2RealMaskEvaluation = {
       end?: string;
     } | null;
   };
+  sampleSummary?: {
+    replayFixtureCells: number;
+    replayCellsWithMaskCoverage: number;
+    maskGridDiagnosticCells: number;
+    note: string;
+  };
   metrics: {
     evaluatedCells: number;
     brierScore: number;
@@ -336,9 +343,39 @@ export type V2RealMaskEvaluation = {
       observedWet: boolean;
     }>;
   };
+  maskGridRegression?: {
+    protocol: string;
+    status: "evaluated" | "insufficient_examples";
+    caveat: string;
+    featureNames: string[];
+    metrics: {
+      evaluatedCells: number;
+      observedWetCells?: number;
+      observedDryOrPossibleCells?: number;
+      brierScore: number | null;
+      calibrationError: number | null;
+      precision: number | null;
+      recall: number | null;
+    };
+    baselines: Array<{
+      id: string;
+      label: string;
+      brierScore: number;
+    }>;
+    predictions?: Array<{
+      cellId: string;
+      label: string;
+      gridCellKey: string;
+      trainedProbability: number;
+      observedWet: boolean;
+      beforeMaskProbability: number;
+      observedMaskProbability: number;
+    }>;
+  };
   thresholdTuning: {
     heuristic: V2ThresholdSweep;
     trained: V2ThresholdSweep;
+    maskGrid?: V2ThresholdSweep;
   };
   baselines: Array<{
     id: string;
@@ -351,6 +388,54 @@ export type V2RealMaskEvaluation = {
     falseNegative: number;
     trueNegative: number;
   };
+};
+
+export type GroundTruthValidationReport = {
+  generatedAt: string;
+  method: string;
+  validationStatus: "no_ground_truth_yet" | "candidate_sources_found" | "partially_ground_truthed";
+  caveat: string;
+  observationWindow: ObservationWindow;
+  reviewInputs: {
+    eventOverrideRows: number;
+    reviewedEventRows: number;
+    observationOverrideRows: number;
+    reviewedObservationRows: number;
+    spatialOverrideFeatures: number;
+    reviewedSpatialFeatures: number;
+  };
+  sourceSearch: {
+    mode: "not_run" | "live_exa";
+    candidateSources: number;
+    candidateExactRoadSources: number;
+    note: string;
+  };
+  roadStatuses: Array<{
+    roadId: string;
+    roadName: string;
+    validationStatus: "unverified" | "reviewed_inconclusive" | "closed_verified" | "open_verified";
+    reviewedObservationCount: number;
+    reviewedSpatialObservationCount: number;
+    satelliteFlag: "none" | "direct_probable_flood" | "direct_possible_flood" | "nearby_flood";
+    maxMappedFloodProbability: number;
+    notes: string;
+  }>;
+  summary: {
+    roads: number;
+    verifiedRoadCount: number;
+    unverifiedRoadCount: number;
+    candidateSources: number;
+    candidateExactRoadSources: number;
+  };
+  requiredNextEvidence: string[];
+  candidateSources: Array<{
+    title: string;
+    url: string;
+    publishedDate?: string;
+    query: string;
+    matchedRoadIds: string[];
+    reviewStatus: "candidate_unreviewed";
+  }>;
 };
 
 export type V2ThresholdSweep = {

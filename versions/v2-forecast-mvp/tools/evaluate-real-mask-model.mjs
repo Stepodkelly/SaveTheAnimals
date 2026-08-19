@@ -8,7 +8,7 @@ const manifestPath = path.join(rootDir, "public/data/amboseli/sentinel1-flood-ma
 const publicReportPath = path.join(rootDir, "public/data/amboseli/v2-real-mask-evaluation.json");
 const assetReportPath = path.join(rootDir, "versions/v2-forecast-mvp/data/reports/v2_real_mask_evaluation.json");
 const wetThreshold = 0.5;
-const maskWetThreshold = 0.62;
+const maskWetThreshold = Number(process.env.PROBABLE_FLOOD_THRESHOLD ?? 0.52);
 
 for (const requiredPath of [replayCellsPath, manifestPath]) {
   if (!fs.existsSync(requiredPath)) throw new Error(`Missing ${path.relative(rootDir, requiredPath)}.`);
@@ -24,9 +24,12 @@ const examples = replayCells.features.map((cell) => evaluateCell(cell, beforeMas
 const labeledExamples = examples.filter((example) => example.maskCoverage > 0);
 const evaluationPairs = labeledExamples.map((example) => [example.modelProbability, example.observedWet ? 1 : 0]);
 const trainedRegression = trainAndEvaluate(labeledExamples);
+const maskGridExamples = buildMaskGridExamples(beforeMask, duringMask, recoveryMask);
+const maskGridRegression = trainAndEvaluateGrid(maskGridExamples);
 const thresholdTuning = {
   heuristic: thresholdSweep(labeledExamples, "modelProbability"),
-  trained: thresholdSweep(trainedRegression.predictions ?? [], "trainedProbability")
+  trained: thresholdSweep(trainedRegression.predictions ?? [], "trainedProbability"),
+  maskGrid: thresholdSweep(maskGridRegression.predictions ?? [], "trainedProbability")
 };
 const report = {
   generatedAt: new Date().toISOString(),
@@ -44,8 +47,16 @@ const report = {
     beforeFlooding: maskRecords.beforeFlooding?.observedRange ?? null,
     recoveryComparison: maskRecords.recoveryComparison?.observedRange ?? null
   },
+  sampleSummary: {
+    replayFixtureCells: examples.length,
+    replayCellsWithMaskCoverage: labeledExamples.length,
+    maskGridDiagnosticCells: maskGridExamples.length,
+    note:
+      "Replay-cell metrics keep the hand-authored scenario fixtures. Mask-grid diagnostics add broader Sentinel-derived cells without treating them as field truth."
+  },
   metrics: metrics(evaluationPairs, labeledExamples),
   trainedRegression,
+  maskGridRegression,
   thresholdTuning,
   baselines: baselines(labeledExamples),
   confusion: confusion(labeledExamples),
@@ -98,6 +109,189 @@ function evaluateCell(cell, before, during, recovery) {
     },
     features: featureVector(cell.properties)
   };
+}
+
+function buildMaskGridExamples(before, during, recovery) {
+  const byKey = new Map();
+  for (const feature of [...before.features, ...during.features, ...recovery.features]) {
+    const key = gridKey(feature.properties.cellId);
+    if (!key) continue;
+    const record = byKey.get(key) ?? {
+      gridCellKey: key,
+      geometry: feature.geometry,
+      beforeProbability: 0,
+      duringProbability: 0,
+      recoveryProbability: 0
+    };
+    if (feature.properties.window === "beforeFlooding") record.beforeProbability = feature.properties.floodProbability;
+    if (feature.properties.window === "duringFlooding") record.duringProbability = feature.properties.floodProbability;
+    if (feature.properties.window === "recoveryComparison") record.recoveryProbability = feature.properties.floodProbability;
+    byKey.set(key, record);
+  }
+
+  const beforeWetKeys = [...byKey.values()]
+    .filter((record) => record.beforeProbability >= wetThreshold)
+    .map((record) => record.geometry);
+
+  return [...byKey.values()].map((record) => {
+    const observedWet = record.duringProbability >= maskWetThreshold;
+    const historicalWaterProxy = Math.max(record.beforeProbability, record.recoveryProbability);
+    const distanceToBeforeWetM = nearestDistanceMeters(record.geometry, beforeWetKeys);
+    const features = [
+      1,
+      record.beforeProbability,
+      historicalWaterProxy,
+      Math.min(distanceToBeforeWetM / 1000, 3),
+      record.beforeProbability >= wetThreshold ? 1 : 0
+    ];
+    const modelProbability = maskGridHeuristicProbability({
+      beforeProbability: record.beforeProbability,
+      historicalWaterProxy,
+      distanceToBeforeWetM
+    });
+
+    return {
+      cellId: `mask-grid:${record.gridCellKey}`,
+      label: `Sentinel grid ${record.gridCellKey}`,
+      gridCellKey: record.gridCellKey,
+      model: record.beforeProbability >= wetThreshold ? "persistence-v1" : "wetting-v1",
+      modelProbability,
+      predictedWet: modelProbability >= wetThreshold,
+      observedWet,
+      observedMaskProbability: round(record.duringProbability),
+      beforeMaskProbability: round(record.beforeProbability),
+      recoveryMaskProbability: round(record.recoveryProbability),
+      changedFromBefore: observedWet && record.beforeProbability < wetThreshold,
+      maskCoverage: record.duringProbability > 0 ? 1 : 0,
+      fixtureObservedWet: observedWet,
+      baselines: {
+        currentFloodPersistence: record.beforeProbability >= wetThreshold ? 0.74 : 0.16,
+        historicalFrequency: historicalWaterProxy,
+        rainfallThreshold: historicalWaterProxy >= 0.5 ? 0.62 : 0.31
+      },
+      features
+    };
+  });
+}
+
+function trainAndEvaluateGrid(examples) {
+  if (examples.length < 12) {
+    return {
+      protocol: "leave-one-mask-grid-cell-out-logistic-regression",
+      status: "insufficient_examples",
+      caveat: "Mask grid had too few cells for a meaningful diagnostic regression.",
+      featureNames: gridFeatureNames(),
+      metrics: {
+        evaluatedCells: examples.length,
+        brierScore: null,
+        calibrationError: null,
+        precision: null,
+        recall: null
+      },
+      baselines: gridBaselines(examples)
+    };
+  }
+
+  const predictions = examples.map((heldOut, index) => {
+    const training = examples.filter((_, candidateIndex) => candidateIndex !== index);
+    const weights = fitLogisticWithNames(training, gridFeatureNames(), { balanceClasses: true });
+    return {
+      ...heldOut,
+      trainedProbability: round(sigmoid(dot(weights, heldOut.features))),
+      trainedPredictedWet: sigmoid(dot(weights, heldOut.features)) >= wetThreshold
+    };
+  });
+  const pairs = predictions.map((example) => [example.trainedProbability, example.observedWet ? 1 : 0]);
+
+  return {
+    protocol: "leave-one-mask-grid-cell-out-logistic-regression",
+    status: "evaluated",
+    caveat:
+      "This larger diagnostic is trained and evaluated against generated Sentinel mask cells. It broadens the regression check but is not independent field validation.",
+    featureNames: gridFeatureNames(),
+    metrics: {
+      evaluatedCells: predictions.length,
+      observedWetCells: predictions.filter((example) => example.observedWet).length,
+      observedDryOrPossibleCells: predictions.filter((example) => !example.observedWet).length,
+      brierScore: brier(pairs),
+      calibrationError: calibration(pairs),
+      precision: precisionWithKey(predictions, "trainedPredictedWet"),
+      recall: recallWithKey(predictions, "trainedPredictedWet")
+    },
+    baselines: gridBaselines(predictions),
+    predictions: predictions.map((example) => ({
+      cellId: example.cellId,
+      label: example.label,
+      gridCellKey: example.gridCellKey,
+      trainedProbability: example.trainedProbability,
+      observedWet: example.observedWet,
+      beforeMaskProbability: example.beforeMaskProbability,
+      observedMaskProbability: example.observedMaskProbability
+    }))
+  };
+}
+
+function gridBaselines(examples) {
+  if (examples.length === 0) return [];
+  return [
+    {
+      id: "before_mask_persistence",
+      label: "Before-mask persistence",
+      brierScore: brier(examples.map((example) => [example.beforeMaskProbability, example.observedWet ? 1 : 0]))
+    },
+    {
+      id: "historical_water_proxy",
+      label: "Before/recovery water proxy",
+      brierScore: brier(
+        examples.map((example) => [
+          Math.max(example.beforeMaskProbability, example.recoveryMaskProbability),
+          example.observedWet ? 1 : 0
+        ])
+      )
+    },
+    {
+      id: "mask_grid_heuristic",
+      label: "Mask-grid heuristic",
+      brierScore: brier(examples.map((example) => [example.modelProbability, example.observedWet ? 1 : 0]))
+    }
+  ];
+}
+
+function gridFeatureNames() {
+  return [
+    "bias",
+    "before_mask_probability",
+    "historical_water_proxy",
+    "distance_to_before_wet_1000m",
+    "before_mask_wet"
+  ];
+}
+
+function maskGridHeuristicProbability({ beforeProbability, historicalWaterProxy, distanceToBeforeWetM }) {
+  return round(
+    sigmoid(
+      -1.55 +
+        beforeProbability * 1.8 +
+        historicalWaterProxy * 1.1 -
+        Math.min(distanceToBeforeWetM / 1000, 3) * 0.55
+    )
+  );
+}
+
+function nearestDistanceMeters(geometry, candidateGeometries) {
+  if (candidateGeometries.length === 0) return 3000;
+  const centroid = turf.centroid({ type: "Feature", properties: {}, geometry });
+  return Math.min(
+    ...candidateGeometries.map((candidate) => {
+      const candidateCentroid = turf.centroid({ type: "Feature", properties: {}, geometry: candidate });
+      return turf.distance(centroid, candidateCentroid, { units: "kilometers" }) * 1000;
+    })
+  );
+}
+
+function gridKey(cellId) {
+  const match = String(cellId).match(/-(\d+)-(\d+)$/);
+  return match ? `${match[1]}-${match[2]}` : null;
 }
 
 function maskObservation(cell, mask) {
@@ -210,7 +404,8 @@ function thresholdSweep(examples, probabilityKey) {
     };
   }
 
-  const candidates = Array.from({ length: 18 }, (_, index) => round(0.1 + index * 0.05))
+  const candidateThresholds = [0.02, 0.04, 0.06, 0.08, ...Array.from({ length: 18 }, (_, index) => round(0.1 + index * 0.05))];
+  const candidates = candidateThresholds
     .map((threshold) => thresholdMetrics(examples, probabilityKey, threshold));
   const selected = [...candidates].sort((a, b) => {
     if (b.f1 !== a.f1) return b.f1 - a.f1;
@@ -251,22 +446,36 @@ function thresholdMetrics(examples, probabilityKey, threshold) {
 }
 
 function fitLogistic(training) {
-  const weights = Array.from({ length: featureNames().length }, () => 0);
+  return fitLogisticWithNames(training, featureNames());
+}
+
+function fitLogisticWithNames(training, names, options = {}) {
+  const weights = Array.from({ length: names.length }, () => 0);
   const learningRate = 0.18;
   const l2 = 0.015;
+  const positives = training.filter((example) => example.observedWet).length;
+  const negatives = training.length - positives;
 
   for (let iteration = 0; iteration < 900; iteration += 1) {
     const gradients = Array.from({ length: weights.length }, () => 0);
+    let totalWeight = 0;
     for (const example of training) {
       const predicted = sigmoid(dot(weights, example.features));
       const actual = example.observedWet ? 1 : 0;
+      const exampleWeight =
+        options.balanceClasses && positives > 0 && negatives > 0
+          ? actual === 1
+            ? training.length / (2 * positives)
+            : training.length / (2 * negatives)
+          : 1;
+      totalWeight += exampleWeight;
       for (let index = 0; index < weights.length; index += 1) {
-        gradients[index] += (predicted - actual) * example.features[index];
+        gradients[index] += (predicted - actual) * example.features[index] * exampleWeight;
       }
     }
     for (let index = 0; index < weights.length; index += 1) {
       const regularization = index === 0 ? 0 : l2 * weights[index];
-      weights[index] -= learningRate * (gradients[index] / training.length + regularization);
+      weights[index] -= learningRate * (gradients[index] / Math.max(totalWeight, 1) + regularization);
     }
   }
 

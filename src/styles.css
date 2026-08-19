@@ -492,7 +492,8 @@ button {
 }
 
 .mask-summary,
-.mask-evaluation {
+.mask-evaluation,
+.confidence-note {
   display: grid;
   gap: 3px;
   margin-top: 9px;
@@ -502,7 +503,8 @@ button {
 }
 
 .mask-summary span,
-.mask-evaluation span {
+.mask-evaluation span,
+.confidence-note span {
   color: #5d5d5d;
   font-size: 10px;
   font-weight: 800;
@@ -510,15 +512,21 @@ button {
 }
 
 .mask-summary strong,
-.mask-evaluation strong {
+.mask-evaluation strong,
+.confidence-note strong {
   font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
   font-size: 12px;
 }
 
 .mask-summary small,
-.mask-evaluation small {
+.mask-evaluation small,
+.confidence-note small {
   color: #555;
   font-size: 11px;
+}
+
+.confidence-note {
+  background: #fffdf5;
 }
 
 .route-line {

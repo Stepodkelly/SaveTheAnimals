@@ -13,6 +13,7 @@ const sampleHeight = Number(process.env.SAMPLE_HEIGHT ?? 126);
 const cellsX = Number(process.env.CELLS_X ?? 48);
 const cellsY = Number(process.env.CELLS_Y ?? 42);
 const requireRawScenes = process.env.REQUIRE_RAW_SCENES === "true";
+const probableFloodThreshold = Number(process.env.PROBABLE_FLOOD_THRESHOLD ?? 0.52);
 
 const scenePath = path.join(rootDir, "public/data/amboseli/scene.json");
 const quicklookManifestPath = path.join(rootDir, "public/data/amboseli/sentinel1-quicklooks/manifest.json");
@@ -155,7 +156,8 @@ async function deriveWindowMask(windowKey) {
         sampleWidth,
         sampleHeight,
         cellsX,
-        cellsY
+        cellsY,
+        probableFloodThreshold
       },
       georeference: {
         source: "Copernicus STAC bbox",
@@ -258,7 +260,7 @@ function aggregateSceneScores(windowKey, perScene, demoBbox) {
           sourceSceneCount: validCells.length,
           floodProbability: round(probability, 3),
           confidence: round(confidence, 3),
-          classification: probability >= 0.62 ? "probable_flood" : "possible_flood",
+          classification: probability >= probableFloodThreshold ? "probable_flood" : "possible_flood",
           vvMean: round(mean(validCells.map((cell) => cell.vvMean)), 2),
           vhMean: round(mean(validCells.map((cell) => cell.vhMean)), 2),
           method: "sentinel1-multiscene-hybrid-v3",
@@ -554,10 +556,10 @@ function indexByGridCell(collection) {
 }
 
 function changeCategory(beforeProbability, duringProbability, recoveryProbability) {
-  if (duringProbability >= 0.62 && beforeProbability < 0.45) return "newly_flooded";
-  if (beforeProbability >= 0.62 && duringProbability >= 0.62) return "persistent_water";
-  if (duringProbability >= 0.62 && recoveryProbability < 0.45) return "recovered_or_drying";
-  if (recoveryProbability >= 0.62 && duringProbability < 0.62) return "residual_or_later_water";
+  if (duringProbability >= probableFloodThreshold && beforeProbability < 0.45) return "newly_flooded";
+  if (beforeProbability >= probableFloodThreshold && duringProbability >= probableFloodThreshold) return "persistent_water";
+  if (duringProbability >= probableFloodThreshold && recoveryProbability < 0.45) return "recovered_or_drying";
+  if (recoveryProbability >= probableFloodThreshold && duringProbability < probableFloodThreshold) return "residual_or_later_water";
   if (duringProbability >= 0.45 || recoveryProbability >= 0.45 || beforeProbability >= 0.45) return "possible_change";
   return "background";
 }

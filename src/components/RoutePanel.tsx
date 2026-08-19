@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import type {
   EvidenceItem,
+  GroundTruthValidationReport,
   IncidentLocation,
   IntelligenceResponse,
   LocalQuestionResponse,
@@ -38,6 +39,7 @@ type RoutePanelProps = {
   floodMaskManifest: SentinelFloodMaskManifest;
   roadMetrics: SentinelRoadMetricsReport;
   realMaskEvaluation: V2RealMaskEvaluation | null;
+  groundTruthValidation: GroundTruthValidationReport;
 };
 
 export function RoutePanel({
@@ -61,7 +63,8 @@ export function RoutePanel({
   sentinelQuicklooks,
   floodMaskManifest,
   roadMetrics,
-  realMaskEvaluation
+  realMaskEvaluation,
+  groundTruthValidation
 }: RoutePanelProps) {
   const [question, setQuestion] = useState("Which public office or ranger contact should verify road access?");
   const blockedEdges = edges.filter((edge) => edge.blocked);
@@ -74,6 +77,8 @@ export function RoutePanel({
   const activeFloodMask = floodMaskManifest.masks.find((mask) => mask.window === activeWindow);
   const activeRoadMetrics = roadMetrics.windows.find((windowMetrics) => windowMetrics.window === activeWindow);
   const changeCategories = floodMaskManifest.changeLayer?.categories ?? roadMetrics.changeLayer?.categories;
+  const maskGridCells = realMaskEvaluation?.sampleSummary?.maskGridDiagnosticCells ?? 0;
+  const verifiedRoads = groundTruthValidation.summary.verifiedRoadCount;
 
   function submitQuestion(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -195,6 +200,17 @@ export function RoutePanel({
             <small>
               {realMaskEvaluation.metrics.evaluatedCells} cells; {realMaskEvaluation.targetWindow.maskMethod}
             </small>
+            {realMaskEvaluation.sampleSummary && (
+              <small>
+                {realMaskEvaluation.sampleSummary.replayCellsWithMaskCoverage} replay cells + {maskGridCells} mask-grid
+                diagnostics
+              </small>
+            )}
+            {realMaskEvaluation.maskGridRegression?.metrics.brierScore !== undefined && (
+              <small>
+                grid regression {formatNullableMetric(realMaskEvaluation.maskGridRegression.metrics.brierScore)}
+              </small>
+            )}
             <small>
               tuned threshold {formatNullableMetric(realMaskEvaluation.thresholdTuning.trained.selectedThreshold)}
             </small>
@@ -258,6 +274,21 @@ export function RoutePanel({
             ))}
           </div>
         )}
+      </section>
+
+      <section className="panel-section">
+        <div className="confidence-note" aria-label="Data confidence and prototype limits">
+          <span>Data confidence</span>
+          <strong>{confidenceHeadline(activeFloodMask, groundTruthValidation)}</strong>
+          <small>
+            Satellite masks are planning overlays. Regression diagnostics use generated Sentinel mask cells, not
+            independent inundation labels.
+          </small>
+          <small>
+            Field validation: {verifiedRoads}/{groundTruthValidation.summary.roads || edges.length} roads verified;{" "}
+            {groundTruthValidation.summary.candidateSources} public candidate sources need review.
+          </small>
+        </div>
       </section>
 
       <section className="panel-section">
@@ -450,6 +481,21 @@ function asPercent(value: number) {
 
 function formatNullableMetric(value: number | null) {
   return value === null ? "--" : value.toFixed(3);
+}
+
+function confidenceHeadline(
+  activeFloodMask: SentinelFloodMaskManifest["masks"][number] | undefined,
+  groundTruthValidation: GroundTruthValidationReport
+) {
+  const rawScenes = activeFloodMask?.quality?.rawSceneCount ?? 0;
+  const quicklooks = activeFloodMask?.quality?.quicklookSceneCount ?? 0;
+  const validation =
+    groundTruthValidation.validationStatus === "partially_ground_truthed"
+      ? "field-reviewed"
+      : groundTruthValidation.validationStatus === "candidate_sources_found"
+        ? "candidate sources"
+        : "field truth pending";
+  return `${rawScenes} raw / ${quicklooks} preview scenes; ${validation}`;
 }
 
 function auditRoute(routeEdges: RoadEdge[], route: RouteResult) {

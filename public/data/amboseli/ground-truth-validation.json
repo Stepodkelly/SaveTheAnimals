@@ -1,0 +1,231 @@
+{
+  "generatedAt": "2026-08-19T14:31:43.953Z",
+  "method": "route-ground-truth-validation-v1",
+  "validationStatus": "candidate_sources_found",
+  "caveat": "Satellite masks and Exa/web candidates are not treated as field truth. A road becomes ground-truthed only when a reviewer records an official road, ranger, police, park, county, NGO, or field observation in the review override files.",
+  "observationWindow": {
+    "label": "During flooding",
+    "start": "2026-03-09",
+    "end": "2026-03-20"
+  },
+  "reviewInputs": {
+    "eventOverrideRows": 0,
+    "reviewedEventRows": 0,
+    "observationOverrideRows": 0,
+    "reviewedObservationRows": 0,
+    "spatialOverrideFeatures": 0,
+    "reviewedSpatialFeatures": 0
+  },
+  "sourceSearch": {
+    "mode": "live_exa",
+    "candidateSources": 10,
+    "candidateExactRoadSources": 0,
+    "note": "Candidate sources require human review before they affect routing."
+  },
+  "roadStatuses": [
+    {
+      "roadId": "base_to_central",
+      "roadName": "Base Road",
+      "validationStatus": "unverified",
+      "reviewedObservationCount": 0,
+      "reviewedSpatialObservationCount": 0,
+      "satelliteFlag": "none",
+      "maxMappedFloodProbability": 0,
+      "notes": "No reviewer-approved field or official source has been attached to this road yet."
+    },
+    {
+      "roadId": "central_to_eastern",
+      "roadName": "Low Marsh Road",
+      "validationStatus": "unverified",
+      "reviewedObservationCount": 0,
+      "reviewedSpatialObservationCount": 0,
+      "satelliteFlag": "direct_possible_flood",
+      "maxMappedFloodProbability": 0.522,
+      "notes": "No reviewer-approved field or official source has been attached to this road yet."
+    },
+    {
+      "roadId": "eastern_to_sinet",
+      "roadName": "Sinet Delta Spur",
+      "validationStatus": "unverified",
+      "reviewedObservationCount": 0,
+      "reviewedSpatialObservationCount": 0,
+      "satelliteFlag": "direct_possible_flood",
+      "maxMappedFloodProbability": 0.542,
+      "notes": "No reviewer-approved field or official source has been attached to this road yet."
+    },
+    {
+      "roadId": "base_to_ridge",
+      "roadName": "Dry Ridge Track",
+      "validationStatus": "unverified",
+      "reviewedObservationCount": 0,
+      "reviewedSpatialObservationCount": 0,
+      "satelliteFlag": "none",
+      "maxMappedFloodProbability": 0,
+      "notes": "No reviewer-approved field or official source has been attached to this road yet."
+    },
+    {
+      "roadId": "ridge_to_bypass",
+      "roadName": "Dry Ridge Connector",
+      "validationStatus": "unverified",
+      "reviewedObservationCount": 0,
+      "reviewedSpatialObservationCount": 0,
+      "satelliteFlag": "nearby_flood",
+      "maxMappedFloodProbability": 0.453,
+      "notes": "No reviewer-approved field or official source has been attached to this road yet."
+    },
+    {
+      "roadId": "bypass_to_eastern",
+      "roadName": "Southern Bypass",
+      "validationStatus": "unverified",
+      "reviewedObservationCount": 0,
+      "reviewedSpatialObservationCount": 0,
+      "satelliteFlag": "direct_possible_flood",
+      "maxMappedFloodProbability": 0.477,
+      "notes": "No reviewer-approved field or official source has been attached to this road yet."
+    },
+    {
+      "roadId": "central_to_north",
+      "roadName": "Northern Loop Link",
+      "validationStatus": "unverified",
+      "reviewedObservationCount": 0,
+      "reviewedSpatialObservationCount": 0,
+      "satelliteFlag": "direct_possible_flood",
+      "maxMappedFloodProbability": 0.573,
+      "notes": "No reviewer-approved field or official source has been attached to this road yet."
+    },
+    {
+      "roadId": "north_to_causeway",
+      "roadName": "Causeway Approach",
+      "validationStatus": "unverified",
+      "reviewedObservationCount": 0,
+      "reviewedSpatialObservationCount": 0,
+      "satelliteFlag": "none",
+      "maxMappedFloodProbability": 0,
+      "notes": "No reviewer-approved field or official source has been attached to this road yet."
+    },
+    {
+      "roadId": "eastern_to_north",
+      "roadName": "Eastern Loop Road",
+      "validationStatus": "unverified",
+      "reviewedObservationCount": 0,
+      "reviewedSpatialObservationCount": 0,
+      "satelliteFlag": "direct_possible_flood",
+      "maxMappedFloodProbability": 0.517,
+      "notes": "No reviewer-approved field or official source has been attached to this road yet."
+    },
+    {
+      "roadId": "base_to_hill",
+      "roadName": "Observation Hill Track",
+      "validationStatus": "unverified",
+      "reviewedObservationCount": 0,
+      "reviewedSpatialObservationCount": 0,
+      "satelliteFlag": "none",
+      "maxMappedFloodProbability": 0,
+      "notes": "No reviewer-approved field or official source has been attached to this road yet."
+    },
+    {
+      "roadId": "central_to_west",
+      "roadName": "Western Gate Road",
+      "validationStatus": "unverified",
+      "reviewedObservationCount": 0,
+      "reviewedSpatialObservationCount": 0,
+      "satelliteFlag": "none",
+      "maxMappedFloodProbability": 0,
+      "notes": "No reviewer-approved field or official source has been attached to this road yet."
+    }
+  ],
+  "summary": {
+    "roads": 11,
+    "verifiedRoadCount": 0,
+    "unverifiedRoadCount": 11,
+    "candidateSources": 10,
+    "candidateExactRoadSources": 0
+  },
+  "requiredNextEvidence": [
+    "Official or field-confirmed road-open/road-closed observations for named route segments.",
+    "Timestamped ranger, park, county, police, aid-organization, or conservancy reports for March 9-20, 2026.",
+    "Reviewer-entered spatial observations when a report is point- or polygon-specific."
+  ],
+  "candidateSources": [
+    {
+      "title": "KWS closes Amboseli Airstrip due to floods - The Star",
+      "url": "https://www.the-star.co.ke/news/2026-03-09-amboseli-airstrip-closed-due-to-floods",
+      "publishedDate": "2026-03-09T00:00:00.000Z",
+      "query": "Amboseli National Park flood road access March 2026 ranger",
+      "matchedRoadIds": [],
+      "reviewStatus": "candidate_unreviewed"
+    },
+    {
+      "title": "Heavy rains flood Amboseli Airstrip, forcing temporary closure",
+      "url": "https://www.getaway.co.za/travel-news/amboseli-airstrip-closure-heavy-rains/",
+      "publishedDate": "2026-03-10T00:00:00.000Z",
+      "query": "Amboseli National Park flood road access March 2026 ranger",
+      "matchedRoadIds": [],
+      "reviewStatus": "candidate_unreviewed"
+    },
+    {
+      "title": "Kenya’s Amboseli National Park Main Airstrip Shut After Heavy Flooding as Authorities Redirect Flights to Tawi Airstrip Near Mount Kilimanjaro - Travel And Tour World",
+      "url": "https://www.travelandtourworld.com/news/article/kenyas-amboseli-national-park-main-airstrip-shut-after-heavy-flooding-as-authorities-redirect-flights-to-tawi-airstrip-near-mount-kilimanjaro/",
+      "publishedDate": "2026-03-11T00:00:00.000Z",
+      "query": "Amboseli National Park flood road access March 2026 ranger",
+      "matchedRoadIds": [],
+      "reviewStatus": "candidate_unreviewed"
+    },
+    {
+      "title": "Flights cancelled as Airstrip in Amboseli National Park gets submerged in floods water – The Tanzania Times",
+      "url": "https://tanzaniatimes.net/flights-cancelled-as-amboseli-national-parks-airstrip-gets-submerged-in-flood-water/",
+      "publishedDate": "2026-03-11T00:00:00.000Z",
+      "query": "Amboseli National Park flood road access March 2026 ranger",
+      "matchedRoadIds": [],
+      "reviewStatus": "candidate_unreviewed"
+    },
+    {
+      "title": "Police: 49 dead, over 2,600 families displaced as foods wreak havoc across Kenya - Nairobi News",
+      "url": "https://nairobinews.co.ke/police-49-dead-over-2600-families-displaced-as-foods-wreak-havoc-across-kenya/",
+      "publishedDate": "2026-03-10T00:00:00.000Z",
+      "query": "Amboseli National Park flood road access March 2026 ranger",
+      "matchedRoadIds": [],
+      "reviewStatus": "candidate_unreviewed"
+    },
+    {
+      "title": "KWS Temporarily Closes Amboseli Main Airstrip Due to Heavy Rainfall » Capital News",
+      "url": "https://www.capitalfm.co.ke/news/2026/03/kws-temporarily-closes-amboseli-main-airstrip-due-to-heavy-rainfall/",
+      "publishedDate": "2026-03-09T00:00:00.000Z",
+      "query": "Amboseli March 2026 flooding road closure KWS county",
+      "matchedRoadIds": [],
+      "reviewStatus": "candidate_unreviewed"
+    },
+    {
+      "title": "KWS Suspends Flights to Amboseli as Main Airstrip Floods - Kenyans.co.ke",
+      "url": "https://www.kenyans.co.ke/news/121514-kws-suspends-flights-amboseli-main-airstrip-floods",
+      "publishedDate": "2026-03-09T00:00:00.000Z",
+      "query": "Amboseli March 2026 flooding road closure KWS county",
+      "matchedRoadIds": [],
+      "reviewStatus": "candidate_unreviewed"
+    },
+    {
+      "title": "Floods close access roads to Mara and Amboseli",
+      "url": "https://www.malindikenya.net/en/articles/news/last-news/floods-close-access-roads-to-mara-and-amboseli.html",
+      "publishedDate": "2026-03-10T00:00:00.000Z",
+      "query": "Amboseli March 2026 flooding road closure KWS county",
+      "matchedRoadIds": [],
+      "reviewStatus": "candidate_unreviewed"
+    },
+    {
+      "title": "Flights to Amboseli main airstrip suspended after flooding - Nairobi News",
+      "url": "http://nairobinews.co.ke/flights-to-amboseli-main-airstrip-suspended-after-flooding/",
+      "publishedDate": "2026-03-09T00:00:00.000Z",
+      "query": "Amboseli March 2026 flooding road closure KWS county",
+      "matchedRoadIds": [],
+      "reviewStatus": "candidate_unreviewed"
+    },
+    {
+      "title": "KWS Suspends Flights to Amboseli as Main Airstrip Floods - Uzalendo News",
+      "url": "https://uzalendonews.co.ke/kws-suspends-flights-to-amboseli-as-main-airstrip-floods/",
+      "publishedDate": "2026-03-09T00:00:00.000Z",
+      "query": "Amboseli causeway flooding March 2026 police ranger",
+      "matchedRoadIds": [],
+      "reviewStatus": "candidate_unreviewed"
+    }
+  ]
+}

@@ -124,6 +124,46 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-0-45",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.477,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.477,
+        "deltaRecoveryDuring": -0.477,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.298312499999994,
+              -2.624547619047619
+            ],
+            [
+              37.299875,
+              -2.624547619047619
+            ],
+            [
+              37.299875,
+              -2.623
+            ],
+            [
+              37.298312499999994,
+              -2.623
+            ],
+            [
+              37.298312499999994,
+              -2.624547619047619
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-0-6",
         "category": "possible_change",
         "beforeProbability": 0.462,
@@ -167,10 +207,10 @@
         "cellId": "s1-change-1-0",
         "category": "possible_change",
         "beforeProbability": 0.482,
-        "duringProbability": 0.511,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.029,
-        "deltaRecoveryDuring": -0.511,
+        "deltaDuringBefore": -0.482,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -195,46 +235,6 @@
             ],
             [
               37.228,
-              -2.6260952380952385
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-change-1-12",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.511,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.511,
-        "deltaRecoveryDuring": -0.511,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.24675,
-              -2.6260952380952385
-            ],
-            [
-              37.2483125,
-              -2.6260952380952385
-            ],
-            [
-              37.2483125,
-              -2.624547619047619
-            ],
-            [
-              37.24675,
-              -2.624547619047619
-            ],
-            [
-              37.24675,
               -2.6260952380952385
             ]
           ]
@@ -367,10 +367,10 @@
         "cellId": "s1-change-10-10",
         "category": "possible_change",
         "beforeProbability": 0.534,
-        "duringProbability": 0.525,
+        "duringProbability": 0,
         "recoveryProbability": 0.5,
-        "deltaDuringBefore": -0.009,
-        "deltaRecoveryDuring": -0.025,
+        "deltaDuringBefore": -0.534,
+        "deltaRecoveryDuring": 0.5,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -407,10 +407,10 @@
         "cellId": "s1-change-10-11",
         "category": "possible_change",
         "beforeProbability": 0.498,
-        "duringProbability": 0.48,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.018,
-        "deltaRecoveryDuring": -0.48,
+        "deltaDuringBefore": -0.498,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -445,12 +445,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-10-12",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.531,
+        "duringProbability": 0,
         "recoveryProbability": 0.561,
-        "deltaDuringBefore": 0.531,
-        "deltaRecoveryDuring": 0.03,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.561,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -515,6 +515,46 @@
             ],
             [
               37.231125,
+              -2.6400238095238096
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-10-22",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.469,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.469,
+        "deltaRecoveryDuring": -0.469,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.262375,
+              -2.6400238095238096
+            ],
+            [
+              37.2639375,
+              -2.6400238095238096
+            ],
+            [
+              37.2639375,
+              -2.6384761904761906
+            ],
+            [
+              37.262375,
+              -2.6384761904761906
+            ],
+            [
+              37.262375,
               -2.6400238095238096
             ]
           ]
@@ -645,12 +685,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-11-10",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.52,
-        "duringProbability": 0.509,
+        "duringProbability": 0,
         "recoveryProbability": 0.557,
-        "deltaDuringBefore": -0.011,
-        "deltaRecoveryDuring": 0.048,
+        "deltaDuringBefore": -0.52,
+        "deltaRecoveryDuring": 0.557,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -725,12 +765,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-11-12",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.495,
-        "duringProbability": 0.578,
+        "duringProbability": 0,
         "recoveryProbability": 0.57,
-        "deltaDuringBefore": 0.083,
-        "deltaRecoveryDuring": -0.008,
+        "deltaDuringBefore": -0.495,
+        "deltaRecoveryDuring": 0.57,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -804,6 +844,46 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-11-18",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.459,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.459,
+        "deltaRecoveryDuring": -0.459,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.256125,
+              -2.641571428571429
+            ],
+            [
+              37.2576875,
+              -2.641571428571429
+            ],
+            [
+              37.2576875,
+              -2.6400238095238096
+            ],
+            [
+              37.256125,
+              -2.6400238095238096
+            ],
+            [
+              37.256125,
+              -2.641571428571429
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-11-2",
         "category": "possible_change",
         "beforeProbability": 0.505,
@@ -845,12 +925,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-11-41",
-        "category": "possible_change",
+        "category": "newly_flooded",
         "beforeProbability": 0,
-        "duringProbability": 0.472,
+        "duringProbability": 0.542,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.472,
-        "deltaRecoveryDuring": -0.472,
+        "deltaDuringBefore": 0.542,
+        "deltaRecoveryDuring": -0.542,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -887,10 +967,10 @@
         "cellId": "s1-change-11-42",
         "category": "possible_change",
         "beforeProbability": 0.5,
-        "duringProbability": 0,
+        "duringProbability": 0.488,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.5,
-        "deltaRecoveryDuring": 0,
+        "deltaDuringBefore": -0.012,
+        "deltaRecoveryDuring": -0.488,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -915,6 +995,46 @@
             ],
             [
               37.293625,
+              -2.641571428571429
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-11-44",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.462,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.462,
+        "deltaRecoveryDuring": -0.462,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.296749999999996,
+              -2.641571428571429
+            ],
+            [
+              37.298312499999994,
+              -2.641571428571429
+            ],
+            [
+              37.298312499999994,
+              -2.6400238095238096
+            ],
+            [
+              37.296749999999996,
+              -2.6400238095238096
+            ],
+            [
+              37.296749999999996,
               -2.641571428571429
             ]
           ]
@@ -1005,12 +1125,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-12-12",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.457,
-        "duringProbability": 0.583,
+        "duringProbability": 0,
         "recoveryProbability": 0.616,
-        "deltaDuringBefore": 0.126,
-        "deltaRecoveryDuring": 0.033,
+        "deltaDuringBefore": -0.457,
+        "deltaRecoveryDuring": 0.616,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -1047,10 +1167,10 @@
         "cellId": "s1-change-12-13",
         "category": "possible_change",
         "beforeProbability": 0.468,
-        "duringProbability": 0.476,
+        "duringProbability": 0,
         "recoveryProbability": 0.45,
-        "deltaDuringBefore": 0.008,
-        "deltaRecoveryDuring": -0.026,
+        "deltaDuringBefore": -0.468,
+        "deltaRecoveryDuring": 0.45,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -1084,13 +1204,13 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-12-15",
+        "cellId": "s1-change-12-20",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.463,
+        "duringProbability": 0.453,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.463,
-        "deltaRecoveryDuring": -0.463,
+        "deltaDuringBefore": 0.453,
+        "deltaRecoveryDuring": -0.453,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -1098,23 +1218,23 @@
         "coordinates": [
           [
             [
-              37.2514375,
+              37.25925,
               -2.643119047619048
             ],
             [
-              37.253,
+              37.2608125,
               -2.643119047619048
             ],
             [
-              37.253,
+              37.2608125,
               -2.641571428571429
             ],
             [
-              37.2514375,
+              37.25925,
               -2.641571428571429
             ],
             [
-              37.2514375,
+              37.25925,
               -2.643119047619048
             ]
           ]
@@ -1125,12 +1245,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-12-21",
-        "category": "possible_change",
+        "category": "newly_flooded",
         "beforeProbability": 0,
-        "duringProbability": 0.534,
+        "duringProbability": 0.589,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.534,
-        "deltaRecoveryDuring": -0.534,
+        "deltaDuringBefore": 0.589,
+        "deltaRecoveryDuring": -0.589,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -1155,6 +1275,46 @@
             ],
             [
               37.2608125,
+              -2.643119047619048
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-12-22",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.509,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.509,
+        "deltaRecoveryDuring": -0.509,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.262375,
+              -2.643119047619048
+            ],
+            [
+              37.2639375,
+              -2.643119047619048
+            ],
+            [
+              37.2639375,
+              -2.641571428571429
+            ],
+            [
+              37.262375,
+              -2.641571428571429
+            ],
+            [
+              37.262375,
               -2.643119047619048
             ]
           ]
@@ -1167,10 +1327,10 @@
         "cellId": "s1-change-12-41",
         "category": "possible_change",
         "beforeProbability": 0.491,
-        "duringProbability": 0,
+        "duringProbability": 0.486,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.491,
-        "deltaRecoveryDuring": 0,
+        "deltaDuringBefore": -0.005,
+        "deltaRecoveryDuring": -0.486,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -1367,10 +1527,10 @@
         "cellId": "s1-change-13-11",
         "category": "possible_change",
         "beforeProbability": 0.516,
-        "duringProbability": 0.476,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.04,
-        "deltaRecoveryDuring": -0.476,
+        "deltaDuringBefore": -0.516,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -1484,13 +1644,53 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-13-21",
+        "cellId": "s1-change-13-19",
         "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.494,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.494,
+        "deltaRecoveryDuring": -0.494,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2576875,
+              -2.6446666666666667
+            ],
+            [
+              37.25925,
+              -2.6446666666666667
+            ],
+            [
+              37.25925,
+              -2.643119047619048
+            ],
+            [
+              37.2576875,
+              -2.643119047619048
+            ],
+            [
+              37.2576875,
+              -2.6446666666666667
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-13-21",
+        "category": "persistent_water",
         "beforeProbability": 0.525,
-        "duringProbability": 0.55,
+        "duringProbability": 0.573,
         "recoveryProbability": 0.513,
-        "deltaDuringBefore": 0.025,
-        "deltaRecoveryDuring": -0.037,
+        "deltaDuringBefore": 0.048,
+        "deltaRecoveryDuring": -0.06,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -1524,13 +1724,93 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-13-22",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.475,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.475,
+        "deltaRecoveryDuring": -0.475,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.262375,
+              -2.6446666666666667
+            ],
+            [
+              37.2639375,
+              -2.6446666666666667
+            ],
+            [
+              37.2639375,
+              -2.643119047619048
+            ],
+            [
+              37.262375,
+              -2.643119047619048
+            ],
+            [
+              37.262375,
+              -2.6446666666666667
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-13-39",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.48,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.48,
+        "deltaRecoveryDuring": -0.48,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.288937499999996,
+              -2.6446666666666667
+            ],
+            [
+              37.290499999999994,
+              -2.6446666666666667
+            ],
+            [
+              37.290499999999994,
+              -2.643119047619048
+            ],
+            [
+              37.288937499999996,
+              -2.643119047619048
+            ],
+            [
+              37.288937499999996,
+              -2.6446666666666667
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-13-40",
         "category": "possible_change",
         "beforeProbability": 0.546,
-        "duringProbability": 0.497,
+        "duringProbability": 0.461,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.049,
-        "deltaRecoveryDuring": -0.497,
+        "deltaDuringBefore": -0.085,
+        "deltaRecoveryDuring": -0.461,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -1567,10 +1847,10 @@
         "cellId": "s1-change-14-0",
         "category": "possible_change",
         "beforeProbability": 0.74,
-        "duringProbability": 0.587,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.153,
-        "deltaRecoveryDuring": -0.587,
+        "deltaDuringBefore": -0.74,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -1645,12 +1925,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-14-11",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.607,
-        "duringProbability": 0.534,
+        "duringProbability": 0,
         "recoveryProbability": 0.591,
-        "deltaDuringBefore": -0.073,
-        "deltaRecoveryDuring": 0.057,
+        "deltaDuringBefore": -0.607,
+        "deltaRecoveryDuring": 0.591,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -1715,46 +1995,6 @@
             ],
             [
               37.24675,
-              -2.646214285714286
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-change-14-15",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.458,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.458,
-        "deltaRecoveryDuring": -0.458,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2514375,
-              -2.646214285714286
-            ],
-            [
-              37.253,
-              -2.646214285714286
-            ],
-            [
-              37.253,
-              -2.6446666666666667
-            ],
-            [
-              37.2514375,
-              -2.6446666666666667
-            ],
-            [
-              37.2514375,
               -2.646214285714286
             ]
           ]
@@ -1845,12 +2085,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-14-22",
-        "category": "possible_change",
+        "category": "newly_flooded",
         "beforeProbability": 0,
-        "duringProbability": 0.482,
+        "duringProbability": 0.533,
         "recoveryProbability": 0.456,
-        "deltaDuringBefore": 0.482,
-        "deltaRecoveryDuring": -0.026,
+        "deltaDuringBefore": 0.533,
+        "deltaRecoveryDuring": -0.077,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -1884,13 +2124,173 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-14-23",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.457,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.457,
+        "deltaRecoveryDuring": -0.457,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2639375,
+              -2.646214285714286
+            ],
+            [
+              37.2655,
+              -2.646214285714286
+            ],
+            [
+              37.2655,
+              -2.6446666666666667
+            ],
+            [
+              37.2639375,
+              -2.6446666666666667
+            ],
+            [
+              37.2639375,
+              -2.646214285714286
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-14-28",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.473,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.473,
+        "deltaRecoveryDuring": -0.473,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.27175,
+              -2.646214285714286
+            ],
+            [
+              37.273312499999996,
+              -2.646214285714286
+            ],
+            [
+              37.273312499999996,
+              -2.6446666666666667
+            ],
+            [
+              37.27175,
+              -2.6446666666666667
+            ],
+            [
+              37.27175,
+              -2.646214285714286
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-14-39",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.477,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.477,
+        "deltaRecoveryDuring": -0.477,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.288937499999996,
+              -2.646214285714286
+            ],
+            [
+              37.290499999999994,
+              -2.646214285714286
+            ],
+            [
+              37.290499999999994,
+              -2.6446666666666667
+            ],
+            [
+              37.288937499999996,
+              -2.6446666666666667
+            ],
+            [
+              37.288937499999996,
+              -2.646214285714286
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-14-40",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.485,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.485,
+        "deltaRecoveryDuring": -0.485,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.290499999999994,
+              -2.646214285714286
+            ],
+            [
+              37.2920625,
+              -2.646214285714286
+            ],
+            [
+              37.2920625,
+              -2.6446666666666667
+            ],
+            [
+              37.290499999999994,
+              -2.6446666666666667
+            ],
+            [
+              37.290499999999994,
+              -2.646214285714286
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-14-41",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.452,
+        "duringProbability": 0.484,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.452,
-        "deltaRecoveryDuring": -0.452,
+        "deltaDuringBefore": 0.484,
+        "deltaRecoveryDuring": -0.484,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -1927,10 +2327,10 @@
         "cellId": "s1-change-15-0",
         "category": "possible_change",
         "beforeProbability": 0.767,
-        "duringProbability": 0.53,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.237,
-        "deltaRecoveryDuring": -0.53,
+        "deltaDuringBefore": -0.767,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2005,12 +2405,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-15-11",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.461,
-        "duringProbability": 0.524,
+        "duringProbability": 0,
         "recoveryProbability": 0.556,
-        "deltaDuringBefore": 0.063,
-        "deltaRecoveryDuring": 0.032,
+        "deltaDuringBefore": -0.461,
+        "deltaRecoveryDuring": 0.556,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2047,10 +2447,10 @@
         "cellId": "s1-change-15-12",
         "category": "possible_change",
         "beforeProbability": 0.618,
-        "duringProbability": 0.507,
+        "duringProbability": 0,
         "recoveryProbability": 0.492,
-        "deltaDuringBefore": -0.111,
-        "deltaRecoveryDuring": -0.015,
+        "deltaDuringBefore": -0.618,
+        "deltaRecoveryDuring": 0.492,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2087,10 +2487,10 @@
         "cellId": "s1-change-15-13",
         "category": "possible_change",
         "beforeProbability": 0.556,
-        "duringProbability": 0.512,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.044,
-        "deltaRecoveryDuring": -0.512,
+        "deltaDuringBefore": -0.556,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2127,10 +2527,10 @@
         "cellId": "s1-change-15-14",
         "category": "possible_change",
         "beforeProbability": 0.479,
-        "duringProbability": 0.451,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.028,
-        "deltaRecoveryDuring": -0.451,
+        "deltaDuringBefore": -0.479,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2155,46 +2555,6 @@
             ],
             [
               37.249875,
-              -2.647761904761905
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-change-15-15",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.512,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.512,
-        "deltaRecoveryDuring": -0.512,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2514375,
-              -2.647761904761905
-            ],
-            [
-              37.253,
-              -2.647761904761905
-            ],
-            [
-              37.253,
-              -2.646214285714286
-            ],
-            [
-              37.2514375,
-              -2.646214285714286
-            ],
-            [
-              37.2514375,
               -2.647761904761905
             ]
           ]
@@ -2284,13 +2644,53 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-15-24",
+        "cellId": "s1-change-15-23",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.537,
+        "duringProbability": 0.476,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.537,
-        "deltaRecoveryDuring": -0.537,
+        "deltaDuringBefore": 0.476,
+        "deltaRecoveryDuring": -0.476,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2639375,
+              -2.647761904761905
+            ],
+            [
+              37.2655,
+              -2.647761904761905
+            ],
+            [
+              37.2655,
+              -2.646214285714286
+            ],
+            [
+              37.2639375,
+              -2.646214285714286
+            ],
+            [
+              37.2639375,
+              -2.647761904761905
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-15-24",
+        "category": "newly_flooded",
+        "beforeProbability": 0,
+        "duringProbability": 0.569,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.569,
+        "deltaRecoveryDuring": -0.569,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2327,10 +2727,10 @@
         "cellId": "s1-change-15-25",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.451,
+        "duringProbability": 0.488,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.451,
-        "deltaRecoveryDuring": -0.451,
+        "deltaDuringBefore": 0.488,
+        "deltaRecoveryDuring": -0.488,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2367,10 +2767,10 @@
         "cellId": "s1-change-15-26",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.454,
+        "duringProbability": 0.469,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.454,
-        "deltaRecoveryDuring": -0.454,
+        "deltaDuringBefore": 0.469,
+        "deltaRecoveryDuring": -0.469,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2404,13 +2804,53 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-15-28",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.502,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.502,
+        "deltaRecoveryDuring": -0.502,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.27175,
+              -2.647761904761905
+            ],
+            [
+              37.273312499999996,
+              -2.647761904761905
+            ],
+            [
+              37.273312499999996,
+              -2.646214285714286
+            ],
+            [
+              37.27175,
+              -2.646214285714286
+            ],
+            [
+              37.27175,
+              -2.647761904761905
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-15-35",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.508,
+        "duringProbability": 0.51,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.508,
-        "deltaRecoveryDuring": -0.508,
+        "deltaDuringBefore": 0.51,
+        "deltaRecoveryDuring": -0.51,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2447,10 +2887,10 @@
         "cellId": "s1-change-15-36",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.466,
+        "duringProbability": 0.459,
         "recoveryProbability": 0.488,
-        "deltaDuringBefore": 0.466,
-        "deltaRecoveryDuring": 0.022,
+        "deltaDuringBefore": 0.459,
+        "deltaRecoveryDuring": 0.029,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2487,10 +2927,10 @@
         "cellId": "s1-change-15-38",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.455,
+        "duringProbability": 0.468,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.455,
-        "deltaRecoveryDuring": -0.455,
+        "deltaDuringBefore": 0.468,
+        "deltaRecoveryDuring": -0.468,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2527,10 +2967,10 @@
         "cellId": "s1-change-15-40",
         "category": "possible_change",
         "beforeProbability": 0.452,
-        "duringProbability": 0.531,
+        "duringProbability": 0.53,
         "recoveryProbability": 0.492,
-        "deltaDuringBefore": 0.079,
-        "deltaRecoveryDuring": -0.039,
+        "deltaDuringBefore": 0.078,
+        "deltaRecoveryDuring": -0.038,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2564,13 +3004,53 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-15-42",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.469,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.469,
+        "deltaRecoveryDuring": -0.469,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.293625,
+              -2.647761904761905
+            ],
+            [
+              37.2951875,
+              -2.647761904761905
+            ],
+            [
+              37.2951875,
+              -2.646214285714286
+            ],
+            [
+              37.293625,
+              -2.646214285714286
+            ],
+            [
+              37.293625,
+              -2.647761904761905
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-16-0",
-        "category": "persistent_water",
+        "category": "possible_change",
         "beforeProbability": 0.636,
-        "duringProbability": 0.643,
+        "duringProbability": 0,
         "recoveryProbability": 0.513,
-        "deltaDuringBefore": 0.007,
-        "deltaRecoveryDuring": -0.13,
+        "deltaDuringBefore": -0.636,
+        "deltaRecoveryDuring": 0.513,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2605,12 +3085,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-16-12",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.551,
-        "duringProbability": 0.55,
+        "duringProbability": 0,
         "recoveryProbability": 0.527,
-        "deltaDuringBefore": -0.001,
-        "deltaRecoveryDuring": -0.023,
+        "deltaDuringBefore": -0.551,
+        "deltaRecoveryDuring": 0.527,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2647,10 +3127,10 @@
         "cellId": "s1-change-16-13",
         "category": "possible_change",
         "beforeProbability": 0.635,
-        "duringProbability": 0.552,
+        "duringProbability": 0,
         "recoveryProbability": 0.468,
-        "deltaDuringBefore": -0.083,
-        "deltaRecoveryDuring": -0.084,
+        "deltaDuringBefore": -0.635,
+        "deltaRecoveryDuring": 0.468,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2685,12 +3165,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-16-14",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.553,
-        "duringProbability": 0.547,
+        "duringProbability": 0,
         "recoveryProbability": 0.592,
-        "deltaDuringBefore": -0.006,
-        "deltaRecoveryDuring": 0.045,
+        "deltaDuringBefore": -0.553,
+        "deltaRecoveryDuring": 0.592,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2727,10 +3207,10 @@
         "cellId": "s1-change-16-15",
         "category": "possible_change",
         "beforeProbability": 0.476,
-        "duringProbability": 0.467,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.009,
-        "deltaRecoveryDuring": -0.467,
+        "deltaDuringBefore": -0.476,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -2964,6 +3444,86 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-16-24",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.453,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.453,
+        "deltaRecoveryDuring": -0.453,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2655,
+              -2.649309523809524
+            ],
+            [
+              37.2670625,
+              -2.649309523809524
+            ],
+            [
+              37.2670625,
+              -2.647761904761905
+            ],
+            [
+              37.2655,
+              -2.647761904761905
+            ],
+            [
+              37.2655,
+              -2.649309523809524
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-16-27",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.46,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.46,
+        "deltaRecoveryDuring": -0.46,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2701875,
+              -2.649309523809524
+            ],
+            [
+              37.27175,
+              -2.649309523809524
+            ],
+            [
+              37.27175,
+              -2.647761904761905
+            ],
+            [
+              37.2701875,
+              -2.647761904761905
+            ],
+            [
+              37.2701875,
+              -2.649309523809524
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-16-3",
         "category": "possible_change",
         "beforeProbability": 0.479,
@@ -3004,13 +3564,133 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-16-41",
+        "cellId": "s1-change-16-30",
         "category": "possible_change",
-        "beforeProbability": 0.463,
-        "duringProbability": 0.479,
+        "beforeProbability": 0,
+        "duringProbability": 0.459,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.016,
-        "deltaRecoveryDuring": -0.479,
+        "deltaDuringBefore": 0.459,
+        "deltaRecoveryDuring": -0.459,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.274875,
+              -2.649309523809524
+            ],
+            [
+              37.2764375,
+              -2.649309523809524
+            ],
+            [
+              37.2764375,
+              -2.647761904761905
+            ],
+            [
+              37.274875,
+              -2.647761904761905
+            ],
+            [
+              37.274875,
+              -2.649309523809524
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-16-35",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.501,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.501,
+        "deltaRecoveryDuring": -0.501,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2826875,
+              -2.649309523809524
+            ],
+            [
+              37.28425,
+              -2.649309523809524
+            ],
+            [
+              37.28425,
+              -2.647761904761905
+            ],
+            [
+              37.2826875,
+              -2.647761904761905
+            ],
+            [
+              37.2826875,
+              -2.649309523809524
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-16-36",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.488,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.488,
+        "deltaRecoveryDuring": -0.488,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.28425,
+              -2.649309523809524
+            ],
+            [
+              37.2858125,
+              -2.649309523809524
+            ],
+            [
+              37.2858125,
+              -2.647761904761905
+            ],
+            [
+              37.28425,
+              -2.647761904761905
+            ],
+            [
+              37.28425,
+              -2.649309523809524
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-16-41",
+        "category": "recovered_or_drying",
+        "beforeProbability": 0.463,
+        "duringProbability": 0.534,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.071,
+        "deltaRecoveryDuring": -0.534,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3047,10 +3727,10 @@
         "cellId": "s1-change-17-0",
         "category": "possible_change",
         "beforeProbability": 0.545,
-        "duringProbability": 0.576,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.031,
-        "deltaRecoveryDuring": -0.576,
+        "deltaDuringBefore": -0.545,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3167,10 +3847,10 @@
         "cellId": "s1-change-17-13",
         "category": "possible_change",
         "beforeProbability": 0.622,
-        "duringProbability": 0.565,
+        "duringProbability": 0,
         "recoveryProbability": 0.49,
-        "deltaDuringBefore": -0.057,
-        "deltaRecoveryDuring": -0.075,
+        "deltaDuringBefore": -0.622,
+        "deltaRecoveryDuring": 0.49,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3205,12 +3885,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-17-14",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.669,
-        "duringProbability": 0.562,
+        "duringProbability": 0,
         "recoveryProbability": 0.613,
-        "deltaDuringBefore": -0.107,
-        "deltaRecoveryDuring": 0.051,
+        "deltaDuringBefore": -0.669,
+        "deltaRecoveryDuring": 0.613,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3247,10 +3927,10 @@
         "cellId": "s1-change-17-15",
         "category": "possible_change",
         "beforeProbability": 0.582,
-        "duringProbability": 0.595,
+        "duringProbability": 0,
         "recoveryProbability": 0.472,
-        "deltaDuringBefore": 0.013,
-        "deltaRecoveryDuring": -0.123,
+        "deltaDuringBefore": -0.582,
+        "deltaRecoveryDuring": 0.472,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3484,13 +4164,173 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-17-24",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.502,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.502,
+        "deltaRecoveryDuring": -0.502,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2655,
+              -2.6508571428571432
+            ],
+            [
+              37.2670625,
+              -2.6508571428571432
+            ],
+            [
+              37.2670625,
+              -2.649309523809524
+            ],
+            [
+              37.2655,
+              -2.649309523809524
+            ],
+            [
+              37.2655,
+              -2.6508571428571432
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-17-26",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.472,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.472,
+        "deltaRecoveryDuring": -0.472,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.268625,
+              -2.6508571428571432
+            ],
+            [
+              37.2701875,
+              -2.6508571428571432
+            ],
+            [
+              37.2701875,
+              -2.649309523809524
+            ],
+            [
+              37.268625,
+              -2.649309523809524
+            ],
+            [
+              37.268625,
+              -2.6508571428571432
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-17-27",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.467,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.467,
+        "deltaRecoveryDuring": -0.467,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2701875,
+              -2.6508571428571432
+            ],
+            [
+              37.27175,
+              -2.6508571428571432
+            ],
+            [
+              37.27175,
+              -2.649309523809524
+            ],
+            [
+              37.2701875,
+              -2.649309523809524
+            ],
+            [
+              37.2701875,
+              -2.6508571428571432
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-17-30",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.452,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.452,
+        "deltaRecoveryDuring": -0.452,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.274875,
+              -2.6508571428571432
+            ],
+            [
+              37.2764375,
+              -2.6508571428571432
+            ],
+            [
+              37.2764375,
+              -2.649309523809524
+            ],
+            [
+              37.274875,
+              -2.649309523809524
+            ],
+            [
+              37.274875,
+              -2.6508571428571432
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-17-34",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.477,
+        "duringProbability": 0.497,
         "recoveryProbability": 0.472,
-        "deltaDuringBefore": 0.477,
-        "deltaRecoveryDuring": -0.005,
+        "deltaDuringBefore": 0.497,
+        "deltaRecoveryDuring": -0.025,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3524,13 +4364,53 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-17-43",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.451,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.451,
+        "deltaRecoveryDuring": -0.451,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2951875,
+              -2.6508571428571432
+            ],
+            [
+              37.296749999999996,
+              -2.6508571428571432
+            ],
+            [
+              37.296749999999996,
+              -2.649309523809524
+            ],
+            [
+              37.2951875,
+              -2.649309523809524
+            ],
+            [
+              37.2951875,
+              -2.6508571428571432
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-17-47",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.45,
+        "duringProbability": 0.462,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.45,
-        "deltaRecoveryDuring": -0.45,
+        "deltaDuringBefore": 0.462,
+        "deltaRecoveryDuring": -0.462,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3565,12 +4445,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-18-0",
-        "category": "persistent_water",
+        "category": "possible_change",
         "beforeProbability": 0.672,
-        "duringProbability": 0.622,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.05,
-        "deltaRecoveryDuring": -0.622,
+        "deltaDuringBefore": -0.672,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3607,10 +4487,10 @@
         "cellId": "s1-change-18-13",
         "category": "possible_change",
         "beforeProbability": 0.492,
-        "duringProbability": 0.451,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.041,
-        "deltaRecoveryDuring": -0.451,
+        "deltaDuringBefore": -0.492,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3647,10 +4527,10 @@
         "cellId": "s1-change-18-14",
         "category": "possible_change",
         "beforeProbability": 0.605,
-        "duringProbability": 0.553,
+        "duringProbability": 0,
         "recoveryProbability": 0.502,
-        "deltaDuringBefore": -0.052,
-        "deltaRecoveryDuring": -0.051,
+        "deltaDuringBefore": -0.605,
+        "deltaRecoveryDuring": 0.502,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3687,10 +4567,10 @@
         "cellId": "s1-change-18-15",
         "category": "possible_change",
         "beforeProbability": 0.462,
-        "duringProbability": 0.537,
+        "duringProbability": 0,
         "recoveryProbability": 0.481,
-        "deltaDuringBefore": 0.075,
-        "deltaRecoveryDuring": -0.056,
+        "deltaDuringBefore": -0.462,
+        "deltaRecoveryDuring": 0.481,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3727,10 +4607,10 @@
         "cellId": "s1-change-18-17",
         "category": "possible_change",
         "beforeProbability": 0.489,
-        "duringProbability": 0.455,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.034,
-        "deltaRecoveryDuring": -0.455,
+        "deltaDuringBefore": -0.489,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3847,10 +4727,10 @@
         "cellId": "s1-change-18-21",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.538,
+        "duringProbability": 0.455,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.538,
-        "deltaRecoveryDuring": -0.538,
+        "deltaDuringBefore": 0.455,
+        "deltaRecoveryDuring": -0.455,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3875,6 +4755,46 @@
             ],
             [
               37.2608125,
+              -2.652404761904762
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-18-26",
+        "category": "newly_flooded",
+        "beforeProbability": 0,
+        "duringProbability": 0.521,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.521,
+        "deltaRecoveryDuring": -0.521,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.268625,
+              -2.652404761904762
+            ],
+            [
+              37.2701875,
+              -2.652404761904762
+            ],
+            [
+              37.2701875,
+              -2.6508571428571432
+            ],
+            [
+              37.268625,
+              -2.6508571428571432
+            ],
+            [
+              37.268625,
               -2.652404761904762
             ]
           ]
@@ -3887,10 +4807,10 @@
         "cellId": "s1-change-18-34",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.474,
+        "duringProbability": 0.517,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.474,
-        "deltaRecoveryDuring": -0.474,
+        "deltaDuringBefore": 0.517,
+        "deltaRecoveryDuring": -0.517,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3924,13 +4844,93 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-18-47",
+        "cellId": "s1-change-18-37",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.484,
+        "duringProbability": 0.458,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.458,
+        "deltaRecoveryDuring": -0.458,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2858125,
+              -2.652404761904762
+            ],
+            [
+              37.287375,
+              -2.652404761904762
+            ],
+            [
+              37.287375,
+              -2.6508571428571432
+            ],
+            [
+              37.2858125,
+              -2.6508571428571432
+            ],
+            [
+              37.2858125,
+              -2.652404761904762
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-18-46",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.451,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.451,
+        "deltaRecoveryDuring": -0.451,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.299875,
+              -2.652404761904762
+            ],
+            [
+              37.3014375,
+              -2.652404761904762
+            ],
+            [
+              37.3014375,
+              -2.6508571428571432
+            ],
+            [
+              37.299875,
+              -2.6508571428571432
+            ],
+            [
+              37.299875,
+              -2.652404761904762
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-18-47",
+        "category": "newly_flooded",
+        "beforeProbability": 0,
+        "duringProbability": 0.52,
         "recoveryProbability": 0.457,
-        "deltaDuringBefore": 0.484,
-        "deltaRecoveryDuring": -0.027,
+        "deltaDuringBefore": 0.52,
+        "deltaRecoveryDuring": -0.063,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -3967,10 +4967,10 @@
         "cellId": "s1-change-19-0",
         "category": "possible_change",
         "beforeProbability": 0.626,
-        "duringProbability": 0.554,
+        "duringProbability": 0,
         "recoveryProbability": 0.502,
-        "deltaDuringBefore": -0.072,
-        "deltaRecoveryDuring": -0.052,
+        "deltaDuringBefore": -0.626,
+        "deltaRecoveryDuring": 0.502,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -4047,10 +5047,10 @@
         "cellId": "s1-change-19-14",
         "category": "possible_change",
         "beforeProbability": 0.603,
-        "duringProbability": 0.466,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.137,
-        "deltaRecoveryDuring": -0.466,
+        "deltaDuringBefore": -0.603,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -4087,10 +5087,10 @@
         "cellId": "s1-change-19-15",
         "category": "possible_change",
         "beforeProbability": 0.553,
-        "duringProbability": 0.505,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.048,
-        "deltaRecoveryDuring": -0.505,
+        "deltaDuringBefore": -0.553,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -4247,10 +5247,10 @@
         "cellId": "s1-change-19-21",
         "category": "possible_change",
         "beforeProbability": 0.547,
-        "duringProbability": 0.499,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.048,
-        "deltaRecoveryDuring": -0.499,
+        "deltaDuringBefore": -0.547,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -4284,13 +5284,93 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-19-30",
+        "cellId": "s1-change-19-25",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.508,
+        "duringProbability": 0.505,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.508,
-        "deltaRecoveryDuring": -0.508,
+        "deltaDuringBefore": 0.505,
+        "deltaRecoveryDuring": -0.505,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2670625,
+              -2.653952380952381
+            ],
+            [
+              37.268625,
+              -2.653952380952381
+            ],
+            [
+              37.268625,
+              -2.652404761904762
+            ],
+            [
+              37.2670625,
+              -2.652404761904762
+            ],
+            [
+              37.2670625,
+              -2.653952380952381
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-19-26",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.471,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.471,
+        "deltaRecoveryDuring": -0.471,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.268625,
+              -2.653952380952381
+            ],
+            [
+              37.2701875,
+              -2.653952380952381
+            ],
+            [
+              37.2701875,
+              -2.652404761904762
+            ],
+            [
+              37.268625,
+              -2.652404761904762
+            ],
+            [
+              37.268625,
+              -2.653952380952381
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-19-30",
+        "category": "newly_flooded",
+        "beforeProbability": 0,
+        "duringProbability": 0.534,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.534,
+        "deltaRecoveryDuring": -0.534,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -4315,6 +5395,86 @@
             ],
             [
               37.274875,
+              -2.653952380952381
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-19-32",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.489,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.489,
+        "deltaRecoveryDuring": -0.489,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.278,
+              -2.653952380952381
+            ],
+            [
+              37.2795625,
+              -2.653952380952381
+            ],
+            [
+              37.2795625,
+              -2.652404761904762
+            ],
+            [
+              37.278,
+              -2.652404761904762
+            ],
+            [
+              37.278,
+              -2.653952380952381
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-19-47",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.49,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.49,
+        "deltaRecoveryDuring": -0.49,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.3014375,
+              -2.653952380952381
+            ],
+            [
+              37.303,
+              -2.653952380952381
+            ],
+            [
+              37.303,
+              -2.652404761904762
+            ],
+            [
+              37.3014375,
+              -2.652404761904762
+            ],
+            [
+              37.3014375,
               -2.653952380952381
             ]
           ]
@@ -4364,13 +5524,53 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-20-0",
+        "cellId": "s1-change-2-26",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.565,
+        "duringProbability": 0.466,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.466,
+        "deltaRecoveryDuring": -0.466,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.268625,
+              -2.6276428571428574
+            ],
+            [
+              37.2701875,
+              -2.6276428571428574
+            ],
+            [
+              37.2701875,
+              -2.6260952380952385
+            ],
+            [
+              37.268625,
+              -2.6260952380952385
+            ],
+            [
+              37.268625,
+              -2.6276428571428574
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-20-0",
+        "category": "residual_or_later_water",
+        "beforeProbability": 0,
+        "duringProbability": 0,
         "recoveryProbability": 0.542,
-        "deltaDuringBefore": 0.565,
-        "deltaRecoveryDuring": -0.023,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.542,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -4487,10 +5687,10 @@
         "cellId": "s1-change-20-14",
         "category": "possible_change",
         "beforeProbability": 0.608,
-        "duringProbability": 0.505,
+        "duringProbability": 0,
         "recoveryProbability": 0.482,
-        "deltaDuringBefore": -0.103,
-        "deltaRecoveryDuring": -0.023,
+        "deltaDuringBefore": -0.608,
+        "deltaRecoveryDuring": 0.482,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -4527,10 +5727,10 @@
         "cellId": "s1-change-20-15",
         "category": "possible_change",
         "beforeProbability": 0.606,
-        "duringProbability": 0.503,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.103,
-        "deltaRecoveryDuring": -0.503,
+        "deltaDuringBefore": -0.606,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -4567,10 +5767,10 @@
         "cellId": "s1-change-20-16",
         "category": "possible_change",
         "beforeProbability": 0.496,
-        "duringProbability": 0.457,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.039,
-        "deltaRecoveryDuring": -0.457,
+        "deltaDuringBefore": -0.496,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -4887,10 +6087,10 @@
         "cellId": "s1-change-20-24",
         "category": "possible_change",
         "beforeProbability": 0.49,
-        "duringProbability": 0,
+        "duringProbability": 0.484,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.49,
-        "deltaRecoveryDuring": 0,
+        "deltaDuringBefore": -0.006,
+        "deltaRecoveryDuring": -0.484,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -4927,10 +6127,10 @@
         "cellId": "s1-change-20-25",
         "category": "possible_change",
         "beforeProbability": 0.495,
-        "duringProbability": 0,
+        "duringProbability": 0.484,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.495,
-        "deltaRecoveryDuring": 0,
+        "deltaDuringBefore": -0.011,
+        "deltaRecoveryDuring": -0.484,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -4964,13 +6164,93 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-20-30",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.508,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.508,
+        "deltaRecoveryDuring": -0.508,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.274875,
+              -2.6555
+            ],
+            [
+              37.2764375,
+              -2.6555
+            ],
+            [
+              37.2764375,
+              -2.653952380952381
+            ],
+            [
+              37.274875,
+              -2.653952380952381
+            ],
+            [
+              37.274875,
+              -2.6555
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-20-32",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.464,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.464,
+        "deltaRecoveryDuring": -0.464,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.278,
+              -2.6555
+            ],
+            [
+              37.2795625,
+              -2.6555
+            ],
+            [
+              37.2795625,
+              -2.653952380952381
+            ],
+            [
+              37.278,
+              -2.653952380952381
+            ],
+            [
+              37.278,
+              -2.6555
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-20-33",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0,
+        "duringProbability": 0.506,
         "recoveryProbability": 0.485,
-        "deltaDuringBefore": 0,
-        "deltaRecoveryDuring": 0.485,
+        "deltaDuringBefore": 0.506,
+        "deltaRecoveryDuring": -0.021,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -5007,10 +6287,10 @@
         "cellId": "s1-change-20-38",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.474,
+        "duringProbability": 0.47,
         "recoveryProbability": 0.459,
-        "deltaDuringBefore": 0.474,
-        "deltaRecoveryDuring": -0.015,
+        "deltaDuringBefore": 0.47,
+        "deltaRecoveryDuring": -0.011,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -5035,6 +6315,46 @@
             ],
             [
               37.287375,
+              -2.6555
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-20-39",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.452,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.452,
+        "deltaRecoveryDuring": -0.452,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.288937499999996,
+              -2.6555
+            ],
+            [
+              37.290499999999994,
+              -2.6555
+            ],
+            [
+              37.290499999999994,
+              -2.653952380952381
+            ],
+            [
+              37.288937499999996,
+              -2.653952380952381
+            ],
+            [
+              37.288937499999996,
               -2.6555
             ]
           ]
@@ -5127,10 +6447,10 @@
         "cellId": "s1-change-21-12",
         "category": "possible_change",
         "beforeProbability": 0.644,
-        "duringProbability": 0.453,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.191,
-        "deltaRecoveryDuring": -0.453,
+        "deltaDuringBefore": -0.644,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -5447,10 +6767,10 @@
         "cellId": "s1-change-21-2",
         "category": "possible_change",
         "beforeProbability": 0.599,
-        "duringProbability": 0.506,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.093,
-        "deltaRecoveryDuring": -0.506,
+        "deltaDuringBefore": -0.599,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -5527,10 +6847,10 @@
         "cellId": "s1-change-21-21",
         "category": "possible_change",
         "beforeProbability": 0.554,
-        "duringProbability": 0.473,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.081,
-        "deltaRecoveryDuring": -0.473,
+        "deltaDuringBefore": -0.554,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -5607,10 +6927,10 @@
         "cellId": "s1-change-21-24",
         "category": "possible_change",
         "beforeProbability": 0.483,
-        "duringProbability": 0,
+        "duringProbability": 0.459,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.483,
-        "deltaRecoveryDuring": 0,
+        "deltaDuringBefore": -0.024,
+        "deltaRecoveryDuring": -0.459,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -5647,10 +6967,10 @@
         "cellId": "s1-change-21-25",
         "category": "possible_change",
         "beforeProbability": 0.515,
-        "duringProbability": 0.552,
+        "duringProbability": 0.522,
         "recoveryProbability": 0.483,
-        "deltaDuringBefore": 0.037,
-        "deltaRecoveryDuring": -0.069,
+        "deltaDuringBefore": 0.007,
+        "deltaRecoveryDuring": -0.039,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -5684,13 +7004,53 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-21-26",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.483,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.483,
+        "deltaRecoveryDuring": -0.483,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.268625,
+              -2.6570476190476193
+            ],
+            [
+              37.2701875,
+              -2.6570476190476193
+            ],
+            [
+              37.2701875,
+              -2.6555
+            ],
+            [
+              37.268625,
+              -2.6555
+            ],
+            [
+              37.268625,
+              -2.6570476190476193
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-21-3",
         "category": "possible_change",
         "beforeProbability": 0.489,
-        "duringProbability": 0.48,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.009,
-        "deltaRecoveryDuring": -0.48,
+        "deltaDuringBefore": -0.489,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -5887,10 +7247,10 @@
         "cellId": "s1-change-21-8",
         "category": "possible_change",
         "beforeProbability": 0.604,
-        "duringProbability": 0.479,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.125,
-        "deltaRecoveryDuring": -0.479,
+        "deltaDuringBefore": -0.604,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -6167,10 +7527,10 @@
         "cellId": "s1-change-22-13",
         "category": "possible_change",
         "beforeProbability": 0.613,
-        "duringProbability": 0.488,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.125,
-        "deltaRecoveryDuring": -0.488,
+        "deltaDuringBefore": -0.613,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -6207,10 +7567,10 @@
         "cellId": "s1-change-22-14",
         "category": "possible_change",
         "beforeProbability": 0.676,
-        "duringProbability": 0.563,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.113,
-        "deltaRecoveryDuring": -0.563,
+        "deltaDuringBefore": -0.676,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -6247,10 +7607,10 @@
         "cellId": "s1-change-22-15",
         "category": "possible_change",
         "beforeProbability": 0.601,
-        "duringProbability": 0.489,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.112,
-        "deltaRecoveryDuring": -0.489,
+        "deltaDuringBefore": -0.601,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -6447,10 +7807,10 @@
         "cellId": "s1-change-22-2",
         "category": "possible_change",
         "beforeProbability": 0.556,
-        "duringProbability": 0.47,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.086,
-        "deltaRecoveryDuring": -0.47,
+        "deltaDuringBefore": -0.556,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -6527,10 +7887,10 @@
         "cellId": "s1-change-22-24",
         "category": "possible_change",
         "beforeProbability": 0.473,
-        "duringProbability": 0.512,
+        "duringProbability": 0.454,
         "recoveryProbability": 0.458,
-        "deltaDuringBefore": 0.039,
-        "deltaRecoveryDuring": -0.054,
+        "deltaDuringBefore": -0.019,
+        "deltaRecoveryDuring": 0.004,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -6567,10 +7927,10 @@
         "cellId": "s1-change-22-25",
         "category": "possible_change",
         "beforeProbability": 0.593,
-        "duringProbability": 0.545,
+        "duringProbability": 0.514,
         "recoveryProbability": 0.472,
-        "deltaDuringBefore": -0.048,
-        "deltaRecoveryDuring": -0.073,
+        "deltaDuringBefore": -0.079,
+        "deltaRecoveryDuring": -0.042,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -6607,10 +7967,10 @@
         "cellId": "s1-change-22-26",
         "category": "possible_change",
         "beforeProbability": 0.456,
-        "duringProbability": 0,
+        "duringProbability": 0.48,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.456,
-        "deltaRecoveryDuring": 0,
+        "deltaDuringBefore": 0.024,
+        "deltaRecoveryDuring": -0.48,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -6647,10 +8007,10 @@
         "cellId": "s1-change-22-3",
         "category": "possible_change",
         "beforeProbability": 0.608,
-        "duringProbability": 0.472,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.136,
-        "deltaRecoveryDuring": -0.472,
+        "deltaDuringBefore": -0.608,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -7367,10 +8727,10 @@
         "cellId": "s1-change-23-19",
         "category": "possible_change",
         "beforeProbability": 0.49,
-        "duringProbability": 0.483,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.007,
-        "deltaRecoveryDuring": -0.483,
+        "deltaDuringBefore": -0.49,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -7447,10 +8807,10 @@
         "cellId": "s1-change-23-20",
         "category": "possible_change",
         "beforeProbability": 0.471,
-        "duringProbability": 0.476,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.005,
-        "deltaRecoveryDuring": -0.476,
+        "deltaDuringBefore": -0.471,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -7605,12 +8965,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-23-24",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.562,
-        "duringProbability": 0.594,
+        "duringProbability": 0,
         "recoveryProbability": 0.544,
-        "deltaDuringBefore": 0.032,
-        "deltaRecoveryDuring": -0.05,
+        "deltaDuringBefore": -0.562,
+        "deltaRecoveryDuring": 0.544,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -7645,12 +9005,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-23-25",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.47,
-        "duringProbability": 0.522,
+        "duringProbability": 0,
         "recoveryProbability": 0.555,
-        "deltaDuringBefore": 0.052,
-        "deltaRecoveryDuring": 0.033,
+        "deltaDuringBefore": -0.47,
+        "deltaRecoveryDuring": 0.555,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -7675,6 +9035,86 @@
             ],
             [
               37.2670625,
+              -2.660142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-23-28",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.474,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.474,
+        "deltaRecoveryDuring": -0.474,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.27175,
+              -2.660142857142857
+            ],
+            [
+              37.273312499999996,
+              -2.660142857142857
+            ],
+            [
+              37.273312499999996,
+              -2.6585952380952382
+            ],
+            [
+              37.27175,
+              -2.6585952380952382
+            ],
+            [
+              37.27175,
+              -2.660142857142857
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-23-29",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.496,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.496,
+        "deltaRecoveryDuring": -0.496,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.273312499999996,
+              -2.660142857142857
+            ],
+            [
+              37.274875,
+              -2.660142857142857
+            ],
+            [
+              37.274875,
+              -2.6585952380952382
+            ],
+            [
+              37.273312499999996,
+              -2.6585952380952382
+            ],
+            [
+              37.273312499999996,
               -2.660142857142857
             ]
           ]
@@ -8007,10 +9447,10 @@
         "cellId": "s1-change-24-0",
         "category": "possible_change",
         "beforeProbability": 0.496,
-        "duringProbability": 0.495,
+        "duringProbability": 0,
         "recoveryProbability": 0.46,
-        "deltaDuringBefore": -0.001,
-        "deltaRecoveryDuring": -0.035,
+        "deltaDuringBefore": -0.496,
+        "deltaRecoveryDuring": 0.46,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -8287,10 +9727,10 @@
         "cellId": "s1-change-24-17",
         "category": "possible_change",
         "beforeProbability": 0.467,
-        "duringProbability": 0.452,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.015,
-        "deltaRecoveryDuring": -0.452,
+        "deltaDuringBefore": -0.467,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -8364,53 +9804,13 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-24-19",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.469,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.469,
-        "deltaRecoveryDuring": -0.469,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2576875,
-              -2.6616904761904765
-            ],
-            [
-              37.25925,
-              -2.6616904761904765
-            ],
-            [
-              37.25925,
-              -2.660142857142857
-            ],
-            [
-              37.2576875,
-              -2.660142857142857
-            ],
-            [
-              37.2576875,
-              -2.6616904761904765
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "cellId": "s1-change-24-2",
         "category": "possible_change",
         "beforeProbability": 0.651,
-        "duringProbability": 0.459,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.192,
-        "deltaRecoveryDuring": -0.459,
+        "deltaDuringBefore": -0.651,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -8435,46 +9835,6 @@
             ],
             [
               37.231125,
-              -2.6616904761904765
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-change-24-20",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.544,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.544,
-        "deltaRecoveryDuring": -0.544,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.25925,
-              -2.6616904761904765
-            ],
-            [
-              37.2608125,
-              -2.6616904761904765
-            ],
-            [
-              37.2608125,
-              -2.660142857142857
-            ],
-            [
-              37.25925,
-              -2.660142857142857
-            ],
-            [
-              37.25925,
               -2.6616904761904765
             ]
           ]
@@ -8487,10 +9847,10 @@
         "cellId": "s1-change-24-21",
         "category": "possible_change",
         "beforeProbability": 0.569,
-        "duringProbability": 0.528,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.041,
-        "deltaRecoveryDuring": -0.528,
+        "deltaDuringBefore": -0.569,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -8527,10 +9887,10 @@
         "cellId": "s1-change-24-22",
         "category": "possible_change",
         "beforeProbability": 0.612,
-        "duringProbability": 0.578,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.034,
-        "deltaRecoveryDuring": -0.578,
+        "deltaDuringBefore": -0.612,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -8605,12 +9965,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-24-24",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.472,
+        "duringProbability": 0,
         "recoveryProbability": 0.527,
-        "deltaDuringBefore": 0.472,
-        "deltaRecoveryDuring": 0.055,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.527,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -8645,12 +10005,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-24-25",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.484,
+        "duringProbability": 0,
         "recoveryProbability": 0.569,
-        "deltaDuringBefore": 0.484,
-        "deltaRecoveryDuring": 0.085,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.569,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -8675,6 +10035,126 @@
             ],
             [
               37.2670625,
+              -2.6616904761904765
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-24-27",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.451,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.451,
+        "deltaRecoveryDuring": -0.451,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2701875,
+              -2.6616904761904765
+            ],
+            [
+              37.27175,
+              -2.6616904761904765
+            ],
+            [
+              37.27175,
+              -2.660142857142857
+            ],
+            [
+              37.2701875,
+              -2.660142857142857
+            ],
+            [
+              37.2701875,
+              -2.6616904761904765
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-24-28",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.476,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.476,
+        "deltaRecoveryDuring": -0.476,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.27175,
+              -2.6616904761904765
+            ],
+            [
+              37.273312499999996,
+              -2.6616904761904765
+            ],
+            [
+              37.273312499999996,
+              -2.660142857142857
+            ],
+            [
+              37.27175,
+              -2.660142857142857
+            ],
+            [
+              37.27175,
+              -2.6616904761904765
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-24-29",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.482,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.482,
+        "deltaRecoveryDuring": -0.482,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.273312499999996,
+              -2.6616904761904765
+            ],
+            [
+              37.274875,
+              -2.6616904761904765
+            ],
+            [
+              37.274875,
+              -2.660142857142857
+            ],
+            [
+              37.273312499999996,
+              -2.660142857142857
+            ],
+            [
+              37.273312499999996,
               -2.6616904761904765
             ]
           ]
@@ -8724,6 +10204,46 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-24-30",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.489,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.489,
+        "deltaRecoveryDuring": -0.489,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.274875,
+              -2.6616904761904765
+            ],
+            [
+              37.2764375,
+              -2.6616904761904765
+            ],
+            [
+              37.2764375,
+              -2.660142857142857
+            ],
+            [
+              37.274875,
+              -2.660142857142857
+            ],
+            [
+              37.274875,
+              -2.6616904761904765
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-24-4",
         "category": "possible_change",
         "beforeProbability": 0.599,
@@ -8755,6 +10275,166 @@
             ],
             [
               37.23425,
+              -2.6616904761904765
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-24-41",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.463,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.463,
+        "deltaRecoveryDuring": -0.463,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2920625,
+              -2.6616904761904765
+            ],
+            [
+              37.293625,
+              -2.6616904761904765
+            ],
+            [
+              37.293625,
+              -2.660142857142857
+            ],
+            [
+              37.2920625,
+              -2.660142857142857
+            ],
+            [
+              37.2920625,
+              -2.6616904761904765
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-24-42",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.504,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.504,
+        "deltaRecoveryDuring": -0.504,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.293625,
+              -2.6616904761904765
+            ],
+            [
+              37.2951875,
+              -2.6616904761904765
+            ],
+            [
+              37.2951875,
+              -2.660142857142857
+            ],
+            [
+              37.293625,
+              -2.660142857142857
+            ],
+            [
+              37.293625,
+              -2.6616904761904765
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-24-43",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.469,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.469,
+        "deltaRecoveryDuring": -0.469,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2951875,
+              -2.6616904761904765
+            ],
+            [
+              37.296749999999996,
+              -2.6616904761904765
+            ],
+            [
+              37.296749999999996,
+              -2.660142857142857
+            ],
+            [
+              37.2951875,
+              -2.660142857142857
+            ],
+            [
+              37.2951875,
+              -2.6616904761904765
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-24-47",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.458,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.458,
+        "deltaRecoveryDuring": -0.458,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.3014375,
+              -2.6616904761904765
+            ],
+            [
+              37.303,
+              -2.6616904761904765
+            ],
+            [
+              37.303,
+              -2.660142857142857
+            ],
+            [
+              37.3014375,
+              -2.660142857142857
+            ],
+            [
+              37.3014375,
               -2.6616904761904765
             ]
           ]
@@ -9127,10 +10807,10 @@
         "cellId": "s1-change-25-19",
         "category": "possible_change",
         "beforeProbability": 0.46,
-        "duringProbability": 0.504,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.044,
-        "deltaRecoveryDuring": -0.504,
+        "deltaDuringBefore": -0.46,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -9207,10 +10887,10 @@
         "cellId": "s1-change-25-21",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.522,
+        "duringProbability": 0,
         "recoveryProbability": 0.485,
-        "deltaDuringBefore": 0.522,
-        "deltaRecoveryDuring": -0.037,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.485,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -9245,12 +10925,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-25-22",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.608,
-        "duringProbability": 0.595,
+        "duringProbability": 0,
         "recoveryProbability": 0.565,
-        "deltaDuringBefore": -0.013,
-        "deltaRecoveryDuring": -0.03,
+        "deltaDuringBefore": -0.608,
+        "deltaRecoveryDuring": 0.565,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -9285,12 +10965,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-25-23",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.499,
-        "duringProbability": 0.469,
+        "duringProbability": 0,
         "recoveryProbability": 0.551,
-        "deltaDuringBefore": -0.03,
-        "deltaRecoveryDuring": 0.082,
+        "deltaDuringBefore": -0.499,
+        "deltaRecoveryDuring": 0.551,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -9327,10 +11007,10 @@
         "cellId": "s1-change-25-27",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.452,
+        "duringProbability": 0.47,
         "recoveryProbability": 0.455,
-        "deltaDuringBefore": 0.452,
-        "deltaRecoveryDuring": 0.003,
+        "deltaDuringBefore": 0.47,
+        "deltaRecoveryDuring": -0.015,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -9355,6 +11035,46 @@
             ],
             [
               37.2701875,
+              -2.6632380952380954
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-25-28",
+        "category": "newly_flooded",
+        "beforeProbability": 0,
+        "duringProbability": 0.532,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.532,
+        "deltaRecoveryDuring": -0.532,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.27175,
+              -2.6632380952380954
+            ],
+            [
+              37.273312499999996,
+              -2.6632380952380954
+            ],
+            [
+              37.273312499999996,
+              -2.6616904761904765
+            ],
+            [
+              37.27175,
+              -2.6616904761904765
+            ],
+            [
+              37.27175,
               -2.6632380952380954
             ]
           ]
@@ -9395,6 +11115,46 @@
             ],
             [
               37.232687500000004,
+              -2.6632380952380954
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-25-30",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.511,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.511,
+        "deltaRecoveryDuring": -0.511,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.274875,
+              -2.6632380952380954
+            ],
+            [
+              37.2764375,
+              -2.6632380952380954
+            ],
+            [
+              37.2764375,
+              -2.6616904761904765
+            ],
+            [
+              37.274875,
+              -2.6616904761904765
+            ],
+            [
+              37.274875,
               -2.6632380952380954
             ]
           ]
@@ -9445,12 +11205,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-25-44",
-        "category": "possible_change",
+        "category": "newly_flooded",
         "beforeProbability": 0,
-        "duringProbability": 0.472,
+        "duringProbability": 0.54,
         "recoveryProbability": 0.466,
-        "deltaDuringBefore": 0.472,
-        "deltaRecoveryDuring": -0.006,
+        "deltaDuringBefore": 0.54,
+        "deltaRecoveryDuring": -0.074,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -9487,10 +11247,10 @@
         "cellId": "s1-change-25-47",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0,
+        "duringProbability": 0.477,
         "recoveryProbability": 0.473,
-        "deltaDuringBefore": 0,
-        "deltaRecoveryDuring": 0.473,
+        "deltaDuringBefore": 0.477,
+        "deltaRecoveryDuring": -0.004,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -9807,10 +11567,10 @@
         "cellId": "s1-change-26-21",
         "category": "possible_change",
         "beforeProbability": 0.468,
-        "duringProbability": 0.482,
+        "duringProbability": 0,
         "recoveryProbability": 0.453,
-        "deltaDuringBefore": 0.014,
-        "deltaRecoveryDuring": -0.029,
+        "deltaDuringBefore": -0.468,
+        "deltaRecoveryDuring": 0.453,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -9845,12 +11605,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-26-22",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.512,
-        "duringProbability": 0.555,
+        "duringProbability": 0,
         "recoveryProbability": 0.558,
-        "deltaDuringBefore": 0.043,
-        "deltaRecoveryDuring": 0.003,
+        "deltaDuringBefore": -0.512,
+        "deltaRecoveryDuring": 0.558,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -9887,10 +11647,10 @@
         "cellId": "s1-change-26-23",
         "category": "residual_or_later_water",
         "beforeProbability": 0.482,
-        "duringProbability": 0.581,
+        "duringProbability": 0,
         "recoveryProbability": 0.661,
-        "deltaDuringBefore": 0.099,
-        "deltaRecoveryDuring": 0.08,
+        "deltaDuringBefore": -0.482,
+        "deltaRecoveryDuring": 0.661,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -9967,10 +11727,10 @@
         "cellId": "s1-change-26-28",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0,
+        "duringProbability": 0.465,
         "recoveryProbability": 0.455,
-        "deltaDuringBefore": 0,
-        "deltaRecoveryDuring": 0.455,
+        "deltaDuringBefore": 0.465,
+        "deltaRecoveryDuring": -0.01,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -10035,6 +11795,46 @@
             ],
             [
               37.232687500000004,
+              -2.6647857142857143
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-26-30",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.457,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.457,
+        "deltaRecoveryDuring": -0.457,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.274875,
+              -2.6647857142857143
+            ],
+            [
+              37.2764375,
+              -2.6647857142857143
+            ],
+            [
+              37.2764375,
+              -2.6632380952380954
+            ],
+            [
+              37.274875,
+              -2.6632380952380954
+            ],
+            [
+              37.274875,
               -2.6647857142857143
             ]
           ]
@@ -10244,46 +12044,6 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-27-0",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.457,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.457,
-        "deltaRecoveryDuring": -0.457,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.228,
-              -2.6663333333333337
-            ],
-            [
-              37.2295625,
-              -2.6663333333333337
-            ],
-            [
-              37.2295625,
-              -2.6647857142857143
-            ],
-            [
-              37.228,
-              -2.6647857142857143
-            ],
-            [
-              37.228,
-              -2.6663333333333337
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "cellId": "s1-change-27-10",
         "category": "possible_change",
         "beforeProbability": 0.47,
@@ -10367,10 +12127,10 @@
         "cellId": "s1-change-27-20",
         "category": "possible_change",
         "beforeProbability": 0.474,
-        "duringProbability": 0.547,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.073,
-        "deltaRecoveryDuring": -0.547,
+        "deltaDuringBefore": -0.474,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -10405,12 +12165,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-27-21",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.495,
-        "duringProbability": 0.515,
+        "duringProbability": 0,
         "recoveryProbability": 0.587,
-        "deltaDuringBefore": 0.02,
-        "deltaRecoveryDuring": 0.072,
+        "deltaDuringBefore": -0.495,
+        "deltaRecoveryDuring": 0.587,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -10445,12 +12205,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-27-22",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.564,
+        "duringProbability": 0,
         "recoveryProbability": 0.588,
-        "deltaDuringBefore": 0.564,
-        "deltaRecoveryDuring": 0.024,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.588,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -10485,12 +12245,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-27-23",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.472,
-        "duringProbability": 0.622,
+        "duringProbability": 0,
         "recoveryProbability": 0.645,
-        "deltaDuringBefore": 0.15,
-        "deltaRecoveryDuring": 0.023,
+        "deltaDuringBefore": -0.472,
+        "deltaRecoveryDuring": 0.645,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -10527,10 +12287,10 @@
         "cellId": "s1-change-27-24",
         "category": "possible_change",
         "beforeProbability": 0.512,
-        "duringProbability": 0.579,
+        "duringProbability": 0,
         "recoveryProbability": 0.507,
-        "deltaDuringBefore": 0.067,
-        "deltaRecoveryDuring": -0.072,
+        "deltaDuringBefore": -0.512,
+        "deltaRecoveryDuring": 0.507,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -10607,10 +12367,10 @@
         "cellId": "s1-change-27-28",
         "category": "possible_change",
         "beforeProbability": 0.463,
-        "duringProbability": 0.468,
+        "duringProbability": 0.497,
         "recoveryProbability": 0.482,
-        "deltaDuringBefore": 0.005,
-        "deltaRecoveryDuring": 0.014,
+        "deltaDuringBefore": 0.034,
+        "deltaRecoveryDuring": -0.015,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -10635,6 +12395,46 @@
             ],
             [
               37.27175,
+              -2.6663333333333337
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-27-29",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.487,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.487,
+        "deltaRecoveryDuring": -0.487,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.273312499999996,
+              -2.6663333333333337
+            ],
+            [
+              37.274875,
+              -2.6663333333333337
+            ],
+            [
+              37.274875,
+              -2.6647857142857143
+            ],
+            [
+              37.273312499999996,
+              -2.6647857142857143
+            ],
+            [
+              37.273312499999996,
               -2.6663333333333337
             ]
           ]
@@ -10924,53 +12724,13 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-28-20",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.457,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.457,
-        "deltaRecoveryDuring": -0.457,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.25925,
-              -2.6678809523809526
-            ],
-            [
-              37.2608125,
-              -2.6678809523809526
-            ],
-            [
-              37.2608125,
-              -2.6663333333333337
-            ],
-            [
-              37.25925,
-              -2.6663333333333337
-            ],
-            [
-              37.25925,
-              -2.6678809523809526
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "cellId": "s1-change-28-21",
         "category": "possible_change",
         "beforeProbability": 0.474,
-        "duringProbability": 0.503,
+        "duringProbability": 0,
         "recoveryProbability": 0.484,
-        "deltaDuringBefore": 0.029,
-        "deltaRecoveryDuring": -0.019,
+        "deltaDuringBefore": -0.474,
+        "deltaRecoveryDuring": 0.484,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -11045,7 +12805,7 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-28-24",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.472,
         "duringProbability": 0,
         "recoveryProbability": 0.523,
@@ -11124,6 +12884,46 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-28-29",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.466,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.466,
+        "deltaRecoveryDuring": -0.466,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.273312499999996,
+              -2.6678809523809526
+            ],
+            [
+              37.274875,
+              -2.6678809523809526
+            ],
+            [
+              37.274875,
+              -2.6663333333333337
+            ],
+            [
+              37.273312499999996,
+              -2.6663333333333337
+            ],
+            [
+              37.273312499999996,
+              -2.6678809523809526
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-28-3",
         "category": "possible_change",
         "beforeProbability": 0.618,
@@ -11155,6 +12955,46 @@
             ],
             [
               37.232687500000004,
+              -2.6678809523809526
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-28-31",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.451,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.451,
+        "deltaRecoveryDuring": -0.451,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2764375,
+              -2.6678809523809526
+            ],
+            [
+              37.278,
+              -2.6678809523809526
+            ],
+            [
+              37.278,
+              -2.6663333333333337
+            ],
+            [
+              37.2764375,
+              -2.6663333333333337
+            ],
+            [
+              37.2764375,
               -2.6678809523809526
             ]
           ]
@@ -11407,10 +13247,10 @@
         "cellId": "s1-change-29-0",
         "category": "possible_change",
         "beforeProbability": 0.6,
-        "duringProbability": 0.488,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.112,
-        "deltaRecoveryDuring": -0.488,
+        "deltaDuringBefore": -0.6,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -11435,46 +13275,6 @@
             ],
             [
               37.228,
-              -2.6694285714285715
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-change-29-20",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.514,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.514,
-        "deltaRecoveryDuring": -0.514,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.25925,
-              -2.6694285714285715
-            ],
-            [
-              37.2608125,
-              -2.6694285714285715
-            ],
-            [
-              37.2608125,
-              -2.6678809523809526
-            ],
-            [
-              37.25925,
-              -2.6678809523809526
-            ],
-            [
-              37.25925,
               -2.6694285714285715
             ]
           ]
@@ -11485,12 +13285,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-29-21",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.546,
-        "duringProbability": 0.655,
+        "duringProbability": 0,
         "recoveryProbability": 0.562,
-        "deltaDuringBefore": 0.109,
-        "deltaRecoveryDuring": -0.093,
+        "deltaDuringBefore": -0.546,
+        "deltaRecoveryDuring": 0.562,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -11527,10 +13327,10 @@
         "cellId": "s1-change-29-22",
         "category": "possible_change",
         "beforeProbability": 0.532,
-        "duringProbability": 0.505,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.027,
-        "deltaRecoveryDuring": -0.505,
+        "deltaDuringBefore": -0.532,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -11764,6 +13564,126 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-29-33",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.489,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.489,
+        "deltaRecoveryDuring": -0.489,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2795625,
+              -2.6694285714285715
+            ],
+            [
+              37.281124999999996,
+              -2.6694285714285715
+            ],
+            [
+              37.281124999999996,
+              -2.6678809523809526
+            ],
+            [
+              37.2795625,
+              -2.6678809523809526
+            ],
+            [
+              37.2795625,
+              -2.6694285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-29-34",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.464,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.464,
+        "deltaRecoveryDuring": -0.464,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.281124999999996,
+              -2.6694285714285715
+            ],
+            [
+              37.2826875,
+              -2.6694285714285715
+            ],
+            [
+              37.2826875,
+              -2.6678809523809526
+            ],
+            [
+              37.281124999999996,
+              -2.6678809523809526
+            ],
+            [
+              37.281124999999996,
+              -2.6694285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-29-35",
+        "category": "newly_flooded",
+        "beforeProbability": 0,
+        "duringProbability": 0.541,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.541,
+        "deltaRecoveryDuring": -0.541,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2826875,
+              -2.6694285714285715
+            ],
+            [
+              37.28425,
+              -2.6694285714285715
+            ],
+            [
+              37.28425,
+              -2.6678809523809526
+            ],
+            [
+              37.2826875,
+              -2.6678809523809526
+            ],
+            [
+              37.2826875,
+              -2.6694285714285715
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-29-37",
         "category": "possible_change",
         "beforeProbability": 0.454,
@@ -11847,10 +13767,10 @@
         "cellId": "s1-change-29-43",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.468,
+        "duringProbability": 0.472,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.468,
-        "deltaRecoveryDuring": -0.468,
+        "deltaDuringBefore": 0.472,
+        "deltaRecoveryDuring": -0.472,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -12005,12 +13925,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-3-41",
-        "category": "possible_change",
+        "category": "recovered_or_drying",
         "beforeProbability": 0.471,
-        "duringProbability": 0.495,
+        "duringProbability": 0.521,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.024,
-        "deltaRecoveryDuring": -0.495,
+        "deltaDuringBefore": 0.05,
+        "deltaRecoveryDuring": -0.521,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -12047,10 +13967,10 @@
         "cellId": "s1-change-3-42",
         "category": "possible_change",
         "beforeProbability": 0.512,
-        "duringProbability": 0,
+        "duringProbability": 0.452,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.512,
-        "deltaRecoveryDuring": 0,
+        "deltaDuringBefore": -0.06,
+        "deltaRecoveryDuring": -0.452,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -12085,12 +14005,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-3-46",
-        "category": "possible_change",
+        "category": "newly_flooded",
         "beforeProbability": 0,
-        "duringProbability": 0.502,
+        "duringProbability": 0.534,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.502,
-        "deltaRecoveryDuring": -0.502,
+        "deltaDuringBefore": 0.534,
+        "deltaRecoveryDuring": -0.534,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -12167,10 +14087,10 @@
         "cellId": "s1-change-30-17",
         "category": "possible_change",
         "beforeProbability": 0.534,
-        "duringProbability": 0.51,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.024,
-        "deltaRecoveryDuring": -0.51,
+        "deltaDuringBefore": -0.534,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -12245,12 +14165,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-30-20",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.597,
-        "duringProbability": 0.624,
+        "duringProbability": 0,
         "recoveryProbability": 0.572,
-        "deltaDuringBefore": 0.027,
-        "deltaRecoveryDuring": -0.052,
+        "deltaDuringBefore": -0.597,
+        "deltaRecoveryDuring": 0.572,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -12285,12 +14205,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-30-21",
-        "category": "persistent_water",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.631,
-        "duringProbability": 0.684,
+        "duringProbability": 0,
         "recoveryProbability": 0.717,
-        "deltaDuringBefore": 0.053,
-        "deltaRecoveryDuring": 0.033,
+        "deltaDuringBefore": -0.631,
+        "deltaRecoveryDuring": 0.717,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -12325,12 +14245,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-30-22",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.459,
-        "duringProbability": 0.506,
+        "duringProbability": 0,
         "recoveryProbability": 0.54,
-        "deltaDuringBefore": 0.047,
-        "deltaRecoveryDuring": 0.034,
+        "deltaDuringBefore": -0.459,
+        "deltaRecoveryDuring": 0.54,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -12407,10 +14327,10 @@
         "cellId": "s1-change-30-24",
         "category": "possible_change",
         "beforeProbability": 0.47,
-        "duringProbability": 0.523,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.053,
-        "deltaRecoveryDuring": -0.523,
+        "deltaDuringBefore": -0.47,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -12447,10 +14367,10 @@
         "cellId": "s1-change-30-25",
         "category": "possible_change",
         "beforeProbability": 0.537,
-        "duringProbability": 0.479,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.058,
-        "deltaRecoveryDuring": -0.479,
+        "deltaDuringBefore": -0.537,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -12604,13 +14524,53 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-30-34",
+        "cellId": "s1-change-30-31",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0,
+        "duringProbability": 0.453,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.453,
+        "deltaRecoveryDuring": -0.453,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2764375,
+              -2.670976190476191
+            ],
+            [
+              37.278,
+              -2.670976190476191
+            ],
+            [
+              37.278,
+              -2.6694285714285715
+            ],
+            [
+              37.2764375,
+              -2.6694285714285715
+            ],
+            [
+              37.2764375,
+              -2.670976190476191
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-30-34",
+        "category": "residual_or_later_water",
+        "beforeProbability": 0,
+        "duringProbability": 0.468,
         "recoveryProbability": 0.523,
-        "deltaDuringBefore": 0,
-        "deltaRecoveryDuring": 0.523,
+        "deltaDuringBefore": 0.468,
+        "deltaRecoveryDuring": 0.055,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -12645,12 +14605,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-30-35",
-        "category": "possible_change",
+        "category": "newly_flooded",
         "beforeProbability": 0,
-        "duringProbability": 0,
+        "duringProbability": 0.545,
         "recoveryProbability": 0.465,
-        "deltaDuringBefore": 0,
-        "deltaRecoveryDuring": 0.465,
+        "deltaDuringBefore": 0.545,
+        "deltaRecoveryDuring": -0.08,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -12724,13 +14684,93 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-30-38",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.477,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.477,
+        "deltaRecoveryDuring": -0.477,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.287375,
+              -2.670976190476191
+            ],
+            [
+              37.288937499999996,
+              -2.670976190476191
+            ],
+            [
+              37.288937499999996,
+              -2.6694285714285715
+            ],
+            [
+              37.287375,
+              -2.6694285714285715
+            ],
+            [
+              37.287375,
+              -2.670976190476191
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-30-39",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.468,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.468,
+        "deltaRecoveryDuring": -0.468,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.288937499999996,
+              -2.670976190476191
+            ],
+            [
+              37.290499999999994,
+              -2.670976190476191
+            ],
+            [
+              37.290499999999994,
+              -2.6694285714285715
+            ],
+            [
+              37.288937499999996,
+              -2.6694285714285715
+            ],
+            [
+              37.288937499999996,
+              -2.670976190476191
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-30-4",
         "category": "possible_change",
         "beforeProbability": 0.631,
-        "duringProbability": 0.531,
+        "duringProbability": 0,
         "recoveryProbability": 0.466,
-        "deltaDuringBefore": -0.1,
-        "deltaRecoveryDuring": -0.065,
+        "deltaDuringBefore": -0.631,
+        "deltaRecoveryDuring": 0.466,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -12755,6 +14795,46 @@
             ],
             [
               37.23425,
+              -2.670976190476191
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-30-44",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.466,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.466,
+        "deltaRecoveryDuring": -0.466,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.296749999999996,
+              -2.670976190476191
+            ],
+            [
+              37.298312499999994,
+              -2.670976190476191
+            ],
+            [
+              37.298312499999994,
+              -2.6694285714285715
+            ],
+            [
+              37.296749999999996,
+              -2.6694285714285715
+            ],
+            [
+              37.296749999999996,
               -2.670976190476191
             ]
           ]
@@ -12967,10 +15047,10 @@
         "cellId": "s1-change-31-2",
         "category": "possible_change",
         "beforeProbability": 0.583,
-        "duringProbability": 0.485,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.098,
-        "deltaRecoveryDuring": -0.485,
+        "deltaDuringBefore": -0.583,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13005,12 +15085,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-31-20",
-        "category": "persistent_water",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.631,
-        "duringProbability": 0.646,
+        "duringProbability": 0,
         "recoveryProbability": 0.701,
-        "deltaDuringBefore": 0.015,
-        "deltaRecoveryDuring": 0.055,
+        "deltaDuringBefore": -0.631,
+        "deltaRecoveryDuring": 0.701,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13045,12 +15125,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-31-21",
-        "category": "persistent_water",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.63,
-        "duringProbability": 0.697,
+        "duringProbability": 0,
         "recoveryProbability": 0.771,
-        "deltaDuringBefore": 0.067,
-        "deltaRecoveryDuring": 0.074,
+        "deltaDuringBefore": -0.63,
+        "deltaRecoveryDuring": 0.771,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13085,12 +15165,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-31-22",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.545,
-        "duringProbability": 0.605,
+        "duringProbability": 0,
         "recoveryProbability": 0.619,
-        "deltaDuringBefore": 0.06,
-        "deltaRecoveryDuring": 0.014,
+        "deltaDuringBefore": -0.545,
+        "deltaRecoveryDuring": 0.619,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13125,7 +15205,7 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-31-23",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
         "duringProbability": 0,
         "recoveryProbability": 0.558,
@@ -13167,10 +15247,10 @@
         "cellId": "s1-change-31-24",
         "category": "possible_change",
         "beforeProbability": 0.453,
-        "duringProbability": 0.464,
+        "duringProbability": 0,
         "recoveryProbability": 0.507,
-        "deltaDuringBefore": 0.011,
-        "deltaRecoveryDuring": 0.043,
+        "deltaDuringBefore": -0.453,
+        "deltaRecoveryDuring": 0.507,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13207,10 +15287,10 @@
         "cellId": "s1-change-31-25",
         "category": "possible_change",
         "beforeProbability": 0.539,
-        "duringProbability": 0.504,
+        "duringProbability": 0,
         "recoveryProbability": 0.496,
-        "deltaDuringBefore": -0.035,
-        "deltaRecoveryDuring": -0.008,
+        "deltaDuringBefore": -0.539,
+        "deltaRecoveryDuring": 0.496,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13285,12 +15365,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-31-3",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.608,
-        "duringProbability": 0.627,
+        "duringProbability": 0,
         "recoveryProbability": 0.541,
-        "deltaDuringBefore": 0.019,
-        "deltaRecoveryDuring": -0.086,
+        "deltaDuringBefore": -0.608,
+        "deltaRecoveryDuring": 0.541,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13324,13 +15404,53 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-31-35",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.462,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.462,
+        "deltaRecoveryDuring": -0.462,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.2826875,
+              -2.6725238095238097
+            ],
+            [
+              37.28425,
+              -2.6725238095238097
+            ],
+            [
+              37.28425,
+              -2.670976190476191
+            ],
+            [
+              37.2826875,
+              -2.670976190476191
+            ],
+            [
+              37.2826875,
+              -2.6725238095238097
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-31-4",
         "category": "possible_change",
         "beforeProbability": 0.59,
-        "duringProbability": 0.5,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.09,
-        "deltaRecoveryDuring": -0.5,
+        "deltaDuringBefore": -0.59,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13407,10 +15527,10 @@
         "cellId": "s1-change-32-0",
         "category": "possible_change",
         "beforeProbability": 0.612,
-        "duringProbability": 0.535,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.077,
-        "deltaRecoveryDuring": -0.535,
+        "deltaDuringBefore": -0.612,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13445,12 +15565,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-32-16",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.577,
-        "duringProbability": 0.502,
+        "duringProbability": 0,
         "recoveryProbability": 0.534,
-        "deltaDuringBefore": -0.075,
-        "deltaRecoveryDuring": 0.032,
+        "deltaDuringBefore": -0.577,
+        "deltaRecoveryDuring": 0.534,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13525,12 +15645,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-32-19",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.576,
-        "duringProbability": 0.555,
+        "duringProbability": 0,
         "recoveryProbability": 0.552,
-        "deltaDuringBefore": -0.021,
-        "deltaRecoveryDuring": -0.003,
+        "deltaDuringBefore": -0.576,
+        "deltaRecoveryDuring": 0.552,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13567,10 +15687,10 @@
         "cellId": "s1-change-32-2",
         "category": "possible_change",
         "beforeProbability": 0.574,
-        "duringProbability": 0.475,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.099,
-        "deltaRecoveryDuring": -0.475,
+        "deltaDuringBefore": -0.574,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13605,12 +15725,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-32-20",
-        "category": "persistent_water",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.651,
-        "duringProbability": 0.777,
+        "duringProbability": 0.504,
         "recoveryProbability": 0.728,
-        "deltaDuringBefore": 0.126,
-        "deltaRecoveryDuring": -0.049,
+        "deltaDuringBefore": -0.147,
+        "deltaRecoveryDuring": 0.224,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13645,12 +15765,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-32-21",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.602,
-        "duringProbability": 0.695,
+        "duringProbability": 0.451,
         "recoveryProbability": 0.761,
-        "deltaDuringBefore": 0.093,
-        "deltaRecoveryDuring": 0.066,
+        "deltaDuringBefore": -0.151,
+        "deltaRecoveryDuring": 0.31,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13685,12 +15805,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-32-22",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.514,
-        "duringProbability": 0.682,
+        "duringProbability": 0,
         "recoveryProbability": 0.724,
-        "deltaDuringBefore": 0.168,
-        "deltaRecoveryDuring": 0.042,
+        "deltaDuringBefore": -0.514,
+        "deltaRecoveryDuring": 0.724,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13725,12 +15845,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-32-23",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.49,
-        "duringProbability": 0.561,
+        "duringProbability": 0,
         "recoveryProbability": 0.576,
-        "deltaDuringBefore": 0.071,
-        "deltaRecoveryDuring": 0.015,
+        "deltaDuringBefore": -0.49,
+        "deltaRecoveryDuring": 0.576,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13847,10 +15967,10 @@
         "cellId": "s1-change-32-28",
         "category": "possible_change",
         "beforeProbability": 0.453,
-        "duringProbability": 0.458,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.005,
-        "deltaRecoveryDuring": -0.458,
+        "deltaDuringBefore": -0.453,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13887,10 +16007,10 @@
         "cellId": "s1-change-32-3",
         "category": "possible_change",
         "beforeProbability": 0.551,
-        "duringProbability": 0.526,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.025,
-        "deltaRecoveryDuring": -0.526,
+        "deltaDuringBefore": -0.551,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13927,10 +16047,10 @@
         "cellId": "s1-change-32-4",
         "category": "possible_change",
         "beforeProbability": 0.46,
-        "duringProbability": 0.461,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.001,
-        "deltaRecoveryDuring": -0.461,
+        "deltaDuringBefore": -0.46,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -13967,10 +16087,10 @@
         "cellId": "s1-change-33-0",
         "category": "possible_change",
         "beforeProbability": 0.466,
-        "duringProbability": 0.57,
+        "duringProbability": 0,
         "recoveryProbability": 0.481,
-        "deltaDuringBefore": 0.104,
-        "deltaRecoveryDuring": -0.089,
+        "deltaDuringBefore": -0.466,
+        "deltaRecoveryDuring": 0.481,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -14045,12 +16165,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-33-16",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.558,
-        "duringProbability": 0.536,
+        "duringProbability": 0,
         "recoveryProbability": 0.544,
-        "deltaDuringBefore": -0.022,
-        "deltaRecoveryDuring": 0.008,
+        "deltaDuringBefore": -0.558,
+        "deltaRecoveryDuring": 0.544,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -14125,12 +16245,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-33-19",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.534,
+        "duringProbability": 0,
         "recoveryProbability": 0.593,
-        "deltaDuringBefore": 0.534,
-        "deltaRecoveryDuring": 0.059,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.593,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -14205,12 +16325,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-33-20",
-        "category": "persistent_water",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.627,
-        "duringProbability": 0.764,
+        "duringProbability": 0.514,
         "recoveryProbability": 0.765,
-        "deltaDuringBefore": 0.137,
-        "deltaRecoveryDuring": 0.001,
+        "deltaDuringBefore": -0.113,
+        "deltaRecoveryDuring": 0.251,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -14245,12 +16365,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-33-21",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.502,
-        "duringProbability": 0.644,
+        "duringProbability": 0,
         "recoveryProbability": 0.731,
-        "deltaDuringBefore": 0.142,
-        "deltaRecoveryDuring": 0.087,
+        "deltaDuringBefore": -0.502,
+        "deltaRecoveryDuring": 0.731,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -14287,10 +16407,10 @@
         "cellId": "s1-change-33-22",
         "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.559,
+        "duringProbability": 0,
         "recoveryProbability": 0.675,
-        "deltaDuringBefore": 0.559,
-        "deltaRecoveryDuring": 0.116,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.675,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -14367,10 +16487,10 @@
         "cellId": "s1-change-33-3",
         "category": "possible_change",
         "beforeProbability": 0.577,
-        "duringProbability": 0.46,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.117,
-        "deltaRecoveryDuring": -0.46,
+        "deltaDuringBefore": -0.577,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -14447,10 +16567,10 @@
         "cellId": "s1-change-34-0",
         "category": "possible_change",
         "beforeProbability": 0.541,
-        "duringProbability": 0.517,
+        "duringProbability": 0,
         "recoveryProbability": 0.457,
-        "deltaDuringBefore": -0.024,
-        "deltaRecoveryDuring": -0.06,
+        "deltaDuringBefore": -0.541,
+        "deltaRecoveryDuring": 0.457,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -14687,10 +16807,10 @@
         "cellId": "s1-change-34-20",
         "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.554,
+        "duringProbability": 0,
         "recoveryProbability": 0.672,
-        "deltaDuringBefore": 0.554,
-        "deltaRecoveryDuring": 0.118,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.672,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -14727,10 +16847,10 @@
         "cellId": "s1-change-34-21",
         "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.465,
+        "duringProbability": 0,
         "recoveryProbability": 0.665,
-        "deltaDuringBefore": 0.465,
-        "deltaRecoveryDuring": 0.2,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.665,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -14807,10 +16927,10 @@
         "cellId": "s1-change-35-0",
         "category": "possible_change",
         "beforeProbability": 0.505,
-        "duringProbability": 0.456,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.049,
-        "deltaRecoveryDuring": -0.456,
+        "deltaDuringBefore": -0.505,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -14887,10 +17007,10 @@
         "cellId": "s1-change-35-2",
         "category": "possible_change",
         "beforeProbability": 0.514,
-        "duringProbability": 0.51,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.004,
-        "deltaRecoveryDuring": -0.51,
+        "deltaDuringBefore": -0.514,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -15087,10 +17207,10 @@
         "cellId": "s1-change-36-0",
         "category": "possible_change",
         "beforeProbability": 0.565,
-        "duringProbability": 0.495,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.07,
-        "deltaRecoveryDuring": -0.495,
+        "deltaDuringBefore": -0.565,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -15115,46 +17235,6 @@
             ],
             [
               37.228,
-              -2.6802619047619047
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-change-36-17",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.535,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.535,
-        "deltaRecoveryDuring": -0.535,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2545625,
-              -2.6802619047619047
-            ],
-            [
-              37.256125,
-              -2.6802619047619047
-            ],
-            [
-              37.256125,
-              -2.678714285714286
-            ],
-            [
-              37.2545625,
-              -2.678714285714286
-            ],
-            [
-              37.2545625,
               -2.6802619047619047
             ]
           ]
@@ -15167,10 +17247,10 @@
         "cellId": "s1-change-36-18",
         "category": "possible_change",
         "beforeProbability": 0.575,
-        "duringProbability": 0.534,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.041,
-        "deltaRecoveryDuring": -0.534,
+        "deltaDuringBefore": -0.575,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -15205,7 +17285,7 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-36-19",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.507,
         "duringProbability": 0,
         "recoveryProbability": 0.55,
@@ -15284,93 +17364,13 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-36-28",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.464,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.464,
-        "deltaRecoveryDuring": -0.464,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.27175,
-              -2.6802619047619047
-            ],
-            [
-              37.273312499999996,
-              -2.6802619047619047
-            ],
-            [
-              37.273312499999996,
-              -2.678714285714286
-            ],
-            [
-              37.27175,
-              -2.678714285714286
-            ],
-            [
-              37.27175,
-              -2.6802619047619047
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-change-36-29",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.542,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.542,
-        "deltaRecoveryDuring": -0.542,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.273312499999996,
-              -2.6802619047619047
-            ],
-            [
-              37.274875,
-              -2.6802619047619047
-            ],
-            [
-              37.274875,
-              -2.678714285714286
-            ],
-            [
-              37.273312499999996,
-              -2.678714285714286
-            ],
-            [
-              37.273312499999996,
-              -2.6802619047619047
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "cellId": "s1-change-36-3",
         "category": "possible_change",
         "beforeProbability": 0.569,
-        "duringProbability": 0.494,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.075,
-        "deltaRecoveryDuring": -0.494,
+        "deltaDuringBefore": -0.569,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -15395,46 +17395,6 @@
             ],
             [
               37.232687500000004,
-              -2.6802619047619047
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-change-36-30",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.565,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.565,
-        "deltaRecoveryDuring": -0.565,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.274875,
-              -2.6802619047619047
-            ],
-            [
-              37.2764375,
-              -2.6802619047619047
-            ],
-            [
-              37.2764375,
-              -2.678714285714286
-            ],
-            [
-              37.274875,
-              -2.678714285714286
-            ],
-            [
-              37.274875,
               -2.6802619047619047
             ]
           ]
@@ -15487,10 +17447,10 @@
         "cellId": "s1-change-37-0",
         "category": "possible_change",
         "beforeProbability": 0.631,
-        "duringProbability": 0.544,
+        "duringProbability": 0,
         "recoveryProbability": 0.493,
-        "deltaDuringBefore": -0.087,
-        "deltaRecoveryDuring": -0.051,
+        "deltaDuringBefore": -0.631,
+        "deltaRecoveryDuring": 0.493,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -15565,7 +17525,7 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-37-17",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
         "duringProbability": 0,
         "recoveryProbability": 0.579,
@@ -15605,12 +17565,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-37-18",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.515,
+        "duringProbability": 0,
         "recoveryProbability": 0.613,
-        "deltaDuringBefore": 0.515,
-        "deltaRecoveryDuring": 0.098,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.613,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -15647,10 +17607,10 @@
         "cellId": "s1-change-37-19",
         "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.519,
+        "duringProbability": 0,
         "recoveryProbability": 0.623,
-        "deltaDuringBefore": 0.519,
-        "deltaRecoveryDuring": 0.104,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.623,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -15687,10 +17647,10 @@
         "cellId": "s1-change-37-20",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.467,
+        "duringProbability": 0,
         "recoveryProbability": 0.506,
-        "deltaDuringBefore": 0.467,
-        "deltaRecoveryDuring": 0.039,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.506,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -15767,10 +17727,10 @@
         "cellId": "s1-change-37-3",
         "category": "possible_change",
         "beforeProbability": 0.498,
-        "duringProbability": 0.467,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.031,
-        "deltaRecoveryDuring": -0.467,
+        "deltaDuringBefore": -0.498,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -15807,10 +17767,10 @@
         "cellId": "s1-change-37-30",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.511,
+        "duringProbability": 0,
         "recoveryProbability": 0.498,
-        "deltaDuringBefore": 0.511,
-        "deltaRecoveryDuring": -0.013,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.498,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -15835,46 +17795,6 @@
             ],
             [
               37.274875,
-              -2.681809523809524
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-change-37-31",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.453,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.453,
-        "deltaRecoveryDuring": -0.453,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.2764375,
-              -2.681809523809524
-            ],
-            [
-              37.278,
-              -2.681809523809524
-            ],
-            [
-              37.278,
-              -2.6802619047619047
-            ],
-            [
-              37.2764375,
-              -2.6802619047619047
-            ],
-            [
-              37.2764375,
               -2.681809523809524
             ]
           ]
@@ -15967,10 +17887,10 @@
         "cellId": "s1-change-38-0",
         "category": "residual_or_later_water",
         "beforeProbability": 0.723,
-        "duringProbability": 0.591,
+        "duringProbability": 0,
         "recoveryProbability": 0.623,
-        "deltaDuringBefore": -0.132,
-        "deltaRecoveryDuring": 0.032,
+        "deltaDuringBefore": -0.723,
+        "deltaRecoveryDuring": 0.623,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -16007,10 +17927,10 @@
         "cellId": "s1-change-38-1",
         "category": "possible_change",
         "beforeProbability": 0.638,
-        "duringProbability": 0.485,
+        "duringProbability": 0,
         "recoveryProbability": 0.463,
-        "deltaDuringBefore": -0.153,
-        "deltaRecoveryDuring": -0.022,
+        "deltaDuringBefore": -0.638,
+        "deltaRecoveryDuring": 0.463,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -16045,12 +17965,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-38-18",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.511,
+        "duringProbability": 0,
         "recoveryProbability": 0.532,
-        "deltaDuringBefore": 0.511,
-        "deltaRecoveryDuring": 0.021,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.532,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -16085,7 +18005,7 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-38-19",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
         "duringProbability": 0,
         "recoveryProbability": 0.526,
@@ -16165,12 +18085,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-38-20",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.452,
+        "duringProbability": 0,
         "recoveryProbability": 0.536,
-        "deltaDuringBefore": 0.452,
-        "deltaRecoveryDuring": 0.084,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.536,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -16327,10 +18247,10 @@
         "cellId": "s1-change-38-3",
         "category": "possible_change",
         "beforeProbability": 0.527,
-        "duringProbability": 0.468,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.059,
-        "deltaRecoveryDuring": -0.468,
+        "deltaDuringBefore": -0.527,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -16365,12 +18285,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-38-30",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.492,
+        "duringProbability": 0,
         "recoveryProbability": 0.522,
-        "deltaDuringBefore": 0.492,
-        "deltaRecoveryDuring": 0.03,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.522,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -16405,12 +18325,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-38-31",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.531,
+        "duringProbability": 0,
         "recoveryProbability": 0.558,
-        "deltaDuringBefore": 0.531,
-        "deltaRecoveryDuring": 0.027,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.558,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -16527,10 +18447,10 @@
         "cellId": "s1-change-38-47",
         "category": "possible_change",
         "beforeProbability": 0.571,
-        "duringProbability": 0.478,
+        "duringProbability": 0,
         "recoveryProbability": 0.458,
-        "deltaDuringBefore": -0.093,
-        "deltaRecoveryDuring": -0.02,
+        "deltaDuringBefore": -0.571,
+        "deltaRecoveryDuring": 0.458,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -16565,12 +18485,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-39-0",
-        "category": "persistent_water",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.778,
-        "duringProbability": 0.735,
+        "duringProbability": 0.454,
         "recoveryProbability": 0.714,
-        "deltaDuringBefore": -0.043,
-        "deltaRecoveryDuring": -0.021,
+        "deltaDuringBefore": -0.324,
+        "deltaRecoveryDuring": 0.26,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -16607,10 +18527,10 @@
         "cellId": "s1-change-39-1",
         "category": "possible_change",
         "beforeProbability": 0.66,
-        "duringProbability": 0.546,
+        "duringProbability": 0,
         "recoveryProbability": 0.469,
-        "deltaDuringBefore": -0.114,
-        "deltaRecoveryDuring": -0.077,
+        "deltaDuringBefore": -0.66,
+        "deltaRecoveryDuring": 0.469,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -16647,10 +18567,10 @@
         "cellId": "s1-change-39-16",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.453,
+        "duringProbability": 0,
         "recoveryProbability": 0.508,
-        "deltaDuringBefore": 0.453,
-        "deltaRecoveryDuring": 0.055,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.508,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -16727,10 +18647,10 @@
         "cellId": "s1-change-39-2",
         "category": "possible_change",
         "beforeProbability": 0.592,
-        "duringProbability": 0.518,
+        "duringProbability": 0,
         "recoveryProbability": 0.454,
-        "deltaDuringBefore": -0.074,
-        "deltaRecoveryDuring": -0.064,
+        "deltaDuringBefore": -0.592,
+        "deltaRecoveryDuring": 0.454,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -16805,12 +18725,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-39-21",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.459,
+        "duringProbability": 0,
         "recoveryProbability": 0.537,
-        "deltaDuringBefore": 0.459,
-        "deltaRecoveryDuring": 0.078,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.537,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -16885,7 +18805,7 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-39-31",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
         "duringProbability": 0,
         "recoveryProbability": 0.529,
@@ -16995,46 +18915,6 @@
             ],
             [
               37.287375,
-              -2.684904761904762
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
-        "cellId": "s1-change-39-39",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.482,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.482,
-        "deltaRecoveryDuring": -0.482,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.288937499999996,
-              -2.684904761904762
-            ],
-            [
-              37.290499999999994,
-              -2.684904761904762
-            ],
-            [
-              37.290499999999994,
-              -2.683357142857143
-            ],
-            [
-              37.288937499999996,
-              -2.683357142857143
-            ],
-            [
-              37.288937499999996,
               -2.684904761904762
             ]
           ]
@@ -17164,6 +19044,46 @@
     {
       "type": "Feature",
       "properties": {
+        "cellId": "s1-change-4-30",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.501,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.501,
+        "deltaRecoveryDuring": -0.501,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.274875,
+              -2.6307380952380957
+            ],
+            [
+              37.2764375,
+              -2.6307380952380957
+            ],
+            [
+              37.2764375,
+              -2.6291904761904763
+            ],
+            [
+              37.274875,
+              -2.6291904761904763
+            ],
+            [
+              37.274875,
+              -2.6307380952380957
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
         "cellId": "s1-change-4-41",
         "category": "possible_change",
         "beforeProbability": 0.505,
@@ -17207,10 +19127,10 @@
         "cellId": "s1-change-4-42",
         "category": "possible_change",
         "beforeProbability": 0.54,
-        "duringProbability": 0,
+        "duringProbability": 0.458,
         "recoveryProbability": 0.458,
-        "deltaDuringBefore": -0.54,
-        "deltaRecoveryDuring": 0.458,
+        "deltaDuringBefore": -0.082,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -17247,10 +19167,10 @@
         "cellId": "s1-change-4-43",
         "category": "possible_change",
         "beforeProbability": 0.695,
-        "duringProbability": 0,
+        "duringProbability": 0.479,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.695,
-        "deltaRecoveryDuring": 0,
+        "deltaDuringBefore": -0.216,
+        "deltaRecoveryDuring": -0.479,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -17324,13 +19244,53 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-4-47",
+        "cellId": "s1-change-4-46",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.481,
+        "duringProbability": 0.48,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.481,
-        "deltaRecoveryDuring": -0.481,
+        "deltaDuringBefore": 0.48,
+        "deltaRecoveryDuring": -0.48,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.299875,
+              -2.6307380952380957
+            ],
+            [
+              37.3014375,
+              -2.6307380952380957
+            ],
+            [
+              37.3014375,
+              -2.6291904761904763
+            ],
+            [
+              37.299875,
+              -2.6291904761904763
+            ],
+            [
+              37.299875,
+              -2.6307380952380957
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-4-47",
+        "category": "newly_flooded",
+        "beforeProbability": 0,
+        "duringProbability": 0.53,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.53,
+        "deltaRecoveryDuring": -0.53,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -17365,12 +19325,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-40-0",
-        "category": "persistent_water",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.78,
-        "duringProbability": 0.678,
+        "duringProbability": 0,
         "recoveryProbability": 0.597,
-        "deltaDuringBefore": -0.102,
-        "deltaRecoveryDuring": -0.081,
+        "deltaDuringBefore": -0.78,
+        "deltaRecoveryDuring": 0.597,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -17407,10 +19367,10 @@
         "cellId": "s1-change-40-1",
         "category": "possible_change",
         "beforeProbability": 0.65,
-        "duringProbability": 0.536,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.114,
-        "deltaRecoveryDuring": -0.536,
+        "deltaDuringBefore": -0.65,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -17445,12 +19405,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-40-16",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
-        "duringProbability": 0.494,
+        "duringProbability": 0,
         "recoveryProbability": 0.526,
-        "deltaDuringBefore": 0.494,
-        "deltaRecoveryDuring": 0.032,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.526,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -17485,7 +19445,7 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-40-19",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0,
         "duringProbability": 0,
         "recoveryProbability": 0.554,
@@ -17527,10 +19487,10 @@
         "cellId": "s1-change-40-2",
         "category": "possible_change",
         "beforeProbability": 0.562,
-        "duringProbability": 0.554,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.008,
-        "deltaRecoveryDuring": -0.554,
+        "deltaDuringBefore": -0.562,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -17645,12 +19605,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-40-37",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.508,
-        "duringProbability": 0.513,
+        "duringProbability": 0,
         "recoveryProbability": 0.54,
-        "deltaDuringBefore": 0.005,
-        "deltaRecoveryDuring": 0.027,
+        "deltaDuringBefore": -0.508,
+        "deltaRecoveryDuring": 0.54,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -17687,10 +19647,10 @@
         "cellId": "s1-change-40-4",
         "category": "possible_change",
         "beforeProbability": 0.511,
-        "duringProbability": 0.453,
+        "duringProbability": 0,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.058,
-        "deltaRecoveryDuring": -0.453,
+        "deltaDuringBefore": -0.511,
+        "deltaRecoveryDuring": 0,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -17805,12 +19765,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-41-0",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.744,
-        "duringProbability": 0.598,
+        "duringProbability": 0,
         "recoveryProbability": 0.553,
-        "deltaDuringBefore": -0.146,
-        "deltaRecoveryDuring": -0.045,
+        "deltaDuringBefore": -0.744,
+        "deltaRecoveryDuring": 0.553,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -17847,10 +19807,10 @@
         "cellId": "s1-change-41-1",
         "category": "possible_change",
         "beforeProbability": 0.663,
-        "duringProbability": 0.465,
+        "duringProbability": 0,
         "recoveryProbability": 0.454,
-        "deltaDuringBefore": -0.198,
-        "deltaRecoveryDuring": -0.011,
+        "deltaDuringBefore": -0.663,
+        "deltaRecoveryDuring": 0.454,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -17967,10 +19927,10 @@
         "cellId": "s1-change-41-2",
         "category": "possible_change",
         "beforeProbability": 0.623,
-        "duringProbability": 0.486,
+        "duringProbability": 0,
         "recoveryProbability": 0.454,
-        "deltaDuringBefore": -0.137,
-        "deltaRecoveryDuring": -0.032,
+        "deltaDuringBefore": -0.623,
+        "deltaRecoveryDuring": 0.454,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -18124,53 +20084,13 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-41-47",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.503,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.503,
-        "deltaRecoveryDuring": -0.503,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.3014375,
-              -2.688
-            ],
-            [
-              37.303,
-              -2.688
-            ],
-            [
-              37.303,
-              -2.6864523809523813
-            ],
-            [
-              37.3014375,
-              -2.6864523809523813
-            ],
-            [
-              37.3014375,
-              -2.688
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "cellId": "s1-change-41-5",
         "category": "possible_change",
         "beforeProbability": 0.455,
-        "duringProbability": 0.453,
+        "duringProbability": 0,
         "recoveryProbability": 0.484,
-        "deltaDuringBefore": -0.002,
-        "deltaRecoveryDuring": 0.031,
+        "deltaDuringBefore": -0.455,
+        "deltaRecoveryDuring": 0.484,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -18247,10 +20167,10 @@
         "cellId": "s1-change-5-30",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.456,
+        "duringProbability": 0.491,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.456,
-        "deltaRecoveryDuring": -0.456,
+        "deltaDuringBefore": 0.491,
+        "deltaRecoveryDuring": -0.491,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -18285,12 +20205,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-5-43",
-        "category": "possible_change",
+        "category": "persistent_water",
         "beforeProbability": 0.606,
-        "duringProbability": 0.511,
+        "duringProbability": 0.521,
         "recoveryProbability": 0.546,
-        "deltaDuringBefore": -0.095,
-        "deltaRecoveryDuring": 0.035,
+        "deltaDuringBefore": -0.085,
+        "deltaRecoveryDuring": 0.025,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -18325,12 +20245,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-5-44",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.541,
-        "duringProbability": 0.453,
+        "duringProbability": 0.5,
         "recoveryProbability": 0.536,
-        "deltaDuringBefore": -0.088,
-        "deltaRecoveryDuring": 0.083,
+        "deltaDuringBefore": -0.041,
+        "deltaRecoveryDuring": 0.036,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -18407,10 +20327,10 @@
         "cellId": "s1-change-5-47",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.451,
+        "duringProbability": 0.48,
         "recoveryProbability": 0,
-        "deltaDuringBefore": 0.451,
-        "deltaRecoveryDuring": -0.451,
+        "deltaDuringBefore": 0.48,
+        "deltaRecoveryDuring": -0.48,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -18447,10 +20367,10 @@
         "cellId": "s1-change-6-43",
         "category": "possible_change",
         "beforeProbability": 0.536,
-        "duringProbability": 0,
+        "duringProbability": 0.454,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.536,
-        "deltaRecoveryDuring": 0,
+        "deltaDuringBefore": -0.082,
+        "deltaRecoveryDuring": -0.454,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -18487,10 +20407,10 @@
         "cellId": "s1-change-6-44",
         "category": "possible_change",
         "beforeProbability": 0.536,
-        "duringProbability": 0,
+        "duringProbability": 0.496,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.536,
-        "deltaRecoveryDuring": 0,
+        "deltaDuringBefore": -0.04,
+        "deltaRecoveryDuring": -0.496,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -18527,10 +20447,10 @@
         "cellId": "s1-change-6-45",
         "category": "possible_change",
         "beforeProbability": 0.457,
-        "duringProbability": 0,
+        "duringProbability": 0.482,
         "recoveryProbability": 0,
-        "deltaDuringBefore": -0.457,
-        "deltaRecoveryDuring": 0,
+        "deltaDuringBefore": 0.025,
+        "deltaRecoveryDuring": -0.482,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -18555,6 +20475,46 @@
             ],
             [
               37.298312499999994,
+              -2.6338333333333335
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "s1-change-6-47",
+        "category": "possible_change",
+        "beforeProbability": 0,
+        "duringProbability": 0.466,
+        "recoveryProbability": 0,
+        "deltaDuringBefore": 0.466,
+        "deltaRecoveryDuring": -0.466,
+        "method": "sentinel1-window-change-v1"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              37.3014375,
+              -2.6338333333333335
+            ],
+            [
+              37.303,
+              -2.6338333333333335
+            ],
+            [
+              37.303,
+              -2.6322857142857146
+            ],
+            [
+              37.3014375,
+              -2.6322857142857146
+            ],
+            [
+              37.3014375,
               -2.6338333333333335
             ]
           ]
@@ -18644,46 +20604,6 @@
     {
       "type": "Feature",
       "properties": {
-        "cellId": "s1-change-8-12",
-        "category": "possible_change",
-        "beforeProbability": 0,
-        "duringProbability": 0.484,
-        "recoveryProbability": 0,
-        "deltaDuringBefore": 0.484,
-        "deltaRecoveryDuring": -0.484,
-        "method": "sentinel1-window-change-v1"
-      },
-      "geometry": {
-        "type": "Polygon",
-        "coordinates": [
-          [
-            [
-              37.24675,
-              -2.6369285714285717
-            ],
-            [
-              37.2483125,
-              -2.6369285714285717
-            ],
-            [
-              37.2483125,
-              -2.6353809523809524
-            ],
-            [
-              37.24675,
-              -2.6353809523809524
-            ],
-            [
-              37.24675,
-              -2.6369285714285717
-            ]
-          ]
-        ]
-      }
-    },
-    {
-      "type": "Feature",
-      "properties": {
         "cellId": "s1-change-8-45",
         "category": "possible_change",
         "beforeProbability": 0.474,
@@ -18765,12 +20685,12 @@
       "type": "Feature",
       "properties": {
         "cellId": "s1-change-9-12",
-        "category": "possible_change",
+        "category": "residual_or_later_water",
         "beforeProbability": 0.458,
-        "duringProbability": 0.603,
+        "duringProbability": 0,
         "recoveryProbability": 0.549,
-        "deltaDuringBefore": 0.145,
-        "deltaRecoveryDuring": -0.054,
+        "deltaDuringBefore": -0.458,
+        "deltaRecoveryDuring": 0.549,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {
@@ -18807,10 +20727,10 @@
         "cellId": "s1-change-9-13",
         "category": "possible_change",
         "beforeProbability": 0,
-        "duringProbability": 0.452,
+        "duringProbability": 0,
         "recoveryProbability": 0.481,
-        "deltaDuringBefore": 0.452,
-        "deltaRecoveryDuring": 0.029,
+        "deltaDuringBefore": 0,
+        "deltaRecoveryDuring": 0.481,
         "method": "sentinel1-window-change-v1"
       },
       "geometry": {

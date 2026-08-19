@@ -17,6 +17,7 @@
     "v2:derive-sentinel1-mask": "node versions/v2-forecast-mvp/tools/derive-sentinel1-flood-mask.mjs",
     "v2:compute-road-metrics": "node versions/v2-forecast-mvp/tools/compute-sentinel1-road-metrics.mjs",
     "v2:evaluate-real-mask-model": "node versions/v2-forecast-mvp/tools/evaluate-real-mask-model.mjs",
+    "v2:validate-ground-truth": "node versions/v2-forecast-mvp/tools/validate-ground-truth.mjs",
     "v2:check-geospatial": "node versions/v2-forecast-mvp/tools/check-geospatial-tooling.mjs",
     "v2:verify-pwa": "node versions/v2-forecast-mvp/tools/verify-pwa.mjs",
     "build": "tsc && vite build",

@@ -1,5 +1,6 @@
 import type {
   FloodCollection,
+  GroundTruthValidationReport,
   LocationsData,
   RoadCollection,
   SatelliteFloodChangeCollection,
@@ -25,6 +26,41 @@ export async function loadDemoData() {
     changeLayer: null
   };
   const emptyRealMaskEvaluation: V2RealMaskEvaluation | null = null;
+  const emptyGroundTruthValidation: GroundTruthValidationReport = {
+    generatedAt: "",
+    method: "missing",
+    validationStatus: "no_ground_truth_yet",
+    caveat: "",
+    observationWindow: {
+      label: "During flooding",
+      start: "",
+      end: ""
+    },
+    reviewInputs: {
+      eventOverrideRows: 0,
+      reviewedEventRows: 0,
+      observationOverrideRows: 0,
+      reviewedObservationRows: 0,
+      spatialOverrideFeatures: 0,
+      reviewedSpatialFeatures: 0
+    },
+    sourceSearch: {
+      mode: "not_run",
+      candidateSources: 0,
+      candidateExactRoadSources: 0,
+      note: ""
+    },
+    roadStatuses: [],
+    summary: {
+      roads: 0,
+      verifiedRoadCount: 0,
+      unverifiedRoadCount: 0,
+      candidateSources: 0,
+      candidateExactRoadSources: 0
+    },
+    requiredNextEvidence: [],
+    candidateSources: []
+  };
   const [
     scene,
     roads,
@@ -34,7 +70,8 @@ export async function loadDemoData() {
     sentinelQuicklooks,
     floodMaskManifest,
     roadMetrics,
-    realMaskEvaluation
+    realMaskEvaluation,
+    groundTruthValidation
   ] =
     await Promise.all([
     fetch(`${base}data/amboseli/scene.json`).then((res) => res.json() as Promise<SceneMetadata>),
@@ -58,6 +95,10 @@ export async function loadDemoData() {
     loadJsonOrDefault<V2RealMaskEvaluation | null>(
       `${base}data/amboseli/v2-real-mask-evaluation.json`,
       emptyRealMaskEvaluation
+    ),
+    loadJsonOrDefault<GroundTruthValidationReport>(
+      `${base}data/amboseli/ground-truth-validation.json`,
+      emptyGroundTruthValidation
     )
   ]);
   const satelliteFloodMask = await loadSatelliteMasks(base, floodMaskManifest, emptyFloodMask);
@@ -79,7 +120,8 @@ export async function loadDemoData() {
     satelliteFloodChange,
     floodMaskManifest,
     roadMetrics,
-    realMaskEvaluation
+    realMaskEvaluation,
+    groundTruthValidation
   };
 }
 

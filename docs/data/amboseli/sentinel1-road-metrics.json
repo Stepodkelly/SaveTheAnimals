@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T07:58:30.339Z",
+  "generatedAt": "2026-08-19T14:31:45.065Z",
   "method": "sentinel1-road-intersection-v0",
   "caveat": "Metrics are computed from provisional Sentinel-1 planning masks against the demonstration road graph; they are not field-confirmed passability labels.",
   "downloadedRasterChecksums": [
@@ -23,12 +23,21 @@
     },
     {
       "window": "duringFlooding",
-      "assetId": "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vv",
-      "sceneId": "S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG",
+      "assetId": "sentinel1-S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG-vh",
+      "sceneId": "S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG",
+      "band": "vh",
+      "sizeBytes": 564544763,
+      "localChecksum": "sha256:d1c844793530e374533b9da2f1e6a202ffb1e4978bcbe66edbf06eafca9a5857",
+      "sourceChecksum": "161020235a8d7dbe90ac85ee0a59cf35765d"
+    },
+    {
+      "window": "duringFlooding",
+      "assetId": "sentinel1-S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG-vv",
+      "sceneId": "S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG",
       "band": "vv",
-      "sizeBytes": 632925246,
-      "localChecksum": "sha256:f7d2ab8381cd983a5ba5c40da3698638c35f199fd7f02524a25233ab0323bd15",
-      "sourceChecksum": "1610531b02c44756d80d6bbcb7953d4c368e"
+      "sizeBytes": 637102966,
+      "localChecksum": "sha256:a35b23de4a13b81ee35c8b63ef0ebff88cbf1aefa8e43564ad951786d66ce61c",
+      "sourceChecksum": "161063d27081af9f4426c4318bba595c76bc"
     },
     {
       "window": "duringFlooding",
@@ -38,6 +47,15 @@
       "sizeBytes": 563374972,
       "localChecksum": "sha256:89b8fb95a44fd14772866b04b6b7bc85866588837bce0cd7d2aae80a6066c748",
       "sourceChecksum": "1610efeb376cffe5fba6ff5b2c6ff5d780c3"
+    },
+    {
+      "window": "duringFlooding",
+      "assetId": "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vv",
+      "sceneId": "S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG",
+      "band": "vv",
+      "sizeBytes": 632925246,
+      "localChecksum": "sha256:f7d2ab8381cd983a5ba5c40da3698638c35f199fd7f02524a25233ab0323bd15",
+      "sourceChecksum": "1610531b02c44756d80d6bbcb7953d4c368e"
     },
     {
       "window": "recoveryComparison",
@@ -64,27 +82,27 @@
       "observedAt": "2026-02-20T15:47:48.023501Z",
       "sceneId": "S1A_IW_GRDH_1SDV_20260115T154750_20260115T154815_062779_07DFB1_604D_COG,S1C_IW_GRDH_1SDV_20260204T031130_20260204T031155_006200_00C731_24F9_COG,S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG",
       "featureCount": 364,
-      "probableFloodAreaKm2": 1.347,
+      "probableFloodAreaKm2": 5.837,
       "directRoadTouches": [
         {
           "roadId": "base_to_central",
           "roadName": "Base Road",
-          "probableCells": 3,
-          "possibleCells": 9,
+          "probableCells": 9,
+          "possibleCells": 3,
           "maxProbability": 0.694
         },
         {
           "roadId": "central_to_eastern",
           "roadName": "Low Marsh Road",
-          "probableCells": 0,
-          "possibleCells": 10,
+          "probableCells": 5,
+          "possibleCells": 5,
           "maxProbability": 0.66
         },
         {
           "roadId": "eastern_to_sinet",
           "roadName": "Sinet Delta Spur",
-          "probableCells": 0,
-          "possibleCells": 2,
+          "probableCells": 1,
+          "possibleCells": 1,
           "maxProbability": 0.546
         },
         {
@@ -111,15 +129,15 @@
         {
           "roadId": "base_to_hill",
           "roadName": "Observation Hill Track",
-          "probableCells": 0,
-          "possibleCells": 5,
+          "probableCells": 2,
+          "possibleCells": 3,
           "maxProbability": 0.563
         },
         {
           "roadId": "central_to_west",
           "roadName": "Western Gate Road",
-          "probableCells": 1,
-          "possibleCells": 4,
+          "probableCells": 4,
+          "possibleCells": 1,
           "maxProbability": 0.672
         }
       ],
@@ -180,124 +198,92 @@
         }
       ],
       "falseSafeRoadRate": 0,
-      "unnecessaryBlockRate": 0.182,
+      "unnecessaryBlockRate": 0.455,
       "routeAvailabilityProxy": 1
     },
     {
       "window": "duringFlooding",
       "observedAt": "2026-03-16T15:47:47.961154Z",
       "sceneId": "S1A_IW_GRDH_1SDV_20260309T155545_20260309T155610_063552_07FC94_E210_COG,S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG,S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG",
-      "featureCount": 199,
-      "probableFloodAreaKm2": 0.479,
+      "featureCount": 121,
+      "probableFloodAreaKm2": 0.539,
       "directRoadTouches": [
-        {
-          "roadId": "base_to_central",
-          "roadName": "Base Road",
-          "probableCells": 0,
-          "possibleCells": 4,
-          "maxProbability": 0.563
-        },
         {
           "roadId": "central_to_eastern",
           "roadName": "Low Marsh Road",
-          "probableCells": 0,
-          "possibleCells": 1,
-          "maxProbability": 0.552
+          "probableCells": 1,
+          "possibleCells": 3,
+          "maxProbability": 0.522
         },
         {
           "roadId": "eastern_to_sinet",
           "roadName": "Sinet Delta Spur",
-          "probableCells": 0,
+          "probableCells": 1,
           "possibleCells": 2,
-          "maxProbability": 0.531
+          "maxProbability": 0.542
         },
         {
-          "roadId": "base_to_ridge",
-          "roadName": "Dry Ridge Track",
+          "roadId": "bypass_to_eastern",
+          "roadName": "Southern Bypass",
           "probableCells": 0,
-          "possibleCells": 2,
-          "maxProbability": 0.655
+          "possibleCells": 1,
+          "maxProbability": 0.477
         },
         {
           "roadId": "central_to_north",
           "roadName": "Northern Loop Link",
-          "probableCells": 0,
-          "possibleCells": 2,
-          "maxProbability": 0.55
+          "probableCells": 1,
+          "possibleCells": 1,
+          "maxProbability": 0.573
         },
         {
           "roadId": "eastern_to_north",
           "roadName": "Eastern Loop Road",
           "probableCells": 0,
           "possibleCells": 1,
-          "maxProbability": 0.477
-        },
-        {
-          "roadId": "central_to_west",
-          "roadName": "Western Gate Road",
-          "probableCells": 0,
-          "possibleCells": 6,
-          "maxProbability": 0.622
+          "maxProbability": 0.517
         }
       ],
       "nearRoadTouches": [
         {
-          "roadId": "base_to_central",
-          "roadName": "Base Road",
-          "cellsWithin160m": 10,
-          "maxProbability": 0.563
-        },
-        {
           "roadId": "central_to_eastern",
           "roadName": "Low Marsh Road",
-          "cellsWithin160m": 7,
-          "maxProbability": 0.552
+          "cellsWithin160m": 11,
+          "maxProbability": 0.522
         },
         {
           "roadId": "eastern_to_sinet",
           "roadName": "Sinet Delta Spur",
-          "cellsWithin160m": 6,
-          "maxProbability": 0.531
-        },
-        {
-          "roadId": "base_to_ridge",
-          "roadName": "Dry Ridge Track",
-          "cellsWithin160m": 10,
-          "maxProbability": 0.655
+          "cellsWithin160m": 11,
+          "maxProbability": 0.542
         },
         {
           "roadId": "ridge_to_bypass",
           "roadName": "Dry Ridge Connector",
           "cellsWithin160m": 1,
-          "maxProbability": 0.579
+          "maxProbability": 0.453
+        },
+        {
+          "roadId": "bypass_to_eastern",
+          "roadName": "Southern Bypass",
+          "cellsWithin160m": 3,
+          "maxProbability": 0.477
         },
         {
           "roadId": "central_to_north",
           "roadName": "Northern Loop Link",
-          "cellsWithin160m": 4,
-          "maxProbability": 0.55
+          "cellsWithin160m": 5,
+          "maxProbability": 0.573
         },
         {
           "roadId": "eastern_to_north",
           "roadName": "Eastern Loop Road",
-          "cellsWithin160m": 2,
-          "maxProbability": 0.477
-        },
-        {
-          "roadId": "base_to_hill",
-          "roadName": "Observation Hill Track",
-          "cellsWithin160m": 1,
-          "maxProbability": 0.461
-        },
-        {
-          "roadId": "central_to_west",
-          "roadName": "Western Gate Road",
-          "cellsWithin160m": 13,
-          "maxProbability": 0.622
+          "cellsWithin160m": 3,
+          "maxProbability": 0.517
         }
       ],
       "falseSafeRoadRate": 0,
-      "unnecessaryBlockRate": 0,
+      "unnecessaryBlockRate": 0.273,
       "routeAvailabilityProxy": 1
     },
     {
@@ -305,7 +291,7 @@
       "observedAt": "2026-05-15T15:47:47.498591Z",
       "sceneId": "S1A_IW_GRDH_1SDV_20260508T155545_20260508T155610_064427_081D30_9B81_COG,S1D_IW_GRDH_1SDV_20260512T031143_20260512T031208_002745_004A1D_5B28_COG,S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
       "featureCount": 171,
-      "probableFloodAreaKm2": 0.479,
+      "probableFloodAreaKm2": 1.976,
       "directRoadTouches": [
         {
           "roadId": "base_to_central",
@@ -331,8 +317,8 @@
         {
           "roadId": "base_to_ridge",
           "roadName": "Dry Ridge Track",
-          "probableCells": 0,
-          "possibleCells": 4,
+          "probableCells": 1,
+          "possibleCells": 3,
           "maxProbability": 0.645
         },
         {
@@ -352,8 +338,8 @@
         {
           "roadId": "central_to_west",
           "roadName": "Western Gate Road",
-          "probableCells": 0,
-          "possibleCells": 3,
+          "probableCells": 1,
+          "possibleCells": 2,
           "maxProbability": 0.613
         }
       ],
@@ -420,17 +406,19 @@
         }
       ],
       "falseSafeRoadRate": 0,
-      "unnecessaryBlockRate": 0,
+      "unnecessaryBlockRate": 0.182,
       "routeAvailabilityProxy": 1
     }
   ],
   "changeLayer": {
     "href": "data/amboseli/sentinel1-flood-change.geojson",
-    "featureCount": 471,
+    "featureCount": 519,
     "categories": {
-      "possible_change": 456,
-      "persistent_water": 9,
-      "residual_or_later_water": 6
+      "possible_change": 437,
+      "residual_or_later_water": 65,
+      "newly_flooded": 13,
+      "persistent_water": 2,
+      "recovered_or_drying": 2
     }
   }
 }

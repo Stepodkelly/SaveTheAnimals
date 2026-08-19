@@ -10,6 +10,7 @@ import type {
   SentinelFloodMaskManifest,
   SentinelQuicklookManifest,
   SentinelRoadMetricsReport,
+  V2RealMaskEvaluation,
   V2ReplayEvaluation
 } from "../types";
 import { formatDate, formatMeters } from "../lib/format";
@@ -33,6 +34,7 @@ type RoutePanelProps = {
   sentinelQuicklooks: SentinelQuicklookManifest;
   floodMaskManifest: SentinelFloodMaskManifest;
   roadMetrics: SentinelRoadMetricsReport;
+  realMaskEvaluation: V2RealMaskEvaluation | null;
 };
 
 export function RoutePanel({
@@ -53,7 +55,8 @@ export function RoutePanel({
   activeWindow,
   sentinelQuicklooks,
   floodMaskManifest,
-  roadMetrics
+  roadMetrics,
+  realMaskEvaluation
 }: RoutePanelProps) {
   const [question, setQuestion] = useState("Which public office or ranger contact should verify road access?");
   const blockedEdges = edges.filter((edge) => edge.blocked);
@@ -145,6 +148,18 @@ export function RoutePanel({
             </span>
           ))}
         </div>
+        {realMaskEvaluation && (
+          <div className="mask-evaluation" aria-label="V2 real mask evaluation">
+            <span>Sentinel mask evaluation</span>
+            <strong>
+              Heuristic {realMaskEvaluation.metrics.brierScore.toFixed(3)} · trained{" "}
+              {formatNullableMetric(realMaskEvaluation.trainedRegression.metrics.brierScore)}
+            </strong>
+            <small>
+              {realMaskEvaluation.metrics.evaluatedCells} cells; {realMaskEvaluation.targetWindow.maskMethod}
+            </small>
+          </div>
+        )}
       </section>
 
       <section className="panel-section">
@@ -170,7 +185,9 @@ export function RoutePanel({
           <div className="mask-summary" aria-label="Sentinel-1 flood mask summary">
             <span>Satellite-derived layer</span>
             <strong>{activeFloodMask.probableFloodAreaKm2.toFixed(2)} km2 probable</strong>
-            <small>{activeFloodMask.method.id}; provisional overlay</small>
+            <small>
+              {activeFloodMask.sourceSceneCount ?? 1} scenes; {activeFloodMask.method.id}; provisional overlay
+            </small>
           </div>
         )}
         {activeRoadMetrics && (
@@ -240,7 +257,7 @@ export function RoutePanel({
         <div className="panel-heading-row">
           <div>
             <h2>Exa-Powered Route Explanation</h2>
-            <p className="eyebrow">Gemini plans the checks; Exa retrieves reports.</p>
+            <p className="eyebrow">AI plans the checks; Exa retrieves reports.</p>
           </div>
           <button className="text-button" onClick={onRunIntelligence} disabled={intelligenceStatus === "loading"}>
             {intelligenceStatus === "loading" ? "Checking" : "Run"}
@@ -262,7 +279,7 @@ export function RoutePanel({
         )}
         {evidence && (
           <>
-            <p className={evidence.cached ? "chip" : "chip live"}>{evidence.cached ? "cached fallback" : "live Exa"}</p>
+            <p className={evidence.cached ? "chip" : "chip live"}>{sourceModeLabel(evidence.sourceMode)}</p>
             <p className="briefing">{evidence.briefing.routeAssessment}</p>
             <div className="evidence-list">
               {evidence.evidence.map((item) => (
@@ -300,8 +317,8 @@ export function RoutePanel({
         {localAnswerStatus === "error" && <p className="muted">Local answer unavailable.</p>}
         {localAnswer && (
           <article className="answer-card">
-            <p className={localAnswer.sourceMode === "live_exa" ? "chip live" : "chip"}>
-              {localAnswer.sourceMode === "live_exa" ? "live Exa" : "cached fallback"}
+            <p className={isLiveSourceMode(localAnswer.sourceMode) ? "chip live" : "chip"}>
+              {sourceModeLabel(localAnswer.sourceMode)}
             </p>
             <p>{localAnswer.answer}</p>
             <small>{localAnswer.guardrail}</small>
@@ -383,4 +400,19 @@ function isApplicableEvidence(item: EvidenceItem) {
 
 function asPercent(value: number) {
   return `${Math.round(value * 100)}%`;
+}
+
+function formatNullableMetric(value: number | null) {
+  return value === null ? "--" : value.toFixed(3);
+}
+
+function sourceModeLabel(sourceMode?: string) {
+  if (sourceMode === "live_exa_openai") return "live Exa + OpenAI";
+  if (sourceMode === "live_exa_gemini") return "live Exa + Gemini";
+  if (sourceMode === "live_exa") return "live Exa";
+  return "cached fallback";
+}
+
+function isLiveSourceMode(sourceMode?: string) {
+  return sourceMode === "live_exa" || sourceMode === "live_exa_openai" || sourceMode === "live_exa_gemini";
 }

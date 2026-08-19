@@ -1,20 +1,22 @@
 # V2 deployment
 
-The public GitHub Pages app is static. Live Exa/Gemini calls require deploying `server/index.js` with secret environment variables.
+The public GitHub Pages app is static. Live Exa plus Gemini/OpenAI calls require deploying `server/index.js` with secret environment variables.
 
 ## Backend
 
 Render can use `render.yaml` directly. Required secrets:
 
 - `EXA_API_KEY`
-- `GEMINI_API_KEY`
+- `GEMINI_API_KEY` or `OPENAI_API_KEY`
 
 Important environment values:
 
 - `HOST=0.0.0.0`
 - `ALLOWED_ORIGINS=https://stepodkelly.github.io`
+- `GEMINI_MODEL=gemini-2.5-flash` when using Gemini
+- `OPENAI_MODEL=gpt-5-mini` when using OpenAI
 
-The health check is `/api/health`.
+The health check is `/api/health`; it reports whether Exa, Gemini and OpenAI are configured.
 
 ## Frontend
 

@@ -41,6 +41,7 @@ const scenes = sceneId
 if (sceneId && scenes.length === 0) {
   throw new Error(`SCENE_ID ${sceneId} was not found in ${path.relative(rootDir, stacPath)}.`);
 }
+const existingDownloaded = readExistingDownloadManifest(windowKey);
 const downloaded = [];
 
 for (const scene of scenes) {
@@ -79,7 +80,7 @@ for (const scene of scenes) {
 }
 
 const manifestPath = path.join(manifestDir, `download_manifest_${windowKey}.json`);
-fs.writeFileSync(manifestPath, `${JSON.stringify({ downloaded }, null, 2)}\n`);
+fs.writeFileSync(manifestPath, `${JSON.stringify({ downloaded: mergeAssets(existingDownloaded, downloaded) }, null, 2)}\n`);
 console.log(`Wrote ${path.relative(rootDir, manifestPath)}`);
 
 async function getAccessToken() {
@@ -150,4 +151,21 @@ function assetRecord(scene, band, asset, outputPath, sizeBytes, href) {
     sourceAssetIds: [],
     parentJobId: `download-sentinel1-rasters:${windowKey}:${scene.id}:${band}`
   };
+}
+
+function readExistingDownloadManifest(currentWindowKey) {
+  const manifestPath = path.join(manifestDir, `download_manifest_${currentWindowKey}.json`);
+  if (!fs.existsSync(manifestPath)) return [];
+  const manifest = JSON.parse(fs.readFileSync(manifestPath, "utf8"));
+  return Array.isArray(manifest.downloaded) ? manifest.downloaded : [];
+}
+
+function mergeAssets(existingAssets, nextAssets) {
+  const byAssetId = new Map(existingAssets.map((asset) => [asset.assetId, asset]));
+  nextAssets.forEach((asset) => byAssetId.set(asset.assetId, asset));
+  return [...byAssetId.values()].sort((a, b) => {
+    const timeCompare = String(a.observedAt ?? "").localeCompare(String(b.observedAt ?? ""));
+    if (timeCompare !== 0) return timeCompare;
+    return String(a.band).localeCompare(String(b.band));
+  });
 }

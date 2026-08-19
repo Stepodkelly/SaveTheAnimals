@@ -8,6 +8,7 @@ import type {
   SentinelFloodMaskManifest,
   SentinelQuicklookManifest,
   SentinelRoadMetricsReport,
+  V2RealMaskEvaluation,
   V2ReplayCellCollection
 } from "../types";
 
@@ -23,7 +24,18 @@ export async function loadDemoData() {
     windows: [],
     changeLayer: null
   };
-  const [scene, roads, floods, locations, v2ReplayCells, sentinelQuicklooks, floodMaskManifest, roadMetrics] =
+  const emptyRealMaskEvaluation: V2RealMaskEvaluation | null = null;
+  const [
+    scene,
+    roads,
+    floods,
+    locations,
+    v2ReplayCells,
+    sentinelQuicklooks,
+    floodMaskManifest,
+    roadMetrics,
+    realMaskEvaluation
+  ] =
     await Promise.all([
     fetch(`${base}data/amboseli/scene.json`).then((res) => res.json() as Promise<SceneMetadata>),
     fetch(`${base}data/amboseli/roads.geojson`).then((res) => res.json() as Promise<RoadCollection>),
@@ -42,6 +54,10 @@ export async function loadDemoData() {
     loadJsonOrDefault<SentinelRoadMetricsReport>(
       `${base}data/amboseli/sentinel1-road-metrics.json`,
       emptyRoadMetrics
+    ),
+    loadJsonOrDefault<V2RealMaskEvaluation | null>(
+      `${base}data/amboseli/v2-real-mask-evaluation.json`,
+      emptyRealMaskEvaluation
     )
   ]);
   const satelliteFloodMask = await loadSatelliteMasks(base, floodMaskManifest, emptyFloodMask);
@@ -62,7 +78,8 @@ export async function loadDemoData() {
     satelliteFloodMask,
     satelliteFloodChange,
     floodMaskManifest,
-    roadMetrics
+    roadMetrics,
+    realMaskEvaluation
   };
 }
 

@@ -4,27 +4,41 @@
       "window": "beforeFlooding",
       "href": "data/amboseli/sentinel1-flood-mask-before.geojson",
       "status": "generated",
-      "generatedAt": "2026-08-19T05:02:44.341Z",
-      "sceneId": "S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG",
+      "generatedAt": "2026-08-19T06:34:34.269Z",
+      "sceneId": "S1A_IW_GRDH_1SDV_20260115T154750_20260115T154815_062779_07DFB1_604D_COG,S1C_IW_GRDH_1SDV_20260204T031130_20260204T031155_006200_00C731_24F9_COG,S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG",
+      "sceneIds": [
+        "S1A_IW_GRDH_1SDV_20260115T154750_20260115T154815_062779_07DFB1_604D_COG",
+        "S1C_IW_GRDH_1SDV_20260204T031130_20260204T031155_006200_00C731_24F9_COG",
+        "S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG"
+      ],
       "observedAt": "2026-02-20T15:47:48.023501Z",
-      "featureCount": 182,
-      "probableFloodAreaKm2": 0.688,
+      "observedRange": {
+        "start": "2026-01-15T15:47:50.169558Z",
+        "end": "2026-02-20T15:47:48.023501Z"
+      },
+      "sourceSceneCount": 3,
+      "featureCount": 508,
+      "probableFloodAreaKm2": 0.569,
       "sourceAssetIds": [
+        "sentinel1-S1A_IW_GRDH_1SDV_20260115T154750_20260115T154815_062779_07DFB1_604D_COG-quicklook",
+        "sentinel1-S1C_IW_GRDH_1SDV_20260204T031130_20260204T031155_006200_00C731_24F9_COG-quicklook",
         "sentinel1-S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG-vv",
         "sentinel1-S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG-vh"
       ],
       "sourceUris": [
+        "data/amboseli/sentinel1-quicklooks/S1A_IW_GRDH_1SDV_20260115T154750_20260115T154815_062779_07DFB1_604D_COG.png",
+        "data/amboseli/sentinel1-quicklooks/S1C_IW_GRDH_1SDV_20260204T031130_20260204T031155_006200_00C731_24F9_COG.png",
         "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG_vv.tif",
         "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG_vh.tif"
       ],
+      "sourceSceneTypes": {
+        "quicklook": 2,
+        "raw_vv_vh": 1
+      },
       "method": {
-        "id": "sentinel1-calibrated-low-backscatter-v1",
-        "description": "Downsampled VV/VH low-backscatter likelihood clipped to the demo bounds, smoothed with a 3x3 neighborhood and calibrated per scene by quantiles. This is a provisional planning overlay, not a validated flood product.",
-        "scoreThreshold": 0.58,
-        "vvLow": 96,
-        "vvMid": 150,
-        "vhLow": 52,
-        "vhMid": 83,
+        "id": "sentinel1-multiscene-hybrid-v3",
+        "description": "Aggregates local full Sentinel-1 VV/VH raster scene pairs with Copernicus quicklook observations when full rasters are not local. Each scene is quantile-calibrated, smoothed with a 3x3 neighborhood, contrast-stretched after thresholding, and averaged by grid cell to reduce single-scene speckle. This is a provisional planning overlay, not a validated flood product.",
+        "aggregation": "mean_probability_across_selected_sentinel_scenes",
         "sampleWidth": 144,
         "sampleHeight": 126,
         "cellsX": 48,
@@ -32,35 +46,49 @@
       },
       "georeference": {
         "source": "Copernicus STAC bbox",
-        "note": "The local GeoTIFF reader did not expose affine tags for this COG, so the demo crop is linearly georeferenced from the STAC scene bbox."
+        "note": "The local GeoTIFF reader did not expose affine tags for these COGs, so demo crops are linearly georeferenced from each STAC scene bbox."
       },
-      "checksum": "sha256:66ba7ee2ef5bcfe53c7de3792df6204d14e186db96845c04bdbbfe865a333e34"
+      "checksum": "sha256:65da97681bae2789a88cff010b17f4fdbae002add02e3c107e916d02598c0ec3"
     },
     {
       "window": "duringFlooding",
       "href": "data/amboseli/sentinel1-flood-mask-during.geojson",
       "status": "generated",
-      "generatedAt": "2026-08-19T05:02:44.383Z",
-      "sceneId": "S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG",
+      "generatedAt": "2026-08-19T06:34:34.333Z",
+      "sceneId": "S1A_IW_GRDH_1SDV_20260309T155545_20260309T155610_063552_07FC94_E210_COG,S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG,S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG",
+      "sceneIds": [
+        "S1A_IW_GRDH_1SDV_20260309T155545_20260309T155610_063552_07FC94_E210_COG",
+        "S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG",
+        "S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG"
+      ],
       "observedAt": "2026-03-16T15:47:47.961154Z",
-      "featureCount": 56,
-      "probableFloodAreaKm2": 0.239,
+      "observedRange": {
+        "start": "2026-03-09T15:55:45.809719Z",
+        "end": "2026-03-16T15:47:47.961154Z"
+      },
+      "sourceSceneCount": 3,
+      "featureCount": 350,
+      "probableFloodAreaKm2": 0.419,
       "sourceAssetIds": [
+        "sentinel1-S1A_IW_GRDH_1SDV_20260309T155545_20260309T155610_063552_07FC94_E210_COG-quicklook",
+        "sentinel1-S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG-quicklook",
         "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vv",
         "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vh"
       ],
       "sourceUris": [
+        "data/amboseli/sentinel1-quicklooks/S1A_IW_GRDH_1SDV_20260309T155545_20260309T155610_063552_07FC94_E210_COG.png",
+        "data/amboseli/sentinel1-quicklooks/S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG.png",
         "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG_vv.tif",
         "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG_vh.tif"
       ],
+      "sourceSceneTypes": {
+        "quicklook": 2,
+        "raw_vv_vh": 1
+      },
       "method": {
-        "id": "sentinel1-calibrated-low-backscatter-v1",
-        "description": "Downsampled VV/VH low-backscatter likelihood clipped to the demo bounds, smoothed with a 3x3 neighborhood and calibrated per scene by quantiles. This is a provisional planning overlay, not a validated flood product.",
-        "scoreThreshold": 0.58,
-        "vvLow": 119,
-        "vvMid": 178,
-        "vhLow": 64,
-        "vhMid": 96,
+        "id": "sentinel1-multiscene-hybrid-v3",
+        "description": "Aggregates local full Sentinel-1 VV/VH raster scene pairs with Copernicus quicklook observations when full rasters are not local. Each scene is quantile-calibrated, smoothed with a 3x3 neighborhood, contrast-stretched after thresholding, and averaged by grid cell to reduce single-scene speckle. This is a provisional planning overlay, not a validated flood product.",
+        "aggregation": "mean_probability_across_selected_sentinel_scenes",
         "sampleWidth": 144,
         "sampleHeight": 126,
         "cellsX": 48,
@@ -68,35 +96,49 @@
       },
       "georeference": {
         "source": "Copernicus STAC bbox",
-        "note": "The local GeoTIFF reader did not expose affine tags for this COG, so the demo crop is linearly georeferenced from the STAC scene bbox."
+        "note": "The local GeoTIFF reader did not expose affine tags for these COGs, so demo crops are linearly georeferenced from each STAC scene bbox."
       },
-      "checksum": "sha256:05deb5f43e59ec2a2069b836ceac2aaf5f5fe5b72073da7431092ef45de95071"
+      "checksum": "sha256:ee4f641eec88908d17119b1105dccd8060e73847d64c9be74595532d68cf4eb3"
     },
     {
       "window": "recoveryComparison",
       "href": "data/amboseli/sentinel1-flood-mask-recovery.geojson",
       "status": "generated",
-      "generatedAt": "2026-08-19T05:02:44.423Z",
-      "sceneId": "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
+      "generatedAt": "2026-08-19T06:34:34.385Z",
+      "sceneId": "S1A_IW_GRDH_1SDV_20260508T155545_20260508T155610_064427_081D30_9B81_COG,S1D_IW_GRDH_1SDV_20260512T031143_20260512T031208_002745_004A1D_5B28_COG,S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
+      "sceneIds": [
+        "S1A_IW_GRDH_1SDV_20260508T155545_20260508T155610_064427_081D30_9B81_COG",
+        "S1D_IW_GRDH_1SDV_20260512T031143_20260512T031208_002745_004A1D_5B28_COG",
+        "S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG"
+      ],
       "observedAt": "2026-05-15T15:47:47.498591Z",
-      "featureCount": 62,
-      "probableFloodAreaKm2": 0.359,
+      "observedRange": {
+        "start": "2026-05-08T15:55:45.496911Z",
+        "end": "2026-05-15T15:47:47.498591Z"
+      },
+      "sourceSceneCount": 3,
+      "featureCount": 281,
+      "probableFloodAreaKm2": 0.329,
       "sourceAssetIds": [
+        "sentinel1-S1A_IW_GRDH_1SDV_20260508T155545_20260508T155610_064427_081D30_9B81_COG-quicklook",
+        "sentinel1-S1D_IW_GRDH_1SDV_20260512T031143_20260512T031208_002745_004A1D_5B28_COG-quicklook",
         "sentinel1-S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG-vv",
         "sentinel1-S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG-vh"
       ],
       "sourceUris": [
+        "data/amboseli/sentinel1-quicklooks/S1A_IW_GRDH_1SDV_20260508T155545_20260508T155610_064427_081D30_9B81_COG.png",
+        "data/amboseli/sentinel1-quicklooks/S1D_IW_GRDH_1SDV_20260512T031143_20260512T031208_002745_004A1D_5B28_COG.png",
         "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG_vv.tif",
         "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG_vh.tif"
       ],
+      "sourceSceneTypes": {
+        "quicklook": 2,
+        "raw_vv_vh": 1
+      },
       "method": {
-        "id": "sentinel1-calibrated-low-backscatter-v1",
-        "description": "Downsampled VV/VH low-backscatter likelihood clipped to the demo bounds, smoothed with a 3x3 neighborhood and calibrated per scene by quantiles. This is a provisional planning overlay, not a validated flood product.",
-        "scoreThreshold": 0.58,
-        "vvLow": 124,
-        "vvMid": 187,
-        "vhLow": 68,
-        "vhMid": 101,
+        "id": "sentinel1-multiscene-hybrid-v3",
+        "description": "Aggregates local full Sentinel-1 VV/VH raster scene pairs with Copernicus quicklook observations when full rasters are not local. Each scene is quantile-calibrated, smoothed with a 3x3 neighborhood, contrast-stretched after thresholding, and averaged by grid cell to reduce single-scene speckle. This is a provisional planning overlay, not a validated flood product.",
+        "aggregation": "mean_probability_across_selected_sentinel_scenes",
         "sampleWidth": 144,
         "sampleHeight": 126,
         "cellsX": 48,
@@ -104,25 +146,24 @@
       },
       "georeference": {
         "source": "Copernicus STAC bbox",
-        "note": "The local GeoTIFF reader did not expose affine tags for this COG, so the demo crop is linearly georeferenced from the STAC scene bbox."
+        "note": "The local GeoTIFF reader did not expose affine tags for these COGs, so demo crops are linearly georeferenced from each STAC scene bbox."
       },
-      "checksum": "sha256:ea3351e18b8dbdc0067631cc8be42a3adf43c55f28b8dabb5363e2a65f74e52b"
+      "checksum": "sha256:09bf2bd496665506b40fad1fe8b31d2f5f85972cd1e4a23f0f0b9d28eeabdb70"
     }
   ],
   "changeLayer": {
     "href": "data/amboseli/sentinel1-flood-change.geojson",
     "status": "generated",
-    "generatedAt": "2026-08-19T05:02:44.424Z",
+    "generatedAt": "2026-08-19T06:34:34.387Z",
     "method": {
-      "id": "sentinel1-window-change-v0",
-      "description": "Cell-wise comparison of before, during and recovery Sentinel-1 flood-likelihood masks. Categories are provisional and intended for planning display."
+      "id": "sentinel1-window-change-v1",
+      "description": "Cell-wise comparison of aggregated before, during and recovery Sentinel-1 flood-likelihood masks. Categories are provisional and intended for planning display."
     },
     "categories": {
-      "possible_change": 219,
-      "residual_or_later_water": 5,
+      "possible_change": 644,
       "persistent_water": 4,
-      "newly_flooded": 1
+      "residual_or_later_water": 5
     },
-    "checksum": "sha256:dc233c75985f82846ff458ddd5dbf0677e281629c9e7b02c6202ac3af1c91ccd"
+    "checksum": "sha256:b61fc534721243828dfee4b447d9be67c6cc5e5e4efbee1ce5a4a3763c995931"
   }
 }

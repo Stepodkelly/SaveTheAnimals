@@ -37,7 +37,9 @@ app.get("/api/health", (_req, res) => {
     ok: true,
     service: "save-the-animals-api",
     exaConfigured: Boolean(process.env.EXA_API_KEY),
-    geminiConfigured: Boolean(process.env.GEMINI_API_KEY)
+    geminiConfigured: hasGemini(),
+    openaiConfigured: hasOpenAI(),
+    llmConfigured: hasLlm()
   });
 });
 
@@ -107,13 +109,13 @@ app.post("/api/local-question", async (req, res) => {
     }));
     const fallbackAnswer = localAnswerFromExa(question, sources);
 
-    if (!process.env.GEMINI_API_KEY) {
+    if (!hasLlm()) {
       res.json(fallbackAnswer);
       return;
     }
 
     try {
-      const answer = await geminiJson({
+      const answer = await llmJson({
         instruction:
           "Return only JSON with keys answer and sources. Answer the ranger's local question using only the provided Exa results. You may include phone numbers or emails only for public offices, official agencies, police stations, ranger posts, county offices, NGOs, or explicitly official role contacts. Do not provide private phone numbers, home addresses, or social handles for flood-affected residents, ordinary guides, witnesses, or other private people. If a user asks for private-person contacts, redirect to official public channels. Keep the answer short and cite source URLs from the provided results.",
         payload: {
@@ -125,7 +127,7 @@ app.post("/api/local-question", async (req, res) => {
         }
       });
 
-      res.json(normalizeLocalAnswer(answer, sources));
+      res.json(normalizeLocalAnswer(answer.data, sources, liveSourceMode(answer.provider)));
     } catch {
       res.json(fallbackAnswer);
     }
@@ -138,10 +140,11 @@ app.post("/api/intelligence", async (req, res) => {
   const request = req.body ?? {};
   const fallback = cachedIntelligence(request);
   let searchPlan = fallback.searchPlan;
+  let llmProvider = null;
 
-  if (process.env.GEMINI_API_KEY) {
+  if (hasLlm()) {
     try {
-      const plan = await geminiJson({
+      const plan = await llmJson({
         instruction:
           "Return only JSON. Create four search queries for checking external evidence about Amboseli road access during the flooding window. Use the provided duringFlooding start and end dates. Treat beforeFlooding and recoveryComparison only as satellite comparison context. Do not invent coordinates. Do not change the route.",
         payload: {
@@ -153,7 +156,8 @@ app.post("/api/intelligence", async (req, res) => {
         }
       });
 
-      searchPlan = normalizeSearchPlan(plan, fallback.searchPlan);
+      llmProvider = plan.provider;
+      searchPlan = normalizeSearchPlan(plan.data, fallback.searchPlan);
     } catch {
       searchPlan = fallback.searchPlan;
     }
@@ -165,8 +169,8 @@ app.post("/api/intelligence", async (req, res) => {
       searchPlan,
       briefing: {
         ...fallback.briefing,
-        summary: process.env.GEMINI_API_KEY
-          ? "Gemini prepared the evidence search plan. Exa is not configured, so cached demo evidence is displayed."
+        summary: hasLlm()
+          ? "AI prepared the evidence search plan. Exa is not configured, so cached demo evidence is displayed."
           : fallback.briefing.summary
       },
       cached: true,
@@ -181,9 +185,9 @@ app.post("/api/intelligence", async (req, res) => {
     let evidence = ruleBased.evidence;
     let briefing = ruleBased.briefing;
 
-    if (process.env.GEMINI_API_KEY) {
+    if (hasLlm()) {
       try {
-        const extracted = await geminiJson({
+        const extracted = await llmJson({
           instruction:
             "Return only JSON with keys evidence and briefing. Extract dated evidence from Exa results. Publication date and event date must remain separate. Only mark geographicSpecificity exact_asset when the text names a mapped route asset. Do not invent coordinates and do not change route geometry.",
           payload: {
@@ -193,8 +197,9 @@ app.post("/api/intelligence", async (req, res) => {
             exaSearches
           }
         });
-        evidence = normalizeEvidence(extracted.evidence, evidence);
-        briefing = normalizeBriefing(extracted.briefing, briefing);
+        llmProvider = extracted.provider;
+        evidence = normalizeEvidence(extracted.data.evidence, evidence);
+        briefing = normalizeBriefing(extracted.data.briefing, briefing);
       } catch {
         evidence = ruleBased.evidence;
         briefing = ruleBased.briefing;
@@ -206,7 +211,7 @@ app.post("/api/intelligence", async (req, res) => {
       evidence,
       briefing,
       cached: false,
-      sourceMode: "live_exa"
+      sourceMode: liveSourceMode(llmProvider)
     });
   } catch {
     res.json(fallback);
@@ -235,6 +240,34 @@ function loadEnv(filePath) {
     const value = trimmed.slice(eq + 1);
     process.env[key] = process.env[key] ?? value;
   }
+}
+
+function hasGemini() {
+  return Boolean(process.env.GEMINI_API_KEY);
+}
+
+function hasOpenAI() {
+  return Boolean(process.env.OPENAI_API_KEY);
+}
+
+function hasLlm() {
+  return hasGemini() || hasOpenAI();
+}
+
+async function llmJson({ instruction, payload }) {
+  if (hasGemini()) {
+    return {
+      provider: "gemini",
+      data: await geminiJson({ instruction, payload })
+    };
+  }
+  if (hasOpenAI()) {
+    return {
+      provider: "openai",
+      data: await openaiJson({ instruction, payload })
+    };
+  }
+  throw new Error("No LLM API key is configured");
 }
 
 async function geminiJson({ instruction, payload }) {
@@ -267,6 +300,56 @@ async function geminiJson({ instruction, payload }) {
   const text = json?.candidates?.[0]?.content?.parts?.[0]?.text;
   if (!text) throw new Error("Gemini response did not include text");
   return JSON.parse(text);
+}
+
+async function openaiJson({ instruction, payload }) {
+  const model = process.env.OPENAI_MODEL ?? "gpt-5-mini";
+  const body = {
+    model,
+    instructions: instruction,
+    input: `Input:\n${JSON.stringify(payload, null, 2)}`,
+    text: {
+      format: {
+        type: "json_object"
+      }
+    }
+  };
+  let response = await fetch("https://api.openai.com/v1/responses", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+    },
+    body: JSON.stringify(body)
+  });
+
+  if (!response.ok && response.status === 400) {
+    const retryBody = { ...body };
+    delete retryBody.text;
+    response = await fetch("https://api.openai.com/v1/responses", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`
+      },
+      body: JSON.stringify(retryBody)
+    });
+  }
+
+  if (!response.ok) throw new Error(`OpenAI request failed: ${response.status}`);
+  const json = await response.json();
+  const text = extractOpenAIText(json);
+  if (!text) throw new Error("OpenAI response did not include text");
+  return JSON.parse(text);
+}
+
+function extractOpenAIText(json) {
+  if (typeof json.output_text === "string") return json.output_text;
+  return (json.output ?? [])
+    .flatMap((item) => item.content ?? [])
+    .map((content) => content.text)
+    .filter(Boolean)
+    .join("\n");
 }
 
 function normalizeSearchPlan(value, fallback) {
@@ -408,7 +491,7 @@ function evidenceFromExa(exaSearches, request) {
   return {
     evidence,
     briefing: {
-      summary: "Exa retrieved date-bounded sources. Gemini extraction is used when available.",
+      summary: "Exa retrieved date-bounded sources. AI extraction is used when a Gemini or OpenAI key is available.",
       routeAssessment:
         "The route remains deterministic. Exa evidence can explain or penalize mapped road assets only after exact-asset matching and operator approval.",
       unknowns: ["External reports may be incomplete or delayed."],
@@ -463,7 +546,7 @@ function allowedValue(value, options, fallback) {
   return options.includes(value) ? value : fallback;
 }
 
-function normalizeLocalAnswer(value, fallbackSources) {
+function normalizeLocalAnswer(value, fallbackSources, sourceMode = "live_exa") {
   const sources = Array.isArray(value?.sources)
     ? value.sources
         .slice(0, 5)
@@ -481,7 +564,7 @@ function normalizeLocalAnswer(value, fallbackSources) {
         "Review the linked public sources and verify contacts through official channels before operational use."
     ),
     sources,
-    sourceMode: "live_exa",
+    sourceMode,
     guardrail: localContactGuardrail()
   };
 }
@@ -496,6 +579,12 @@ function localAnswerFromExa(question, sources) {
     sourceMode: "live_exa",
     guardrail: localContactGuardrail()
   };
+}
+
+function liveSourceMode(provider) {
+  if (provider === "openai") return "live_exa_openai";
+  if (provider === "gemini") return "live_exa_gemini";
+  return "live_exa";
 }
 
 function cachedLocalAnswer(question) {

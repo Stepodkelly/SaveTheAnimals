@@ -16,6 +16,7 @@
     "v2:download-sentinel1-rasters": "node versions/v2-forecast-mvp/tools/download-sentinel1-rasters.mjs",
     "v2:derive-sentinel1-mask": "node versions/v2-forecast-mvp/tools/derive-sentinel1-flood-mask.mjs",
     "v2:compute-road-metrics": "node versions/v2-forecast-mvp/tools/compute-sentinel1-road-metrics.mjs",
+    "v2:evaluate-real-mask-model": "node versions/v2-forecast-mvp/tools/evaluate-real-mask-model.mjs",
     "v2:check-geospatial": "node versions/v2-forecast-mvp/tools/check-geospatial-tooling.mjs",
     "v2:verify-pwa": "node versions/v2-forecast-mvp/tools/verify-pwa.mjs",
     "build": "tsc && vite build",
@@ -32,9 +33,11 @@
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.12",
+    "@types/pngjs": "^6.0.5",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@vitejs/plugin-react": "^4.3.1",
+    "pngjs": "^7.0.0",
     "typescript": "^5.5.4",
     "vite": "^5.4.0"
   }

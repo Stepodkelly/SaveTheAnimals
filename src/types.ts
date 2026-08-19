@@ -42,6 +42,8 @@ export type SatelliteFloodMaskProperties = {
   window: ObservationWindowKey;
   observedAt: string;
   sceneId: string;
+  sceneIds?: string[];
+  sourceSceneCount?: number;
   floodProbability: number;
   confidence: number;
   classification: "possible_flood" | "probable_flood";
@@ -60,16 +62,28 @@ export type SentinelFloodMaskManifest = {
     status: "generated" | "missing";
     generatedAt?: string;
     sceneId?: string;
+    sceneIds?: string[];
     observedAt?: string;
+    observedRange?: {
+      start?: string;
+      end?: string;
+    };
+    sourceSceneCount?: number;
     featureCount: number;
     probableFloodAreaKm2: number;
     sourceAssetIds: string[];
     sourceUris?: string[];
+    sourceSceneTypes?: Record<string, number>;
     checksum?: string;
     method: {
       id: string;
       description: string;
       scoreThreshold?: number;
+      aggregation?: string;
+      sampleWidth?: number;
+      sampleHeight?: number;
+      cellsX?: number;
+      cellsY?: number;
     };
     georeference: {
       source: string;
@@ -259,6 +273,63 @@ export type V2ReplayEvaluation = {
   roadRisk: V2RoadRiskSegment[];
 };
 
+export type V2RealMaskEvaluation = {
+  generatedAt: string;
+  replayId: string;
+  method: string;
+  caveat: string;
+  targetWindow: {
+    window: ObservationWindowKey;
+    observedRange: {
+      start?: string;
+      end?: string;
+    } | null;
+    maskMethod: string;
+    maskWetThreshold: number;
+  };
+  comparisonWindows: {
+    beforeFlooding: {
+      start?: string;
+      end?: string;
+    } | null;
+    recoveryComparison: {
+      start?: string;
+      end?: string;
+    } | null;
+  };
+  metrics: {
+    evaluatedCells: number;
+    brierScore: number;
+    calibrationError: number;
+    precision: number;
+    recall: number;
+    fixtureAgreement: number;
+  };
+  trainedRegression: {
+    protocol: string;
+    status: "evaluated" | "insufficient_examples";
+    featureNames: string[];
+    metrics: {
+      evaluatedCells: number;
+      brierScore: number | null;
+      calibrationError: number | null;
+      precision: number | null;
+      recall: number | null;
+    };
+  };
+  baselines: Array<{
+    id: string;
+    label: string;
+    brierScore: number;
+  }>;
+  confusion: {
+    truePositive: number;
+    falsePositive: number;
+    falseNegative: number;
+    trueNegative: number;
+  };
+};
+
 export type RouteResult = {
   status: "route_found" | "no_ground_route";
   edgeIds: string[];
@@ -307,7 +378,7 @@ export type IntelligenceResponse = {
     recommendedVerification: string[];
   };
   cached?: boolean;
-  sourceMode?: "live_exa" | "cached_fallback";
+  sourceMode?: "live_exa" | "live_exa_openai" | "live_exa_gemini" | "cached_fallback";
 };
 
 export type LocalQuestionResponse = {
@@ -317,6 +388,6 @@ export type LocalQuestionResponse = {
     url: string;
     publishedDate?: string;
   }>;
-  sourceMode: "live_exa" | "cached_fallback";
+  sourceMode: "live_exa" | "live_exa_openai" | "live_exa_gemini" | "cached_fallback";
   guardrail: string;
 };

@@ -21,6 +21,7 @@ import type {
   SentinelFloodMaskManifest,
   SentinelQuicklookManifest,
   SentinelRoadMetricsReport,
+  V2RealMaskEvaluation,
   V2ReplayCellCollection
 } from "./types";
 
@@ -35,6 +36,7 @@ type DemoData = {
   satelliteFloodChange: SatelliteFloodChangeCollection;
   floodMaskManifest: SentinelFloodMaskManifest;
   roadMetrics: SentinelRoadMetricsReport;
+  realMaskEvaluation: V2RealMaskEvaluation | null;
 };
 
 export default function App() {
@@ -325,9 +327,10 @@ export default function App() {
           v2Evaluation={analyzed.v2Evaluation}
           activeWindow={activeWindow}
           sentinelQuicklooks={data.sentinelQuicklooks}
-          floodMaskManifest={data.floodMaskManifest}
-          roadMetrics={data.roadMetrics}
-        />
+            floodMaskManifest={data.floodMaskManifest}
+            roadMetrics={data.roadMetrics}
+            realMaskEvaluation={data.realMaskEvaluation}
+          />
       </section>
 
       <footer>

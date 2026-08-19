@@ -9,6 +9,8 @@ import type {
   ObservationWindowKey,
   RoadEdge,
   RouteResult,
+  SatelliteFloodMaskCollection,
+  SatelliteFloodMaskProperties,
   V2ReplayEvaluation,
   V2ScoredCellProperties
 } from "../types";
@@ -24,6 +26,7 @@ type RescueMapProps = {
   showFlood: boolean;
   activeWindow: ObservationWindowKey;
   v2Replay: V2ReplayEvaluation | null;
+  satelliteFloodMask: SatelliteFloodMaskCollection;
 };
 
 export function RescueMap({
@@ -35,7 +38,8 @@ export function RescueMap({
   selectedIncident,
   showFlood,
   activeWindow,
-  v2Replay
+  v2Replay,
+  satelliteFloodMask
 }: RescueMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<L.Map | null>(null);
@@ -101,6 +105,29 @@ export function RescueMap({
             const cell = feature.properties as V2ScoredCellProperties;
             layer.bindTooltip(
               `${cell.label}: ${Math.round(cell.probability * 100)}% ${cell.model.replace("-v1", "")} risk`
+            );
+          }
+        })
+      );
+    }
+
+    if (activeWindow === "duringFlooding" && showFlood && satelliteFloodMask.features.length > 0) {
+      layers.addLayer(
+        L.geoJSON(satelliteFloodMask, {
+          style: (feature) => {
+            const cell = feature?.properties as SatelliteFloodMaskProperties;
+            return {
+              color: cell.classification === "probable_flood" ? "#075985" : "#0e7490",
+              fillColor: cell.classification === "probable_flood" ? "#0284c7" : "#67e8f9",
+              weight: 0,
+              opacity: 0.65,
+              fillOpacity: Math.max(0.2, Math.min(0.58, cell.floodProbability * 0.56))
+            };
+          },
+          onEachFeature: (feature, layer) => {
+            const cell = feature.properties as SatelliteFloodMaskProperties;
+            layer.bindTooltip(
+              `${cell.classification.replace("_", " ")}: ${Math.round(cell.floodProbability * 100)}% from Sentinel-1`
             );
           }
         })
@@ -181,7 +208,18 @@ export function RescueMap({
       edge.geometry.coordinates.forEach(([lng, lat]) => bounds.extend([lat, lng]));
     });
     map.fitBounds(bounds.pad(0.24), { animate: false });
-  }, [activeWindow, currentRoute, edges, floods, locations, rejectedRoute, selectedIncident, showFlood, v2Replay]);
+  }, [
+    activeWindow,
+    currentRoute,
+    edges,
+    floods,
+    locations,
+    rejectedRoute,
+    satelliteFloodMask,
+    selectedIncident,
+    showFlood,
+    v2Replay
+  ]);
 
   return <div ref={containerRef} className="map-canvas" aria-label="Amboseli preliminary access route map" />;
 }

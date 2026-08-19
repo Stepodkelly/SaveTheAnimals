@@ -37,6 +37,45 @@ export type SentinelQuicklookManifest = {
   scenes: SentinelQuicklook[];
 };
 
+export type SatelliteFloodMaskProperties = {
+  cellId: string;
+  window: ObservationWindowKey;
+  observedAt: string;
+  sceneId: string;
+  floodProbability: number;
+  classification: "possible_flood" | "probable_flood";
+  vvMean: number;
+  vhMean: number;
+  method: string;
+  georeference: string;
+};
+
+export type SatelliteFloodMaskCollection = FeatureCollection<Polygon, SatelliteFloodMaskProperties>;
+
+export type SentinelFloodMaskManifest = {
+  masks: Array<{
+    window: ObservationWindowKey;
+    href: string;
+    status: "generated" | "missing";
+    generatedAt?: string;
+    sceneId?: string;
+    observedAt?: string;
+    featureCount: number;
+    probableFloodAreaKm2: number;
+    sourceAssetIds: string[];
+    sourceUris?: string[];
+    method: {
+      id: string;
+      description: string;
+      scoreThreshold?: number;
+    };
+    georeference: {
+      source: string;
+      note: string;
+    };
+  }>;
+};
+
 export type ObservationWindow = {
   label: string;
   start: string;

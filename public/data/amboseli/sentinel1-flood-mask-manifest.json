@@ -1,0 +1,39 @@
+{
+  "masks": [
+    {
+      "window": "duringFlooding",
+      "href": "data/amboseli/sentinel1-flood-mask-during.geojson",
+      "status": "generated",
+      "generatedAt": "2026-08-19T04:36:19.059Z",
+      "sceneId": "S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG",
+      "observedAt": "2026-03-16T15:47:47.961154Z",
+      "featureCount": 84,
+      "probableFloodAreaKm2": 0.389,
+      "sourceAssetIds": [
+        "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vv",
+        "sentinel1-S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG-vh"
+      ],
+      "sourceUris": [
+        "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG_vv.tif",
+        "versions/v2-forecast-mvp/data/raw/sentinel1/S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG_vh.tif"
+      ],
+      "method": {
+        "id": "sentinel1-low-backscatter-v0",
+        "description": "Downsampled VV/VH low-backscatter likelihood clipped to the demo bounds. This is a provisional planning overlay, not a validated flood product.",
+        "scoreThreshold": 0.584,
+        "vvLow": 119,
+        "vvMid": 178,
+        "vhLow": 64,
+        "vhMid": 96,
+        "sampleWidth": 144,
+        "sampleHeight": 126,
+        "cellsX": 48,
+        "cellsY": 42
+      },
+      "georeference": {
+        "source": "Copernicus STAC bbox",
+        "note": "The local GeoTIFF reader did not expose affine tags for this COG, so the demo crop is linearly georeferenced from the STAC scene bbox."
+      }
+    }
+  ]
+}

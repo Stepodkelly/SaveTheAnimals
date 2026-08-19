@@ -1,13 +1,12 @@
 {
-  "checkedAt": "2026-08-19T04:29:04.983Z",
+  "checkedAt": "2026-08-19T04:31:48.675Z",
   "windowKey": "duringFlooding",
   "limit": 1,
   "bands": [
     "vv",
     "vh"
   ],
-  "tokenAvailable": false,
-  "tokenError": "CDSE token request failed: 400 {\"error\":\"invalid_grant\",\"error_description\":\"Account is not fully set up\"}",
+  "tokenAvailable": true,
   "credentialSources": {
     "CDSE_ACCESS_TOKEN": false,
     "CDSE_REFRESH_TOKEN": false,
@@ -18,21 +17,21 @@
     {
       "sceneId": "S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG",
       "band": "vv",
-      "status": "blocked",
-      "httpStatus": 401,
-      "contentType": "application/json; charset=utf-8",
+      "status": "readable",
+      "httpStatus": 200,
+      "contentType": "application/octet-stream",
       "sizeBytes": 632925246,
-      "authUsed": false,
+      "authUsed": true,
       "href": "https://zipper.dataspace.copernicus.eu/odata/v1/Products(e4aa11b6-3bdf-4430-a005-b10a3353b45f)/Nodes(S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG.SAFE)/Nodes(measurement)/Nodes(s1a-iw-grd-vv-20260316t154747-20260316t154812-063654-080064-001-cog.tiff)/$value"
     },
     {
       "sceneId": "S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG",
       "band": "vh",
-      "status": "blocked",
-      "httpStatus": 401,
-      "contentType": "application/json; charset=utf-8",
+      "status": "readable",
+      "httpStatus": 200,
+      "contentType": "application/octet-stream",
       "sizeBytes": 563374972,
-      "authUsed": false,
+      "authUsed": true,
       "href": "https://zipper.dataspace.copernicus.eu/odata/v1/Products(e4aa11b6-3bdf-4430-a005-b10a3353b45f)/Nodes(S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG.SAFE)/Nodes(measurement)/Nodes(s1a-iw-grd-vh-20260316t154747-20260316t154812-063654-080064-002-cog.tiff)/$value"
     }
   ]

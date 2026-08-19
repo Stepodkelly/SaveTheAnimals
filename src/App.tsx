@@ -13,7 +13,9 @@ import type {
   LocationsData,
   ObservationWindowKey,
   RoadCollection,
+  SatelliteFloodMaskCollection,
   SceneMetadata,
+  SentinelFloodMaskManifest,
   SentinelQuicklookManifest,
   V2ReplayCellCollection
 } from "./types";
@@ -25,6 +27,8 @@ type DemoData = {
   locations: LocationsData;
   v2ReplayCells: V2ReplayCellCollection;
   sentinelQuicklooks: SentinelQuicklookManifest;
+  satelliteFloodMask: SatelliteFloodMaskCollection;
+  floodMaskManifest: SentinelFloodMaskManifest;
 };
 
 export default function App() {
@@ -243,6 +247,7 @@ export default function App() {
             showFlood={activeRouteView.showFlood}
             activeWindow={activeWindow}
             v2Replay={analyzed.v2Evaluation}
+            satelliteFloodMask={data.satelliteFloodMask}
           />
         </div>
 
@@ -270,6 +275,7 @@ export default function App() {
           v2Evaluation={analyzed.v2Evaluation}
           activeWindow={activeWindow}
           sentinelQuicklooks={data.sentinelQuicklooks}
+          floodMaskManifest={data.floodMaskManifest}
         />
       </section>
 

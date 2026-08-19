@@ -14,6 +14,7 @@
     "v2:download-sentinel1-quicklooks": "node versions/v2-forecast-mvp/tools/download-sentinel1-quicklooks.mjs",
     "v2:probe-sentinel1-rasters": "node versions/v2-forecast-mvp/tools/probe-sentinel1-raster-access.mjs",
     "v2:download-sentinel1-rasters": "node versions/v2-forecast-mvp/tools/download-sentinel1-rasters.mjs",
+    "v2:derive-sentinel1-mask": "node versions/v2-forecast-mvp/tools/derive-sentinel1-flood-mask.mjs",
     "v2:check-geospatial": "node versions/v2-forecast-mvp/tools/check-geospatial-tooling.mjs",
     "build": "tsc && vite build",
     "build:pages": "tsc && GITHUB_PAGES=true vite build --outDir docs && cp docs/index.html docs/404.html",
@@ -22,6 +23,7 @@
   "dependencies": {
     "@turf/turf": "^7.2.0",
     "express": "^4.19.2",
+    "geotiff": "^3.0.5",
     "leaflet": "^1.9.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"

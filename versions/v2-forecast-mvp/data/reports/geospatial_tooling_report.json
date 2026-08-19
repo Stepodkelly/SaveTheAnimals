@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-08-19T04:02:10.689Z",
+  "checkedAt": "2026-08-19T04:33:58.870Z",
   "checks": {
     "gdalinfo": false,
     "gdal_translate": false,

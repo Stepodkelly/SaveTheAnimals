@@ -447,6 +447,32 @@ button {
   font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
 }
 
+.mask-summary {
+  display: grid;
+  gap: 3px;
+  margin-top: 9px;
+  border: 1px solid #232323;
+  background: #f7f7f2;
+  padding: 8px;
+}
+
+.mask-summary span {
+  color: #5d5d5d;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.mask-summary strong {
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+}
+
+.mask-summary small {
+  color: #555;
+  font-size: 11px;
+}
+
 .route-line {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

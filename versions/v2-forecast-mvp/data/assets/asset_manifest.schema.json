@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://savetheanimals.local/schemas/asset-manifest.schema.json",
+  "title": "SaveTheAnimals V2 Asset Manifest",
+  "type": "object",
+  "required": [
+    "assetId",
+    "assetType",
+    "uri",
+    "checksum",
+    "createdAt",
+    "availableAt",
+    "algorithmVersion",
+    "gridVersion",
+    "crs",
+    "bounds",
+    "sourceAssetIds",
+    "parentJobId"
+  ],
+  "properties": {
+    "assetId": { "type": "string" },
+    "assetType": {
+      "type": "string",
+      "enum": [
+        "raw_scene",
+        "flood_mask",
+        "probability_raster",
+        "scenario_raster",
+        "transition_table",
+        "feature_table",
+        "road_graph",
+        "route_geojson",
+        "quicklook_png",
+        "tile_package",
+        "model_artifact",
+        "evaluation_report"
+      ]
+    },
+    "uri": { "type": "string" },
+    "checksum": { "type": "string" },
+    "createdAt": { "type": "string", "format": "date-time" },
+    "availableAt": { "type": "string", "format": "date-time" },
+    "algorithmVersion": { "type": "string" },
+    "gridVersion": { "type": "string" },
+    "crs": { "type": "string" },
+    "bounds": {
+      "type": "array",
+      "items": { "type": "number" },
+      "minItems": 4,
+      "maxItems": 4
+    },
+    "resolutionMeters": { "type": "number" },
+    "nodataValue": {},
+    "sourceSceneIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "sourceAssetIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "parentJobId": { "type": "string" }
+  }
+}

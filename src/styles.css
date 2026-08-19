@@ -211,6 +211,11 @@ button {
   border-color: #12b8d7 !important;
 }
 
+.legend-risk {
+  height: 14px !important;
+  background: linear-gradient(90deg, #15803d, #c76a11, #b42318);
+}
+
 .toggle,
 .text-button,
 .primary-button {
@@ -343,6 +348,72 @@ button {
   line-height: 1.1;
 }
 
+.replay-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  margin-top: 10px;
+  border: 1px solid #232323;
+  background: #232323;
+}
+
+.replay-grid div {
+  min-height: 52px;
+  padding: 8px;
+  background: #fffdf5;
+}
+
+.replay-grid span,
+.metric-pills span {
+  color: #5d5d5d;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.replay-grid strong {
+  display: block;
+  margin-top: 6px;
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 12px;
+}
+
+.metric-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.metric-pills span {
+  border: 1px solid #232323;
+  background: #fff;
+  padding: 5px 7px;
+}
+
+.metric-pills strong {
+  color: #202020;
+}
+
+.baseline-list {
+  display: grid;
+  gap: 4px;
+  margin-top: 8px;
+  font-size: 11px;
+}
+
+.baseline-list span {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  border-bottom: 1px solid #d4d0c0;
+  padding-bottom: 4px;
+}
+
+.baseline-list strong {
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+}
+
 .route-line {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -381,7 +452,7 @@ button {
 
 .edge-row {
   display: grid;
-  grid-template-columns: 122px 1fr;
+  grid-template-columns: 118px 1fr 38px;
   gap: 8px;
   align-items: center;
   font-size: 12px;
@@ -391,6 +462,12 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.edge-row strong {
+  font-family: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  font-size: 11px;
+  text-align: right;
 }
 
 .edge-track {

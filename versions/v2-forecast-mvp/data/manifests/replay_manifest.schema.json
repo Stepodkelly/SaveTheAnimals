@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://savetheanimals.local/schemas/replay-manifest.schema.json",
+  "title": "SaveTheAnimals V2 Replay Manifest",
+  "type": "object",
+  "required": [
+    "manifestId",
+    "replayId",
+    "aoiId",
+    "gridVersion",
+    "asOf",
+    "validAt",
+    "heldOutEventId",
+    "allowedObservationLatestAt",
+    "rainfallMode",
+    "inputAssets",
+    "excludedEventIds",
+    "modelVersions",
+    "postProcessorVersion"
+  ],
+  "properties": {
+    "manifestId": { "type": "string" },
+    "replayId": { "type": "string" },
+    "aoiId": { "type": "string" },
+    "gridVersion": { "type": "string" },
+    "asOf": { "type": "string", "format": "date-time" },
+    "validAt": { "type": "string", "format": "date-time" },
+    "heldOutEventId": { "type": "string" },
+    "allowedObservationLatestAt": { "type": "string", "format": "date-time" },
+    "rainfallMode": {
+      "type": "string",
+      "enum": ["observed_hindsight", "issued_forecast"]
+    },
+    "historicalFeatureEventIds": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "excludedEventIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "modelVersions": {
+      "type": "array",
+      "items": { "type": "string" }
+    },
+    "postProcessorVersion": { "type": "string" },
+    "inputAssets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["assetId", "role", "availableAt"],
+        "properties": {
+          "assetId": { "type": "string" },
+          "role": {
+            "type": "string",
+            "enum": [
+              "static_geography",
+              "source_observation",
+              "rainfall_history",
+              "rainfall_forecast",
+              "historical_feature",
+              "review_override",
+              "road_graph",
+              "model_artifact"
+            ]
+          },
+          "availableAt": { "type": "string", "format": "date-time" },
+          "checksum": { "type": "string" }
+        }
+      }
+    },
+    "leakageChecks": {
+      "type": "object",
+      "properties": {
+        "rejectInputsAfterAsOf": { "type": "boolean" },
+        "rebuildHistoricalFeaturesWithoutHeldOutEvent": { "type": "boolean" },
+        "rejectReviewOverridesAfterAsOf": { "type": "boolean" }
+      }
+    }
+  }
+}

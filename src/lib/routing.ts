@@ -115,7 +115,7 @@ export function calculateRoute(
         : edge.condition === "uncertain_track"
           ? " Track condition is uncertain."
           : "";
-      return `${index + 1}. Take ${edge.name} from ${from} toward ${to}.${caution}`;
+      return `Take ${edge.name} from ${from} toward ${to}.${caution}`;
     })
   };
 }

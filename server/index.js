@@ -2,6 +2,7 @@ import express from "express";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { loadReplayEvaluation, loadReplayManifest } from "./v2Replay.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, "..");
@@ -11,6 +12,49 @@ const app = express();
 const port = Number(process.env.PORT ?? 4173);
 
 app.use(express.json({ limit: "1mb" }));
+
+app.get("/api/v2/replays/amboseli-2026-march", (_req, res) => {
+  res.json({
+    manifest: loadReplayManifest(rootDir),
+    evaluation: loadReplayEvaluation(rootDir)
+  });
+});
+
+app.get("/api/v2/replays/amboseli-2026-march/evaluation", (_req, res) => {
+  res.json(loadReplayEvaluation(rootDir));
+});
+
+app.get("/api/v2/forecast-runs/amboseli-2026-march/summary", (_req, res) => {
+  const evaluation = loadReplayEvaluation(rootDir);
+  res.json({
+    forecastRunId: evaluation.replayId,
+    displayMode: evaluation.displayMode,
+    asOf: evaluation.asOf,
+    validAt: evaluation.validAt,
+    observationAgeDays: evaluation.observationAgeDays,
+    confidence: evaluation.confidence,
+    scenarioTiles: {
+      mean: "/api/v2/replays/amboseli-2026-march/evaluation",
+      lower: "/api/v2/replays/amboseli-2026-march/evaluation",
+      upper: "/api/v2/replays/amboseli-2026-march/evaluation",
+      confidence: "/api/v2/replays/amboseli-2026-march/evaluation"
+    },
+    dominantFactors: [...new Set(evaluation.cells.features.map((cell) => cell.properties.dominantFactor))],
+    roadRisk: evaluation.roadRisk,
+    provenance: [
+      {
+        assetId: evaluation.manifestId,
+        role: "replay_manifest",
+        availableAt: evaluation.asOf
+      },
+      {
+        assetId: "public/data/amboseli/v2-replay-cells.geojson",
+        role: "replay_fixture",
+        availableAt: evaluation.asOf
+      }
+    ]
+  });
+});
 
 app.post("/api/local-question", async (req, res) => {
   const request = req.body ?? {};

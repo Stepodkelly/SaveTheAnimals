@@ -52,6 +52,9 @@ export type RoadEdge = RoadEdgeProperties & {
   nearFlood: boolean;
   evidencePenalty: number;
   cost: number;
+  forecastRisk?: number;
+  forecastConfidence?: number;
+  observedStatus?: "clear_observed" | "observed_open_water_overlap" | "unknown";
 };
 
 export type IncidentLocation = {
@@ -69,6 +72,73 @@ export type LocationsData = {
 
 export type FloodCollection = FeatureCollection<Polygon>;
 export type RoadCollection = FeatureCollection<LineString, RoadEdgeProperties>;
+
+export type V2ReplayCellProperties = {
+  cellId: string;
+  label: string;
+  stateAtIssue: "wet" | "dry" | "unknown";
+  observedAtValid: "wet" | "dry" | "unknown";
+  forecast72hRainMm: number;
+  previous30dRainMm: number;
+  historicalFloodFrequency: number;
+  distanceToCurrentFloodM: number;
+  floodedNeighborFraction: number;
+  handMeters: number;
+  observationAgeDays: number;
+  daysFloodedMin: number;
+  historicalResidenceMedianDays: number;
+};
+
+export type V2ScoredCellProperties = V2ReplayCellProperties & {
+  model: "wetting-v1" | "persistence-v1";
+  probability: number;
+  lowerProbability: number;
+  upperProbability: number;
+  confidence: number;
+  predictedWet: boolean;
+  observedWet: boolean;
+  dominantFactor: string;
+};
+
+export type V2ReplayCellCollection = FeatureCollection<Polygon, V2ReplayCellProperties>;
+export type V2ScoredCellCollection = FeatureCollection<Polygon, V2ScoredCellProperties>;
+
+export type V2RoadRiskSegment = {
+  segmentId: string;
+  roadName: string;
+  observedStatus: "clear_observed" | "observed_open_water_overlap" | "unknown";
+  validationStatus: "clear_observed" | "observed_open_water_overlap" | "unknown";
+  forecastRisk: number;
+  confidence: number;
+  fieldVerificationRequired: boolean;
+};
+
+export type V2ReplayEvaluation = {
+  replayId: string;
+  mode: "replayed";
+  asOf: string;
+  validAt: string;
+  displayMode: "replayed" | "simulated";
+  observationAgeDays: number;
+  confidence: number;
+  modelVersions: string[];
+  manifestId: string;
+  baselines: Array<{
+    id: string;
+    label: string;
+    brierScore: number;
+  }>;
+  metrics: {
+    brierScore: number;
+    calibrationError: number;
+    roadImpactRecall: number;
+    falseSafeRoadRate: number;
+    unnecessaryBlockRate: number;
+    routeAvailability: number;
+  };
+  cells: V2ScoredCellCollection;
+  roadRisk: V2RoadRiskSegment[];
+};
 
 export type RouteResult = {
   status: "route_found" | "no_ground_route";

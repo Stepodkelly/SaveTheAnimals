@@ -9,7 +9,9 @@
     "dev:web": "vite --host 127.0.0.1",
     "server": "node server/index.js",
     "start": "node server/index.js",
+    "v2:validate-replay": "node versions/v2-forecast-mvp/tools/validate-replay-manifest.mjs",
     "build": "tsc && vite build",
+    "build:pages": "tsc && GITHUB_PAGES=true vite build --outDir docs && cp docs/index.html docs/404.html",
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {

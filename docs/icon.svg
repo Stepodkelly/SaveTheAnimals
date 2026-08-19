@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="#save_the_animals icon">
+  <rect width="512" height="512" fill="#202020"/>
+  <path d="M78 338h356v48H78z" fill="#fffdf5"/>
+  <path d="M102 166h308v48H102z" fill="#fffdf5"/>
+  <path d="M134 246h244v42H134z" fill="#38bdf8"/>
+  <path d="M166 110h180v30H166z" fill="#c76a11"/>
+  <circle cx="154" cy="386" r="28" fill="#15803d"/>
+  <circle cx="358" cy="166" r="28" fill="#b42318"/>
+  <path d="M154 386 358 166" stroke="#fffdf5" stroke-width="22" stroke-linecap="square"/>
+</svg>

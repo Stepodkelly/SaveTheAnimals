@@ -8,7 +8,9 @@ import type {
   LocationsData,
   ObservationWindowKey,
   RoadEdge,
-  RouteResult
+  RouteResult,
+  V2ReplayEvaluation,
+  V2ScoredCellProperties
 } from "../types";
 import { routeFeatures } from "../lib/routing";
 
@@ -21,6 +23,7 @@ type RescueMapProps = {
   selectedIncident: IncidentLocation;
   showFlood: boolean;
   activeWindow: ObservationWindowKey;
+  v2Replay: V2ReplayEvaluation | null;
 };
 
 export function RescueMap({
@@ -31,7 +34,8 @@ export function RescueMap({
   rejectedRoute,
   selectedIncident,
   showFlood,
-  activeWindow
+  activeWindow,
+  v2Replay
 }: RescueMapProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<L.Map | null>(null);
@@ -79,6 +83,29 @@ export function RescueMap({
           geometry: edge.geometry
         }))
       };
+
+    if (v2Replay && activeWindow === "duringFlooding" && showFlood) {
+      layers.addLayer(
+        L.geoJSON(v2Replay.cells, {
+          style: (feature) => {
+            const cell = feature?.properties as V2ScoredCellProperties;
+            return {
+              color: riskColor(cell.probability),
+              fillColor: riskColor(cell.probability),
+              weight: 1,
+              opacity: 0.82,
+              fillOpacity: 0.28
+            };
+          },
+          onEachFeature: (feature, layer) => {
+            const cell = feature.properties as V2ScoredCellProperties;
+            layer.bindTooltip(
+              `${cell.label}: ${Math.round(cell.probability * 100)}% ${cell.model.replace("-v1", "")} risk`
+            );
+          }
+        })
+      );
+    }
 
     const roadLayer = L.geoJSON(
       roadFeatures,
@@ -139,11 +166,11 @@ export function RescueMap({
     }
 
     const base = marker(locations.base.coordinates, "base");
-    base.bindTooltip(locations.base.name ?? "Ranger base", { permanent: true, offset: [0, -22] });
+    base.bindTooltip(locations.base.name ?? "Ranger base");
     layers.addLayer(base);
 
     const incident = marker(selectedIncident.coordinates, "incident");
-    incident.bindTooltip(selectedIncident.name, { permanent: true, offset: [0, -22] });
+    incident.bindTooltip(selectedIncident.name);
     layers.addLayer(incident);
 
     const bounds = L.latLngBounds([
@@ -154,7 +181,7 @@ export function RescueMap({
       edge.geometry.coordinates.forEach(([lng, lat]) => bounds.extend([lat, lng]));
     });
     map.fitBounds(bounds.pad(0.24), { animate: false });
-  }, [activeWindow, currentRoute, edges, floods, locations, rejectedRoute, selectedIncident, showFlood]);
+  }, [activeWindow, currentRoute, edges, floods, locations, rejectedRoute, selectedIncident, showFlood, v2Replay]);
 
   return <div ref={containerRef} className="map-canvas" aria-label="Amboseli preliminary access route map" />;
 }
@@ -182,6 +209,12 @@ function floodLabel(activeWindow: ObservationWindowKey) {
   if (activeWindow === "beforeFlooding") return "Before-flood comparison";
   if (activeWindow === "recoveryComparison") return "Recovery comparison residual";
   return "During-flood satellite extent";
+}
+
+function riskColor(probability: number) {
+  if (probability >= 0.68) return "#b42318";
+  if (probability >= 0.48) return "#c76a11";
+  return "#15803d";
 }
 
 function marker(coordinates: [number, number], kind: "base" | "incident") {

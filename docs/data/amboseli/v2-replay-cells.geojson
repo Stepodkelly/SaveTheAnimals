@@ -1,0 +1,181 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "amboseli-30m-v1:central-marsh",
+        "label": "Central Marsh",
+        "stateAtIssue": "wet",
+        "observedAtValid": "wet",
+        "forecast72hRainMm": 74,
+        "previous30dRainMm": 168,
+        "historicalFloodFrequency": 0.82,
+        "distanceToCurrentFloodM": 0,
+        "floodedNeighborFraction": 0.9,
+        "handMeters": 0.4,
+        "observationAgeDays": 0,
+        "daysFloodedMin": 2,
+        "historicalResidenceMedianDays": 18
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[37.261, -2.651], [37.271, -2.646], [37.284, -2.651], [37.286, -2.660], [37.276, -2.664], [37.264, -2.660], [37.261, -2.651]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "amboseli-30m-v1:north-causeway",
+        "label": "Northern Causeway Wetland",
+        "stateAtIssue": "wet",
+        "observedAtValid": "wet",
+        "forecast72hRainMm": 66,
+        "previous30dRainMm": 154,
+        "historicalFloodFrequency": 0.76,
+        "distanceToCurrentFloodM": 0,
+        "floodedNeighborFraction": 0.84,
+        "handMeters": 0.5,
+        "observationAgeDays": 0,
+        "daysFloodedMin": 3,
+        "historicalResidenceMedianDays": 21
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[37.262, -2.636], [37.278, -2.638], [37.281, -2.628], [37.274, -2.621], [37.263, -2.625], [37.262, -2.636]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "amboseli-30m-v1:eastern-access",
+        "label": "Eastern Access Margin",
+        "stateAtIssue": "dry",
+        "observedAtValid": "wet",
+        "forecast72hRainMm": 72,
+        "previous30dRainMm": 151,
+        "historicalFloodFrequency": 0.58,
+        "distanceToCurrentFloodM": 160,
+        "floodedNeighborFraction": 0.68,
+        "handMeters": 0.8,
+        "observationAgeDays": 0,
+        "daysFloodedMin": 0,
+        "historicalResidenceMedianDays": 12
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[37.283, -2.662], [37.294, -2.662], [37.296, -2.654], [37.287, -2.650], [37.281, -2.655], [37.283, -2.662]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "amboseli-30m-v1:southern-bypass",
+        "label": "Southern Bypass Margin",
+        "stateAtIssue": "dry",
+        "observedAtValid": "dry",
+        "forecast72hRainMm": 58,
+        "previous30dRainMm": 126,
+        "historicalFloodFrequency": 0.34,
+        "distanceToCurrentFloodM": 360,
+        "floodedNeighborFraction": 0.32,
+        "handMeters": 1.7,
+        "observationAgeDays": 0,
+        "daysFloodedMin": 0,
+        "historicalResidenceMedianDays": 7
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[37.275, -2.679], [37.291, -2.681], [37.295, -2.668], [37.284, -2.664], [37.275, -2.671], [37.275, -2.679]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "amboseli-30m-v1:dry-ridge",
+        "label": "Dry Ridge",
+        "stateAtIssue": "dry",
+        "observedAtValid": "dry",
+        "forecast72hRainMm": 44,
+        "previous30dRainMm": 101,
+        "historicalFloodFrequency": 0.12,
+        "distanceToCurrentFloodM": 820,
+        "floodedNeighborFraction": 0.08,
+        "handMeters": 3.6,
+        "observationAgeDays": 0,
+        "daysFloodedMin": 0,
+        "historicalResidenceMedianDays": 3
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[37.251, -2.671], [37.271, -2.672], [37.273, -2.662], [37.257, -2.658], [37.248, -2.664], [37.251, -2.671]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "amboseli-30m-v1:western-gate",
+        "label": "Western Gate Road",
+        "stateAtIssue": "dry",
+        "observedAtValid": "dry",
+        "forecast72hRainMm": 38,
+        "previous30dRainMm": 90,
+        "historicalFloodFrequency": 0.1,
+        "distanceToCurrentFloodM": 1100,
+        "floodedNeighborFraction": 0.04,
+        "handMeters": 2.9,
+        "observationAgeDays": 0,
+        "daysFloodedMin": 0,
+        "historicalResidenceMedianDays": 2
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[37.224, -2.659], [37.244, -2.659], [37.248, -2.648], [37.231, -2.645], [37.221, -2.652], [37.224, -2.659]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "amboseli-30m-v1:observation-hill",
+        "label": "Observation Hill",
+        "stateAtIssue": "dry",
+        "observedAtValid": "dry",
+        "forecast72hRainMm": 35,
+        "previous30dRainMm": 84,
+        "historicalFloodFrequency": 0.06,
+        "distanceToCurrentFloodM": 1360,
+        "floodedNeighborFraction": 0.02,
+        "handMeters": 5.2,
+        "observationAgeDays": 0,
+        "daysFloodedMin": 0,
+        "historicalResidenceMedianDays": 1
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[37.229, -2.682], [37.244, -2.683], [37.249, -2.673], [37.236, -2.668], [37.226, -2.674], [37.229, -2.682]]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "cellId": "amboseli-30m-v1:northern-loop",
+        "label": "Northern Loop Margin",
+        "stateAtIssue": "dry",
+        "observedAtValid": "wet",
+        "forecast72hRainMm": 62,
+        "previous30dRainMm": 142,
+        "historicalFloodFrequency": 0.46,
+        "distanceToCurrentFloodM": 230,
+        "floodedNeighborFraction": 0.5,
+        "handMeters": 1.1,
+        "observationAgeDays": 0,
+        "daysFloodedMin": 0,
+        "historicalResidenceMedianDays": 10
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[[37.260, -2.646], [37.273, -2.644], [37.278, -2.635], [37.266, -2.632], [37.257, -2.638], [37.260, -2.646]]]
+      }
+    }
+  ]
+}

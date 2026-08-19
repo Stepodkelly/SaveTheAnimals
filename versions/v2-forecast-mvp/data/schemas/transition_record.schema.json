@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://savetheanimals.local/schemas/transition-record.schema.json",
+  "title": "SaveTheAnimals V2 Transition Record",
+  "type": "object",
+  "required": [
+    "cellId",
+    "eventId",
+    "issuedAt",
+    "validAt",
+    "sourceObservationId",
+    "targetObservationId",
+    "sourceFloodState",
+    "targetFloodState",
+    "sourceConfidence",
+    "targetConfidence",
+    "labelIntervalMinDays",
+    "labelIntervalMaxDays",
+    "sampleWeight",
+    "features"
+  ],
+  "properties": {
+    "cellId": { "type": "string" },
+    "eventId": { "type": "string" },
+    "issuedAt": { "type": "string", "format": "date-time" },
+    "validAt": { "type": "string", "format": "date-time" },
+    "sourceObservationId": { "type": "string" },
+    "targetObservationId": { "type": "string" },
+    "sourceSensor": { "type": "string" },
+    "targetSensor": { "type": "string" },
+    "sourceFloodState": {
+      "type": "string",
+      "enum": ["observed_open_water", "radar_indicated_water", "dry", "permanent_water", "unknown"]
+    },
+    "targetFloodState": {
+      "type": "string",
+      "enum": ["observed_open_water", "radar_indicated_water", "dry", "permanent_water", "unknown"]
+    },
+    "validDataSource": { "type": "boolean" },
+    "validDataTarget": { "type": "boolean" },
+    "sourceConfidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "targetConfidence": { "type": "number", "minimum": 0, "maximum": 1 },
+    "sensorAgreementWeight": { "type": "number", "minimum": 0, "maximum": 1 },
+    "labelIntervalMinDays": { "type": "number", "minimum": 0 },
+    "labelIntervalMaxDays": { "type": "number", "minimum": 0 },
+    "sampleWeight": { "type": "number", "minimum": 0 },
+    "features": {
+      "type": "object",
+      "additionalProperties": { "type": ["number", "string", "boolean", "null"] }
+    }
+  }
+}

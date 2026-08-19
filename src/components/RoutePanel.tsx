@@ -5,9 +5,10 @@ import type {
   IntelligenceResponse,
   LocalQuestionResponse,
   RoadEdge,
-  RouteResult
+  RouteResult,
+  V2ReplayEvaluation
 } from "../types";
-import { formatMeters } from "../lib/format";
+import { formatDate, formatMeters } from "../lib/format";
 
 type RoutePanelProps = {
   selectedIncident: IncidentLocation;
@@ -23,6 +24,7 @@ type RoutePanelProps = {
   onRunIntelligence: () => void;
   onApplyEvidence: () => void;
   onAskLocalQuestion: (question: string) => void;
+  v2Evaluation: V2ReplayEvaluation;
 };
 
 export function RoutePanel({
@@ -38,7 +40,8 @@ export function RoutePanel({
   onIncidentChange,
   onRunIntelligence,
   onApplyEvidence,
-  onAskLocalQuestion
+  onAskLocalQuestion,
+  v2Evaluation
 }: RoutePanelProps) {
   const [question, setQuestion] = useState("Which public office or ranger contact should verify road access?");
   const blockedEdges = edges.filter((edge) => edge.blocked);
@@ -79,6 +82,55 @@ export function RoutePanel({
       </section>
 
       <section className="panel-section">
+        <div className="panel-heading-row">
+          <div>
+            <h2>V2 Replay Gate</h2>
+            <p className="eyebrow">Simple regression, judged by replay.</p>
+          </div>
+          <span className="chip">{v2Evaluation.displayMode}</span>
+        </div>
+        <div className="replay-grid" aria-label="V2 replay regression status">
+          <div>
+            <span>issue</span>
+            <strong>{formatDate(v2Evaluation.asOf)}</strong>
+          </div>
+          <div>
+            <span>valid</span>
+            <strong>{formatDate(v2Evaluation.validAt)}</strong>
+          </div>
+          <div>
+            <span>Wetting</span>
+            <strong>dry to wet</strong>
+          </div>
+          <div>
+            <span>Persistence</span>
+            <strong>wet stays wet</strong>
+          </div>
+        </div>
+        <div className="metric-pills" aria-label="V2 replay metrics">
+          <span>
+            Brier: <strong>{v2Evaluation.metrics.brierScore.toFixed(3)}</strong>
+          </span>
+          <span>
+            False-safe roads: <strong>{asPercent(v2Evaluation.metrics.falseSafeRoadRate)}</strong>
+          </span>
+          <span>
+            Road recall: <strong>{asPercent(v2Evaluation.metrics.roadImpactRecall)}</strong>
+          </span>
+          <span>
+            Calibration: <strong>{v2Evaluation.metrics.calibrationError.toFixed(3)}</strong>
+          </span>
+        </div>
+        <div className="baseline-list" aria-label="V2 replay baselines">
+          {v2Evaluation.baselines.map((baseline) => (
+            <span key={baseline.id}>
+              {baseline.label}: <strong>{baseline.brierScore.toFixed(3)}</strong>
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <section className="panel-section">
         <h2>Route Instructions</h2>
         <div className="route-line" aria-hidden="true">
           <span />
@@ -98,12 +150,20 @@ export function RoutePanel({
           {edges.map((edge) => (
             <div className="edge-row" key={edge.id}>
               <span>{edge.name}</span>
-              <div className="edge-track" title={edge.blocked ? "Blocked by flood polygon" : "Open in graph"}>
+              <div
+                className="edge-track"
+                title={
+                  edge.blocked
+                    ? "Blocked by issue-time observed flooding"
+                    : `Forecast risk ${edge.forecastRisk === undefined ? "unknown" : asPercent(edge.forecastRisk)}`
+                }
+              >
                 <div
                   className={edge.blocked ? "edge-fill blocked" : edge.nearFlood ? "edge-fill caution" : "edge-fill"}
                   style={{ width: `${Math.max(18, Math.min(100, edge.cost / 90))}%` }}
                 />
               </div>
+              <strong>{edge.forecastRisk === undefined ? "--" : asPercent(edge.forecastRisk)}</strong>
             </div>
           ))}
         </div>
@@ -147,7 +207,7 @@ export function RoutePanel({
               onClick={onApplyEvidence}
               disabled={exactEvidence.length === 0 || evidenceApplied}
             >
-              {evidenceApplied ? "Evidence applied" : "Apply evidence to route"}
+              {evidenceApplied ? "Evidence flagged" : "Flag exact-asset evidence"}
             </button>
           </>
         )}
@@ -252,4 +312,8 @@ function isApplicableEvidence(item: EvidenceItem) {
     item.confidence >= 0.8 &&
     Boolean(item.matchedAssetId)
   );
+}
+
+function asPercent(value: number) {
+  return `${Math.round(value * 100)}%`;
 }

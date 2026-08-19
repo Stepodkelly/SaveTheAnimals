@@ -1,15 +1,24 @@
 {
   "schemaId": "features-v1",
   "gridVersion": "amboseli-30m-v1",
+  "targetWindowsDays": [3, 7],
   "features": [
     "forecast_24h_rain_mm",
     "forecast_72h_rain_mm",
     "forecast_7d_rain_mm",
     "previous_7d_rain_mm",
     "previous_30d_rain_mm",
+    "forecast_rain_x_previous_30d_rain",
+    "forecast_rain_x_flood_frequency",
     "historical_flood_frequency",
     "arrival_rank",
     "recession_rank",
+    "days_flooded_min",
+    "days_flooded_max",
+    "days_since_peak_estimate",
+    "historical_residence_median_days",
+    "historical_residence_p90_days",
+    "connectivity_to_permanent_water",
     "distance_to_current_flood_m",
     "flooded_neighbor_fraction",
     "hand_meters",
@@ -18,5 +27,18 @@
     "season",
     "forecast_horizon_days",
     "observation_age_days"
-  ]
+  ],
+  "requiredProvenanceFields": [
+    "source_observation_id",
+    "target_observation_id",
+    "rainfall_source_id",
+    "feature_build_as_of",
+    "historical_feature_event_ids",
+    "excluded_event_ids"
+  ],
+  "oodRules": {
+    "flagWhenForecastRainOutsideTrainingEnvelope": true,
+    "flagWhenObservationAgeDaysExceeds": 7,
+    "flagWhenHistoricalSupportCountBelow": 3
+  }
 }

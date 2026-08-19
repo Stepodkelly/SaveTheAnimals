@@ -1,0 +1,32 @@
+{
+  "manifestId": "manifest-amboseli-2026-march-replay-v1",
+  "replayId": "amboseli-2026-march",
+  "aoiId": "amboseli-analysis-v1",
+  "gridVersion": "amboseli-30m-v1",
+  "asOf": "2026-03-10T00:00:00Z",
+  "validAt": "2026-03-16T00:00:00Z",
+  "heldOutEventId": "amboseli-2026-long-rains",
+  "allowedObservationLatestAt": "2026-03-10T00:00:00Z",
+  "rainfallMode": "issued_forecast",
+  "historicalFeatureEventIds": [],
+  "excludedEventIds": ["amboseli-2026-long-rains"],
+  "modelVersions": ["wetting-v1", "persistence-v1"],
+  "postProcessorVersion": "spatial-coherence-v1",
+  "inputAssets": [
+    {
+      "assetId": "amboseli-analysis-v1",
+      "role": "static_geography",
+      "availableAt": "2026-01-01T00:00:00Z"
+    },
+    {
+      "assetId": "amboseli-road-graph-v1",
+      "role": "road_graph",
+      "availableAt": "2026-03-10T00:00:00Z"
+    }
+  ],
+  "leakageChecks": {
+    "rejectInputsAfterAsOf": true,
+    "rebuildHistoricalFeaturesWithoutHeldOutEvent": true,
+    "rejectReviewOverridesAfterAsOf": true
+  }
+}

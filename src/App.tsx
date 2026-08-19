@@ -3,6 +3,7 @@ import { RescueMap } from "./components/RescueMap";
 import { RoutePanel } from "./components/RoutePanel";
 import { loadDemoData } from "./lib/data";
 import { analyzeEdges, calculateRoute } from "./lib/routing";
+import { applyV2RiskToEdges, evaluateV2Replay } from "./lib/v2Engine";
 import { formatDate, formatDateRange } from "./lib/format";
 import type {
   FloodCollection,
@@ -12,7 +13,8 @@ import type {
   LocationsData,
   ObservationWindowKey,
   RoadCollection,
-  SceneMetadata
+  SceneMetadata,
+  V2ReplayCellCollection
 } from "./types";
 
 type DemoData = {
@@ -20,6 +22,7 @@ type DemoData = {
   roads: RoadCollection;
   floods: FloodCollection;
   locations: LocationsData;
+  v2ReplayCells: V2ReplayCellCollection;
 };
 
 export default function App() {
@@ -45,6 +48,8 @@ export default function App() {
     if (!data || !selectedIncident) return null;
     const normalEdges = analyzeEdges(data.roads, data.floods, "normal");
     const floodEdges = analyzeEdges(data.roads, data.floods, "flood", evidencePenalties);
+    const v2Evaluation = evaluateV2Replay(data.v2ReplayCells, normalEdges);
+    const v2FloodEdges = applyV2RiskToEdges(normalEdges, v2Evaluation);
     const normalRoute = calculateRoute(
       data.locations.nodes,
       normalEdges,
@@ -53,11 +58,11 @@ export default function App() {
     );
     const floodRoute = calculateRoute(
       data.locations.nodes,
-      floodEdges,
+      v2FloodEdges,
       data.locations.base.id,
       selectedIncident.nearestNodeId
     );
-    return { normalEdges, floodEdges, normalRoute, floodRoute };
+    return { normalEdges, floodEdges: v2FloodEdges, normalRoute, floodRoute, v2Evaluation };
   }, [data, selectedIncident, evidencePenalties]);
 
   const activeRouteView = useMemo(() => {
@@ -224,6 +229,7 @@ export default function App() {
             <span><i className="legend-route" /> current route</span>
             <span><i className="legend-rejected" /> rejected route</span>
             <span><i className="legend-flood" /> satellite flood</span>
+            <span><i className="legend-risk" /> V2 risk</span>
           </div>
           <RescueMap
             locations={data.locations}
@@ -234,6 +240,7 @@ export default function App() {
             selectedIncident={selectedIncident}
             showFlood={activeRouteView.showFlood}
             activeWindow={activeWindow}
+            v2Replay={analyzed.v2Evaluation}
           />
         </div>
 
@@ -258,6 +265,7 @@ export default function App() {
           localAnswer={localAnswer}
           localAnswerStatus={localAnswerStatus}
           onAskLocalQuestion={askLocalQuestion}
+          v2Evaluation={analyzed.v2Evaluation}
         />
       </section>
 

@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-08-19T04:02:10.689Z",
+  "checks": {
+    "gdalinfo": false,
+    "gdal_translate": false,
+    "python": true,
+    "rasterio": false,
+    "numpy": true,
+    "shapely": false,
+    "geopandas": false
+  },
+  "readyForRasterFloodMasks": false,
+  "nextAction": "Install GDAL or Python rasterio before deriving flood masks from VV/VH rasters."
+}

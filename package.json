@@ -12,6 +12,9 @@
     "v2:validate-replay": "node versions/v2-forecast-mvp/tools/validate-replay-manifest.mjs",
     "v2:pull-sentinel1": "node versions/v2-forecast-mvp/tools/pull-sentinel1-stac.mjs",
     "v2:download-sentinel1-quicklooks": "node versions/v2-forecast-mvp/tools/download-sentinel1-quicklooks.mjs",
+    "v2:probe-sentinel1-rasters": "node versions/v2-forecast-mvp/tools/probe-sentinel1-raster-access.mjs",
+    "v2:download-sentinel1-rasters": "node versions/v2-forecast-mvp/tools/download-sentinel1-rasters.mjs",
+    "v2:check-geospatial": "node versions/v2-forecast-mvp/tools/check-geospatial-tooling.mjs",
     "build": "tsc && vite build",
     "build:pages": "tsc && GITHUB_PAGES=true vite build --outDir docs && cp docs/index.html docs/404.html",
     "preview": "vite preview --host 127.0.0.1"

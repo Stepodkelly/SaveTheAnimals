@@ -39,3 +39,9 @@ Large rasters, Parquet tables, model artifacts, quicklooks and tiles are represe
 ## Replay Rule
 
 Replays live under `data/replays/`. Each replay contains an as-of manifest and an evaluation report. The replay manifest is the source of truth for what the system was allowed to know at prediction time.
+
+## Sentinel-1 Pull Status
+
+V2 can currently pull real Sentinel-1 scene metadata through Copernicus Data Space STAC and public quicklook thumbnails for the before/during/recovery windows.
+
+Full VV/VH raster downloads are scripted but require Copernicus Data Space OIDC credentials. The raster access report records the current state and should be regenerated after setting `CDSE_ACCESS_TOKEN`, `CDSE_REFRESH_TOKEN` or `CDSE_USERNAME`/`CDSE_PASSWORD`.

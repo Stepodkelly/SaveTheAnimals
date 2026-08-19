@@ -2,3 +2,5 @@ node_modules/
 dist/
 .env
 .DS_Store
+versions/v2-forecast-mvp/data/raw/sentinel1/*.tif
+versions/v2-forecast-mvp/data/raw/sentinel1/*.zip

@@ -188,6 +188,10 @@ export type RoadEdge = RoadEdgeProperties & {
   forecastRisk?: number;
   forecastConfidence?: number;
   observedStatus?: "clear_observed" | "observed_open_water_overlap" | "unknown";
+  directProbableFloodCells?: number;
+  directPossibleFloodCells?: number;
+  nearbyFloodCells?: number;
+  maxFloodProbability?: number;
 };
 
 export type IncidentLocation = {

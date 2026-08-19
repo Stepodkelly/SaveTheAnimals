@@ -281,7 +281,7 @@ export default function App() {
             <span className="map-note">{data.scene.note}</span>
           </div>
           <div className="map-legend" aria-label="Map legend">
-            <span><i className="legend-route" /> current route</span>
+            <span><i className={`legend-route route-${activeRouteView.currentRoute.riskLevel}`} /> current route</span>
             <span><i className="legend-rejected" /> rejected route</span>
             <span><i className="legend-flood" /> satellite flood</span>
             <span><i className="legend-risk" /> V2 risk</span>
@@ -327,9 +327,9 @@ export default function App() {
           v2Evaluation={analyzed.v2Evaluation}
           activeWindow={activeWindow}
           sentinelQuicklooks={data.sentinelQuicklooks}
-            floodMaskManifest={data.floodMaskManifest}
-            roadMetrics={data.roadMetrics}
-            realMaskEvaluation={data.realMaskEvaluation}
+          floodMaskManifest={data.floodMaskManifest}
+          roadMetrics={data.roadMetrics}
+          realMaskEvaluation={data.realMaskEvaluation}
           />
       </section>
 

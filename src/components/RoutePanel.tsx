@@ -60,6 +60,8 @@ export function RoutePanel({
 }: RoutePanelProps) {
   const [question, setQuestion] = useState("Which public office or ranger contact should verify road access?");
   const blockedEdges = edges.filter((edge) => edge.blocked);
+  const routeEdges = route.edgeIds.map((edgeId) => edges.find((edge) => edge.id === edgeId)).filter(Boolean) as RoadEdge[];
+  const routeAudit = auditRoute(routeEdges, route.status);
   const exactEvidence = evidence?.evidence.filter(isApplicableEvidence) ?? [];
   const planRows = evidence?.searchPlan.queries ?? defaultPlanRows;
   const activeScenes = sentinelQuicklooks.scenes.filter((scene) => scene.window === activeWindow);
@@ -99,6 +101,14 @@ export function RoutePanel({
         <Metric label="Distance" value={formatMeters(route.distanceMeters)} />
         <Metric label="Risk" value={route.riskLevel} />
         <Metric label="Blocked" value={String(blockedEdges.length)} />
+      </section>
+
+      <section className="panel-section">
+        <div className="mask-summary" aria-label="Current route flood audit">
+          <span>Route flood check</span>
+          <strong>{routeAudit.summary}</strong>
+          <small>{routeAudit.detail}</small>
+        </div>
       </section>
 
       <section className="panel-section">
@@ -404,6 +414,47 @@ function asPercent(value: number) {
 
 function formatNullableMetric(value: number | null) {
   return value === null ? "--" : value.toFixed(3);
+}
+
+function auditRoute(routeEdges: RoadEdge[], status: RouteResult["status"]) {
+  if (status !== "route_found") {
+    return {
+      summary: "No open graph path",
+      detail: "The selected destination is cut off by blocked road edges in this scenario."
+    };
+  }
+
+  const directProbable = sum(routeEdges.map((edge) => edge.directProbableFloodCells ?? 0));
+  const directPossible = sum(routeEdges.map((edge) => edge.directPossibleFloodCells ?? 0));
+  const nearby = sum(routeEdges.map((edge) => edge.nearbyFloodCells ?? 0));
+  const maxProbability = Math.max(0, ...routeEdges.map((edge) => edge.maxFloodProbability ?? edge.forecastRisk ?? 0));
+
+  if (directProbable > 0) {
+    return {
+      summary: "Does not avoid probable flooding",
+      detail: `${directProbable} probable flood-cell overlaps; max mapped probability ${asPercent(maxProbability)}.`
+    };
+  }
+  if (directPossible > 0) {
+    return {
+      summary: "Avoids probable cells, crosses possible cells",
+      detail: `${directPossible} possible flood-cell overlaps; max mapped probability ${asPercent(maxProbability)}.`
+    };
+  }
+  if (nearby > 0) {
+    return {
+      summary: "Avoids direct flood cells, passes nearby",
+      detail: `${nearby} nearby flood cells within the route buffer; max mapped probability ${asPercent(maxProbability)}.`
+    };
+  }
+  return {
+    summary: "Avoids mapped flood cells",
+    detail: "No direct or nearby Sentinel flood-mask intersections on the selected route."
+  };
+}
+
+function sum(values: number[]) {
+  return values.reduce((total, value) => total + value, 0);
 }
 
 function sourceModeLabel(sourceMode?: string) {

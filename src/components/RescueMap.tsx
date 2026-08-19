@@ -217,7 +217,17 @@ export function RescueMap({
       layers.addLayer(
         L.geoJSON(routeFeatures(currentRoute), {
           style: {
-            color: "#15803d",
+            color: "#fffdf5",
+            weight: 10,
+            opacity: 0.95
+          },
+          interactive: false
+        })
+      );
+      layers.addLayer(
+        L.geoJSON(routeFeatures(currentRoute), {
+          style: {
+            color: routeColor(currentRoute.riskLevel),
             weight: 6,
             opacity: 0.92
           }
@@ -240,6 +250,7 @@ export function RescueMap({
     edges.forEach((edge) => {
       edge.geometry.coordinates.forEach(([lng, lat]) => bounds.extend([lat, lng]));
     });
+    map.invalidateSize(false);
     map.fitBounds(bounds.pad(0.24), { animate: false });
   }, [
     activeWindow,
@@ -296,6 +307,12 @@ function changeColor(category: SatelliteFloodChangeProperties["category"]) {
   if (category === "recovered_or_drying") return "#15803d";
   if (category === "residual_or_later_water") return "#7c2d12";
   return "#c76a11";
+}
+
+function routeColor(riskLevel: RouteResult["riskLevel"]) {
+  if (riskLevel === "high") return "#b42318";
+  if (riskLevel === "moderate") return "#c76a11";
+  return "#15803d";
 }
 
 function marker(coordinates: [number, number], kind: "base" | "incident") {

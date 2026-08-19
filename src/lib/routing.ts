@@ -95,10 +95,17 @@ export function calculateRoute(
   const routeEdges = edgeIds.map((edgeId) => edges.find((edge) => edge.id === edgeId)).filter(Boolean) as RoadEdge[];
   const distanceMeters = routeEdges.reduce((total, edge) => total + edge.distanceMeters, 0);
   const hasNearFlood = routeEdges.some((edge) => edge.nearFlood);
+  const hasDirectPossibleFlood = routeEdges.some((edge) => (edge.directPossibleFloodCells ?? 0) > 0);
+  const hasDirectProbableFlood = routeEdges.some((edge) => (edge.directProbableFloodCells ?? 0) > 0);
   const hasUncertainTrack = routeEdges.some((edge) => edge.condition === "uncertain_track");
   const hasEvidencePenalty = routeEdges.some((edge) => edge.evidencePenalty > 0);
   const geometry = mergeLineStrings(routeEdges);
-  const riskLevel = hasNearFlood || hasEvidencePenalty ? "high" : hasUncertainTrack ? "moderate" : "low";
+  const riskLevel =
+    hasDirectProbableFlood || hasDirectPossibleFlood || hasNearFlood || hasEvidencePenalty
+      ? "high"
+      : hasUncertainTrack
+        ? "moderate"
+        : "low";
 
   return {
     status: "route_found",
@@ -111,7 +118,7 @@ export function calculateRoute(
       const from = index === 0 ? nodeNames.get(edge.from) : nodeNames.get(edge.from) ?? edge.from;
       const to = nodeNames.get(edge.to) ?? edge.to;
       const caution = edge.nearFlood
-        ? " Stay alert near observed flood extent."
+        ? floodCaution(edge)
         : edge.condition === "uncertain_track"
           ? " Track condition is uncertain."
           : "";
@@ -167,7 +174,7 @@ function mergeLineStrings(edges: RoadEdge[]): LineString {
 function routeReasons(edges: RoadEdge[]) {
   const reasons = ["Route follows the preselected demonstration road graph."];
   if (edges.some((edge) => edge.nearFlood)) {
-    reasons.push("One or more edges pass near the traced flood extent and are penalized.");
+    reasons.push("One or more edges touch or pass near possible flood cells and are penalized.");
   }
   if (edges.some((edge) => edge.condition === "uncertain_track")) {
     reasons.push("One or more segments are marked as uncertain tracks.");
@@ -176,4 +183,14 @@ function routeReasons(edges: RoadEdge[]) {
     reasons.push("Operator-approved evidence has increased cost on a mapped asset.");
   }
   return reasons;
+}
+
+function floodCaution(edge: RoadEdge) {
+  if ((edge.directProbableFloodCells ?? 0) > 0) {
+    return " Direct probable flood-cell overlap; treat as unsafe without field confirmation.";
+  }
+  if ((edge.directPossibleFloodCells ?? 0) > 0) {
+    return " Crosses possible flood cells; proceed only after field confirmation.";
+  }
+  return " Passes near mapped flood cells; verify locally before dispatch.";
 }

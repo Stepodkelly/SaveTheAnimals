@@ -56,7 +56,11 @@ export function applySatelliteMaskToEdges(
       cost: edge.cost + satellitePenalty,
       forecastRisk: Math.max(edge.forecastRisk ?? 0, round(maxProbability)),
       forecastConfidence: Math.max(edge.forecastConfidence ?? 0, directProbableOverlap ? 0.72 : 0.58),
-      observedStatus: directProbableOverlap ? "observed_open_water_overlap" : edge.observedStatus ?? "clear_observed"
+      observedStatus: directProbableOverlap ? "observed_open_water_overlap" : edge.observedStatus ?? "clear_observed",
+      directProbableFloodCells: (edge.directProbableFloodCells ?? 0) + directProbable.length,
+      directPossibleFloodCells: (edge.directPossibleFloodCells ?? 0) + directPossible.length,
+      nearbyFloodCells: (edge.nearbyFloodCells ?? 0) + bufferedPossible.length,
+      maxFloodProbability: Math.max(edge.maxFloodProbability ?? 0, round(maxProbability))
     };
   });
 }

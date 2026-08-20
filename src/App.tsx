@@ -187,6 +187,7 @@ export default function App() {
 
   function selectObservationWindow(windowKey: ObservationWindowKey) {
     setActiveWindow(windowKey);
+    setSatelliteLayerMode("mask");
     setShowFlood(true);
   }
 
@@ -288,17 +289,17 @@ export default function App() {
                 onClick={() => setSatelliteLayerMode("change")}
                 type="button"
               >
-                Change
+                3-window
               </button>
             </div>
-            <span className="map-note">{data.scene.note}</span>
+            <span className="map-note">{mapNote(activeWindow, satelliteLayerMode)}</span>
           </div>
           <div className="map-legend" aria-label="Map legend">
             <span><i className={`legend-route route-${activeRouteView.currentRoute.safetyClass}`} /> current route</span>
             <span><i className="legend-rejected" /> rejected route</span>
             <span><i className="legend-flood" /> observed flood likelihood</span>
             <span><i className="legend-risk" /> model predicted risk</span>
-            <span><i className="legend-change" /> observed change</span>
+            <span><i className="legend-change" /> 3-window observed change</span>
           </div>
           <RescueMap
             locations={data.locations}
@@ -356,6 +357,19 @@ export default function App() {
   );
 }
 
+function mapNote(activeWindow: ObservationWindowKey, satelliteLayerMode: "mask" | "change") {
+  if (satelliteLayerMode === "change") {
+    return "Three-window comparison: baseline vs flood test vs recovery.";
+  }
+  if (activeWindow === "beforeFlooding") {
+    return "Observed Sentinel-1 likelihood from the Jan-Feb baseline scenes.";
+  }
+  if (activeWindow === "recoveryComparison") {
+    return "Observed Sentinel-1 likelihood from the May recovery scenes.";
+  }
+  return "Observed Sentinel-1 likelihood from the March flood-test scenes.";
+}
+
 const emptyFloodCollection: FloodCollection = {
   type: "FeatureCollection",
   features: []
@@ -365,7 +379,7 @@ function publicDemoIntelligence(selectedIncident: IncidentLocation): Intelligenc
   return {
     searchPlan: {
       window: {
-        label: "During flooding",
+        label: "Flood test window",
         start: "2026-03-09",
         end: "2026-03-20"
       },

@@ -5,17 +5,17 @@
   "acquiredAt": "2026-03-16T06:12:00Z",
   "observationWindows": {
     "beforeFlooding": {
-      "label": "Before flooding",
+      "label": "Pre-event baseline",
       "start": "2026-01-15",
       "end": "2026-02-20"
     },
     "duringFlooding": {
-      "label": "During flooding",
+      "label": "Flood test window",
       "start": "2026-03-09",
       "end": "2026-03-20"
     },
     "recoveryComparison": {
-      "label": "Recovery comparison",
+      "label": "Recovery observation",
       "start": "2026-05-07",
       "end": "2026-05-15"
     }

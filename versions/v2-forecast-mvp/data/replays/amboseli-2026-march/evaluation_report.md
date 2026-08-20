@@ -4,9 +4,9 @@ Status: implemented as a deterministic replay fixture.
 
 ## Replay Window
 
-- Before flooding reference: January 15-February 20, 2026
-- During flooding reference: March 9-20, 2026
-- Recovery comparison: May 7-15, 2026
+- Pre-event baseline: January 15-February 20, 2026
+- Flood test window: March 9-20, 2026
+- Recovery observation: May 7-15, 2026
 - MVP issue time: March 10, 2026 00:00 UTC
 - MVP validation time: March 16, 2026 00:00 UTC
 

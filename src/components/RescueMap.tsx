@@ -135,9 +135,9 @@ export function RescueMap({
           onEachFeature: (feature, layer) => {
             const cell = feature.properties as SatelliteFloodChangeProperties;
             layer.bindTooltip(
-              `${changeLabel(cell.category)}: ${Math.round(cell.beforeProbability * 100)}% before, ${Math.round(
+              `${changeLabel(cell.category)}: ${Math.round(cell.beforeProbability * 100)}% baseline, ${Math.round(
                 cell.duringProbability * 100
-              )}% during, ${Math.round(cell.recoveryProbability * 100)}% recovery`
+              )}% flood test, ${Math.round(cell.recoveryProbability * 100)}% recovery`
             );
           }
         })

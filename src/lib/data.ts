@@ -31,7 +31,7 @@ export async function loadDemoData() {
     validationStatus: "no_ground_truth_yet",
     caveat: "",
     observationWindow: {
-      label: "During flooding",
+      label: "Flood test window",
       start: "",
       end: ""
     },

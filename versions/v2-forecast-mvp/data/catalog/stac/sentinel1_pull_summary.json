@@ -11,7 +11,7 @@
   "windows": [
     {
       "windowKey": "beforeFlooding",
-      "label": "Before flooding",
+      "label": "Pre-event baseline",
       "start": "2026-01-15",
       "end": "2026-02-20",
       "scenes": 10,
@@ -19,7 +19,7 @@
     },
     {
       "windowKey": "duringFlooding",
-      "label": "During flooding",
+      "label": "Flood test window",
       "start": "2026-03-09",
       "end": "2026-03-20",
       "scenes": 3,
@@ -27,7 +27,7 @@
     },
     {
       "windowKey": "recoveryComparison",
-      "label": "Recovery comparison",
+      "label": "Recovery observation",
       "start": "2026-05-07",
       "end": "2026-05-15",
       "scenes": 4,

@@ -183,7 +183,7 @@
     "generatedAt": "2026-08-19T14:31:33.437Z",
     "method": {
       "id": "sentinel1-window-change-v1",
-      "description": "Cell-wise comparison of aggregated before, during and recovery Sentinel-1 flood-likelihood masks. Categories are provisional and intended for planning display."
+      "description": "Cell-wise comparison of aggregated baseline, flood-test and recovery Sentinel-1 flood-likelihood masks. Categories are provisional and intended for planning display."
     },
     "categories": {
       "possible_change": 437,

@@ -4,7 +4,7 @@
   "validationStatus": "candidate_sources_found",
   "caveat": "Satellite masks and Exa/web candidates are not treated as field truth. A road becomes ground-truthed only when a reviewer records an official road, ranger, police, park, county, NGO, or field observation in the review override files.",
   "observationWindow": {
-    "label": "During flooding",
+    "label": "Flood test window",
     "start": "2026-03-09",
     "end": "2026-03-20"
   },

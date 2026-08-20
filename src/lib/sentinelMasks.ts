@@ -46,7 +46,7 @@ export function applySatelliteMaskToEdges(
 
     const maxProbability = maxFloodProbability(touched);
     const directProbableOverlap = directProbable.length > 0;
-    const satelliteBlocked = mode === "constraint" && directProbableOverlap && maxProbability >= 0.62;
+    const satelliteBlocked = mode === "constraint" && directProbableOverlap;
     const satellitePenalty = Math.round(edge.distanceMeters * maxProbability * (directProbableOverlap ? 4 : 2));
 
     return {

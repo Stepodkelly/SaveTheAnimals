@@ -1,5 +1,4 @@
 import type {
-  FloodCollection,
   GroundTruthValidationReport,
   LocationsData,
   RoadCollection,
@@ -64,7 +63,6 @@ export async function loadDemoData() {
   const [
     scene,
     roads,
-    floods,
     locations,
     v2ReplayCells,
     sentinelQuicklooks,
@@ -76,7 +74,6 @@ export async function loadDemoData() {
     await Promise.all([
     fetch(`${base}data/amboseli/scene.json`).then((res) => res.json() as Promise<SceneMetadata>),
     fetch(`${base}data/amboseli/roads.geojson`).then((res) => res.json() as Promise<RoadCollection>),
-    fetch(`${base}data/amboseli/flood-polygons.geojson`).then((res) => res.json() as Promise<FloodCollection>),
     fetch(`${base}data/amboseli/locations.json`).then((res) => res.json() as Promise<LocationsData>),
     fetch(`${base}data/amboseli/v2-replay-cells.geojson`).then(
       (res) => res.json() as Promise<V2ReplayCellCollection>
@@ -112,7 +109,6 @@ export async function loadDemoData() {
   return {
     scene,
     roads,
-    floods,
     locations,
     v2ReplayCells,
     sentinelQuicklooks,

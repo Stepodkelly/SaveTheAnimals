@@ -8,8 +8,8 @@ import { applySatelliteMaskToEdges } from "./lib/sentinelMasks";
 import { applyV2RiskToEdges, evaluateV2Replay } from "./lib/v2Engine";
 import { formatDate, formatDateRange } from "./lib/format";
 import type {
-  FloodCollection,
   GroundTruthValidationReport,
+  FloodCollection,
   IncidentLocation,
   IntelligenceResponse,
   LocalQuestionResponse,
@@ -30,7 +30,6 @@ import type {
 type DemoData = {
   scene: SceneMetadata;
   roads: RoadCollection;
-  floods: FloodCollection;
   locations: LocationsData;
   v2ReplayCells: V2ReplayCellCollection;
   sentinelQuicklooks: SentinelQuicklookManifest;
@@ -65,8 +64,8 @@ export default function App() {
 
   const analyzed = useMemo(() => {
     if (!data || !selectedIncident) return null;
-    const normalEdges = analyzeEdges(data.roads, data.floods, "normal");
-    const floodEdges = analyzeEdges(data.roads, data.floods, "flood", evidencePenalties);
+    const normalEdges = analyzeEdges(data.roads, emptyFloodCollection, "normal");
+    const floodEdges = analyzeEdges(data.roads, emptyFloodCollection, "flood", evidencePenalties);
     const v2Evaluation = evaluateV2Replay(data.v2ReplayCells, normalEdges);
     const beforeEdges = applySatelliteMaskToEdges(normalEdges, data.satelliteFloodMask, "beforeFlooding", "context");
     const duringSatelliteEdges = applySatelliteMaskToEdges(floodEdges, data.satelliteFloodMask, "duringFlooding", "constraint");
@@ -297,13 +296,12 @@ export default function App() {
           <div className="map-legend" aria-label="Map legend">
             <span><i className={`legend-route route-${activeRouteView.currentRoute.safetyClass}`} /> current route</span>
             <span><i className="legend-rejected" /> rejected route</span>
-            <span><i className="legend-flood" /> satellite flood</span>
+            <span><i className="legend-flood" /> Sentinel mask</span>
             <span><i className="legend-risk" /> V2 risk</span>
-            <span><i className="legend-change" /> change</span>
+            <span><i className="legend-change" /> V2 change</span>
           </div>
           <RescueMap
             locations={data.locations}
-            floods={data.floods}
             edges={activeRouteView.edges}
             currentRoute={activeRouteView.currentRoute}
             rejectedRoute={activeRouteView.rejectedRoute}
@@ -357,6 +355,11 @@ export default function App() {
     </main>
   );
 }
+
+const emptyFloodCollection: FloodCollection = {
+  type: "FeatureCollection",
+  features: []
+};
 
 function publicDemoIntelligence(selectedIncident: IncidentLocation): IntelligenceResponse {
   return {

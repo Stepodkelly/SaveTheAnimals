@@ -269,7 +269,7 @@ export function RoutePanel({
           <div className="baseline-list" aria-label="Sentinel-1 change categories">
             {Object.entries(changeCategories).map(([category, count]) => (
               <span key={category}>
-                {category.replace(/_/g, " ")}: <strong>{count}</strong>
+                {changeCategoryLabel(category)}: <strong>{count}</strong>
               </span>
             ))}
           </div>
@@ -315,7 +315,7 @@ export function RoutePanel({
                 className="edge-track"
                 title={
                   edge.blocked
-                    ? "Blocked by issue-time observed flooding"
+                    ? "Blocked by V2 Sentinel flood evidence"
                     : `Forecast risk ${edge.forecastRisk === undefined ? "unknown" : asPercent(edge.forecastRisk)}`
                 }
               >
@@ -496,6 +496,14 @@ function confidenceHeadline(
         ? "candidate sources"
         : "field truth pending";
   return `${rawScenes} raw / ${quicklooks} preview scenes; ${validation}`;
+}
+
+function changeCategoryLabel(category: string) {
+  if (category === "newly_flooded") return "V2 newly flooded cells";
+  if (category === "persistent_water") return "V2 persistent water cells";
+  if (category === "recovered_or_drying") return "V2 recovered/drying cells";
+  if (category === "residual_or_later_water") return "V2 residual/later water cells";
+  return "V2 possible-change cells";
 }
 
 function auditRoute(routeEdges: RoadEdge[], route: RouteResult) {

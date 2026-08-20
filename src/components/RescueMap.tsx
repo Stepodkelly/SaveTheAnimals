@@ -3,7 +3,6 @@ import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 import type { FeatureCollection, LineString } from "geojson";
 import type {
-  FloodCollection,
   IncidentLocation,
   LocationsData,
   ObservationWindowKey,
@@ -21,7 +20,6 @@ import { filterSatelliteMask } from "../lib/sentinelMasks";
 
 type RescueMapProps = {
   locations: LocationsData;
-  floods: FloodCollection;
   edges: RoadEdge[];
   currentRoute: RouteResult;
   rejectedRoute: RouteResult | null;
@@ -36,7 +34,6 @@ type RescueMapProps = {
 
 export function RescueMap({
   locations,
-  floods,
   edges,
   currentRoute,
   rejectedRoute,
@@ -135,7 +132,7 @@ export function RescueMap({
           onEachFeature: (feature, layer) => {
             const cell = feature.properties as SatelliteFloodChangeProperties;
             layer.bindTooltip(
-              `${cell.category.replace(/_/g, " ")}: ${Math.round(cell.beforeProbability * 100)}% before, ${Math.round(
+              `${changeLabel(cell.category)}: ${Math.round(cell.beforeProbability * 100)}% before, ${Math.round(
                 cell.duringProbability * 100
               )}% during, ${Math.round(cell.recoveryProbability * 100)}% recovery`
             );
@@ -181,25 +178,11 @@ export function RescueMap({
         },
         onEachFeature: (feature, layer) => {
           const edge = feature.properties as RoadEdge;
-          layer.bindTooltip(`${edge.name}${edge.blocked ? " blocked by traced flood" : ""}`);
+          layer.bindTooltip(`${edge.name}${edge.blocked ? " blocked by V2 flood evidence" : ""}`);
         }
       }
     );
     layers.addLayer(roadLayer);
-
-    if (showFlood) {
-      layers.addLayer(
-        L.geoJSON(floods, {
-          style: floodStyle(activeWindow),
-          onEachFeature: (feature, layer) => {
-            const confidence = feature.properties?.confidence
-              ? ` (${Math.round(feature.properties.confidence * 100)}% confidence)`
-              : "";
-            layer.bindTooltip(`${floodLabel(activeWindow)}: ${feature.properties?.label ?? "flood extent"}${confidence}`);
-          }
-        })
-      );
-    }
 
     if (rejectedRoute) {
       const rejected = L.geoJSON(routeFeatures(rejectedRoute), {
@@ -256,7 +239,6 @@ export function RescueMap({
     activeWindow,
     currentRoute,
     edges,
-    floods,
     locations,
     rejectedRoute,
     satelliteFloodMask,
@@ -268,31 +250,6 @@ export function RescueMap({
   ]);
 
   return <div ref={containerRef} className="map-canvas" aria-label="Amboseli preliminary access route map" />;
-}
-
-function floodStyle(activeWindow: ObservationWindowKey) {
-  if (activeWindow === "recoveryComparison") {
-    return {
-      color: "#38bdf8",
-      fillColor: "#075985",
-      weight: 1,
-      fillOpacity: 0.2,
-      dashArray: "5 5"
-    };
-  }
-
-  return {
-    color: "#12b8d7",
-    fillColor: "#083b68",
-    weight: 2,
-    fillOpacity: 0.46
-  };
-}
-
-function floodLabel(activeWindow: ObservationWindowKey) {
-  if (activeWindow === "beforeFlooding") return "Before-flood comparison";
-  if (activeWindow === "recoveryComparison") return "Recovery comparison residual";
-  return "During-flood satellite extent";
 }
 
 function riskColor(probability: number) {
@@ -307,6 +264,14 @@ function changeColor(category: SatelliteFloodChangeProperties["category"]) {
   if (category === "recovered_or_drying") return "#15803d";
   if (category === "residual_or_later_water") return "#7c2d12";
   return "#c76a11";
+}
+
+function changeLabel(category: SatelliteFloodChangeProperties["category"]) {
+  if (category === "newly_flooded") return "V2 newly flooded cell";
+  if (category === "persistent_water") return "V2 persistent water cell";
+  if (category === "recovered_or_drying") return "V2 recovered or drying cell";
+  if (category === "residual_or_later_water") return "V2 residual or later water cell";
+  return "V2 possible change cell";
 }
 
 function routeColor(safetyClass: RouteResult["safetyClass"]) {

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T14:31:45.065Z",
+  "generatedAt": "2026-08-20T05:07:14.251Z",
   "method": "sentinel1-road-intersection-v0",
   "caveat": "Metrics are computed from provisional Sentinel-1 planning masks against the demonstration road graph; they are not field-confirmed passability labels.",
   "downloadedRasterChecksums": [
@@ -81,205 +81,231 @@
       "window": "beforeFlooding",
       "observedAt": "2026-02-20T15:47:48.023501Z",
       "sceneId": "S1A_IW_GRDH_1SDV_20260115T154750_20260115T154815_062779_07DFB1_604D_COG,S1C_IW_GRDH_1SDV_20260204T031130_20260204T031155_006200_00C731_24F9_COG,S1A_IW_GRDH_1SDV_20260220T154748_20260220T154813_063304_07F31C_2469_COG",
-      "featureCount": 364,
-      "probableFloodAreaKm2": 5.837,
+      "featureCount": 1516,
+      "probableFloodAreaKm2": 6.256,
       "directRoadTouches": [
         {
           "roadId": "base_to_central",
           "roadName": "Base Road",
-          "probableCells": 9,
-          "possibleCells": 3,
-          "maxProbability": 0.694
+          "probableCells": 17,
+          "possibleCells": 1,
+          "maxProbability": 0.716
         },
         {
           "roadId": "central_to_eastern",
           "roadName": "Low Marsh Road",
-          "probableCells": 5,
-          "possibleCells": 5,
-          "maxProbability": 0.66
+          "probableCells": 8,
+          "possibleCells": 7,
+          "maxProbability": 0.732
         },
         {
           "roadId": "eastern_to_sinet",
           "roadName": "Sinet Delta Spur",
           "probableCells": 1,
           "possibleCells": 1,
-          "maxProbability": 0.546
+          "maxProbability": 0.624
         },
         {
           "roadId": "base_to_ridge",
           "roadName": "Dry Ridge Track",
           "probableCells": 0,
-          "possibleCells": 4,
-          "maxProbability": 0.549
+          "possibleCells": 12,
+          "maxProbability": 0.585
         },
         {
           "roadId": "ridge_to_bypass",
           "roadName": "Dry Ridge Connector",
+          "probableCells": 1,
+          "possibleCells": 1,
+          "maxProbability": 0.553
+        },
+        {
+          "roadId": "bypass_to_eastern",
+          "roadName": "Southern Bypass",
           "probableCells": 0,
-          "possibleCells": 2,
-          "maxProbability": 0.538
+          "possibleCells": 1,
+          "maxProbability": 0.494
         },
         {
           "roadId": "central_to_north",
           "roadName": "Northern Loop Link",
           "probableCells": 0,
           "possibleCells": 3,
-          "maxProbability": 0.55
+          "maxProbability": 0.587
         },
         {
           "roadId": "base_to_hill",
           "roadName": "Observation Hill Track",
-          "probableCells": 2,
+          "probableCells": 5,
           "possibleCells": 3,
-          "maxProbability": 0.563
+          "maxProbability": 0.588
         },
         {
           "roadId": "central_to_west",
           "roadName": "Western Gate Road",
-          "probableCells": 4,
-          "possibleCells": 1,
-          "maxProbability": 0.672
+          "probableCells": 3,
+          "possibleCells": 2,
+          "maxProbability": 0.741
         }
       ],
       "nearRoadTouches": [
         {
           "roadId": "base_to_central",
           "roadName": "Base Road",
-          "cellsWithin160m": 33,
-          "maxProbability": 0.694
+          "cellsWithin160m": 83,
+          "maxProbability": 0.716
         },
         {
           "roadId": "central_to_eastern",
           "roadName": "Low Marsh Road",
-          "cellsWithin160m": 24,
-          "maxProbability": 0.66
+          "cellsWithin160m": 73,
+          "maxProbability": 0.732
         },
         {
           "roadId": "eastern_to_sinet",
           "roadName": "Sinet Delta Spur",
-          "cellsWithin160m": 3,
-          "maxProbability": 0.546
+          "cellsWithin160m": 11,
+          "maxProbability": 0.624
         },
         {
           "roadId": "base_to_ridge",
           "roadName": "Dry Ridge Track",
-          "cellsWithin160m": 20,
-          "maxProbability": 0.549
+          "cellsWithin160m": 57,
+          "maxProbability": 0.585
         },
         {
           "roadId": "ridge_to_bypass",
           "roadName": "Dry Ridge Connector",
-          "cellsWithin160m": 8,
-          "maxProbability": 0.538
+          "cellsWithin160m": 21,
+          "maxProbability": 0.553
         },
         {
           "roadId": "bypass_to_eastern",
           "roadName": "Southern Bypass",
-          "cellsWithin160m": 1,
-          "maxProbability": 0.454
+          "cellsWithin160m": 3,
+          "maxProbability": 0.494
         },
         {
           "roadId": "central_to_north",
           "roadName": "Northern Loop Link",
-          "cellsWithin160m": 12,
-          "maxProbability": 0.55
+          "cellsWithin160m": 32,
+          "maxProbability": 0.587
+        },
+        {
+          "roadId": "north_to_causeway",
+          "roadName": "Causeway Approach",
+          "cellsWithin160m": 1,
+          "maxProbability": 0.45
+        },
+        {
+          "roadId": "eastern_to_north",
+          "roadName": "Eastern Loop Road",
+          "cellsWithin160m": 1,
+          "maxProbability": 0.467
         },
         {
           "roadId": "base_to_hill",
           "roadName": "Observation Hill Track",
-          "cellsWithin160m": 16,
-          "maxProbability": 0.563
+          "cellsWithin160m": 44,
+          "maxProbability": 0.588
         },
         {
           "roadId": "central_to_west",
           "roadName": "Western Gate Road",
-          "cellsWithin160m": 16,
-          "maxProbability": 0.672
+          "cellsWithin160m": 41,
+          "maxProbability": 0.741
         }
       ],
       "falseSafeRoadRate": 0,
-      "unnecessaryBlockRate": 0.455,
+      "unnecessaryBlockRate": 0.545,
       "routeAvailabilityProxy": 1
     },
     {
       "window": "duringFlooding",
       "observedAt": "2026-03-16T15:47:47.961154Z",
       "sceneId": "S1A_IW_GRDH_1SDV_20260309T155545_20260309T155610_063552_07FC94_E210_COG,S1C_IW_GRDH_1SDV_20260312T031130_20260312T031155_006725_00D94D_F15F_COG,S1A_IW_GRDH_1SDV_20260316T154747_20260316T154812_063654_080064_6B83_COG",
-      "featureCount": 121,
-      "probableFloodAreaKm2": 0.539,
+      "featureCount": 541,
+      "probableFloodAreaKm2": 0.778,
       "directRoadTouches": [
         {
           "roadId": "central_to_eastern",
           "roadName": "Low Marsh Road",
-          "probableCells": 1,
-          "possibleCells": 3,
-          "maxProbability": 0.522
+          "probableCells": 3,
+          "possibleCells": 6,
+          "maxProbability": 0.543
         },
         {
           "roadId": "eastern_to_sinet",
           "roadName": "Sinet Delta Spur",
-          "probableCells": 1,
+          "probableCells": 0,
+          "possibleCells": 6,
+          "maxProbability": 0.57
+        },
+        {
+          "roadId": "ridge_to_bypass",
+          "roadName": "Dry Ridge Connector",
+          "probableCells": 0,
           "possibleCells": 2,
-          "maxProbability": 0.542
+          "maxProbability": 0.49
         },
         {
           "roadId": "bypass_to_eastern",
           "roadName": "Southern Bypass",
           "probableCells": 0,
           "possibleCells": 1,
-          "maxProbability": 0.477
+          "maxProbability": 0.511
         },
         {
           "roadId": "central_to_north",
           "roadName": "Northern Loop Link",
           "probableCells": 1,
-          "possibleCells": 1,
-          "maxProbability": 0.573
+          "possibleCells": 0,
+          "maxProbability": 0.629
         },
         {
           "roadId": "eastern_to_north",
           "roadName": "Eastern Loop Road",
-          "probableCells": 0,
-          "possibleCells": 1,
-          "maxProbability": 0.517
+          "probableCells": 1,
+          "possibleCells": 2,
+          "maxProbability": 0.574
         }
       ],
       "nearRoadTouches": [
         {
           "roadId": "central_to_eastern",
           "roadName": "Low Marsh Road",
-          "cellsWithin160m": 11,
-          "maxProbability": 0.522
+          "cellsWithin160m": 39,
+          "maxProbability": 0.543
         },
         {
           "roadId": "eastern_to_sinet",
           "roadName": "Sinet Delta Spur",
-          "cellsWithin160m": 11,
-          "maxProbability": 0.542
+          "cellsWithin160m": 35,
+          "maxProbability": 0.57
         },
         {
           "roadId": "ridge_to_bypass",
           "roadName": "Dry Ridge Connector",
-          "cellsWithin160m": 1,
-          "maxProbability": 0.453
+          "cellsWithin160m": 4,
+          "maxProbability": 0.49
         },
         {
           "roadId": "bypass_to_eastern",
           "roadName": "Southern Bypass",
-          "cellsWithin160m": 3,
-          "maxProbability": 0.477
+          "cellsWithin160m": 9,
+          "maxProbability": 0.511
         },
         {
           "roadId": "central_to_north",
           "roadName": "Northern Loop Link",
-          "cellsWithin160m": 5,
-          "maxProbability": 0.573
+          "cellsWithin160m": 17,
+          "maxProbability": 0.629
         },
         {
           "roadId": "eastern_to_north",
           "roadName": "Eastern Loop Road",
-          "cellsWithin160m": 3,
-          "maxProbability": 0.517
+          "cellsWithin160m": 11,
+          "maxProbability": 0.574
         }
       ],
       "falseSafeRoadRate": 0,
@@ -290,135 +316,135 @@
       "window": "recoveryComparison",
       "observedAt": "2026-05-15T15:47:47.498591Z",
       "sceneId": "S1A_IW_GRDH_1SDV_20260508T155545_20260508T155610_064427_081D30_9B81_COG,S1D_IW_GRDH_1SDV_20260512T031143_20260512T031208_002745_004A1D_5B28_COG,S1A_IW_GRDH_1SDV_20260515T154747_20260515T154812_064529_0820BC_1569_COG",
-      "featureCount": 171,
-      "probableFloodAreaKm2": 1.976,
+      "featureCount": 806,
+      "probableFloodAreaKm2": 2.342,
       "directRoadTouches": [
-        {
-          "roadId": "base_to_central",
-          "roadName": "Base Road",
-          "probableCells": 0,
-          "possibleCells": 1,
-          "maxProbability": 0.483
-        },
         {
           "roadId": "central_to_eastern",
           "roadName": "Low Marsh Road",
-          "probableCells": 0,
-          "possibleCells": 2,
-          "maxProbability": 0.485
+          "probableCells": 1,
+          "possibleCells": 4,
+          "maxProbability": 0.549
         },
         {
           "roadId": "eastern_to_sinet",
           "roadName": "Sinet Delta Spur",
           "probableCells": 0,
           "possibleCells": 1,
-          "maxProbability": 0.492
+          "maxProbability": 0.504
         },
         {
           "roadId": "base_to_ridge",
           "roadName": "Dry Ridge Track",
           "probableCells": 1,
-          "possibleCells": 3,
-          "maxProbability": 0.645
+          "possibleCells": 6,
+          "maxProbability": 0.634
         },
         {
           "roadId": "ridge_to_bypass",
           "roadName": "Dry Ridge Connector",
           "probableCells": 0,
-          "possibleCells": 1,
-          "maxProbability": 0.523
+          "possibleCells": 2,
+          "maxProbability": 0.547
         },
         {
           "roadId": "central_to_north",
           "roadName": "Northern Loop Link",
           "probableCells": 0,
           "possibleCells": 1,
-          "maxProbability": 0.513
+          "maxProbability": 0.532
+        },
+        {
+          "roadId": "eastern_to_north",
+          "roadName": "Eastern Loop Road",
+          "probableCells": 0,
+          "possibleCells": 1,
+          "maxProbability": 0.516
         },
         {
           "roadId": "central_to_west",
           "roadName": "Western Gate Road",
           "probableCells": 1,
           "possibleCells": 2,
-          "maxProbability": 0.613
+          "maxProbability": 0.644
         }
       ],
       "nearRoadTouches": [
         {
           "roadId": "base_to_central",
           "roadName": "Base Road",
-          "cellsWithin160m": 2,
-          "maxProbability": 0.483
+          "cellsWithin160m": 9,
+          "maxProbability": 0.52
         },
         {
           "roadId": "central_to_eastern",
           "roadName": "Low Marsh Road",
-          "cellsWithin160m": 5,
-          "maxProbability": 0.485
+          "cellsWithin160m": 28,
+          "maxProbability": 0.549
         },
         {
           "roadId": "eastern_to_sinet",
           "roadName": "Sinet Delta Spur",
-          "cellsWithin160m": 2,
-          "maxProbability": 0.492
+          "cellsWithin160m": 9,
+          "maxProbability": 0.504
         },
         {
           "roadId": "base_to_ridge",
           "roadName": "Dry Ridge Track",
-          "cellsWithin160m": 9,
-          "maxProbability": 0.645
+          "cellsWithin160m": 29,
+          "maxProbability": 0.634
         },
         {
           "roadId": "ridge_to_bypass",
           "roadName": "Dry Ridge Connector",
-          "cellsWithin160m": 4,
-          "maxProbability": 0.523
+          "cellsWithin160m": 10,
+          "maxProbability": 0.547
         },
         {
           "roadId": "bypass_to_eastern",
           "roadName": "Southern Bypass",
-          "cellsWithin160m": 1,
-          "maxProbability": 0.455
+          "cellsWithin160m": 7,
+          "maxProbability": 0.469
         },
         {
           "roadId": "central_to_north",
           "roadName": "Northern Loop Link",
-          "cellsWithin160m": 2,
-          "maxProbability": 0.513
+          "cellsWithin160m": 7,
+          "maxProbability": 0.532
         },
         {
           "roadId": "eastern_to_north",
           "roadName": "Eastern Loop Road",
-          "cellsWithin160m": 1,
-          "maxProbability": 0.472
+          "cellsWithin160m": 5,
+          "maxProbability": 0.516
         },
         {
           "roadId": "base_to_hill",
           "roadName": "Observation Hill Track",
-          "cellsWithin160m": 1,
-          "maxProbability": 0.474
+          "cellsWithin160m": 4,
+          "maxProbability": 0.482
         },
         {
           "roadId": "central_to_west",
           "roadName": "Western Gate Road",
-          "cellsWithin160m": 7,
-          "maxProbability": 0.613
+          "cellsWithin160m": 20,
+          "maxProbability": 0.644
         }
       ],
       "falseSafeRoadRate": 0,
-      "unnecessaryBlockRate": 0.182,
+      "unnecessaryBlockRate": 0.273,
       "routeAvailabilityProxy": 1
     }
   ],
   "changeLayer": {
     "href": "data/amboseli/sentinel1-flood-change.geojson",
-    "featureCount": 519,
+    "featureCount": 2230,
     "categories": {
-      "possible_change": 437,
-      "residual_or_later_water": 65,
-      "newly_flooded": 13,
-      "persistent_water": 2,
-      "recovered_or_drying": 2
+      "residual_or_later_water": 311,
+      "possible_change": 1826,
+      "newly_flooded": 71,
+      "persistent_water": 12,
+      "recovered_or_drying": 10
     }
   }
 }

@@ -12,6 +12,7 @@ const sampleWidth = Number(process.env.SAMPLE_WIDTH ?? 144);
 const sampleHeight = Number(process.env.SAMPLE_HEIGHT ?? 126);
 const cellsX = Number(process.env.CELLS_X ?? 48);
 const cellsY = Number(process.env.CELLS_Y ?? 42);
+const cellPolygonSides = Number(process.env.CELL_POLYGON_SIDES ?? 12);
 const requireRawScenes = process.env.REQUIRE_RAW_SCENES === "true";
 const probableFloodThreshold = Number(process.env.PROBABLE_FLOOD_THRESHOLD ?? 0.52);
 
@@ -65,7 +66,7 @@ if (allWindows.every((windowKey) => allCollections.has(windowKey))) {
     method: {
       id: "sentinel1-window-change-v1",
       description:
-        "Cell-wise comparison of aggregated before, during and recovery Sentinel-1 flood-likelihood masks. Categories are provisional and intended for planning display."
+        "Cell-wise comparison of aggregated baseline, flood-test and recovery Sentinel-1 flood-likelihood masks. Categories are provisional and intended for planning display."
     },
     categories: changeSummary(changeCollection)
   };
@@ -157,6 +158,7 @@ async function deriveWindowMask(windowKey) {
         sampleHeight,
         cellsX,
         cellsY,
+        cellPolygonSides,
         probableFloodThreshold
       },
       georeference: {
@@ -269,15 +271,7 @@ function aggregateSceneScores(windowKey, perScene, demoBbox) {
         },
         geometry: {
           type: "Polygon",
-          coordinates: [
-            [
-              [minLng, minLat],
-              [maxLng, minLat],
-              [maxLng, maxLat],
-              [minLng, maxLat],
-              [minLng, minLat]
-            ]
-          ]
+          coordinates: [cellPolygon(minLng, minLat, maxLng, maxLat, cellPolygonSides)]
         }
       });
     }
@@ -632,6 +626,26 @@ function approxCellAreaM2(minLng, minLat, maxLng, maxLat) {
   const meanLat = ((minLat + maxLat) / 2) * (Math.PI / 180);
   const lngMeters = 111_320 * Math.cos(meanLat);
   return Math.abs((maxLng - minLng) * lngMeters * (maxLat - minLat) * latMeters);
+}
+
+function cellPolygon(minLng, minLat, maxLng, maxLat, sides) {
+  const vertexCount = Math.max(4, Math.round(sides));
+  const centerLng = (minLng + maxLng) / 2;
+  const centerLat = (minLat + maxLat) / 2;
+  const radiusLng = (maxLng - minLng) / 2;
+  const radiusLat = (maxLat - minLat) / 2;
+  const ring = [];
+
+  for (let index = 0; index < vertexCount; index += 1) {
+    const angle = -Math.PI / 2 + (index / vertexCount) * Math.PI * 2;
+    ring.push([
+      round(centerLng + Math.cos(angle) * radiusLng, 8),
+      round(centerLat + Math.sin(angle) * radiusLat, 8)
+    ]);
+  }
+
+  ring.push(ring[0]);
+  return ring;
 }
 
 function earliest(values) {

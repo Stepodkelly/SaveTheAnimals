@@ -146,8 +146,8 @@ export function RoutePanel({
       <section className="panel-section">
         <div className="panel-heading-row">
           <div>
-            <h2>V2 Replay Gate</h2>
-            <p className="eyebrow">Simple regression, judged by replay.</p>
+            <h2>Model Replay Gate</h2>
+            <p className="eyebrow">V2 model prediction, judged by replay.</p>
           </div>
           <span className="chip">{v2Evaluation.displayMode}</span>
         </div>
@@ -191,14 +191,16 @@ export function RoutePanel({
           ))}
         </div>
         {realMaskEvaluation && (
-          <div className="mask-evaluation" aria-label="V2 real mask evaluation">
-            <span>Sentinel mask evaluation</span>
+          <div className="mask-evaluation" aria-label="Model-vs-mask evaluation">
+            <span>Model-vs-mask evaluation</span>
             <strong>
               Heuristic {realMaskEvaluation.metrics.brierScore.toFixed(3)} · trained{" "}
               {formatNullableMetric(realMaskEvaluation.trainedRegression.metrics.brierScore)}
             </strong>
+            <small>Source: V2 model prediction, tested against generated Sentinel mask labels.</small>
             <small>
-              {realMaskEvaluation.metrics.evaluatedCells} cells; {realMaskEvaluation.targetWindow.maskMethod}
+              Sample: {realMaskEvaluation.metrics.evaluatedCells} mask-labeled cells;{" "}
+              {realMaskEvaluation.targetWindow.maskMethod}
             </small>
             {realMaskEvaluation.sampleSummary && (
               <small>
@@ -214,6 +216,7 @@ export function RoutePanel({
             <small>
               tuned threshold {formatNullableMetric(realMaskEvaluation.thresholdTuning.trained.selectedThreshold)}
             </small>
+            <small>Not independent field truth.</small>
           </div>
         )}
       </section>
@@ -239,17 +242,18 @@ export function RoutePanel({
         </div>
         {activeFloodMask && (
           <div className="mask-summary" aria-label="Sentinel-1 flood mask summary">
-            <span>Satellite-derived layer</span>
-            <strong>{activeFloodMask.probableFloodAreaKm2.toFixed(2)} km2 probable</strong>
+            <span>Satellite observed flood likelihood</span>
+            <strong>{activeFloodMask.probableFloodAreaKm2.toFixed(2)} km2 probable satellite flood</strong>
             <small>
-              {activeFloodMask.sourceSceneCount ?? 1} scenes; {activeFloodMask.method.id}; provisional overlay
+              Source: Sentinel-1 observed likelihood; {activeFloodMask.sourceSceneCount ?? 1} scenes.
             </small>
             {activeFloodMask.quality && (
               <small>
-                {activeFloodMask.quality.confidenceTier}; {activeFloodMask.quality.rawSceneCount} raw /{" "}
-                {activeFloodMask.quality.quicklookSceneCount} quicklook
+                {activeFloodMask.quality.rawSceneCount} raw / {activeFloodMask.quality.quicklookSceneCount} quicklook;{" "}
+                {activeFloodMask.quality.confidenceTier}; {activeFloodMask.method.id}
               </small>
             )}
+            <small>Possible = lower satellite likelihood; probable = higher satellite likelihood.</small>
           </div>
         )}
         {activeRoadMetrics && (
@@ -281,8 +285,8 @@ export function RoutePanel({
           <span>Data confidence</span>
           <strong>{confidenceHeadline(activeFloodMask, groundTruthValidation)}</strong>
           <small>
-            Satellite masks are planning overlays. Regression diagnostics use generated Sentinel mask cells, not
-            independent inundation labels.
+            Satellite masks are observed-likelihood planning overlays. Model diagnostics use generated Sentinel mask
+            cells, not independent inundation labels.
           </small>
           <small>
             Field validation: {verifiedRoads}/{groundTruthValidation.summary.roads || edges.length} roads verified;{" "}
@@ -315,8 +319,8 @@ export function RoutePanel({
                 className="edge-track"
                 title={
                   edge.blocked
-                    ? "Blocked by V2 Sentinel flood evidence"
-                    : `Forecast risk ${edge.forecastRisk === undefined ? "unknown" : asPercent(edge.forecastRisk)}`
+                    ? "Blocked by route decision logic"
+                    : `Model predicted risk ${edge.forecastRisk === undefined ? "unknown" : asPercent(edge.forecastRisk)}`
                 }
               >
                 <div
@@ -499,11 +503,11 @@ function confidenceHeadline(
 }
 
 function changeCategoryLabel(category: string) {
-  if (category === "newly_flooded") return "V2 newly flooded cells";
-  if (category === "persistent_water") return "V2 persistent water cells";
-  if (category === "recovered_or_drying") return "V2 recovered/drying cells";
-  if (category === "residual_or_later_water") return "V2 residual/later water cells";
-  return "V2 possible-change cells";
+  if (category === "newly_flooded") return "Observed newly flooded cells";
+  if (category === "persistent_water") return "Observed persistent water cells";
+  if (category === "recovered_or_drying") return "Observed recovered/drying cells";
+  if (category === "residual_or_later_water") return "Observed residual/later water cells";
+  return "Observed possible-change cells";
 }
 
 function auditRoute(routeEdges: RoadEdge[], route: RouteResult) {
@@ -512,7 +516,7 @@ function auditRoute(routeEdges: RoadEdge[], route: RouteResult) {
       summary: "No strict-clear path",
       detail:
         route.routingMode === "strict_clear"
-          ? "Strict mode rejects blocked roads and all direct possible/probable flood-cell crossings."
+          ? "Strict mode rejects blocked roads and direct possible/probable satellite-flood cells."
           : "The selected destination is cut off by blocked road edges in this scenario."
     };
   }
@@ -520,34 +524,79 @@ function auditRoute(routeEdges: RoadEdge[], route: RouteResult) {
   const directProbable = sum(routeEdges.map((edge) => edge.directProbableFloodCells ?? 0));
   const directPossible = sum(routeEdges.map((edge) => edge.directPossibleFloodCells ?? 0));
   const nearby = sum(routeEdges.map((edge) => edge.nearbyFloodCells ?? 0));
-  const maxProbability = Math.max(0, ...routeEdges.map((edge) => edge.maxFloodProbability ?? 0));
+  const maxSatelliteLikelihood = Math.max(0, ...routeEdges.map((edge) => edge.maxFloodProbability ?? 0));
+  const maxModelRisk = Math.max(0, ...routeEdges.map((edge) => edge.forecastRisk ?? 0));
+  const hasExternalEvidence = routeEdges.some((edge) => edge.evidencePenalty > 0);
+  const sourceTags = routeSourceTags({ directProbable, directPossible, nearby, maxModelRisk, hasExternalEvidence });
+  const sourceText = sourceTags.length > 0 ? ` Source: ${sourceTags.join("; ")}.` : "";
 
   if (directProbable > 0) {
     return {
-      summary: "Unsafe: probable flood crossing",
-      detail: `${directProbable} probable flood-cell overlaps; max mapped probability ${asPercent(maxProbability)}. Field verification required.`
+      summary: "Unsafe: probable satellite overlap",
+      detail: `${directProbable} probable satellite-flood overlaps; max satellite likelihood ${asPercent(
+        maxSatelliteLikelihood
+      )}.${sourceText} Field verification required.`
     };
   }
   if (directPossible > 0) {
     return {
-      summary: "Unsafe: possible flood crossing",
-      detail: `${directPossible} possible flood-cell overlaps; max mapped probability ${asPercent(maxProbability)}. Field verification required.`
+      summary: "Unsafe: possible satellite overlap",
+      detail: `${directPossible} possible satellite-flood overlaps; max satellite likelihood ${asPercent(
+        maxSatelliteLikelihood
+      )}.${sourceText} Field verification required.`
     };
   }
   if (nearby > 0) {
     return {
-      summary: "Caution: flood cells nearby",
-      detail: `${nearby} nearby flood cells within the route buffer; max mapped probability ${asPercent(maxProbability)}. Field verification required.`
+      summary: "Caution: satellite cells nearby",
+      detail: `${nearby} nearby satellite-flood cells within the route buffer; max satellite likelihood ${asPercent(
+        maxSatelliteLikelihood
+      )}.${sourceText} Field verification required.`
+    };
+  }
+  if (maxModelRisk > 0.38) {
+    return {
+      summary: "Caution: model forecast penalty",
+      detail: `No direct satellite-mask overlap; max model predicted risk ${asPercent(
+        maxModelRisk
+      )}.${sourceText} Field verification required.`
+    };
+  }
+  if (hasExternalEvidence) {
+    return {
+      summary: "Caution: external evidence",
+      detail: `No direct satellite-mask overlap; external evidence increased route cost.${sourceText} Field verification required.`
     };
   }
   return {
-    summary: "Safe: avoids mapped flood cells",
-    detail: "No direct or nearby Sentinel flood-mask intersections on the selected route."
+    summary: "Safe: avoids observed cells",
+    detail: "No direct or nearby Sentinel observed-likelihood cells on the selected route."
   };
 }
 
 function sum(values: number[]) {
   return values.reduce((total, value) => total + value, 0);
+}
+
+function routeSourceTags({
+  directProbable,
+  directPossible,
+  nearby,
+  maxModelRisk,
+  hasExternalEvidence
+}: {
+  directProbable: number;
+  directPossible: number;
+  nearby: number;
+  maxModelRisk: number;
+  hasExternalEvidence: boolean;
+}) {
+  const tags: string[] = [];
+  if (directProbable > 0 || directPossible > 0) tags.push("direct satellite-mask overlap");
+  if (nearby > 0) tags.push("nearby satellite-mask cells");
+  if (maxModelRisk > 0.38) tags.push("model forecast penalty");
+  if (hasExternalEvidence) tags.push("external evidence");
+  return tags;
 }
 
 function sourceModeLabel(sourceMode?: string) {

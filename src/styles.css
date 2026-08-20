@@ -177,7 +177,7 @@ button {
   bottom: 18px;
   display: grid;
   gap: 6px;
-  width: 172px;
+  width: 230px;
   padding: 9px;
   border: 1px solid #232323;
   background: rgba(255, 253, 245, 0.94);
@@ -215,6 +215,10 @@ button {
   background: #15803d;
 }
 
+.legend-route.route-no_route {
+  background: #545454;
+}
+
 .legend-rejected {
   background: repeating-linear-gradient(90deg, #7b7b7b 0 6px, transparent 6px 10px);
 }
@@ -227,12 +231,12 @@ button {
 
 .legend-risk {
   height: 14px !important;
-  background: linear-gradient(90deg, #15803d, #c76a11, #b42318);
+  background: linear-gradient(90deg, #f59e0b, #c76a11, #b42318);
 }
 
 .legend-change {
   height: 14px !important;
-  background: linear-gradient(90deg, #b42318, #075985, #15803d);
+  background: linear-gradient(90deg, #67e8f9, #38bdf8, #075985);
 }
 
 .toggle,

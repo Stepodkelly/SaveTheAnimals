@@ -90,7 +90,7 @@ export function calculateRoute(
       riskLevel: "unknown",
       reasons: [
         routingMode === "strict_clear"
-          ? "Strict-clear routing found no path that avoids blocked roads and direct possible/probable flood cells."
+          ? "Strict-clear routing found no path that avoids blocked roads and direct possible/probable satellite-flood cells."
           : "Flood-constrained road graph has no connected path to the selected incident.",
         "The result is a no-route finding, not a recommendation to travel off road."
       ],
@@ -194,13 +194,13 @@ function mergeLineStrings(edges: RoadEdge[]): LineString {
 function routeReasons(edges: RoadEdge[]) {
   const reasons = ["Route follows the preselected demonstration road graph."];
   if (edges.some((edge) => (edge.directProbableFloodCells ?? 0) > 0)) {
-    reasons.push("One or more edges directly overlap probable flood cells.");
+    reasons.push("One or more edges directly overlap probable satellite-flood cells.");
   }
   if (edges.some((edge) => (edge.directPossibleFloodCells ?? 0) > 0)) {
-    reasons.push("One or more edges directly overlap possible flood cells.");
+    reasons.push("One or more edges directly overlap possible satellite-flood cells.");
   }
   if (edges.some((edge) => edge.nearFlood)) {
-    reasons.push("One or more edges touch or pass near possible flood cells and are penalized.");
+    reasons.push("One or more edges touch or pass near satellite-flood cells and are penalized.");
   }
   if (edges.some((edge) => edge.condition === "uncertain_track")) {
     reasons.push("One or more segments are marked as uncertain tracks.");
@@ -231,10 +231,10 @@ function routeSafetyClass({
 
 function floodCaution(edge: RoadEdge) {
   if ((edge.directProbableFloodCells ?? 0) > 0) {
-    return " Direct probable flood-cell overlap; treat as unsafe without field confirmation.";
+    return " Direct probable satellite-flood overlap; treat as unsafe without field confirmation.";
   }
   if ((edge.directPossibleFloodCells ?? 0) > 0) {
-    return " Crosses possible flood cells; proceed only after field confirmation.";
+    return " Crosses possible satellite-flood cells; proceed only after field confirmation.";
   }
-  return " Passes near mapped flood cells; verify locally before dispatch.";
+  return " Passes near satellite-flood cells; verify locally before dispatch.";
 }

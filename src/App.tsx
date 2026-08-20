@@ -273,7 +273,7 @@ export default function App() {
               className={activeRouteView.showFlood ? "toggle active" : "toggle"}
               onClick={() => setShowFlood((value) => !value)}
             >
-              Flood overlay
+              Flood evidence
             </button>
             <div className="segmented" aria-label="Satellite layer mode">
               <button
@@ -281,7 +281,7 @@ export default function App() {
                 onClick={() => setSatelliteLayerMode("mask")}
                 type="button"
               >
-                Mask
+                Observed
               </button>
               <button
                 className={satelliteLayerMode === "change" ? "active" : ""}
@@ -296,9 +296,9 @@ export default function App() {
           <div className="map-legend" aria-label="Map legend">
             <span><i className={`legend-route route-${activeRouteView.currentRoute.safetyClass}`} /> current route</span>
             <span><i className="legend-rejected" /> rejected route</span>
-            <span><i className="legend-flood" /> Sentinel mask</span>
-            <span><i className="legend-risk" /> V2 risk</span>
-            <span><i className="legend-change" /> V2 change</span>
+            <span><i className="legend-flood" /> observed flood likelihood</span>
+            <span><i className="legend-risk" /> model predicted risk</span>
+            <span><i className="legend-change" /> observed change</span>
           </div>
           <RescueMap
             locations={data.locations}

@@ -1,4 +1,4 @@
-const CACHE_NAME = "save-the-animals-v2-2026-08-20-mask-source";
+const CACHE_NAME = "save-the-animals-v2-2026-08-20-terminology";
 
 self.addEventListener("install", (event) => {
   event.waitUntil(self.skipWaiting());

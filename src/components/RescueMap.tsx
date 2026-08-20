@@ -109,7 +109,10 @@ export function RescueMap({
           onEachFeature: (feature, layer) => {
             const cell = feature.properties as V2ScoredCellProperties;
             layer.bindTooltip(
-              `${cell.label}: ${Math.round(cell.probability * 100)}% ${cell.model.replace("-v1", "")} risk`
+              `${cell.label}: ${Math.round(cell.probability * 100)}% ${cell.model.replace(
+                "-v1",
+                ""
+              )} model predicted risk`
             );
           }
         })
@@ -157,7 +160,9 @@ export function RescueMap({
           onEachFeature: (feature, layer) => {
             const cell = feature.properties as SatelliteFloodMaskProperties;
             layer.bindTooltip(
-              `${cell.classification.replace("_", " ")}: ${Math.round(cell.floodProbability * 100)}% from Sentinel-1`
+              `${satelliteMaskLabel(cell.classification)}: ${Math.round(
+                cell.floodProbability * 100
+              )}% Sentinel-1 likelihood`
             );
           }
         })
@@ -178,7 +183,7 @@ export function RescueMap({
         },
         onEachFeature: (feature, layer) => {
           const edge = feature.properties as RoadEdge;
-          layer.bindTooltip(`${edge.name}${edge.blocked ? " blocked by V2 flood evidence" : ""}`);
+          layer.bindTooltip(`${edge.name}${edge.blocked ? " blocked by route decision logic" : ""}`);
         }
       }
     );
@@ -255,28 +260,33 @@ export function RescueMap({
 function riskColor(probability: number) {
   if (probability >= 0.68) return "#b42318";
   if (probability >= 0.48) return "#c76a11";
-  return "#15803d";
+  return "#f59e0b";
 }
 
 function changeColor(category: SatelliteFloodChangeProperties["category"]) {
-  if (category === "newly_flooded") return "#b42318";
+  if (category === "newly_flooded") return "#0e7490";
   if (category === "persistent_water") return "#075985";
-  if (category === "recovered_or_drying") return "#15803d";
-  if (category === "residual_or_later_water") return "#7c2d12";
-  return "#c76a11";
+  if (category === "recovered_or_drying") return "#67e8f9";
+  if (category === "residual_or_later_water") return "#0369a1";
+  return "#38bdf8";
 }
 
 function changeLabel(category: SatelliteFloodChangeProperties["category"]) {
-  if (category === "newly_flooded") return "V2 newly flooded cell";
-  if (category === "persistent_water") return "V2 persistent water cell";
-  if (category === "recovered_or_drying") return "V2 recovered or drying cell";
-  if (category === "residual_or_later_water") return "V2 residual or later water cell";
-  return "V2 possible change cell";
+  if (category === "newly_flooded") return "Observed newly flooded cell";
+  if (category === "persistent_water") return "Observed persistent water cell";
+  if (category === "recovered_or_drying") return "Observed recovered or drying cell";
+  if (category === "residual_or_later_water") return "Observed residual or later water cell";
+  return "Observed possible change cell";
+}
+
+function satelliteMaskLabel(classification: SatelliteFloodMaskProperties["classification"]) {
+  return classification === "probable_flood" ? "probable satellite flood" : "possible satellite flood";
 }
 
 function routeColor(safetyClass: RouteResult["safetyClass"]) {
   if (safetyClass === "unsafe") return "#b42318";
   if (safetyClass === "caution") return "#c76a11";
+  if (safetyClass === "no_route") return "#545454";
   return "#15803d";
 }
 
